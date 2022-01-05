@@ -1,9 +1,14 @@
-const {app} = require("./server");
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 
-require("./database");
-//require("./database");
-app.listen(5000,()=>{
-    console.log("iniciando servicios ");
-} )
+const { app } = require("./server");
 
+
+require("./config/database");
+
+
+app.listen(app.get('port'), () => {
+    console.log(`🚀 listening on port , http://localhost:${app.get('port')}`);
+});
