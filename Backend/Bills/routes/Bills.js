@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Ruta get para cocina  que trae todas las facturas con status de cocina open
+//Ruta get para cocina  que trae todas las facturas con status de cocina open.
 
 router.get("/cocina", async (req, res) => {
   try {
