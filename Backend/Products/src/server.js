@@ -22,6 +22,7 @@ app.use(multer({storage}).single("image"))
 app.use(require("./routes/routes"))
 
 app.get("/", (req, res)=>{
+    console.log("En el server")
     res.send("Muy bien Rafa");
 } )
 

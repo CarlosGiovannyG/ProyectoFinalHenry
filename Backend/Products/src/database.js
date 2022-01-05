@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose= require("mongoose");
 
-mongoose.connect("mongodb://localhost/productos",{
 
-}).then(db => console.log("base de datos conectada"))
-.catch(err => console.log("algo paso...."+err) )
+const urlmongo= `mongodb+srv://grupo10:8hjB4-wjNy!Css8@cluster0.povzz.mongodb.net/RestaurantGrupo10?retryWrites=true&w=majority`
+// mongodb+srv://grupo10:<password>@cluster0.povzz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+mongoose.connect(urlmongo, { useNewUrlParser: true })
+.then(db => console.log("la base de datos en linea esta conectada"))
+.catch( err => console.log("tenemos en la base en linea, ¡¡un problema!! : ",err))
