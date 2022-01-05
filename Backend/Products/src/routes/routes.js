@@ -35,4 +35,17 @@ router.get("/products", async (req,res)=>{
     res.json(resProdutos);
 })
 
+
+// router.get("/products", async (req,res) =>{
+//     try {
+//         const resProdutos= await Product.find();
+//         console.log("esperando la respuesta");
+//         console.log(resProdutos);
+//         res.send(resProdutos);
+
+//     } catch (error) {
+//         console.log("Tenemos un error en el get... : "+error)
+//     }
+//     res.send("¿¿¿ Que  ?????????10 10 10")
+// })
 module.exports = router
