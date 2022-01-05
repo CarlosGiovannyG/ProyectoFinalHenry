@@ -30,14 +30,28 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Ruta get para cocina
+//Ruta get para cocina  que trae todas las facturas con status de cocina open
 
 router.get("/cocina", async (req, res) => {
   try {
-    const facturaStatus = await Bills.find({ status: "Open" }).sort({
-      Cocacola: { Cantidad: 1, Total: 20 },
-    });
+    const facturaStatus = await Bills.find({ statusCocina: "Open" });
     return res.status(200).json(facturaStatus);
+  } catch (error) {
+    res.status(500).send({ message: "Ocurrio un error", error });
+  }
+});
+
+//Ruta cambiar status cocina. El ID por params y el status por query
+
+router.post("/cocina/:id", async (req, res) => {
+  try {
+    const { status } = req.query;
+    const { id } = req.params;
+    const facturaModificada = await Bills.findOneAndUpdate(
+      { _id: id },
+      { statusCocina: status }
+    );
+    return res.status(200).json(facturaModificada);
   } catch (error) {
     res.status(500).send({ message: "Ocurrio un error", error });
   }
