@@ -4,8 +4,9 @@ import Bills  from './Bills'
 
 const Queries = { 
   
+  //PRODUCTS
   ALL_PRODUCTS: Products.ALL_PRODUCTS,
-  //PRODUCT_BY_ID:
+  FIND_PRODUCT: Products.FIND_PRODUCT,
 
   //BILLS
   ALL_BILLS:Bills.ALL_BILLS

@@ -17,6 +17,8 @@ const fakeData = [
 
 
 export const MenuContainer = ({ products }) => {
+    console.log(products);
+
     return (
         <main id="menu" className="">
             <div className="menu-input">
@@ -24,6 +26,11 @@ export const MenuContainer = ({ products }) => {
                 <SearchBar />
             </div>
             <section className="menu-list">
+                <ProductCard
+                    products={products}
+                />
+            </section>
+            {/* <section className="menu-list">
                 {fakeData.map(e => {
                     return (
                         <ProductCard
@@ -31,7 +38,7 @@ export const MenuContainer = ({ products }) => {
                         />
                     )
                 })}
-            </section>
+            </section> */}
         </main>
     )
 }

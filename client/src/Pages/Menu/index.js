@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MenuJumbotron } from "./components/MenuJumbotron/MenuJumbotron";
 import { MenuContainer } from "./components/MenuContainer/MenuContainer";
 import { Footer } from "../../Components/Footer/Footer";
@@ -19,10 +19,6 @@ export const Menu = () => {
         )
     }
 if(error) return null
-
-    const allProducts=data.allProducts
-
-    // console.log('MNEU', allProducts);
 
     return (
         <div>

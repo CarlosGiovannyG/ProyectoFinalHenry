@@ -13,7 +13,7 @@ class ProductsApi extends RESTDataSource{
   }
 
   async ProductById(input) {
-    return await this.get(`/${input}`)
+       return await this.get(`/${input}`)
   }
 
   async ProductLike(input) {

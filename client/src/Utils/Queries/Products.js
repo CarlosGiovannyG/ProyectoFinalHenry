@@ -53,6 +53,27 @@ const Products = {
   
   `,
 
+  FIND_PRODUCT: gql`
+  
+  query findProduct($input: productId) {
+  ProductById(input: $input) {
+    product {
+      _id
+      name
+      description
+      category
+      price
+      rating
+      views
+      image
+      public_id
+      timestamps
+    }
+  }
+}
+  `,
+
+
 };
 
 

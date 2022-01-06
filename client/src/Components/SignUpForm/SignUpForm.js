@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './SignUpForm.module.css';
 
 export  function validate(input){
@@ -67,19 +67,58 @@ export default function SignUpForm(){
                     {/*  Inputs */}
                     <div className={s.inputs}>
                         <div className={s.inputDiv1}>
-                            <input className={s.inputName} type='text' name='name' placeholder={'Name...'} value={input.name} onChange={handleInputChange} />
-                            <input className={s.inputLastname} type='text' name='lastname' placeholder={'Lastname...'} value={input.lastname} onChange={handleInputChange}/>
+                            <input
+                                className={s.inputName}
+                                type='text' name='name'
+                                placeholder={'Name...'}
+                                value={input.name}
+                                onChange={handleInputChange} />
+                            <input
+                                className={s.inputLastname}
+                                type='text'
+                                name='lastname'
+                                placeholder={'Lastname...'}
+                                value={input.lastname}
+                                onChange={handleInputChange} />
                         </div>
                         <div className={s.inputDiv2}>
-                            <input className={s.inputPassword1} type='text' name='password1' placeholder={'Password...'} value={input.password1} onChange={handleInputChange} />
-                            <input className={s.inputEmail} type='text' name='email' placeholder={'Email...'} value={input.email} onChange={handleInputChange} />
+                            <input
+                                className={s.inputPassword1}
+                                type='text'
+                                name='password1'
+                                placeholder={'Password...'}
+                                value={input.password1} onChange={handleInputChange} />
+                            <input
+                                className={s.inputEmail}
+                                type='text'
+                                name='email'
+                                placeholder={'Email...'}
+                                value={input.email}
+                                onChange={handleInputChange} />
                         </div>
                         <div className={s.inputDiv3}>
-                        <input className={s.inputPassword2} type='text' name='password2' placeholder={'Repeat Password...'} value={input.password2} onChange={handleInputChange} />  
+                            <input
+                                className={s.inputPassword2}
+                                type='text'
+                                name='password2'
+                                placeholder={'Repeat Password...'}
+                                value={input.password2}
+                                onChange={handleInputChange} />  
                         {
-                            (input.name !=='' && !errors.lastname && !errors.password1 && !errors.password2 && !errors.email) ? 
-                            <button className={s.btnRegister} type="submit" onClick={handleSubmit}>Register</button> :
-                            <button className={s.btnRegisterError} onClick={(e)=> e.preventDefault()} >Register</button>
+                                (input.name !== ''
+                                    && !errors.lastname
+                                    && !errors.password1
+                                    && !errors.password2
+                                    && !errors.email) ? 
+                                    <button
+                                        className={s.btnRegister}
+                                        type="submit"
+                                        onClick={handleSubmit}
+                                    >Register</button> :
+                                    <button
+                                        className={s.btnRegisterError}
+                                        onClick={(e) => e.preventDefault()}
+                                    >Register</button>
                         }
                         </div>
                     </div>
