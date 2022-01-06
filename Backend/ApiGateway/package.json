@@ -1,0 +1,22 @@
+{
+  "name": "apigateway",
+  "version": "1.0.0",
+  "description": "Tecnoligias:\r 1. GraphQL\r 2. ApolloServer\r 3. ApolloClient\r 4. Fetch\r 5. ApolloDatasourceRest\r 6. Lodash",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-rest": "^3.5.0",
+    "apollo-server": "^3.6.1",
+    "graphql": "^16.2.0",
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

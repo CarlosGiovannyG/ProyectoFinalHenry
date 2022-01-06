@@ -5,6 +5,9 @@ const cors = require("cors");
 const morgan = require('morgan')
 const app = express();
 
+app.set('port', process.env.PORT || 5001)
+
+
 //Middlewares
 app.use(morgan("dev"));
 app.use(cors());
@@ -21,4 +24,6 @@ mongoose
 app.use("/bills", billsRoute);
 
 //Cambiar el puerto al que sea necesario
-app.listen(3000, () => console.log("Listening in port 3000"));
+app.listen(app.get('port'), () => {
+  console.log(`🚀 listening on port , http://localhost:${app.get('port')}`);
+});

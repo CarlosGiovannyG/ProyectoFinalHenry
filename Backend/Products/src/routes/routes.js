@@ -11,7 +11,7 @@ router.get("/:id", require("../controllers/productById"))
 
 router.post("/:id/like",  require("../controllers/productLike"))
 
-router.post("/:id/like",  require("../controllers/productComment"))
+router.post("/:id/comment",  require("../controllers/productComment"))
 
 
 module.exports = router
