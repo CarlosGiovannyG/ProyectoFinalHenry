@@ -1,25 +1,78 @@
-.header{
-    display: flex;
-    background-color: rgb(116, 54, 74);
-    height: 80px;
-    width: 100%;
-    justify-content: space-between;
+.carousel{
+    text-align: center;
 }
 
-s.title{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: lighter;
-
-}
-
-s.headerbtns{
+.img{
+    width:100%;
+    height:847px;
     vertical-align: middle;
 }
 
-s.btnLogIn{
+
+.header{
+    display: flex;
+    height: 90px; 
+    width: 100%;
+}
+
+.title{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 3rem;
+    margin-left: 30px;
+    margin-top: 12px;
+    text-align: center;
+    
+}
+
+.headerbtns{
+    display: flex;
+    margin-top: 15px;
+    margin-right: 20px;
+    width: 100%;
+    align-content: space-between;
 
 }
 
-s.btnSignUp{
+.btnDiv1{
 
+    width: 500px;
+    display: inline-block;
+
+}
+
+.btnDiv2{
+
+    width: 300px;
+    display: inline-block;
+
+}
+
+.headerbtns{
+    margin-top: 15px;
+    margin-right: 25px;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+.btnsHeader{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    background: none;
+    border-style: none;
+    color: black;
+    font-size: 1.3rem;
+    height: 60px;
+    width: 120px;
+}
+
+.modal{
+    width: 1000px;
+    height: 500px;
+    position: relative;
+    background-color: rgb(189, 185, 185);
 }
