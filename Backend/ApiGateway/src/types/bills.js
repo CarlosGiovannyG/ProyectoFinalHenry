@@ -1,30 +1,30 @@
-// {
-// "numeroMesa": 0,
-// "statusCocina": "Open",
-// "_id": "61d4d449bd0a23ca1df110a8",
-// "idUser": "7",
-// "description": "Una descripcion de prueba 2",
-// "products": [
-// {
-// "idProduct": 900,
-// "name": "Hotdog",
-// "price": "20"
-// }
-// ],
-// "status": "Prueba2",
-// "date": "2022-01-04T22:05:42.911Z",
-// "subTotal": 20,
-// "total": 25,
-// "__v": 0
-// },
 
 const { gql } = require('apollo-server');
 
 const bilssTypes = gql`
 
+input createBill{ 
+  idUser:String
+  description:String
+  products:[productsId]
+  numeroMesa:Int
+  tipoDePedido:String
+}
+
+input productsId{ 
+  idProduct:String
+  name:String
+  price:Int
+}
+
 input billsId{ id: ID }
 
+type response{
+  message:String
+}
+
 type allBills{
+  numeroMesa:String
   statusCocina:String
   _id:ID
   idUser:String
@@ -56,10 +56,14 @@ type caja{
 
 type Query {
 allBills:[allBills]
-BillsById(input:billsId):billsCaja
+BillsById(input:billsId):allBills
+BillsByClient(input:billsId):[allBills]
 }
 
-
+type Mutation{
+  CreateBills(input:createBill):response
+  DeleteBill(input:billsId):response
+}
 `;
 
 module.exports = bilssTypes;

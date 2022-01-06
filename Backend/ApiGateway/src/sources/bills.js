@@ -13,10 +13,25 @@ class BillsApi extends RESTDataSource {
   }
 
   async BillsById(input) {
-    let resp = await this.get(`/caja/${input}`)
-    console.log('SOURCES' ,resp);
-    return await this.get(`/caja/${input}`)
+    return await this.get(`/${input}`)
   }
+  
+  async BillsByClient(input) {
+     return await this.get(`/cliente/${input}`)
+  }
+  
+  async DeleteBill(input) {    
+    return await this.post(`/delete/${input}`)
+  }
+
+  async CreateBills(credencials) { 
+    credencials = new Object(credencials);
+    return await this.post(`/`,credencials)
+  }
+  
+
+  
+  
 };
 
 module.exports = BillsApi;

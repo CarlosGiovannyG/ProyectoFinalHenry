@@ -39,8 +39,6 @@ const BillsSchema = new mongoose.Schema(
       type: String,
       default: "Open" 
     }
-
-   
   },
   { timestamps: false }
 );
