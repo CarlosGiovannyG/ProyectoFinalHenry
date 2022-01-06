@@ -5,23 +5,30 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'rea
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
-
+import LogInForm from '../../Components/LogInForm/LogInForm';
+import icon from '../../img/MAIN_ICON.png';
+import { CSSTransition } from 'react-transition-group';
 
 const items = [
     {
       src: require('../../img/landing1.jpg'),
-      altText: 'Slide One',
-     
+      altText: 'Slide 1',
     },
     {
       src: require('../../img/landing2.jpg'),
-      altText: 'Slide Two',
-      
+      altText: 'Slide 2',
     },
     {
       src: require('../../img/landing3.jpg'),
-      altText: 'Slide Three',
-      
+      altText: 'Slide 3',
+    },
+    {
+        src: require('../../img/landing4.jpg'),
+        altText: 'Slide 4',
+    },
+    {
+        src: require('../../img/landing5.jpg'),
+        altText: 'Slide 5',
     }
 ];
 
@@ -29,10 +36,10 @@ export default function Home(){
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
-    const [Modal, open] = useModal('root', {
-        preventScroll: true,
-        closeOnOverlayClick: true
-    });
+    const [inProp, setInProp] = React.useState(true); // CSS transition group
+    const [Modal, open] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const [Modal2, open2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    
 
     const itemLength = items.length - 1
 
@@ -83,7 +90,7 @@ export default function Home(){
                 </Carousel>
             </div>
             <div className={s.header}>
-                <h1 className={s.title} >Henry</h1>
+                <img className={s.icon} src={icon} alt='Restaurant Logo' />
                 <div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
@@ -92,18 +99,42 @@ export default function Home(){
                         <button className={s.btnsHeader} onClick={() => { navigate("/facturar") }}>CHECK IN</button>
                     </div>
                     <div className={s.btnDiv2}>
-                        <button className={s.btnsHeader}  >LOG IN</button>
+                        <button className={s.btnsHeader} onClick={open2} >LOG IN</button>
                         <button className={s.btnsHeader} onClick={open} >SIGN UP</button>
                     </div>
                 </div>
             </div>
-            <div style={{position: 'absolute'}} >
+                <div style={{position: 'absolute'}} >
                 <Modal>
-                    <div className={s.modal}>
-                        <SignUpForm />
-                    </div>
+                    <CSSTransition
+                    in={inProp}
+                    timeout={0}
+                    appear={true}
+                    key={0}
+                    classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
+                    >
+                        <div className={s.modal}>
+                            <SignUpForm />
+                        </div>
+                    </CSSTransition>
                 </Modal>
-            </div>
+            
+                <Modal2>
+                    <CSSTransition
+                    in={inProp}
+                    timeout={0}
+                    appear={true}
+                    key={0}
+                    classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
+                    >
+                        <div className={s.modal2}>
+                            <LogInForm />
+                        </div>
+                    </CSSTransition>
+                </Modal2>
+            
+                </div>
+                
         </div>
     )
 

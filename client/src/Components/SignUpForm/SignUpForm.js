@@ -62,7 +62,7 @@ export default function SignUpForm(){
 
     const handleSubmit = function(e){
         e.preventDefault();
-        
+        // llamado al back end para postear el nuevo usuario si no existe
     }
 
 
