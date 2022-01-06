@@ -4,12 +4,11 @@ import { useParams } from 'react-router-dom';
 import Queries from '../../../Utils/Queries';
 
 
+const BillModal = () => {
 
-const BillClient = () => {
+  const [getBillClient, result] = useLazyQuery(Queries.BILL_BY_ID);
 
-  const [getBillClient, result] = useLazyQuery(Queries.BILL_BY_CLIENT);
-
-  //TODO EL ID DEBE SER DEL URUASRIO
+  //TODO EL ID DEBE SER DE LA FACTURA
   const { id } = useParams()
 
   useEffect(() => {
@@ -19,8 +18,8 @@ const BillClient = () => {
 
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
 
-  const billClient = result.data;
-  console.log('FACTURA CLIENTE', billClient);
+  const bill = result.data;
+  console.log('UNA FACTURA', bill);
 
   return (
     <div>
@@ -29,4 +28,4 @@ const BillClient = () => {
   )
 }
 
-export default BillClient
+export default BillModal

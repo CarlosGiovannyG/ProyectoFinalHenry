@@ -45,6 +45,30 @@ const Bills = {
 }
   
   `,
+ 
+  BILL_BY_ID: gql`
+
+  query BillsById($input: billsId) {
+  BillsById(input: $input) {
+    numeroMesa
+    statusCocina
+    _id
+    idUser
+    description
+    products {
+      idProduct
+      name
+      price
+    }
+    status
+    date
+    subTotal
+    total
+  }
+}
+  
+   
+  `,
 
 };
 

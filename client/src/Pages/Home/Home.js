@@ -96,7 +96,7 @@ export default function Home(){
                         <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
                         <button className={s.btnsHeader} >ABOUT US</button>
                         <button  className={s.btnsHeader}>CONTACT</button>
-                        <button className={s.btnsHeader} onClick={() => { navigate("/facturar") }}>CHECK IN</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate("/bills") }}>CHECK IN</button>
                     </div>
                     <div className={s.btnDiv2}>
                         <button className={s.btnsHeader} onClick={open2} >LOG IN</button>
