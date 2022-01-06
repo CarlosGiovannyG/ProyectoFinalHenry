@@ -5,10 +5,6 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'rea
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
-<<<<<<< HEAD
-=======
-
->>>>>>> f89f8eab38b725efeca6ec99bcdf0b41782fbebc
 
 const items = [
     {

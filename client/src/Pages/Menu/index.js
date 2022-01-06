@@ -24,7 +24,7 @@ if(error) return null
         <div>
             <MenuJumbotron />
             <MenuContainer
-            products={data.allProducts.products}
+                products={data.allProducts.products}
 
             />
             <Footer />
