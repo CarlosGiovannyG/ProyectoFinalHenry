@@ -119,13 +119,14 @@ router.get("/caja/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const facturasAbiertas = await Bills.findById(id);
-    const objFactura = {};
+    const objFactura = { productos: {} };
     facturasAbiertas.products.forEach((e) => {
-      if (objFactura[e.name]) {
-        objFactura[e.name].cantidad += 1;
-        objFactura[e.name].total += Number(e.price);
+
+      if (objFactura.productos.nombre === e.name) {
+        objFactura.productos.cantidad += 1;
+        objFactura.productos.total += Number(e.price);
       } else if (!objFactura[e.name]) {
-        objFactura[e.name] = { cantidad: 1, total: Number(e.price) };
+        objFactura.productos[e.name] = { nombre: e.name, cantidad: 1, total: Number(e.price) };
       }
     });
 
