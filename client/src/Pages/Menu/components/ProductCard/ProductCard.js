@@ -1,28 +1,20 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 
 
 import styles from "./ProductCard.module.css"
 
-export const ProductCard = ({  products }) => {
-
+export const ProductCard = ({  product }) => {
+    let navigate = useNavigate();
     return (
-        <div className={styles.cardContainer}>
-            {products.map(product => (
-                
-                <div key={product._id}>
-                
-                    <img className={styles.Image} src={product.image} alt={product.name} key={product._id} />
-                    <h3 key={product._id}>{product.name}</h3>
-            <div className={styles.line}>
-            <Link to={`/product/${product._id}`} >
-                <button className={styles.line}>VISITAR</button>
-            </Link>
-            </div>
-                </div>
-                
-            ))}
+        <div 
+            className={styles.cardContainer} 
+            style={{backgroundImage: "url(" + product.image + ")"}}
+            onClick={() => navigate("/product/" + product._id )}
+        >
+                <h4>{product.name}</h4>
+            <div className={styles.line}></div>
         </div>
     );
 };
