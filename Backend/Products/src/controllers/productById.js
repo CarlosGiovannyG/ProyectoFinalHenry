@@ -1,6 +1,8 @@
 const Product = require("../models/product")
 const Comment = require("../models/comment")
 
+//TODO RUTA LISTA APIGATEWAY
+
 const ProductById = async (req, res) => {
   try {
     let produtEnv={ product:{}, comments:{} };

@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from '@apollo/client';
+
+import client from './Utils/Conectec'
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 import "./App.css"
 
+
+
 ReactDOM.render(
-  <BrowserRouter>
+    <ApolloProvider client={client} >
     <App />
-  </BrowserRouter>,
+    </ApolloProvider>
+ ,
   document.getElementById('root')
 );
 

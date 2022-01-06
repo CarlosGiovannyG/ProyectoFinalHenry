@@ -1,6 +1,7 @@
 const Product = require("../models/product")
 
 
+//TODO RUTA LISTA APIGATEWAY
 
 const ProductLike = async (req, res) => {
 

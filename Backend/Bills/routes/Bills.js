@@ -2,7 +2,8 @@ const router = require("express").Router();
 const Bills = require("../models/Bills");
 
 // Crear Una Factura
-//TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 
 router.post("/", async (req, res) => {
   
@@ -31,7 +32,8 @@ router.post("/", async (req, res) => {
 });
 
 //Obtener todas las facturas
-//TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 router.get("/", async (req, res) => {
   try {
     //Obtener Facturas Por Status (Open - Pending - Closed - Canceled - Deleted)
@@ -75,7 +77,8 @@ router.post("/cocina/:id", async (req, res) => {
 });
 
 //Obtener Facturas De Un Cliente (Por ID del cliente enviado como query)
-//TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 
 router.get("/cliente/:id", async (req, res) => {
   try {
@@ -88,7 +91,8 @@ router.get("/cliente/:id", async (req, res) => {
 });
 
 //Eliminar una factura por ID enviada por query (no se borra de la DB, solo se cambia el status)
-// TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 
 router.post("/delete/:id", async (req, res) => {
   try {
@@ -104,7 +108,8 @@ router.post("/delete/:id", async (req, res) => {
 });
 
 //Modificar la Factura
-//TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 
 router.put("/:id", async (req, res) => {
   
@@ -135,7 +140,8 @@ router.put("/:id", async (req, res) => {
 });
 
 //Ver una factura por ID
-// TODO ruta lista en apigateway
+//TODO RUTA LISTA APIGATEWAY
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
