@@ -86,8 +86,9 @@ export default function Home(){
                 <div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
-                        <button className={s.btnsHeader} onClick={() => { navigate("/obout") }}>ABOUT US</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
                         <button  className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate("/facturar") }}>CHECK IN</button>
                     </div>
                     <div className={s.btnDiv2}>
                         <button className={s.btnsHeader}  >LOG IN</button>
