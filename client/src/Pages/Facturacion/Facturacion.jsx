@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './facturacion.module.css';
+import {Link} from 'react-router-dom'
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
+import styles from './facturacion.module.css';
 
 const Facturacion = () => {
 
@@ -27,6 +28,10 @@ const Facturacion = () => {
       <h1>
         Hello World desde Facturacion
       </h1>
+        {/* TODO ENVIAMOS EL ID USUARIO */}
+      <Link to={`/billClient/${'7'}`} >
+        <button className={styles.line}>VER FACTURA CLIENTE</button>
+      </Link>
     </div>
   )
 }

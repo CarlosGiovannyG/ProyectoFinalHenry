@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import CardDetail from '../Components/CardDetail/CardDetail';
 import { MenuHeader } from '../Components/Navbar/MenuHeader/MenuHeader';
+import BillClient from '../Pages/Facturacion/BillClient/BillClient';
 import Facturacion from '../Pages/Facturacion/Facturacion';
 import Home from '../Pages/Home/Home';
 import { Menu } from '../Pages/Menu';
@@ -20,6 +21,7 @@ const Rout = () => {
         <Route path="/obout" element={<QueriesPage />} />
         <Route path="/facturar" element={<Facturacion />} />
         <Route path="/product/:id" element={<CardDetail />} />
+        <Route path="/billClient/:id" element={<BillClient />} />
         {/*<Route path="/SignUp" element={<SignUp />} />
                 <Route path="/LogIn" element={<LogIn />} /> */}
       </Routes>
