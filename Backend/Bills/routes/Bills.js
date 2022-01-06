@@ -154,44 +154,34 @@ router.get("/:id", async (req, res) => {
 });
 
 //Ruta para caja con filtrado de elementos
-//TODO la respuesta esta de esta forma
-// "productos": {
-//   "Milanesa": {
-//     "nombre": "Milanesa",
-//     "cantidad": 1,
-//     total": 10
-//   }
-// }
-
-//TODO ideal que responda de esta forma
-// "productos": {
-//   {
-//     "nombre": "Milanesa",
-//     "cantidad": 1,
-//     "total": 10
-//   }
-// }
-
 
 router.get("/caja/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const facturasAbiertas = await Bills.findById(id);
-    const objFactura = { productos: {} };
+    const objFactura = {};
+    objFactura.sumatotal = 0 
     facturasAbiertas.products.forEach((e) => {
+      if (objFactura[e.name]) {
+        objFactura[e.name].cantidad += 1;
+        objFactura[e.name].total += Number(e.price);
+        objFactura.sumatotal += Number(e.price)
 
-      if (objFactura.productos.nombre === e.name) {
-        objFactura.productos.cantidad += 1;
-        objFactura.productos.total += Number(e.price);
       } else if (!objFactura[e.name]) {
-        objFactura.productos[e.name] = { nombre: e.name, cantidad: 1, total: Number(e.price) };
+        objFactura[e.name] = { cantidad: 1, total: Number(e.price) };
+        objFactura.sumatotal += Number(e.price)
       }
     });
+
+
+
+   
 
     res.status(200).json(objFactura);
   } catch (error) {
     res.status(500).send({ message: "Ocurrio un error", error });
   }
 });
+
 
 module.exports = router;
