@@ -3,6 +3,15 @@ const { gql } = require('apollo-server');
 
 const bilssTypes = gql`
 
+input updateBill{ 
+  id:ID
+  idUser:String
+  description:String
+  products:[productsId]
+  numeroMesa:Int
+  tipoDePedido:String
+}
+
 input createBill{ 
   idUser:String
   description:String
@@ -62,6 +71,7 @@ BillsByClient(input:billsId):[allBills]
 
 type Mutation{
   CreateBills(input:createBill):response
+  UpdateBill(input:updateBill):allBills
   DeleteBill(input:billsId):response
 }
 `;

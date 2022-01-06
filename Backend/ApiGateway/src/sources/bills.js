@@ -20,16 +20,21 @@ class BillsApi extends RESTDataSource {
      return await this.get(`/cliente/${input}`)
   }
   
-  async DeleteBill(input) {    
-    return await this.post(`/delete/${input}`)
-  }
-
   async CreateBills(credencials) { 
     credencials = new Object(credencials);
     return await this.post(`/`,credencials)
   }
   
-
+  async UpdateBill(credencials) { 
+    credencials = new Object(credencials);
+    const idBill = credencials.id
+    return await this.put(`/${idBill}`,credencials)
+  }
+  
+  async DeleteBill(input) {    
+    return await this.post(`/delete/${input}`)
+  }
+  
   
   
 };
