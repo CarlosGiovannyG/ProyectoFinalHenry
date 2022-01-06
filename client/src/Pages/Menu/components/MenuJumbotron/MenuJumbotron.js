@@ -1,6 +1,6 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import "../styles/MenuJumbotron.css"
+import "./MenuJumbotron.css"
 
 export const MenuJumbotron = () => {
     return (

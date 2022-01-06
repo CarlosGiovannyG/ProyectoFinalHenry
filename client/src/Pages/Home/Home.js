@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
-import SignUpForm from '../SignUpForm/SignUpForm';
+import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 
 const items = [
     {
@@ -66,6 +66,7 @@ export default function Home(){
         );
     })
 
+
     return (
         <div >
             <div className={s.carousel} >
@@ -85,7 +86,7 @@ export default function Home(){
                 <div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
-                        <button  className={s.btnsHeader}>ABOUT US</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate("/obout") }}>ABOUT US</button>
                         <button  className={s.btnsHeader}>CONTACT</button>
                     </div>
                     <div className={s.btnDiv2}>
@@ -105,3 +106,4 @@ export default function Home(){
     )
 
 }
+
