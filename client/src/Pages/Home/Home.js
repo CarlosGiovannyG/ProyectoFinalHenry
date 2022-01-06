@@ -5,6 +5,10 @@ import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'rea
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
+<<<<<<< HEAD
+=======
+
+>>>>>>> f89f8eab38b725efeca6ec99bcdf0b41782fbebc
 
 const items = [
     {
@@ -66,6 +70,7 @@ export default function Home(){
         );
     })
 
+
     return (
         <div >
             <div className={s.carousel} >
@@ -85,8 +90,9 @@ export default function Home(){
                 <div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
-                        <button  className={s.btnsHeader}>ABOUT US</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
                         <button  className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate("/facturar") }}>CHECK IN</button>
                     </div>
                     <div className={s.btnDiv2}>
                         <button className={s.btnsHeader}  >LOG IN</button>
@@ -105,3 +111,4 @@ export default function Home(){
     )
 
 }
+

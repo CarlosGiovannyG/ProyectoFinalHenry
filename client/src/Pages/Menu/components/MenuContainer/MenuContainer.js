@@ -1,7 +1,7 @@
 import React from "react";
-import { SearchBar } from "./SearchBar";
-import "../styles/MenuContainer.css";
-import { ProductCard } from "./ProductCard";
+import { SearchBar } from "../SearchBar/SearchBar";
+import "./MenuContainer.css";
+import { ProductCard } from "../ProductCard/ProductCard";
 
 const fakeData = [
     "American Burguer",
@@ -14,7 +14,11 @@ const fakeData = [
     "Fish",
     ". . ."
 ]
-export const MenuContainer = () => {
+
+
+export const MenuContainer = ({ products }) => {
+    console.log(products);
+
     return (
         <main id="menu" className="">
             <div className="menu-input">
@@ -22,14 +26,19 @@ export const MenuContainer = () => {
                 <SearchBar />
             </div>
             <section className="menu-list">
+                <ProductCard
+                    products={products}
+                />
+            </section>
+            {/* <section className="menu-list">
                 {fakeData.map(e => {
                     return (
                         <ProductCard
-                            title={e}
+                            products={products}
                         />
                     )
                 })}
-            </section>
+            </section> */}
         </main>
     )
 }

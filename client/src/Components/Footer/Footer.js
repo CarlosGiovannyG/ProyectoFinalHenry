@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/MenuFooter.css";
+import "./Footer.css";
 
-export const MenuFooter = () => {
+export const Footer = () => {
     return (
         <footer className="menu-footer">
             <div>

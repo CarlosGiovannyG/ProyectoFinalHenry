@@ -1,4 +1,4 @@
-.card-container {
+.cardContainer {
     background-color: #3c3c3b;
     width: 100%;
     height: 100%;
@@ -17,7 +17,11 @@
     margin-bottom: 1rem;
 }
 
-.card-container h4:hover {
+.cardContainer h4:hover {
     opacity: 0.5;
 }
 
+.Image{
+    width: 100px;
+    height: 100px;
+}

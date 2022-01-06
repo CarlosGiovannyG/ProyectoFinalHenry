@@ -1,9 +1,9 @@
 import React from "react";
 import { BiRestaurant } from "react-icons/bi";
-import { NavBar } from "./NavBar";
-import { LogIn } from "./LogIn";
-import { SignUp } from "./SignUp";
-import "../styles/MenuHeader.css"
+import { NavBar } from "../NavBar/NavBar";
+import { LogIn } from "../LogIn";
+import { SignUp } from "../SignUp";
+import "./MenuHeader.css"
 
 export const MenuHeader = () => {
     return (
