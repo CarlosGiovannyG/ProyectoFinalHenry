@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
-import SignUpForm from '../SignUpForm/SignUpForm';
+import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 
 const items = [
     {
