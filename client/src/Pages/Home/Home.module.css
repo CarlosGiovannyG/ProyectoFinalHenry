@@ -72,8 +72,12 @@
 
 .modal{
     width: 1000px;
-    height: 400px;
+    height: 390px;
     position: relative;
     background-color: rgb(240, 239, 239);
     padding-top: 40px;
+}
+
+.tooltip{
+    white-space: pre-line;
 }
