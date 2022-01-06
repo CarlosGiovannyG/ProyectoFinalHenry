@@ -3,7 +3,6 @@ const Comment = require("../models/comment")
 
 
 const ProductById = async (req, res) => {
-
   try {
 
     let produtEnv={ product:{}, comments:{} };

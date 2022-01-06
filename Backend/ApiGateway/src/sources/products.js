@@ -8,12 +8,17 @@ class ProductsApi extends RESTDataSource{
     this.baseURL = serverUrls.allProducts
   }
 
-  async allProducts() {
-    const res = await this.get('/')
-console.log('SOURCES',res);
+  async allProducts() {     
     return await this.get('/')
   }
 
+  async ProductById(input) {
+    return await this.get(`/${input}`)
+  }
+
+  async ProductLike(input) {
+    return await this.post(`/${input}/like`)
+  }
 };
 
 module.exports = ProductsApi;

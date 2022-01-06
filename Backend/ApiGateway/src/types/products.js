@@ -1,16 +1,18 @@
-const { gql } = require('apollo-server');
+const {
+  gql
+} = require('apollo-server');
 
-const productsTypes = gql`
-type productsAll{
-  products:[ProductDetail]
-  resumen:resumen
-}
-type resumen{
-stats:stats
-newComments:[commentDetail]
-productsPopulated:[ProductDetail]
+const productsTypes = gql `
 
-}
+input productId{ id: ID }
+
+type product{ product:ProductDetail }
+
+type resLike { rating:Int }
+
+type productsAll{ products:[ProductDetail] resumen:resumen }
+
+type resumen{ stats:stats newComments:[commentDetail] productsPopulated:[ProductDetail] }
 
 type ProductDetail{
 _id:ID
@@ -25,30 +27,19 @@ public_id:String
 timestamps:String
 }
 
-type stats{
-  produts:Int
-  comments:Int
-  views:Int
-  rating:Int
-}
+type stats{produts:Int comments:Int views:Int rating:Int }
 
-type commentDetail{
-_id:ID
-title:String
-comment:String
-email:String
-timestamps:String
-avatar:String
-product_id:String
-}
+type commentDetail{ id:ID title:String comment:String email:String timestamps:String avatar:String product_id:String }
 
 type Query {
 allProducts:productsAll
+ProductById(input:productId):product
 }
 
+type Mutation {
+  ProductLike(input:productId):resLike
+}
 
 `;
 
 module.exports = productsTypes;
-
-

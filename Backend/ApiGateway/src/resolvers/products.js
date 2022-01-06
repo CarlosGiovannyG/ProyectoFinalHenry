@@ -2,12 +2,21 @@ const productsResolvers = {
   
   Query: {
     allProducts: async (_, { }, { dataSources }) => {
-      const res = await dataSources.ProductsApi.allProducts();
-      console.log('RESOLVERS', res);
       return await dataSources.ProductsApi.allProducts();
     },
 
+    ProductById: async (_, { input }, { dataSources }) => {
+      return await dataSources.ProductsApi.ProductById(input.id)
+    }
+
   },
+
+  Mutation: {
+
+    ProductLike: async (_, { input }, { dataSources }) => {
+      return await dataSources.ProductsApi.ProductLike(input.id)
+    },
+  }
 
   
 };
