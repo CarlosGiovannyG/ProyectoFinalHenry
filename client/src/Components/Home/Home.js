@@ -1,22 +1,24 @@
 import React from 'react';
 import s from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useModal } from 'react-hooks-use-modal';
+import SignUpForm from '../SignUpForm/SignUpForm';
 
 const items = [
     {
-      src: require('../../img/restaurant.jpg'),
+      src: require('../../img/landing1.jpg'),
       altText: 'Slide One',
      
     },
     {
-      src: require('../../img/slide_13.jpg'),
+      src: require('../../img/landing2.jpg'),
       altText: 'Slide Two',
       
     },
     {
-      src: require('../../img/slide_16.jpg'),
+      src: require('../../img/landing3.jpg'),
       altText: 'Slide Three',
       
     }
@@ -26,6 +28,10 @@ export default function Home(){
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
+    const [Modal, open] = useModal('root', {
+        preventScroll: true,
+        closeOnOverlayClick: true
+    });
 
     const itemLength = items.length - 1
 
@@ -55,21 +61,14 @@ export default function Home(){
                 onExited={() => setAnimating(false)}
                 key={item.src}
             >
-                <img src={item.src} alt={item.altText} width="100%" height='800px' />
+                <img className={s.img} src={item.src} alt={item.altText} />
             </CarouselItem>
         );
     })
 
     return (
-        <div>
-            <div className={s.header}>
-                <h1 className={s.title}>Henry Restaurant</h1>
-                <div className={s.headerbtns}>
-                    <button className={s.btnLogIn} onClick={()=>{navigate('/LogIn')}} >Log In</button>
-                    <button className={s.btnSignUp} onClick={()=>{navigate('/SignUp')}} >Sign Up</button>
-                </div>
-            </div>
-            <div >
+        <div >
+            <div className={s.carousel} >
                 <Carousel
                     activeIndex={activeIndex}
                     next={next}
@@ -81,9 +80,27 @@ export default function Home(){
                     <CarouselControl direction='next' directionText='Next' onClickHandler={next} />
                 </Carousel>
             </div>
-            <footer>
-                Contacto
-            </footer>
+            <div className={s.header}>
+                <h1 className={s.title} >Henry</h1>
+                <div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
+                        <button  className={s.btnsHeader}>ABOUT US</button>
+                        <button  className={s.btnsHeader}>CONTACT</button>
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader}  >LOG IN</button>
+                        <button className={s.btnsHeader} onClick={open} >SIGN UP</button>
+                    </div>
+                </div>
+            </div>
+            <div style={{position: 'absolute'}} >
+                <Modal>
+                    <div className={s.modal}>
+                        <SignUpForm />
+                    </div>
+                </Modal>
+            </div>
         </div>
     )
 
