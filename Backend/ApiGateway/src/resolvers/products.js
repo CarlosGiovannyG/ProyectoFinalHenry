@@ -4,6 +4,10 @@ const productsResolvers = {
     allProducts: async (_, { }, { dataSources }) => {
       return await dataSources.ProductsApi.allProducts();
     },
+    
+    statsApp: async (_, { }, { dataSources }) => {
+      return await dataSources.ProductsApi.statsApp();
+    },
 
     ProductById: async (_, { input }, { dataSources }) => {
       return await dataSources.ProductsApi.ProductById(input.id)

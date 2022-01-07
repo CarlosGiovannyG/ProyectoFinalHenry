@@ -3,6 +3,7 @@ const sidebar = require("../helpers/sidebar")
 
 //TODO RUTA LISTA APIGATEWAY
 const allProducts = async (req, res) => {
+  
   try {
     let produtEnv = { products: [] };
     const resProdutos = await Product.find();

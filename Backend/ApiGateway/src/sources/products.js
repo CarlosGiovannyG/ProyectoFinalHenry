@@ -7,8 +7,12 @@ class ProductsApi extends RESTDataSource{
     super();
     this.baseURL = serverUrls.allProducts
   }
-
+  
   async allProducts() {     
+    return await this.get('/')
+  }
+  
+  async statsApp() {     
     return await this.get('/')
   }
 

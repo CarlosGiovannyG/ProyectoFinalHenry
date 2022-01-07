@@ -19,6 +19,14 @@ const Products = {
       public_id
       timestamps
     }
+  }
+  }
+  
+  `,
+  
+  STATS_APP: gql `
+   query {
+  statsApp {
     resumen {
       stats {
         produts
@@ -39,17 +47,21 @@ const Products = {
         _id
         name
         category
-        description
-        price
         rating
         views
         image
-        public_id
-        timestamps
+      }
+      productsViewed {
+        _id
+        name
+        category
+        rating
+        views
+        image
       }
     }
   }
-  }
+}
   
   `,
 
@@ -72,7 +84,8 @@ const Products = {
   }
 }
   `,
-
+ 
+  
 
 };
 

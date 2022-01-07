@@ -9,6 +9,7 @@ const BillsChickend = () => {
 
   const { loading, data, error } = useQuery(Queries.BILLS_CHICKEND);
   const [ClosedBill] = useMutation(Mutations.CLOSED_BILL, {
+    refetchQueries:[{query:Queries.BILLS_CHICKEND}],
     onError: error => {
       console.log(error);
     }
@@ -33,7 +34,7 @@ const BillsChickend = () => {
     let response = await ClosedBill({
       variables: {
         "input": {
-          "id": '61d50063d65c4ce055ee0396' 
+          "id": '61d67f7b668e3aaae2c3a959' 
         }
       }
     })

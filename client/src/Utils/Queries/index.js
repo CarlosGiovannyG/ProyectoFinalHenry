@@ -6,6 +6,9 @@ import BillsChickend from './Bills/BillsChickend';
 
 const Queries = { 
   
+  //STATS_APP
+  STATS_APP: Products.STATS_APP,
+  
   //PRODUCTS
   ALL_PRODUCTS: Products.ALL_PRODUCTS,
   FIND_PRODUCT: Products.FIND_PRODUCT,
