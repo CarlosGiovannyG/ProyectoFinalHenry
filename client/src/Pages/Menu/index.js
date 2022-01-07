@@ -19,7 +19,7 @@ export const Menu = () => {
         )
     }
 if(error) return null
-
+    console.log(data);
     return (
         <div>
             <MenuJumbotron />

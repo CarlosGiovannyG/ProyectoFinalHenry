@@ -1,37 +1,67 @@
 import React, { useEffect } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import Queries from '../../Utils/Queries/';
-import {  useParams } from 'react-router-dom';
+import Mutations from '../../Utils/Mutations'
+import { useParams } from 'react-router-dom';
 
 
 
 
 const CardDetail = () => {
 
-  const [getProduct, {loading, error, data}] = useLazyQuery(Queries.FIND_PRODUCT);
+  const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
+  const [ProductLike] = useMutation(Mutations.LIKE_PRODUCTS, {
+    onError: error => {
+      
+      alert('ERROR', error.graphQLErrors[0])
+    }
+  });
+
   const { id } = useParams()
 
   useEffect(() => {
-      getProduct({ variables: { input: { id: id } } })
+    getProduct({ variables: { input: { id: id } } })
   }, [getProduct, id])
 
+  const handleLike = async e => {
+    
+console.log('id', id)
+    let response = await ProductLike({
+      variables: {
+        "input": {
+          "id": id
+        }
+    }
+        
+      }
+    )
+console.log(response);
+    alert('RESPUESTA', response.data)
+  }
+
+
+
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
-  if(loading) {
+  if (loading) {
     return <p>Loading...</p>
   }
-  if(error) {
+  if (error) {
     return <p>There was an error..</p>
   }
-  if(data && !loading) {
+  if (data && !loading) {
     var { product } = data.ProductById;
     return (
       <div>
-        <img src={product.image} alt={product.name}/>
+        <img src={product.image} alt={product.name} />
         <h2>
           {product.name}
         </h2>
         <p>price: {product.price}</p>
         <p>rating: {product.rating}</p>
+        <button
+          className="btn btn-outline-primary size=lg "
+          onClick={handleLike}
+        > Me Gusta </button>
       </div>
     )
   }

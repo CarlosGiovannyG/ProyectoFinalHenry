@@ -4,7 +4,7 @@ import "./MenuContainer.css";
 import { ProductCard } from "../ProductCard/ProductCard";
 
 export const MenuContainer = ({ products }) => {
-    console.log(products);
+    
 
     return (
         <main id="menu" className="">

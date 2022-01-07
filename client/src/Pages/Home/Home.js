@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 import LogInForm from '../../Components/LogInForm/LogInForm';
@@ -67,7 +66,7 @@ export default function Home(){
             <CarouselItem 
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
-                key={item.src}
+                key={item.altText}
             >
                 <img className={s.img} src={item.src} alt={item.altText} />
             </CarouselItem>

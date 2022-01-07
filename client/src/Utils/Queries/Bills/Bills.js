@@ -23,29 +23,7 @@ const Bills = {
   
   `,
 
-  BILL_BY_CLIENT: gql`
-
-  query BillsByClient($input: billsId) {
-  BillsByClient(input: $input) {
-    numeroMesa
-    statusCocina
-    _id
-    idUser
-    description
-    products {
-      idProduct
-      name
-      price
-    }
-    status
-    date
-    subTotal
-    total
-  }
-}
   
-  `,
- 
   BILL_BY_ID: gql`
 
   query BillsById($input: billsId) {

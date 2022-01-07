@@ -1,5 +1,6 @@
-import Products from './Products';
-import Bills  from './Bills'
+import Products from './Products/Products';
+import Bills from './Bills/Bills'
+import BillsClients from './Bills/BillsClients'
 
 
 const Queries = { 
@@ -10,8 +11,10 @@ const Queries = {
 
   //BILLS
   ALL_BILLS: Bills.ALL_BILLS,
-  BILL_BY_CLIENT: Bills.BILL_BY_CLIENT,
   BILL_BY_ID: Bills.BILL_BY_ID,
+
+  // BILLS CLIENTS
+  BILL_BY_CLIENT: BillsClients.BILL_BY_CLIENT,
 
 }
 
