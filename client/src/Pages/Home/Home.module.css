@@ -85,6 +85,14 @@
     padding-top: 40px;
 }
 
+.cross{
+    position: absolute;
+    margin-left: 830px;
+    cursor: pointer;
+}
+
+
+
 .MyClassEnterActive {
     opacity: 0;
     transform: translate(0px, 10px);

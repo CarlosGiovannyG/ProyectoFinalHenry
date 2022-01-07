@@ -7,6 +7,7 @@ import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 import LogInForm from '../../Components/LogInForm/LogInForm';
 import icon from '../../img/MAIN_ICON.png';
 import { CSSTransition } from 'react-transition-group';
+import { GrClose } from 'react-icons/gr';
 
 
 
@@ -40,8 +41,8 @@ export default function Home() {
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
     const [inProp, setInProp] = React.useState(true); // CSS transition group
-    const [Modal, open] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    const [Modal2, open2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const [Modal2, open2, close2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     
     
     const itemLength = items.length - 1
@@ -117,6 +118,7 @@ export default function Home() {
                     classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
                     >
                         <div className={s.modal}>
+                            <GrClose className={s.cross} onClick={close} size='1.5rem' />
                             <SignUpForm />
                         </div>
                     </CSSTransition>
@@ -131,6 +133,7 @@ export default function Home() {
                     classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
                     >
                         <div className={s.modal2}>
+                        <GrClose className={s.cross} onClick={close2} size='1.5rem' />
                             <LogInForm />
                         </div>
                     </CSSTransition>
