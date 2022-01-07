@@ -34,7 +34,7 @@ const BillsChickend = () => {
     let response = await ClosedBill({
       variables: {
         "input": {
-          "id": '61d67f7b668e3aaae2c3a959' 
+          "id": '61d861dc8afe91ecfa4612d5' 
         }
       }
     })

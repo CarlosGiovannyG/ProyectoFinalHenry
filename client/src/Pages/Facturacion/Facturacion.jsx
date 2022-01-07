@@ -22,14 +22,14 @@ const Facturacion = () => {
   // son todas las facturas
   const datos = data.allBills
 
-  console.log('FACTURAS', datos);
+  console.log('FACTURAS', datos); 
   return (
     <div className={styles.container}>
       <h1>
         Hello World desde Facturacion
       </h1>
       <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-      <Link to={routes.billClient('7')} >
+        <Link to={`/billClient/${"123"}`} >
         {/*  ENVIAMOS EL ID USUARIO */}
         <button  type="button" className="btn btn-outline-primary">VER FACTURA CLIENTE</button>
       </Link>
