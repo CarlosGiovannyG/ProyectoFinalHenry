@@ -1,30 +1,35 @@
-import { createContext, useEffect, useState } from 'react';
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import Queries from '../Utils/Queries';
+import { createContext } from 'react';
+import React from 'react'
+import { useState } from 'react';
 
-export const AuthContext = createContext()
+export const AuthContex = createContext();
 
 
 const AuthProvider = ({ children }) => {
+ 
+  const [productsHistory, setProductsHistory] = useState(null)
 
-  //const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS);
-  //const {allProducts } = data
+  const productsHis = (response) => {
+    setProductsHistory()
+  }
   
-  
-  
-//console.log('PROVIDER', allProducts);
-  
-  const constextValue = {
-    
-  };
-  
-  //if(error) return null;
+    const contextValue = {
+    productsHis,
+      productsHistory,
+  }
+
   return (
-    <AuthContext.Provider value={constextValue}>
+    <AuthContex.Provider value={contextValue}>
       {children}
-    </AuthContext.Provider>
+    </AuthContex.Provider>
   )
 }
 
 export default AuthProvider
+
+
+
+
+
+
+

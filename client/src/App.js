@@ -5,7 +5,7 @@ import Rout from "./Routes/Routes";
 
 function App() {
     return (
-        <AuthProvider>
+      <AuthProvider>
             <Rout/>
       </AuthProvider>  
     );

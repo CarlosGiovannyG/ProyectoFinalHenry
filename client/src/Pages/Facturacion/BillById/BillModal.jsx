@@ -23,7 +23,9 @@ const BillModal = () => {
 
   return (
     <div>
-      
+      <h3>
+        Hello World desde una Factura
+      </h3>
     </div>
   )
 }

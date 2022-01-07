@@ -12,8 +12,8 @@ const CardDetail = () => {
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
   const [ProductLike] = useMutation(Mutations.LIKE_PRODUCTS, {
     onError: error => {
-      
-      alert('ERROR', error.graphQLErrors[0])
+
+      console.log(error.graphQLErrors[0].message)
     }
   });
 
@@ -25,7 +25,6 @@ const CardDetail = () => {
 
   const handleLike = async e => {
     
-console.log('id', id)
     let response = await ProductLike({
       variables: {
         "input": {
@@ -35,8 +34,7 @@ console.log('id', id)
         
       }
     )
-console.log(response);
-    alert('RESPUESTA', response.data)
+    console.log(response.data);
   }
 
 

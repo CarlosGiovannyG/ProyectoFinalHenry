@@ -8,6 +8,9 @@ import LogInForm from '../../Components/LogInForm/LogInForm';
 import icon from '../../img/MAIN_ICON.png';
 import { CSSTransition } from 'react-transition-group';
 
+
+
+
 const items = [
     {
       src: require('../../img/landing1.jpg'),
@@ -31,7 +34,8 @@ const items = [
     }
 ];
 
-export default function Home(){
+export default function Home() {
+    
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
@@ -39,24 +43,24 @@ export default function Home(){
     const [Modal, open] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [Modal2, open2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     
-
+    
     const itemLength = items.length - 1
-
+    
     const next = () => {
         if (animating) return;
         const nextIndex = activeIndex === itemLength ?
             0 : activeIndex + 1;
-        setActiveIndex(nextIndex);
-    }
-
-    const previous = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === 0 ?
+            setActiveIndex(nextIndex);
+        }
+        
+        const previous = () => {
+            if (animating) return;
+            const nextIndex = activeIndex === 0 ?
             itemLength : activeIndex - 1;
-        setActiveIndex(nextIndex);
-    }
-
-    const goToIndex = (newIndex) => {
+            setActiveIndex(nextIndex);
+        }
+        
+        const goToIndex = (newIndex) => {
         if (animating) return;
         setActiveIndex(newIndex);
     }
@@ -72,8 +76,8 @@ export default function Home(){
             </CarouselItem>
         );
     })
-
-
+    
+    
     return (
         <div >
             <div className={s.carousel} >

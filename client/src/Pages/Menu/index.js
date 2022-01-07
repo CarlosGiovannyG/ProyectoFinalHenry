@@ -9,7 +9,7 @@ import Queries from '../../Utils/Queries';
 
 export const Menu = () => {
 
-    const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
+   const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
 
     if (loading) {
         return (
@@ -18,16 +18,17 @@ export const Menu = () => {
             </div>
         )
     }
-if(error) return null
-    console.log(data);
+    if (error) return null
+    
     return (
         <div>
-            <MenuJumbotron />
-            <MenuContainer
-                products={data.allProducts.products}
+                <MenuJumbotron />
+                <MenuContainer
+                    products={data.allProducts.products}
 
-            />
-            <Footer />
-        </div>
-    )
+                />
+                <Footer />
+            </div>
+        )
+   
 }

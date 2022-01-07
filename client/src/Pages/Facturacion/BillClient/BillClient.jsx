@@ -24,7 +24,9 @@ const BillClient = () => {
 
   return (
     <div>
-      
+      <h3>
+        Hello World desde Factura Cliente
+      </h3>
     </div>
   )
 }
