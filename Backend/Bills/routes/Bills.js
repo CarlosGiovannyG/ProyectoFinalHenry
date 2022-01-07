@@ -61,6 +61,7 @@ router.get("/cocina", async (req, res) => {
 });
 
 //Ruta cambiar status cocina. El ID por params y el status por query
+//TODO RUTA LISTA APIGATEWAY
 
 router.post("/cocina/:id", async (req, res) => {
   try {
@@ -78,7 +79,6 @@ router.post("/cocina/:id", async (req, res) => {
 
 //Obtener Facturas De Un Cliente (Por ID del cliente enviado como query)
 //TODO RUTA LISTA APIGATEWAY
-
 
 router.get("/cliente/:id", async (req, res) => {
   try {

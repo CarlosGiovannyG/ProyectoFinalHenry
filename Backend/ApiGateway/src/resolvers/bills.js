@@ -4,6 +4,10 @@ const billsResolvers = {
     allBills: async (_, {  }, { dataSources })=>{
       return await dataSources.BillsApi.allBills()
     },
+    
+    BillsChickend: async (_, { }, { dataSources }) => {
+      return await dataSources.BillsApi.BillsChickend()
+    },
 
     BillsById: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.BillsById(input.id)
@@ -34,3 +38,4 @@ const billsResolvers = {
 };
 
 module.exports = billsResolvers;
+

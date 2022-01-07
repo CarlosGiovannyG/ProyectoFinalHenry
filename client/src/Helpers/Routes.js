@@ -6,7 +6,8 @@ const routes = {
   checkIn: "/checkIn",
   bills: "/bills",
   billClient: (id) => id ? `/billClient/:${id}` : "/billClient/:id",
-  bill: (id) => id ? `/bill/:${id}` :"/bill/:id",
+  bill: (id) => id ? `/bill/:${id}` : "/bill/:id",
+  chickend:'/chickend',
 };
 
 

@@ -8,8 +8,17 @@ class BillsApi extends RESTDataSource {
     this.baseURL = serverUrls.allBills
   }
 
+  async CreateBills(credencials) { 
+    credencials = new Object(credencials);
+    return await this.post(`/`,credencials)
+  }
+
   async allBills() {
     return await this.get('/')
+  }
+  
+  async BillsChickend() {
+    return await this.get('/cocina')
   }
 
   async BillsById(input) {
@@ -20,10 +29,6 @@ class BillsApi extends RESTDataSource {
      return await this.get(`/cliente/${input}`)
   }
   
-  async CreateBills(credencials) { 
-    credencials = new Object(credencials);
-    return await this.post(`/`,credencials)
-  }
   
   async UpdateBill(credencials) { 
     credencials = new Object(credencials);

@@ -40,6 +40,9 @@ const Facturacion = () => {
       <Link to={routes.checkIn} >
         <button type="button" className="btn btn-outline-info">FACTURAR</button>
       </Link>
+      <Link to={routes.chickend} >
+          <button type="button" className="btn btn-outline-warning">FACTURAS COCINA</button>
+      </Link>
       </div>
 
     </div>

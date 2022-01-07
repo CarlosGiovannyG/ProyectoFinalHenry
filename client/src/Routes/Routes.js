@@ -10,6 +10,7 @@ import Facturacion from '../Pages/Facturacion/Facturacion';
 import Home from '../Pages/Home/Home';
 import { Menu } from '../Pages/Menu';
 import QueriesPage from '../Pages/Queries';
+import BillsChickend from '../Pages/Facturacion/BillsChickend/BillsChickend';
 
 
 
@@ -27,6 +28,7 @@ const Rout = () => {
         <Route path={routes.bills} element={<Facturacion />} />
         <Route path={routes.billClient()} element={<BillClient />} />
         <Route path={routes.bill()} element={<BillModal />} />
+        <Route path={routes.chickend} element={<BillsChickend />} />
         {/*<Route path="/SignUp" element={<SignUp />} />
                 <Route path="/LogIn" element={<LogIn />} /> */}
       </Routes>
