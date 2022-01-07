@@ -84,6 +84,7 @@ BillsChickend:[billsChickend]
 type Mutation{
   CreateBills(input:createBill):response
   UpdateBill(input:updateBill):allBills
+  ClosedBill(input:billsId):response
   DeleteBill(input:billsId):response
 }
 `;

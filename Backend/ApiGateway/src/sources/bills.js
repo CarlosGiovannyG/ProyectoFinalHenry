@@ -40,6 +40,10 @@ class BillsApi extends RESTDataSource {
     return await this.post(`/delete/${input}`)
   }
   
+  async ClosedBill(input) {    
+    return await this.post(`/cocina/closed/${input}`)
+  }
+  
   
   
 };

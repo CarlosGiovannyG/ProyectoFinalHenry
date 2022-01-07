@@ -8,7 +8,7 @@ const Mutations = {
 
   //BILLS
   CREATE_BILL: Bills.CREATE_BILL,
-
+  CLOSED_BILL: Bills.CLOSED_BILL,
 };
 
 export default Mutations;

@@ -63,15 +63,16 @@ router.get("/cocina", async (req, res) => {
 //Ruta cambiar status cocina. El ID por params y el status por query
 //TODO RUTA LISTA APIGATEWAY
 
-router.post("/cocina/:id", async (req, res) => {
+router.post("/cocina/closed/:id", async (req, res) => {
+  
   try {
-    const { status } = req.query;
     const { id } = req.params;
-    const facturaModificada = await Bills.findOneAndUpdate(
-      { _id: id },
-      { statusCocina: status }
-    );
-    return res.status(200).json(facturaModificada);
+    let response = await Bills.findOneAndUpdate(
+      { _id: id }, { statusCocina: 'Closed' },
+      { new: true }
+      );
+    console.log(response);
+    return res.status(200).json({ message: 'Pedido Entregado', response});
   } catch (error) {
     res.status(500).send({ message: "Ocurrio un error", error });
   }
@@ -83,11 +84,16 @@ router.post("/cocina/:id", async (req, res) => {
 router.get("/cliente/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const facturasCliente = await Bills.find({ idUser: id });
+  
+      const facturasCliente = await Bills.find({ idUser: id });
     res.status(200).json(facturasCliente);
-  } catch (error) {
-    res.status(500).send({ message: "Ocurrio un error", error });
-  }
+  
+    res.status(200).send({ message: "No se encontro factura" });
+  
+    } catch (error) {
+      res.status(500).send({ message: "Ocurrio un error", error });
+    }
+  
 });
 
 //Eliminar una factura por ID enviada por query (no se borra de la DB, solo se cambia el status)
