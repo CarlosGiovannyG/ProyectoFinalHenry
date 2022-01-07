@@ -1,97 +1,26 @@
 import React from 'react';
 import s from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 import LogInForm from '../../Components/LogInForm/LogInForm';
 import icon from '../../img/MAIN_ICON.png';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
-
-
-
-
-const items = [
-    {
-      src: require('../../img/landing1.jpg'),
-      altText: 'Slide 1',
-    },
-    {
-      src: require('../../img/landing2.jpg'),
-      altText: 'Slide 2',
-    },
-    {
-      src: require('../../img/landing3.jpg'),
-      altText: 'Slide 3',
-    },
-    {
-        src: require('../../img/landing4.jpg'),
-        altText: 'Slide 4',
-    },
-    {
-        src: require('../../img/landing5.jpg'),
-        altText: 'Slide 5',
-    }
-];
+import NewSwiper from '../../Components/NewSwiper/NewSwiper';
 
 export default function Home() {
     
     const navigate = useNavigate();
-    const [activeIndex, setActiveIndex] = React.useState(0);
-    const [animating, setAnimating] = React.useState(false);
     const [inProp, setInProp] = React.useState(true); // CSS transition group
     const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [Modal2, open2, close2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     
     
-    const itemLength = items.length - 1
-    
-    const next = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === itemLength ?
-            0 : activeIndex + 1;
-            setActiveIndex(nextIndex);
-        }
-        
-        const previous = () => {
-            if (animating) return;
-            const nextIndex = activeIndex === 0 ?
-            itemLength : activeIndex - 1;
-            setActiveIndex(nextIndex);
-        }
-        
-        const goToIndex = (newIndex) => {
-        if (animating) return;
-        setActiveIndex(newIndex);
-    }
-
-    const slides = items.map((item) => {
-        return (
-            <CarouselItem 
-                onExiting={() => setAnimating(true)}
-                onExited={() => setAnimating(false)}
-                key={item.altText}
-            >
-                <img className={s.img} src={item.src} alt={item.altText} />
-            </CarouselItem>
-        );
-    })
-    
-    
     return (
         <div >
             <div className={s.carousel} >
-                <Carousel
-                    activeIndex={activeIndex}
-                    next={next}
-                    previous={previous}
-                >
-                    <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-                    {slides}
-                    <CarouselControl direction='prev' directionText='Previous' onClickHandler={previous} />
-                    <CarouselControl direction='next' directionText='Next' onClickHandler={next} />
-                </Carousel>
+                <NewSwiper/>
             </div>
             <div className={s.header}>
                 <img className={s.icon} src={icon} alt='Restaurant Logo' />
