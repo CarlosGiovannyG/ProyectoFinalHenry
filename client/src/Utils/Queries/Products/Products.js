@@ -23,6 +23,19 @@ const Products = {
   }
   
   `,
+
+  PRODUCTS_BILLS: gql `
+   query ProductsBills {
+  ProductsBills {
+    products {
+      _id
+      name
+      price
+    }
+  }
+}
+  
+  `,
   
   STATS_APP: gql `
    query {

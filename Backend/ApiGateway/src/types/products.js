@@ -16,6 +16,8 @@ type statsPage{resumen:resumen}
 
 type resumen{ stats:stats newComments:[commentDetail] productsPopulated:[ProductStats] productsViewed:[ProductStats]}
 
+type productsBills{products:[ProductsBills]}
+
 type ProductDetail{
 _id:ID
 name:String
@@ -38,6 +40,12 @@ views:Int
 image:String
 }
 
+type ProductsBills{
+_id:ID
+name:String
+price:Int
+}
+
 type stats{produts:Int comments:Int views:Int rating:Int }
 
 type commentDetail{ id:ID title:String comment:String email:String timestamps:String avatar:String product_id:String }
@@ -45,6 +53,7 @@ type commentDetail{ id:ID title:String comment:String email:String timestamps:St
 type Query {
 allProducts:productsAll
 statsApp:statsPage
+ProductsBills:productsBills
 ProductById(input:productId):product
 }
 

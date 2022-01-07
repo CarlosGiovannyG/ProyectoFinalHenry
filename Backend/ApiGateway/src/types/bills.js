@@ -16,12 +16,12 @@ input createBill{
   idUser:String
   description:String
   products:[productsId]
-  numeroMesa:Int
+  numeroMesa:String
   tipoDePedido:String
 }
 
 input productsId{ 
-  idProduct:String
+  _id:String
   name:String
   price:Int
 }

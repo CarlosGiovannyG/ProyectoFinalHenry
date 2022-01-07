@@ -15,6 +15,10 @@ class ProductsApi extends RESTDataSource{
   async statsApp() {     
     return await this.get('/')
   }
+  
+  async ProductsBills() {     
+    return await this.get('/')
+  }
 
   async ProductById(input) {
        return await this.get(`/${input}`)

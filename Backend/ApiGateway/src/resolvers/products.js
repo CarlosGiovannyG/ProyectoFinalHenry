@@ -8,7 +8,11 @@ const productsResolvers = {
     statsApp: async (_, { }, { dataSources }) => {
       return await dataSources.ProductsApi.statsApp();
     },
-
+    
+    ProductsBills: async (_, { }, { dataSources }) => {
+      return await dataSources.ProductsApi.ProductsBills();
+    },
+    
     ProductById: async (_, { input }, { dataSources }) => {
       return await dataSources.ProductsApi.ProductById(input.id)
     }
