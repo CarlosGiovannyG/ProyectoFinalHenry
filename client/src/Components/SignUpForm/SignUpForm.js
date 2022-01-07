@@ -125,9 +125,17 @@ export default function SignUpForm(){
                                         onClick={handleSubmit}
                                     >Register</button> :
                                     <button
-                                        className={s.btnRegisterError}
+                                        className={s.btnRegisterError} 
+                                        data-tip data-for='tooltip'
                                         onClick={(e) => e.preventDefault()}
                                     >Register</button>
+                        }
+                        {   (Object.keys(errors).length > 0) ? (
+                                <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
+                                     {errorData.split("\n").map((i,key) => {
+                                        return <div key={key}>{i}</div>;
+                                    })}
+                                </ReactTooltip>) : null
                         }
                         </div>
                     </div>
