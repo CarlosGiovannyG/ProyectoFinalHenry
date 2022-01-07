@@ -3,7 +3,7 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import Queries from '../../Utils/Queries/';
 import Mutations from '../../Utils/Mutations'
 import { useParams } from 'react-router-dom';
-
+import styles from './carDetail.module.css'
 
 
 
@@ -51,8 +51,8 @@ console.log(response);
   if (data && !loading) {
     var { product } = data.ProductById;
     return (
-      <div>
-        <img src={product.image} alt={product.name} />
+      <div className="container">
+        <img className={styles.Imagen} src={product.image} alt={product.name} />
         <h2>
           {product.name}
         </h2>
