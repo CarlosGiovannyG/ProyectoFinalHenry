@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import Queries from '../../Utils/Queries/';
 import Mutations from '../../Utils/Mutations'
-import s from './CardDetail.module.css';
+import s from './cardDetail.module.css';
 import { AiOutlineLike } from 'react-icons/ai'
 import { GrClose, GrView, GrContact, GrChatOption } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
