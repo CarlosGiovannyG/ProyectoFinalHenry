@@ -1,3 +1,43 @@
+
+.mainContainer{
+ text-align: center;
+}
+
+.info{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: auto;
+    z-index: 9;
+    color: white;
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto; 
+    left: 0; 
+    right: 0;
+    width: 450px; 
+    margin-top: 13%;
+}
+
+.title{
+    font-size: 6rem;
+    font-family: 'Suranna', serif;
+}
+
+.line{
+    width: 96%;
+    background-color: white;
+    height: 2px;
+}
+
+.subtitle{
+    font-size: 1.6rem;
+    font-family: 'Montserrat';
+    margin-top: 10px;
+}
+
 .carousel{
     text-align: center;
 }
@@ -8,66 +48,6 @@
     vertical-align: middle;
 }
 
-
-.header{
-    display: flex;
-    height: 90px; 
-    width: 100%;
-}
-
-.icon{
-
-    margin-left: 30px;
-    margin-top: 15px;
-    text-align: center;
-    height: 60px;
-    width: 60px;
-    
-}
-
-.headerbtns{
-    display: flex;
-    margin-top: 15px;
-    margin-right: 20px;
-    width: 100%;
-    align-content: space-between;
-
-}
-
-.btnDiv1{
-
-    width: 700px;
-    display: inline-block;
-
-}
-
-.btnDiv2{
-
-    width: 300px;
-    display: inline-block;
-
-}
-
-.headerbtns{
-    margin-top: 15px;
-    margin-right: 25px;
-    width: 100%;
-    justify-content: space-between;
-
-}
-
-.btnsHeader{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-    margin-left: 10px;
-    margin-right: 10px;
-    background: none;
-    border-style: none;
-    color: black;
-    font-size: 1.3rem;
-    height: 60px;
-    width: 120px;
-}
 
 .modal{
     width: 900px;
