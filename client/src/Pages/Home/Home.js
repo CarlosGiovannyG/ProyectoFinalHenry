@@ -12,7 +12,6 @@ import NewSwiper from '../../Components/NewSwiper/NewSwiper';
 export default function Home() {
     
     const navigate = useNavigate();
-    const [inProp, setInProp] = React.useState(true); // CSS transition group
     const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [Modal2, open2, close2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     
@@ -37,10 +36,10 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-                <div style={{position: 'absolute'}} >
+            <div style={{position: 'absolute'}} >
                 <Modal>
                     <CSSTransition
-                    in={inProp}
+                    in={true}
                     timeout={0}
                     appear={true}
                     key={0}
@@ -55,7 +54,7 @@ export default function Home() {
             
                 <Modal2>
                     <CSSTransition
-                    in={inProp}
+                    in={true}
                     timeout={0}
                     appear={true}
                     key={0}
@@ -67,9 +66,7 @@ export default function Home() {
                         </div>
                     </CSSTransition>
                 </Modal2>
-            
-                </div>
-                
+            </div>
         </div>
     )
 
