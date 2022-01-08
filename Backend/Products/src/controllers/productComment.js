@@ -12,7 +12,6 @@ const ProductComment = async (req, res) => {
       await wantedProduct.save();
       const newComment = new Comment(req.body);
       newComment.avatar = md5(newComment.email);
-      newComment.product_id = wantedProduct._id;
       newComment.save();
       res.json({ message: "Gracias por su comentario" })
     }

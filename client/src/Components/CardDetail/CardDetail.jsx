@@ -4,12 +4,12 @@ import Queries from '../../Utils/Queries/';
 import Mutations from '../../Utils/Mutations'
 import s from './cardDetail.module.css';
 import { AiOutlineLike } from 'react-icons/ai'
-import { GrClose, GrView, GrContact } from 'react-icons/gr';
+import { GrClose, GrView, GrContact, GrChatOption } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
 import { CSSTransition } from 'react-transition-group';
 
 
-const CardDetail = ({ openComment, modalControl, productId }) => {
+const CardDetail = ({ openCreateCom, openComment, modalControl, productId }) => {
 
   const [newLike, setNewLike] = useState(null)
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
@@ -81,6 +81,12 @@ const CardDetail = ({ openComment, modalControl, productId }) => {
                 onClick={() => {
                   openComment()
                 }} />
+              <GrChatOption
+                size='2rem'
+                data-tip data-for='createcomment'
+                onClick={() => {
+                  openCreateCom()
+                }} />
             </div>
           </div>
           <img className={s.imagen} src={product.image} alt={product.name} />
@@ -92,6 +98,9 @@ const CardDetail = ({ openComment, modalControl, productId }) => {
           </ReactTooltip>
           <ReactTooltip className={s.tooltip} id='comments' place='top' effect="solid" >
             Ver {product.comments}  comentarios
+          </ReactTooltip>
+          <ReactTooltip className={s.tooltip} id='createcomment' place='top' effect="solid" >
+            Deja tu comentario
           </ReactTooltip>
         </div>
       </CSSTransition>

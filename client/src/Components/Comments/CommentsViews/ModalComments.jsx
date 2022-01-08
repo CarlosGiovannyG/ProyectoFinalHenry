@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import Queries from '../../Utils/Queries';
+import Queries from '../../../Utils/Queries';
 import s from './comments.module.css';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';

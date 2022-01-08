@@ -7,7 +7,8 @@ import Queries from '../../Utils/Queries';
 import { useModal } from 'react-hooks-use-modal';
 import CardDetail from "../../Components/CardDetail/CardDetail";
 import s from './index.module.css';
-import ModalComments from "../../Components/Comments/ModalComments";
+import ModalComments from "../../Components/Comments/CommentsViews/ModalComments";
+import ModalCreateComments from "../../Components/Comments/CommentsCreate/CreateComments";
 
 
 
@@ -15,6 +16,7 @@ export const Menu = () => {
 
     const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
     const [idProduct, setIdProduct] = useState(null)
 
@@ -45,6 +47,7 @@ export const Menu = () => {
                         modalControl={close}
                         productId={idProduct}
                         openComment={openModal}
+                        openCreateCom={openCreateCom}
                     />
                 </Modal>
                 <ModalCom>
@@ -53,6 +56,12 @@ export const Menu = () => {
                         productId={idProduct}
                     />
                 </ModalCom>
+                <ModalCreateCom>
+                    <ModalCreateComments
+                        modalControl={closeCreteCom}
+                        productId={idProduct}
+                    />
+                </ModalCreateCom>
             </div>
             <Footer />
         </div>
