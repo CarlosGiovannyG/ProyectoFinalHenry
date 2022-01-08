@@ -29,8 +29,6 @@ const Rout = () => {
         <Route path={routes.billClient()} element={<BillClient />} />
         <Route path={routes.bill()} element={<BillModal />} />
         <Route path={routes.chickend} element={<BillsChickend />} />
-        {/*<Route path="/SignUp" element={<SignUp />} />
-                <Route path="/LogIn" element={<LogIn />} /> */}
       </Routes>
     </BrowserRouter>
     </>

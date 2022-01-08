@@ -4,12 +4,16 @@ import { MenuContainer } from "./components/MenuContainer/MenuContainer";
 import { Footer } from "../../Components/Footer/Footer";
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
+import { useModal } from 'react-hooks-use-modal';
+import CardDetail from "../../Components/CardDetail/CardDetail";
+import s from './index.module.css';
 
 
 
 export const Menu = () => {
 
-   const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
+    const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
 
     if (loading) {
         return (
@@ -21,12 +25,17 @@ export const Menu = () => {
     if (error) return null
     
     return (
-        <div>
+            <div>
                 <MenuJumbotron />
                 <MenuContainer
                     products={data.allProducts.products}
-
+                    modalControl={open}
                 />
+                <div className={s.modal} >
+                    <Modal>
+                        <CardDetail modalControl={close} />
+                    </Modal>
+                </div>
                 <Footer />
             </div>
         )

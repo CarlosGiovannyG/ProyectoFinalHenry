@@ -3,7 +3,7 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import "./MenuContainer.css";
 import { ProductCard } from "../ProductCard/ProductCard";
 
-export const MenuContainer = ({ products }) => {
+export const MenuContainer = ({ products, modalControl }) => {
     
 
     return (
@@ -18,6 +18,7 @@ export const MenuContainer = ({ products }) => {
                         <ProductCard
                             key={e._id}
                             product={e}
+                            modalControl={modalControl}
                         />
                     )
                 })}
