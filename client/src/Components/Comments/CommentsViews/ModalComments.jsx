@@ -4,7 +4,7 @@ import Queries from '../../../Utils/Queries';
 import s from './comments.module.css';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
-
+import SwiperComments from '../SwiperComments/SwiperComments';
 
 const ModalComments = ({ modalControl, productId}) => {
 
@@ -26,31 +26,15 @@ const ModalComments = ({ modalControl, productId}) => {
   if (data && !loading) {
     var comments = data.commentByProduct.comments;
     return (
-      comments.map(comment => (
-        <CSSTransition
-          in={true}
-          timeout={0}
-          appear={true}
-          key={0}
-          classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
-        >
-          <div className={s.container}>
-            <GrClose size='1.5rem' className={s.close} onClick={modalControl} />
-            <div className={s.info} >
-              <h2 className={s.name}>
-                {comment.title}
-              </h2>
-              <div className={s.description}>
-                {comment.comment}
-              </div>
-              <div className={s.description}>
-                {comment.timestamps}
-              </div>
-            </div>
-            <img className={s.imagen} src={`http://gravatar.com/avatar/${comment.avatar}?d=monsterid&s=300`} alt={comment.name} />
-          </div>
-        </CSSTransition>
-      ))
+      <CSSTransition
+      in={true}
+      timeout={0}
+      appear={true}
+      key={0}
+      classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
+    >
+      <SwiperComments comments={comments} />
+      </CSSTransition>
     )
   }
   return (

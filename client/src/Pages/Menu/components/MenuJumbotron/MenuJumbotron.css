@@ -20,7 +20,7 @@
 
 
 .menu-info h2 {
-    font-size: 6rem;
+    font-size: 7rem;
     font-family: 'Suranna', serif;
 }
 
@@ -31,8 +31,9 @@
 }
 
 .menu-info p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-family: 'Montserrat';
+    margin-top: 10px;
 }
 
 .menu-btn {
