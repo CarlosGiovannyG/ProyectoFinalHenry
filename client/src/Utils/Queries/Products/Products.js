@@ -4,7 +4,7 @@ import {
 
 const Products = {
 
-  ALL_PRODUCTS: gql `
+  ALL_PRODUCTS: gql`
    query {
    allProducts {
     products {
@@ -15,6 +15,7 @@ const Products = {
       price
       rating
       views
+      comments
       image
       public_id
       timestamps
@@ -24,7 +25,7 @@ const Products = {
   
   `,
 
-  PRODUCTS_BILLS: gql `
+  PRODUCTS_BILLS: gql`
    query ProductsBills {
   ProductsBills {
     products {
@@ -36,47 +37,7 @@ const Products = {
 }
   
   `,
-  
-  STATS_APP: gql `
-   query {
-  statsApp {
-    resumen {
-      stats {
-        produts
-        comments
-        views
-        rating
-      }
-      newComments {
-        id
-        title
-        comment
-        email
-        timestamps
-        avatar
-        product_id
-      }
-      productsPopulated {
-        _id
-        name
-        category
-        rating
-        views
-        image
-      }
-      productsViewed {
-        _id
-        name
-        category
-        rating
-        views
-        image
-      }
-    }
-  }
-}
-  
-  `,
+
 
   FIND_PRODUCT: gql`
   
@@ -90,6 +51,7 @@ const Products = {
       price
       rating
       views
+      comments
       image
       public_id
       timestamps
@@ -97,10 +59,10 @@ const Products = {
   }
 }
   `,
- 
-  
+
+
 
 };
 
 
-export default  Products
+export default Products

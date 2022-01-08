@@ -2,13 +2,18 @@ import Products from './Products/Products';
 import Bills from './Bills/Bills';
 import BillsClients from './Bills/BillsClients';
 import BillsChickend from './Bills/BillsChickend';
+import statsApp from './Stats/StatsApp';
+import Comments from './Comments/Comments';
 
 
-const Queries = { 
-  
+const Queries = {
+
   //STATS_APP
-  STATS_APP: Products.STATS_APP,
-  
+  STATS_APP: statsApp.STATS_APP,
+
+  //COMMENTS
+  COMMENT_BY_PRODUCT: Comments.COMMENT_BY_PRODUCT,
+
   //PRODUCTS
   ALL_PRODUCTS: Products.ALL_PRODUCTS,
   FIND_PRODUCT: Products.FIND_PRODUCT,
@@ -22,7 +27,7 @@ const Queries = {
   BILL_BY_CLIENT: BillsClients.BILL_BY_CLIENT,
 
   // BILLS CHICKEND
-  BILLS_CHICKEND:BillsChickend.BILLS_CHICKEND,
+  BILLS_CHICKEND: BillsChickend.BILLS_CHICKEND,
 }
 
 

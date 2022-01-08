@@ -3,8 +3,8 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import "./MenuContainer.css";
 import { ProductCard } from "../ProductCard/ProductCard";
 
-export const MenuContainer = ({ products, modalControl }) => {
-    
+export const MenuContainer = ({ products, modalControl, productId }) => {
+
 
     return (
         <main id="menu" className="">
@@ -14,11 +14,12 @@ export const MenuContainer = ({ products, modalControl }) => {
             </div>
             <section className="menu-list">
                 {products.map(e => {
-                    return(
+                    return (
                         <ProductCard
                             key={e._id}
                             product={e}
                             modalControl={modalControl}
+                            productId={productId}
                         />
                     )
                 })}

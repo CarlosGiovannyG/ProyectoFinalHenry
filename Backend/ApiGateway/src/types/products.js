@@ -2,7 +2,7 @@ const {
   gql
 } = require('apollo-server');
 
-const productsTypes = gql `
+const productsTypes = gql`
 
 input productId{ id: ID }
 
@@ -26,9 +26,11 @@ category:String
 price:Int
 rating:Int
 views:Int
+comments:Int
 image:String
 public_id:String
 timestamps:String
+
 }
 
 type ProductStats{

@@ -8,27 +8,28 @@ import icon from '../../img/MAIN_ICON.png';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
 import NewSwiper from '../../Components/NewSwiper/NewSwiper';
+import routes from '../../Helpers/Routes'
 
 export default function Home() {
-    
+
     const navigate = useNavigate();
     const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [Modal2, open2, close2] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    
-    
+
+
     return (
         <div >
             <div className={s.carousel} >
-                <NewSwiper/>
+                <NewSwiper />
             </div>
             <div className={s.header}>
                 <img className={s.icon} src={icon} alt='Restaurant Logo' />
                 <div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
-                        <button className={s.btnsHeader} onClick={()=>{navigate('/Menu')}} >MENU</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
                         <button className={s.btnsHeader} >ABOUT US</button>
-                        <button  className={s.btnsHeader}>CONTACT</button>
-                        <button className={s.btnsHeader} onClick={() => { navigate("/bills") }}>CHECK IN</button>
+                        <button className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
                     </div>
                     <div className={s.btnDiv2}>
                         <button className={s.btnsHeader} onClick={open2} >LOG IN</button>
@@ -36,14 +37,14 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div style={{position: 'absolute'}} >
+            <div style={{ position: 'absolute' }} >
                 <Modal>
                     <CSSTransition
-                    in={true}
-                    timeout={0}
-                    appear={true}
-                    key={0}
-                    classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
+                        in={true}
+                        timeout={0}
+                        appear={true}
+                        key={0}
+                        classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
                     >
                         <div className={s.modal}>
                             <GrClose className={s.cross} onClick={close} size='1.5rem' />
@@ -51,17 +52,17 @@ export default function Home() {
                         </div>
                     </CSSTransition>
                 </Modal>
-            
+
                 <Modal2>
                     <CSSTransition
-                    in={true}
-                    timeout={0}
-                    appear={true}
-                    key={0}
-                    classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone}}
+                        in={true}
+                        timeout={0}
+                        appear={true}
+                        key={0}
+                        classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
                     >
                         <div className={s.modal2}>
-                        <GrClose className={s.cross} onClick={close2} size='1.5rem' />
+                            <GrClose className={s.cross} onClick={close2} size='1.5rem' />
                             <LogInForm />
                         </div>
                     </CSSTransition>
