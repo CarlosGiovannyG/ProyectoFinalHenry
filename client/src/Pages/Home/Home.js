@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useModal } from 'react-hooks-use-modal';
 import SignUpForm from '../../Components/SignUpForm/SignUpForm';
 import LogInForm from '../../Components/LogInForm/LogInForm';
-import icon from '../../img/MAIN_ICON.png';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
 import NewSwiper from '../../Components/NewSwiper/NewSwiper';
-import routes from '../../Helpers/Routes'
+import NavBarV2 from '../../Components/NavBarV2/NavBarV2';
 
 export default function Home() {
 
@@ -18,25 +17,16 @@ export default function Home() {
 
 
     return (
-        <div >
+        <div className={s.mainContainer}>
+            <div className={s.info}>
+                <h2 className={s.title}>Henry<br/>Restaurant</h2>
+                <div className={s.line}/>
+                <p  className={s.subtitle}>Fine Dining &amp; Whine</p>
+            </div>
             <div className={s.carousel} >
                 <NewSwiper />
             </div>
-            <div className={s.header}>
-                <img className={s.icon} src={icon} alt='Restaurant Logo' />
-                <div className={s.headerbtns}>
-                    <div className={s.btnDiv1} >
-                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
-                        <button className={s.btnsHeader} >ABOUT US</button>
-                        <button className={s.btnsHeader}>CONTACT</button>
-                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
-                    </div>
-                    <div className={s.btnDiv2}>
-                        <button className={s.btnsHeader} onClick={open2} >LOG IN</button>
-                        <button className={s.btnsHeader} onClick={open} >SIGN UP</button>
-                    </div>
-                </div>
-            </div>
+            <NavBarV2 modalControl1={open} modalControl2={open2} />
             <div style={{ position: 'absolute' }} >
                 <Modal>
                     <CSSTransition
