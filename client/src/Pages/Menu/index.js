@@ -34,7 +34,7 @@ export const Menu = () => {
     };
 
     return (
-        <div>
+        <div >
             <MenuJumbotron />
             <MenuContainer
                 products={data.allProducts.products}
