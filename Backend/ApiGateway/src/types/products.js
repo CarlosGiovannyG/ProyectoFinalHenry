@@ -2,7 +2,7 @@ const {
   gql
 } = require('apollo-server');
 
-const productsTypes = gql `
+const productsTypes = gql`
 
 input productId{ id: ID }
 
@@ -26,9 +26,11 @@ category:String
 price:Int
 rating:Int
 views:Int
+comments:Int
 image:String
 public_id:String
 timestamps:String
+
 }
 
 type ProductStats{
@@ -50,6 +52,16 @@ type stats{produts:Int comments:Int views:Int rating:Int }
 
 type commentDetail{ id:ID title:String comment:String email:String timestamps:String avatar:String product_id:String }
 
+input createComment{
+  product_id:String
+  title:String
+  comment:String
+  email:String
+}
+type responseCreated{
+  message:String
+}
+
 type Query {
 allProducts:productsAll
 statsApp:statsPage
@@ -59,6 +71,8 @@ ProductById(input:productId):product
 
 type Mutation {
   ProductLike(input:productId):resLike
+  createComment(input:createComment):responseCreated
+
 }
 
 `;

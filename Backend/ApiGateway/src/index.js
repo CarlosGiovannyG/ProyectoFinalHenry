@@ -9,19 +9,20 @@ const Apis = require('./sources')
 
 
 const server = new ApolloServer({
-  context: () => {},typeDefs,resolvers,
+  context: () => { }, typeDefs, resolvers,
   dataSources: () => ({
-    ProductsApi: new Apis.ProductsApi(), 
-    BillsApi:new Apis.BillsApi(),
-   }),
+    ProductsApi: new Apis.ProductsApi(),
+    BillsApi: new Apis.BillsApi(),
+    CommentsApi: new Apis.CommentsApi(),
+  }),
   introspection: true,
-  playground:true,
+  playground: true,
 });
 
 
 
 
 server.listen(process.env.PORT || 4000)
-  .then(({url}) => {
+  .then(({ url }) => {
     console.log(`🚀 Servidor está corriendo en ${url}`);
-})
+  })

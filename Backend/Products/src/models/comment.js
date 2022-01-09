@@ -3,7 +3,7 @@ const ObjectId = Schema.ObjectId;
 
 
 const commentSchema = new Schema({
-  product_id: { type: ObjectId },
+  product_id: { type: String, },
   title: { type: String },
   comment: { type: String },
   email: { type: String },

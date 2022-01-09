@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './LogInForm.module.css';
 import ReactTooltip from 'react-tooltip';
 

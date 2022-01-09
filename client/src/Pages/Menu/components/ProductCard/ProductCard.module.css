@@ -28,3 +28,10 @@
     width: 100px;
     height: 100px;
 }
+
+.modal{
+    background-color: rgb(240, 239, 239);
+    position: absolute;
+    height: 200px;
+    width: 300px;
+}

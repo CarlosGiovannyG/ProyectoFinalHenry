@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React  from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -40,9 +40,12 @@ const items = [
 
 export default function NewSwiper() {
 
+  
     return (
         <>
-          <Swiper spaceBetween={0} centeredSlides={true} autoplay={{
+          <Swiper 
+          style={{width: '100%', height: '847px'}}
+          spaceBetween={0} centeredSlides={true} autoplay={{
             "delay": 4000,
             "disableOnInteraction": false
           }}

@@ -3,21 +3,22 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import "./MenuContainer.css";
 import { ProductCard } from "../ProductCard/ProductCard";
 
-export const MenuContainer = ({ products }) => {
-    
+export const MenuContainer = ({ products, modalControl, productId }) => {
+
 
     return (
         <main id="menu" className="">
-            <div className="menu-input">
+            <div className="menu">
                 <h3>Menu</h3>
-                <SearchBar />
             </div>
             <section className="menu-list">
                 {products.map(e => {
-                    return(
+                    return (
                         <ProductCard
                             key={e._id}
                             product={e}
+                            modalControl={modalControl}
+                            productId={productId}
                         />
                     )
                 })}

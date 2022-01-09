@@ -12,9 +12,7 @@ query BillsChickend {
     idUser
     description
     products {
-      idProduct
       name
-      price
     }
     date
     numeroMesa

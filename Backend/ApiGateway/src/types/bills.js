@@ -49,11 +49,15 @@ type billsChickend{
   _id:ID
   idUser:String
   description:String
-  products:[products]
+  products:[productsChickend]
   date:String
   numeroMesa:String
 tipoDePedido:String
   statusCocina:String
+}
+
+type productsChickend{ 
+  name:String
 }
 
 type products{ 
