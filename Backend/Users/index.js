@@ -3,7 +3,7 @@ const server = require('./app');
 const { conn } = require('./db.js');
 const { initial } = require('./Controller/rolController');
 //const { sequelize } = require('./models/index');
-const port = 5001;
+const port = 5002;
 
 
 
