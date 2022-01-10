@@ -7,13 +7,19 @@ import routes from '../../Helpers/Routes'
 
 export default function NavBarV2({modalControl1, modalControl2}) {
     const navigate = useNavigate();
-
+    const url = window.location.href.slice(21);
+    
     return(
         <div className={s.header}>
             <img className={s.icon} src={icon} alt='Restaurant Logo' />
             <div className={s.headerbtns}>
                 <div className={s.btnDiv1} >
-                    <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
+                    {
+                        (url === '/') && <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
+                    }
+                    {    
+                        (url === '/Menu') && <button className={s.btnsHeader} onClick={() => { navigate(`${routes.home}`) }} >HOME</button>
+                    }
                     <button className={s.btnsHeader} >ABOUT US</button>
                     <button className={s.btnsHeader}>CONTACT</button>
                     <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>

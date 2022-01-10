@@ -15,9 +15,9 @@ SwiperCore.use([Pagination]);
 const options = [
   { id: 1, span: 'Crear', title: 'Factura', caso:'createBill'},
   { id: 2, span: 'Ver', title: 'Todas', caso:'allBills'},
-  { id:3,span:'Ver Factura', title: 'Por Cliente',caso:''},
-  {id:4,span:'Ver Factura', title: 'Por Mesa',caso:''},
-  {id:5,span:'Ver Factura', title: 'Por Estado',caso:''},
+  { id: 3, span:'Ver Factura', title: 'Por Cliente',caso:''},
+  { id: 4, span:'Ver Factura', title: 'Por Mesa',caso:''},
+  { id: 5, span:'Ver Factura', title: 'Por Estado',caso:''},
   
 ]
 

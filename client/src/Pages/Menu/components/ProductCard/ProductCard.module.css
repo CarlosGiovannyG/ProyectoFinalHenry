@@ -29,6 +29,13 @@
     height: 100px;
 }
 
+.title{
+    font-family: 'Suranna';
+    font-size: 1.8rem;
+    text-decoration: underline;
+    
+}
+
 .modal{
     background-color: rgb(240, 239, 239);
     position: absolute;
