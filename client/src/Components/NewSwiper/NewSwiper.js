@@ -1,10 +1,4 @@
 import React  from "react";
-import landing1 from '../../img/landing1.jpg';
-import landing2 from '../../img/landing2.jpg';
-import landing3 from '../../img/landing3.jpg';
-import landing4 from '../../img/landing4.jpg';
-import landing5 from '../../img/landing5.jpg';
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -21,11 +15,9 @@ import SwiperCore, {
 
 SwiperCore.use([Autoplay,Pagination,Navigation]);
 
-
-
 const items = [
   {
-    src: landing1,
+    src: require('../../img/landing1.jpg'),
     altText: 'Slide 1',
   },
   {

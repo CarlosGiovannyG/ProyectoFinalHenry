@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import Mutations from '../../../Utils/Mutations';
-import Queries from '../../../Utils/Queries';
+import Mutations from '../../../../Utils/Mutations';
+import Queries from '../../../../Utils/Queries';
+import { GrClose } from 'react-icons/gr';
+import styles from './createBill.module.css'
 
 
-
-const CreateBill = () => {
+const CreateBill = ({ close}) => {
 //PRODUCTS_BILLS
 
   const { loading, data, error } = useQuery(Queries.PRODUCTS_BILLS);
@@ -71,8 +72,10 @@ console.log('ERRORES', err.graphQLErrors)
   if (error) return null
   const products = data.ProductsBills.products.map(({_id,name,price})=>{return{_id,name,price}})
   return (
-    <div className="container mt-5 col-12  ">
-      <div className="container p-5 col-10 bg-secondary ">
+    <div className={styles.container}>
+      <GrClose size='2.5rem' className={styles.close} onClick={() => close('createBill')} />
+
+      <div className="container p-5 col-6 bg-secondary ">
         <form >
           <div className="form-group">
             <label className="form-label  bg-light col-12 mt-2">Descripcion</label>
@@ -128,15 +131,14 @@ console.log('ERRORES', err.graphQLErrors)
               <option value='mesa' >Domicilio...</option>
             </select>
           </div>
-          <input className="btn btn-outline-danger" type="reset" value="Restaurar"/>
         </form>
-
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={handleSubmit}
+        >FACTURAR</button>
       </div>
-      <button
-        type="button"
-        className="btn btn-outline-success"
-        onClick={handleSubmit}
-      >FACTURAR</button>
+      
    </div>
   )
 }

@@ -20,9 +20,7 @@ export  function validate(input){
     return errors;
 }
 
-
-
-export default function SignUpForm(){
+export default function LogInForm(){
     const [input, setInput] = React.useState({email: '', password: null});
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();

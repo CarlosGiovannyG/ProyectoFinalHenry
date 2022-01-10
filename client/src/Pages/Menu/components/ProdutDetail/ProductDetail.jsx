@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import Queries from '../../Utils/Queries/';
-import Mutations from '../../Utils/Mutations'
-import s from './CardDetail.module.css';
+import Queries from '../../../../Utils/Queries';
+import Mutations from '../../../../Utils/Mutations'
+import s from './ProductDetail.module.css';
 import { AiOutlineLike } from 'react-icons/ai'
 import { GrClose, GrView, GrContact, GrChatOption } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
 import { CSSTransition } from 'react-transition-group';
 
 
-const CardDetail = ({ openCreateCom, openComment, modalControl, productId }) => {
+const ProductDetail = ({ openCreateCom, openComment, modalControl, productId }) => {
 
   const [newLike, setNewLike] = useState(null)
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
@@ -69,29 +69,27 @@ const CardDetail = ({ openCreateCom, openComment, modalControl, productId }) => 
             <div className={s.description}>
               {product.description}
             </div>
-          </div>
-          <div>
-            <img className={s.imagen} src={product.image} alt={product.name} />
-            <div className={s.icons}>
-                <div className={s.price}>
-                  ${product.price}
-                </div>
-                <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike}  />
-                <GrView size='2rem' data-tip data-for='views' />
-                <GrContact
-                  size='2rem'
-                  data-tip data-for='comments'
-                  onClick={() => {
-                    openComment()
-                  }} />
-                <GrChatOption
-                  size='2rem'
-                  data-tip data-for='createcomment'
-                  onClick={() => {
-                    openCreateCom()
-                  }} />
+            <div className={s.description}>
+              ${product.price}
+            </div>
+            <div className={s.icon}>
+              <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
+              <GrView size='2rem' data-tip data-for='views' />
+              <GrContact
+                size='2rem'
+                data-tip data-for='comments'
+                onClick={() => {
+                  openComment()
+                }} />
+              <GrChatOption
+                size='2rem'
+                data-tip data-for='createcomment'
+                onClick={() => {
+                  openCreateCom()
+                }} />
             </div>
           </div>
+          <img className={s.imagen} src={product.image} alt={product.name} />
           <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
             {newLike ? newLike : product.rating}
           </ReactTooltip>
@@ -115,4 +113,4 @@ const CardDetail = ({ openCreateCom, openComment, modalControl, productId }) => 
   )
 }
 
-export default CardDetail
+export default ProductDetail

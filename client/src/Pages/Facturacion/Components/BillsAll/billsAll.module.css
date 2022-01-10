@@ -1,0 +1,22 @@
+.container{
+  width: 90%;
+  height: 89vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.containerCentro{
+   width: 90%;
+  max-height:90%;
+} 
+
+.close{
+    position: absolute;
+    cursor: pointer;
+    margin-top: -38%;
+    margin-left: 85%;
+    background-color: white;
+}

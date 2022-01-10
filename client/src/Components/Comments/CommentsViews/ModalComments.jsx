@@ -3,10 +3,9 @@ import { useLazyQuery } from '@apollo/client';
 import Queries from '../../../Utils/Queries';
 import s from './comments.module.css';
 import { CSSTransition } from 'react-transition-group';
-import { GrClose } from 'react-icons/gr';
-import SwiperComments from '../SwiperComments/SwiperComments';
+import SwiperComments from '../../Swiper/Swiper';
 
-const ModalComments = ({ modalControl, productId}) => {
+const ModalComments = ({ productId}) => {
 
   const [commentByProduct, { loading, error, data }] = useLazyQuery(Queries.COMMENT_BY_PRODUCT);
 
@@ -25,6 +24,7 @@ const ModalComments = ({ modalControl, productId}) => {
   }
   if (data && !loading) {
     var comments = data.commentByProduct.comments;
+   
     return (
       <CSSTransition
       in={true}

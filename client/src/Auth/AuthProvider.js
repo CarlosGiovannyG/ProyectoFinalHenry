@@ -6,16 +6,18 @@ export const AuthContex = createContext();
 
 
 const AuthProvider = ({ children }) => {
- 
-  const [productsHistory, setProductsHistory] = useState(null)
+  const [modalAllBills, setModalAllBills] = useState(false);
+  const [modalCreateBill, setModalCreateBill] = useState(false)
+  const onpenModal = caso => {
+    (caso === 'allBills') && setModalAllBills(!modalAllBills);
+    (caso === 'createBill') && setModalCreateBill(!modalCreateBill);
 
-  const productsHis = (response) => {
-    setProductsHistory()
   }
-  
-    const contextValue = {
-    productsHis,
-      productsHistory,
+
+  const contextValue = {
+    modalAllBills,
+    onpenModal,
+    modalCreateBill,
   }
 
   return (

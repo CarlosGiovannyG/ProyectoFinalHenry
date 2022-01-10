@@ -5,10 +5,10 @@ import { Footer } from "../../Components/Footer/Footer";
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
 import { useModal } from 'react-hooks-use-modal';
-import CardDetail from "../../Components/CardDetail/CardDetail";
 import s from './index.module.css';
 import ModalComments from "../../Components/Comments/CommentsViews/ModalComments";
 import ModalCreateComments from "../../Components/Comments/CommentsCreate/CreateComments";
+import ProductDetail from "./components/ProdutDetail/ProductDetail";
 
 
 
@@ -34,7 +34,7 @@ export const Menu = () => {
     };
 
     return (
-        <div >
+        <div>
             <MenuJumbotron />
             <MenuContainer
                 products={data.allProducts.products}
@@ -43,7 +43,7 @@ export const Menu = () => {
             />
             <div className={s.modal} >
                 <Modal>
-                    <CardDetail
+                    <ProductDetail
                         modalControl={close}
                         productId={idProduct}
                         openComment={openModal}

@@ -2,12 +2,12 @@ import React from 'react';
 import s from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from 'react-hooks-use-modal';
-import SignUpForm from '../../Components/SignUpForm/SignUpForm';
-import LogInForm from '../../Components/LogInForm/LogInForm';
 import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
 import NewSwiper from '../../Components/NewSwiper/NewSwiper';
 import NavBarV2 from '../../Components/NavBarV2/NavBarV2';
+import SignUpForm from '../../Components/Froms/LogInForm/LogInForm';
+import LogInForm from '../../Components/Froms/LogInForm/LogInForm';
 
 export default function Home() {
 
