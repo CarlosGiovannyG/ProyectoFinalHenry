@@ -8,6 +8,7 @@ import { Modal } from '@material-ui/core';
 import BillsAll from './Components/BillsAll/BillsAll';
 import useAuth from '../../Auth/useAuth'
 import CreateBill from './Components/CreateBill/CreateBill';
+
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
@@ -46,7 +47,7 @@ const Bills = () => {
         {<CreateBill close={onpenModal} />}
       </Modal>
     </div>
-  )
+  ) 
 }
 
 export default Bills

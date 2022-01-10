@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
 import { GrClose } from 'react-icons/gr';
-import styles from './createBill.module.css'
+import s from './createBill.module.css'
 
 
 const CreateBill = ({ close}) => {
@@ -72,71 +72,66 @@ console.log('ERRORES', err.graphQLErrors)
   if (error) return null
   const products = data.ProductsBills.products.map(({_id,name,price})=>{return{_id,name,price}})
   return (
-    <div className={styles.container}>
-      <GrClose size='2.5rem' className={styles.close} onClick={() => close('createBill')} />
+    <div className={s.modalContainer}>
 
-      <div className="container p-5 col-6 bg-secondary ">
-        <form >
-          <div className="form-group">
-            <label className="form-label  bg-light col-12 mt-2">Descripcion</label>
-            <textarea
-              className="col-12"
-              name="description"
-              value={newBill.description}
-              placeholder="Agrega una descripcion"
-              onChange={handleInputs}
-            />
-          </div>
-          <div className="form-group " >
-            <label className="form-label  bg-light col-3 mt-2 me-2">idUser</label>
-            <input
-              type='text'
-              className="col-3"
-              name="idUser"
-              value={newBill.idUser}
-              onChange={handleInputs}
-            />
-          </div>
-          <div className="form-group " >
-            <label className="form-label  bg-light col-3 mt-2 me-2">Mesa</label>
-            <input
-              type='number'
-              className="col-3"
-              name="numeroMesa"
-              value={newBill.numeroMesa}
-              onChange={handleInputs}
-            />
-          </div>
-          <div className="form-group " >
-            <label className="form-label  bg-light col-4 mt-2 me-4">Productos</label>
-            <select
-              name='es' className='col-5'
-              onChange={handleSelect}
-            >
-              <option  selected>Selecciona...</option>
-              {products &&
-                products.map(e => (
-                  <option value={e._id} key={e._id}> {e.name} </option>
-                ))
-              }
-
-            </select>
-          </div>
-
-          <div className="form-group " >
-            <label className="form-label  bg-light col-4 mt-2 me-4">Tipo Entrega</label>
-            <select name='tipoDePedido' className='col-5' onChange={handleInputs} >
-              <option  selected >Selecciona...</option>
-              <option value='salon' >Salon...</option>
-              <option value='mesa' >Domicilio...</option>
-            </select>
-          </div>
-        </form>
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={handleSubmit}
-        >FACTURAR</button>
+      <div className={s.container}>
+      <GrClose size='1.5rem' className={s.close} onClick={() => close('createBill')}/> 
+        <h3 className={s.title} >New Bill</h3>
+        <div className={s.form}>
+          <form >
+            <div className={s.inputs1}>
+              <input
+                placeholder='Client ID...'
+                type='text'
+                className={s.id}
+                name="idUser"
+                value={newBill.idUser}
+                onChange={handleInputs}
+              />
+              <input
+                placeholder='Table Number...'
+                type='number'
+                className={s.table}
+                name="numeroMesa"
+                value={newBill.numeroMesa}
+                onChange={handleInputs}
+              />
+            </div>
+            <div className={s.inputs2}>
+              <select
+              className={s.products}
+                name='es' 
+                onChange={handleSelect}
+              >
+                <option  selected>Select...</option>
+                {products &&
+                  products.map(e => (
+                    <option value={e._id} key={e._id}> {e.name} </option>
+                  ))
+                }
+              </select>
+              <select name='tipoDePedido' className={s.type} onChange={handleInputs} >
+                <option  selected >Select...</option>
+                <option value='salon' >Salon...</option>
+                <option value='mesa' >Delvery...</option>
+              </select>
+            </div>
+            <div className={s.textareaContainer}>
+              <textarea
+                className={s.description}
+                name="description"
+                value={newBill.description}
+                placeholder="Add a description..."
+                onChange={handleInputs}
+              />
+            </div>
+          </form>
+          <button
+            type="button"
+            className={s.btnSubmit}
+            onClick={handleSubmit}
+          >Create Bill</button>
+        </div>
       </div>
       
    </div>
