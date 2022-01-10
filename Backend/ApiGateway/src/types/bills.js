@@ -45,19 +45,15 @@ type allBills{
   total:Int
 }
 
-type billsChickend{
+type billsKitchen{
   _id:ID
   idUser:String
   description:String
-  products:[productsChickend]
+  products:[products]
   date:String
   numeroMesa:String
 tipoDePedido:String
   statusCocina:String
-}
-
-type productsChickend{ 
-  name:String
 }
 
 type products{ 
@@ -82,7 +78,7 @@ type Query {
 allBills:[allBills]
 BillsById(input:billsId):allBills
 BillsByClient(input:billsId):[allBills]
-BillsChickend:[billsChickend]
+BillsKitchen:[billsKitchen]
 }
 
 type Mutation{

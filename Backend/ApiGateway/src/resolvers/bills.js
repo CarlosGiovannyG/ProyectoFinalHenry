@@ -1,12 +1,12 @@
 const billsResolvers = {
 
   Query: {
-    allBills: async (_, {  }, { dataSources })=>{
+    allBills: async (_, { }, { dataSources }) => {
       return await dataSources.BillsApi.allBills()
     },
-    
-    BillsChickend: async (_, { }, { dataSources }) => {
-      return await dataSources.BillsApi.BillsChickend()
+
+    BillsKitchen: async (_, { }, { dataSources }) => {
+      return await dataSources.BillsApi.BillsKitchen()
     },
 
     BillsById: async (_, { input }, { dataSources }) => {
@@ -18,12 +18,12 @@ const billsResolvers = {
     },
 
   },
-  
+
   Mutation: {
     CreateBills: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.CreateBills(input)
     },
-    
+
     UpdateBill: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.UpdateBill(input)
     },
@@ -35,9 +35,9 @@ const billsResolvers = {
     DeleteBill: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.DeleteBill(input.id)
     },
-    
+
   },
-  
+
 };
 
 module.exports = billsResolvers;

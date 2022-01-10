@@ -14,7 +14,7 @@
 }
 
 .comment{
-    background-color: rgb(221, 220, 221);
+   background-color: rgb(221, 220, 221);
     padding: 15px;
     font-family: 'Montserrat';
     font-size: 1rem;
@@ -28,5 +28,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: initial;
-    
 }
+

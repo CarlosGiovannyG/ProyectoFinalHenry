@@ -1,0 +1,26 @@
+ .container{
+  width: 50%;
+  height: 50%;
+margin: 7% auto;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+.containerCentro {
+  height: 100%;
+  width: 90%;
+  justify-content: space-between;
+  background-color: rgba(7, 6, 6, 0.722);
+}
+
+
+.close{
+    position: absolute;
+    cursor: pointer;
+    margin-top: -25%;
+    margin-left: 85%;
+    background-color: white;
+} 

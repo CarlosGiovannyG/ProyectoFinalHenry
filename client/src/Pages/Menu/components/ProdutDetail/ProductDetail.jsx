@@ -73,23 +73,23 @@ const ProductDetail = ({ openCreateCom, openComment, modalControl, productId }) 
           <div>
             <img className={s.imagen} src={product.image} alt={product.name} />
             <div className={s.icons}>
-                <div className={s.price}>
-                  ${product.price}
-                </div>
-                <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike}  />
-                <GrView size='2rem' data-tip data-for='views' />
-                <GrContact
-                  size='2rem'
-                  data-tip data-for='comments'
-                  onClick={() => {
-                    openComment()
-                  }} />
-                <GrChatOption
-                  size='2rem'
-                  data-tip data-for='createcomment'
-                  onClick={() => {
-                    openCreateCom()
-                  }} />
+              <div className={s.price}>
+                ${product.price}
+              </div>
+              <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
+              <GrView size='2rem' data-tip data-for='views' />
+              <GrContact
+                size='2rem'
+                data-tip data-for='comments'
+                onClick={() => {
+                  openComment()
+                }} />
+              <GrChatOption
+                size='2rem'
+                data-tip data-for='createcomment'
+                onClick={() => {
+                  openCreateCom()
+                }} />
             </div>
           </div>
           <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >

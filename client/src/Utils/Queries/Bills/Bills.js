@@ -7,9 +7,6 @@ const Bills = {
   ALL_BILLS: gql `
    query {
   allBills {
-     numeroMesa
-    statusCocina
-    _id
     idUser
     description
     products {

@@ -6,34 +6,34 @@ import { GrClose } from 'react-icons/gr';
 import s from './createBill.module.css'
 
 
-const CreateBill = ({ close}) => {
-//PRODUCTS_BILLS
+const CreateBill = ({ close }) => {
+  //PRODUCTS_BILLS
 
   const { loading, data, error } = useQuery(Queries.PRODUCTS_BILLS);
-  
+
   const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
     refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
     onError: err => {
-console.log('ERRORES', err.graphQLErrors)
+      console.log('ERRORES', err.graphQLErrors)
     }
   })
 
   const [newBill, setNewBill] = useState({
-    idUser:'',
-    description:'',
-    products:[],
-    numeroMesa:'',
-    tipoDePedido:''
+    idUser: '',
+    description: '',
+    products: [],
+    numeroMesa: '',
+    tipoDePedido: ''
   })
-  
+
   const handleInputs = e => {
-    setNewBill({...newBill, [e.target.name]: e.target.value})
+    setNewBill({ ...newBill, [e.target.name]: e.target.value })
   }
   const handleSelect = e => {
     let aux = products.filter(product => { return product._id === e.target.value })
-    setNewBill({ ...newBill, products: [...newBill.products, aux[0]]})
+    setNewBill({ ...newBill, products: [...newBill.products, aux[0]] })
   }
-  
+
 
 
 
@@ -49,7 +49,8 @@ console.log('ERRORES', err.graphQLErrors)
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
         }
-    }})
+      }
+    })
 
     setNewBill({
       idUser: '',
@@ -58,10 +59,10 @@ console.log('ERRORES', err.graphQLErrors)
       numeroMesa: '',
       tipoDePedido: ''
     })
-    
+
     const resp = response.data.CreateBills.message
     alert(resp)
-}
+  }
   if (loading) {
     return (
       <div>
@@ -70,12 +71,12 @@ console.log('ERRORES', err.graphQLErrors)
     )
   }
   if (error) return null
-  const products = data.ProductsBills.products.map(({_id,name,price})=>{return{_id,name,price}})
+  const products = data.ProductsBills.products.map(({ _id, name, price }) => { return { _id, name, price } })
   return (
     <div className={s.modalContainer}>
 
       <div className={s.container}>
-      <GrClose size='1.5rem' className={s.close} onClick={() => close('createBill')}/> 
+        <GrClose size='1.5rem' className={s.close} onClick={() => close('createBill')} />
         <h3 className={s.title} >New Bill</h3>
         <div className={s.form}>
           <form >
@@ -99,11 +100,11 @@ console.log('ERRORES', err.graphQLErrors)
             </div>
             <div className={s.inputs2}>
               <select
-              className={s.products}
-                name='es' 
+                className={s.products}
+                name='es'
                 onChange={handleSelect}
               >
-                <option  selected>Select...</option>
+                <option selected>Select...</option>
                 {products &&
                   products.map(e => (
                     <option value={e._id} key={e._id}> {e.name} </option>
@@ -111,7 +112,7 @@ console.log('ERRORES', err.graphQLErrors)
                 }
               </select>
               <select name='tipoDePedido' className={s.type} onChange={handleInputs} >
-                <option  selected >Select...</option>
+                <option selected >Select...</option>
                 <option value='salon' >Salon...</option>
                 <option value='mesa' >Delvery...</option>
               </select>
@@ -133,8 +134,8 @@ console.log('ERRORES', err.graphQLErrors)
           >Create Bill</button>
         </div>
       </div>
-      
-   </div>
+
+    </div>
   )
 }
 

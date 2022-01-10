@@ -1,0 +1,55 @@
+.container {
+  background: url("../../../../img/kitchenPage.jpg") center/cover;
+  width: 100%;
+  height: 96%;
+  margin-top: -5%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+.containerCentro {
+  height: 100%;
+  width: 90%;
+  justify-content: space-between;
+  background-color: rgba(7, 6, 6, 0.722);
+}
+
+.title {
+  font-family: "Suranna", serif;
+  font-size: 2rem;
+  color: white;
+}
+
+.Button{
+  background: none;
+  width: 120px;
+  border-radius: 10px;
+  color: blanchedalmond;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom:0%;
+}
+
+.containerModal{
+   background: url("../../../../img/kitchenPage.jpg") center/cover;
+  width: 50%;
+  height: 60%;
+margin: 10% auto;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+
+.close{
+    position: absolute;
+    cursor: pointer;
+    margin-top: -35%;
+    margin-left: 75%;
+    background-color: white;
+}

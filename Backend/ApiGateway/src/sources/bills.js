@@ -8,47 +8,44 @@ class BillsApi extends RESTDataSource {
     this.baseURL = serverUrls.allBills
   }
 
-  async CreateBills(credencials) { 
+  async CreateBills(credencials) {
     credencials = new Object(credencials);
-    return await this.post(`/`,credencials)
+    return await this.post(`/`, credencials)
   }
 
   async allBills() {
     return await this.get('/')
   }
-  
-  async BillsChickend() {
+
+  async BillsKitchen() {
     return await this.get('/cocina')
   }
 
   async BillsById(input) {
     return await this.get(`/${input}`)
   }
-  
+
   async BillsByClient(input) {
-     return await this.get(`/cliente/${input}`)
+    return await this.get(`/cliente/${input}`)
   }
-  
-  
-  async UpdateBill(credencials) { 
+
+
+  async UpdateBill(credencials) {
     credencials = new Object(credencials);
     const idBill = credencials.id
-    return await this.put(`/${idBill}`,credencials)
+    return await this.put(`/${idBill}`, credencials)
   }
-  
-  async DeleteBill(input) {    
+
+  async DeleteBill(input) {
     return await this.post(`/delete/${input}`)
   }
-  
-  async ClosedBill(input) {    
+
+  async ClosedBill(input) {
     return await this.post(`/cocina/closed/${input}`)
   }
-  
-  
-  
+
+
+
 };
 
 module.exports = BillsApi;
-
-
-
