@@ -8,15 +8,15 @@
 }
 
 .containerCentro{
-    margin: 0px auto;
-    margin-top: .5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 99%;
-height: 87vh;
- border-radius:  15px;
-   background-color: rgba(7, 6, 6, 0.622);
+  margin: 0px auto;
+  margin-top: .5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 87vh;
+  border-radius:  15px;
+  background-color: rgba(7, 6, 6, 0.622);
 }
 
 .MyClassEnterActive {
@@ -31,3 +31,10 @@ height: 87vh;
     transition: transform .5s, opacity .4s linear;
 }
   
+.close{
+  position: absolute;
+  cursor: pointer;
+  margin-top: -38%;
+  margin-left: 85%;
+  background-color: white;
+}
