@@ -1,6 +1,6 @@
 
 const config = require('../config/authConfig');
-const { User, Role } = require('../db');
+const { User, Rol } = require('../db');
 const {Op} = require('sequelize');
 
 
@@ -16,20 +16,20 @@ signup = (req, res) => {
   })
     .then(user => {
       if (req.body.roles) {
-        Role.findAll({
+        Rol.findAll({
           where: {
             name: {
               [Op.or]: req.body.roles
             }
           }
         }).then(roles => {
-          user.setRoles(roles).then(() => {
+          user.setRol(roles).then(() => {
             res.send({ message: "User was registered successfully!" });
           });
         });
       } else {
         // user role = 1
-        user.setRoles([1]).then(() => {
+        user.setRol([1]).then(() => {
           res.send({ message: "User was registered successfully!" });
         });
       }
@@ -67,7 +67,7 @@ signin = (req, res) => {
       });
 
       var authorities = [];
-      user.getRoles().then(roles => {
+      user.getRol().then(roles => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }

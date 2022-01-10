@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
-const db = require("../models");
-const User = db.user;
+const config = require("../config/authConfig");
+const { User } = require('../db');
 
 
 verifyToken = (req, res, next) => {
@@ -29,7 +28,7 @@ req.userid = decoded.id;
 isAdmin = (req, res, next) => {
                                 User.findByPk(req.userid)
                                 .then(user => { 
-                                    user.getRoIes()
+                                    user.getRol()
                                     .then(roles => {
                                         for (let i = 0; i < roles.length; i++) { 
                                             if (roles[i].name === "admin") {
@@ -49,7 +48,7 @@ isAdmin = (req, res, next) => {
     isModerator = (req, res, next) => {
                     User.findByPk(req.userId)
                     .then(user => {
-                      user.getRoles()
+                      user.getRol()
                       .then(roles => {
                         for (let i = 0; i < roles.length; i++) {
                           if (roles[i].name === "moderator") {
@@ -68,7 +67,7 @@ isAdmin = (req, res, next) => {
     isModeratorOrAdmin = (req, res, next) => {
                     User.findByPk(req.userId)
                     .then(user => {
-                      user.getRoles()
+                      user.getRol()
                       .then(roles => {
                         for (let i = 0; i < roles.length; i++) {
                           if (roles[i].name === "moderator") {
@@ -95,4 +94,5 @@ isAdmin = (req, res, next) => {
                     isModerator: isModerator,
                     isModeratorOrAdmin: isModeratorOrAdmin
                   };
+                  
 module.exports = authJwt;
