@@ -19,6 +19,10 @@ export function validate(input) {
     errors.comment = '• Comment is required.';
   }
 
+  if (input.comment.length>256) {
+    errors.comment = '• Please, maximun of 260 characters.';
+  }
+
   if (!/\S+@\S+\.\S+/.test(input.email)) {
     errors.email = '• Invalid Email.';
   }

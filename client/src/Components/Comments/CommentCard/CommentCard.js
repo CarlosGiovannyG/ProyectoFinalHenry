@@ -7,7 +7,7 @@ export default function CommentCard({comment}) {
     return(
         <div className={s.container} >
             <div className={s.title}>{comment.title}</div>
-            <label className={s.comment}>{comment.comment}</label>
+            <div className={s.comment}>{comment.comment} </div>
         </div>
     )
 

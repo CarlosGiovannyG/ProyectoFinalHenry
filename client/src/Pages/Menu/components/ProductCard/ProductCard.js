@@ -14,9 +14,7 @@ export const ProductCard = ({ product, modalControl, productId }) => {
                 productId(product._id)
             }}
         >
-            <h4>{product.name}</h4>
-            <div className={styles.line}></div>
-
+            <h4 className={styles.title} >{product.name}</h4>
         </div>
     );
 };
