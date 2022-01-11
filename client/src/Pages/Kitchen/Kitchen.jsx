@@ -55,24 +55,49 @@ const Kitchen = () => {
   const infoKitchenBill = data.BillsKitchen
     .filter(bill => bill._id === billKitchenDetail)
     .map(({ products }) => products)
-    
 
 
+  //<CardKitchen info={info} />
 
-  const infoKitchen = data.BillsKitchen.map(({ _id, description, date, numeroMesa, tipoDePedido, statusCocina }) => { return { _id, description, date, numeroMesa, tipoDePedido, statusCocina } });
-
+  const infoKitchen = data.BillsKitchen //.map(({ _id, description, date, numeroMesa, tipoDePedido, statusCocina }) => { return { _id, description, date, numeroMesa, tipoDePedido, statusCocina } });
+  //infoKitchen.map(info=>console.log(info))
+  const makeados = [{
+    date: "2022-01-07T15:44:36.009Z",
+    description: null,
+    numeroMesa: null,
+    statusCocina: "Open",
+    tipoDePedido: null,
+    _id: "61d85fe88afe91ecfa4612cf",
+  }, {
+    date: "2022-01-07T15:44:36.009Z",
+    description: null,
+    numeroMesa: null,
+    statusCocina: "Open",
+    tipoDePedido: null,
+    _id: "61d85fe88afe91ecfa4612cf",
+  }, {
+    date: "2022-01-07T15:44:36.009Z",
+    description: null,
+    numeroMesa: null,
+    statusCocina: "Open",
+    tipoDePedido: null,
+    _id: "61d85fe88afe91ecfa4612cf",
+  }, {
+    date: "2022-01-07T15:44:36.009Z",
+    description: null,
+    numeroMesa: null,
+    statusCocina: "Open",
+    tipoDePedido: null,
+    _id: "61d85fe88afe91ecfa4612cf",
+  }]
   return (
     <div className={styles.container}>
       <div className={styles.containerCentro}>
-        <CSSTransition
-          in={true}
-          timeout={0}
-          appear={true}
-          key={0}
-          classNames={{ appear: styles.MyClassEnterActive, enterDone: styles.MyClassEnterDone }}
-        >
-          <SwiperComments infoKitchen={infoKitchen} />
-        </CSSTransition>
+        {infoKitchen &&
+          makeados.map(info => (
+            <CardKitchen info={infoKitchen[0]} />
+          ))
+        }
       </div>
       <Modal open={kitchenDeatil} >
         <CardProductKitchen close={openCloseModal} infoKitchenBill={infoKitchenBill[0]} />

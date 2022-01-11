@@ -8,8 +8,6 @@ import routes from '../../Helpers/Routes'
 export default function NavBarV2({ modalControl1, modalControl2 }) {
     const navigate = useNavigate();
     const url = window.location.href.slice(21);
-    console.log('NAV', url);
-
     
     return (
         <div className={s.header}>

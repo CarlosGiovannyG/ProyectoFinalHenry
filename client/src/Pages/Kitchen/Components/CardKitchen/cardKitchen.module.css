@@ -1,37 +1,65 @@
 .container {
-  background: url("../../../../img/kitchenPage.jpg") center/cover;
-  width: 100%;
-  height: 96%;
-  margin-top: -5%;
-  padding: 15px;
-  display: flex;
+  width: 100%; 
+  height: 97%;
+  padding: 2%;
   align-items: center;
   justify-content: center;
-  gap: 5%;
+   border-radius: 10px;
+  border-top: 6px solid rgba(255, 255, 255, 0.658);
+  border-left: 6px solid rgba(255, 255, 255, 0.658);
+  box-shadow: 0 0px 10px rgba(255, 255, 255, 0.258);
+  gap: 10%;
 }
 
 .containerCentro {
-  height: 100%;
-  width: 90%;
+  width: 98%;
+   margin: 1% auto;
+  border-radius: 10px;
   justify-content: space-between;
-  background-color: rgba(7, 6, 6, 0.722);
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.658);
 }
+
+
+.containerProduct{
+   margin: 1% auto;
+   width: 98%;
+  height: 45%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding:1%;
+  gap: 1%;
+  margin-bottom: -50%;
+}
+
+.containerBotones{
+  margin: 1% auto;
+   width: 98%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  gap: 2.5%;
+}
+
 
 .title {
   font-family: "Suranna", serif;
-  font-size: 2rem;
-  color: white;
+  font-size: 1.5em;
 }
 
 .Button{
   background: none;
-  width: 120px;
   border-radius: 10px;
   color: blanchedalmond;
-  padding: 5px;
+  padding: 2%;
   cursor: pointer;
-  margin-bottom:0%;
+font-weight: 600;
 }
+
+
 
 .containerModal{
    background: url("../../../../img/kitchenPage.jpg") center/cover;
