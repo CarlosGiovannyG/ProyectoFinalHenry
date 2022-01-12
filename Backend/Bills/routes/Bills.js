@@ -17,12 +17,15 @@ router.get("/cocina", require("../controllers/cocinaBills"));
 //Ruta cambiar status cocina. El ID por params y el status por query
 //TODO RUTA LISTA APIGATEWAY
 
+router.post("/cocina/:id", require("../controllers/idCocinaBills"));
+
+router.post("/cocina/closed/:id", require("../controllers/cocinaClosedBills"));
 
 
 //Obtener Facturas De Un Cliente (Por ID del cliente enviado como query)
 //TODO RUTA LISTA APIGATEWAY
 
-
+router.get("/cliente/:id", require("../controllers/idClienteBills"));
 
 //Eliminar una factura por ID enviada por query (no se borra de la DB, solo se cambia el status)
 //TODO RUTA LISTA APIGATEWAY
