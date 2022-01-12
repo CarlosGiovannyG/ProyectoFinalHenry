@@ -1,0 +1,23 @@
+.menu h3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    height: 80px;
+    font-family: 'Suranna';
+    font-size: 3rem;
+    margin-left: 20px;
+}
+
+.menu-list {
+    display: grid;
+    width: 94%;
+    gap: 1rem;
+    grid-auto-rows: 20rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0 auto;
+    padding-bottom: 10rem;
+}

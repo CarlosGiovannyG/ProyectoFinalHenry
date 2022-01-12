@@ -1,0 +1,59 @@
+.container{
+    background-color: rgb(240, 239, 239);
+    width: auto;
+    margin: 0 auto;
+    margin-top:1%;
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+}
+
+.close{
+    position: absolute;
+    margin-left: 830px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 92%;
+}
+
+.imagen{
+    width: 150px;
+    height: 150px;
+    margin-top: 9%;
+    margin-right: 6%;
+}
+
+.info{
+    width: 600px;
+    margin-top: 40px;
+}
+
+.name{
+    font-size: 2rem;
+}
+
+.description{
+    margin-top: 10px;
+    background-color: #F7F7F7;
+    font-size: 1rem;
+    padding: 20px;
+    width: 95%;
+    
+}
+
+.MyClassEnterActive {
+    opacity: 0;
+    transform: translate(0px, 10px);
+    transition: transform .5s, opacity .4s linear;
+  }
+  
+.MyClassEnterDone {
+    opacity: 1;
+    transform: translate(0px, -10px);
+    transition: transform .5s, opacity .4s linear;
+}
+  

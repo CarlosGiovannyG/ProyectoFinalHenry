@@ -1,0 +1,33 @@
+.container {
+  width: 98%;
+  height: 89vh;
+  margin: -2px auto;
+  background: url("../../img/kitchenPage.jpg") center/cover;
+  border-radius: 15px;
+  display: flex;
+}
+
+.containerCentro {
+  margin: 0px auto;
+  margin-top: 0.5%;
+  width: 99%;
+  height: 87vh;
+  border-radius: 15px;
+  background-color: rgba(7, 6, 6, 0.622);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding:1%;
+  gap: 1%;
+}
+
+.MyClassEnterActive {
+  opacity: 0;
+  transform: translate(0px, 10px);
+  transition: transform 0.5s, opacity 0.4s linear;
+}
+
+.MyClassEnterDone {
+  opacity: 1;
+  transform: translate(0px, -10px);
+  transition: transform 0.5s, opacity 0.4s linear;
+}

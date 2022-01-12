@@ -1,0 +1,43 @@
+.cardContainer {
+    width: 100%;
+    height: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 1rem;
+    cursor: pointer;
+    background-repeat: none repeat;
+    background-size:cover;
+    background-position: center;
+}
+
+.line {
+    background-color: white;
+    height: 3px;
+    width: 20%;
+    margin-bottom: 1rem;
+}
+
+.cardContainer h4:hover {
+    opacity: 0.5;
+}
+
+.Image{
+    width: 100px;
+    height: 100px;
+}
+
+.title{
+    font-family: 'Suranna';
+    font-size: 1.8rem;
+    text-decoration: underline;
+    
+}
+
+.modal{
+    background-color: rgb(240, 239, 239);
+    position: absolute;
+    height: 200px;
+    width: 300px;
+}

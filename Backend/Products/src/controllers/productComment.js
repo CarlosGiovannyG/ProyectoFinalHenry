@@ -4,18 +4,21 @@ const md5 = require('md5');
 
 
 const ProductComment = async (req, res) => {
-  
-  await Product.findOne({ _id: req.params.id })
-    .then(prd => {
-      const newComment = new Comment(req.body)
-      newComment.avatar = md5(newComment.email)
-      newComment.product_id = prd._id
+
+  try {
+    const wantedProduct = await Product.findOne({ _id: req.params.id })
+    if (wantedProduct) {
+      wantedProduct.comments = wantedProduct.comments + 1;
+      await wantedProduct.save();
+      const newComment = new Comment(req.body);
+      newComment.avatar = md5(newComment.email);
       newComment.save();
       res.json({ message: "Gracias por su comentario" })
-    })
-    .catch(err => {
-      res.status(500).send({ message: "ocurrio un error ", err })
-    })
+    }
+  } catch (error) {
+    res.status(500).send({ message: "ocurrio un error ", error })
+  }
+
 };
 
 module.exports = ProductComment;

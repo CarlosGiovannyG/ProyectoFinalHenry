@@ -1,0 +1,122 @@
+.modalContainer{
+  width: 90%;
+  height: 89vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  
+}
+
+.close{
+  cursor: pointer;
+  position: absolute;
+  margin-left: 93%;
+  margin-top: -1%;
+}
+
+.container{
+  
+  width: 900px;
+  min-height: 430px;
+  position: relative;
+  background-color: rgb(240, 239, 239);
+  padding-top: 40px;
+
+
+}
+
+.title{
+  font-family: 'Suranna', serif;
+  font-weight: lighter;
+  color: black;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.form{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.id{
+  font-family: 'Montserrat';
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 30px;
+  width: 300px;
+  margin-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.table{
+  font-family: 'Montserrat';
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 30px;
+  width: 300px;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.inputs2{
+  margin-top: 30px;
+}
+
+.products{
+  font-family: 'Montserrat';
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 30px;
+  width: 300px;
+  margin-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.type{
+  font-family: 'Montserrat';
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 30px;
+  width: 300px;
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.textareaContainer{
+  margin-top: 30px;
+}
+
+.description{
+  font-family: 'Montserrat';
+  resize: none;
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 70px;
+  width: 73.5%;
+  padding: 10px;
+  
+  outline: none;
+}
+
+.btnSubmit{
+  border: none;
+  background-color: rgb(194, 193, 193);
+  height: 30px;
+  width: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  outline: none;
+  margin-top: 20px;
+  font-family: 'Montserrat';
+}

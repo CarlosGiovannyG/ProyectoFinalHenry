@@ -16,12 +16,12 @@ input createBill{
   idUser:String
   description:String
   products:[productsId]
-  numeroMesa:Int
+  numeroMesa:String
   tipoDePedido:String
 }
 
 input productsId{ 
-  idProduct:String
+  _id:String
   name:String
   price:Int
 }
@@ -45,6 +45,16 @@ type allBills{
   total:Int
 }
 
+type billsKitchen{
+  _id:ID
+  idUser:String
+  description:String
+  products:[products]
+  date:String
+  numeroMesa:String
+tipoDePedido:String
+  statusCocina:String
+}
 
 type products{ 
   idProduct:String
@@ -63,15 +73,18 @@ type caja{
 }
  
 
+
 type Query {
 allBills:[allBills]
 BillsById(input:billsId):allBills
 BillsByClient(input:billsId):[allBills]
+BillsKitchen:[billsKitchen]
 }
 
 type Mutation{
   CreateBills(input:createBill):response
   UpdateBill(input:updateBill):allBills
+  ClosedBill(input:billsId):response
   DeleteBill(input:billsId):response
 }
 `;

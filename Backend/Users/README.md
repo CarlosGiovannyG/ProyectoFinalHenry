@@ -30,7 +30,7 @@
 - El avatar (se hará enlace con avatar.com por medio del correo brindado por el usuario).
 - Una contraseña.
 
-> Todos estos datos los entregara en formato Json para poder ser consumidos por el ApiGateway el cual se encarga de entregar toda la información necesaria al Front para poder ser mostrada al consumidor final.Todos estos datos los entregara en formato Json para poder ser consumidos por el ApiGateway el cual se encarga de entregar toda la información necesaria al Front para poder ser mostrada al consumidor final.
+> Todos estos datos los entregara en formato Json para poder ser consumidos por el ApiGateway el cual se encarga de entregar toda la información necesaria al Front para poder ser mostrada al consumidor final.
 
 ```json
 "id",
@@ -54,6 +54,19 @@
 
 **Las rutas con que cuenta el microservicio son:**
 1. Una ruta para registro de usuario.
+    >Solo debe entregar un message de registro exitoso
 2. Una ruta para Login de usuario.
+    >Solo debe entragar un message de inicio de sesion, el token, 
 3. Una ruta para modificar datos.
+    >Solo debe entragar un message de exito
+4. Una ruta para modificar password.
+    >Solo debe entragar un message de exito
+5. Una ruta para Logout.
+    >Solo debe entragar un message de cierre de sesion
+6. Una ruta para Modificar su imagen de perfil o avatar.
+    >Solo debe entragar un message de exito
+7. Una ruta para validacion de usuario con el token.
+      >Esta ruta solo debe entragar si el usuario existe, si esta logueado y su id. Teniendo en cuenta que solo resive el token que envio el login
+8. Una ruta para ver la informacion de un usuario con el id
+9. Una ruta para ver la informacion de los usuarios solo si su rol es admin
 4. una ruta para consultar las estadísticas de pedidos del usuario.

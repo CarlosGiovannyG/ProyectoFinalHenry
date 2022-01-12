@@ -4,6 +4,7 @@ const Comment = require("../models/comment")
 //TODO RUTA LISTA APIGATEWAY
 
 const ProductById = async (req, res) => {
+ 
   try {
     let produtEnv={ product:{}, comments:{} };
     const resProduto = await Product.findOne({ _id: req.params.id });

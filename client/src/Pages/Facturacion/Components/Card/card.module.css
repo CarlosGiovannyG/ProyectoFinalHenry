@@ -1,0 +1,25 @@
+.container{
+    height: 93%;
+    width: 100%;
+    margin-top:-3%;
+    padding: 15px;
+     background: url("../../../../img/landing3.jpg")center/cover;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.containerCentro{
+   margin: 0 auto;
+    height: 43%;
+    width: 25%;
+ background-color: rgba(7, 6, 6, 0.622);
+ cursor:pointer;
+}
+
+.title{
+    font-family: 'Suranna', serif;
+    font-size: 3rem;
+    color: white;
+   
+}
