@@ -21,7 +21,7 @@ export default function Home() {
             <div className={s.info}>
                 <h2 className={s.title}>Henry<br/>Restaurant</h2>
                 <div className={s.line}/>
-                <p  className={s.subtitle}>Fine Dining &amp; Whine</p>
+                <p  className={s.subtitle}>Fine Dining &amp; Wine</p>
             </div>
             <div className={s.carousel} >
                 <NewSwiper />

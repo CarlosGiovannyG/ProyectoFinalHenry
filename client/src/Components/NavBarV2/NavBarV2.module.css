@@ -1,7 +1,8 @@
 .header{
     display: flex;
-    height: 90px; 
+    height: 9.5vh; 
     width: 100%;
+    background-color: rgb(255, 255, 255);
 }
 
 .icon{
@@ -24,12 +25,11 @@
 }
 
 .btnDiv1{
-    width: 50%;
+
     display: inline-block;
 }
 
 .btnDiv2{
-    width: 300px;
     display: inline-block;
 
 }

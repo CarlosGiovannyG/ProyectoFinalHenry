@@ -8,28 +8,87 @@ import routes from '../../Helpers/Routes'
 export default function NavBarV2({ modalControl1, modalControl2 }) {
     const navigate = useNavigate();
     const url = window.location.href.slice(21);
-    
-    return (
-        <div className={s.header}>
-            <img className={s.icon} src={icon} alt='Restaurant Logo' />
-            <div className={s.headerbtns}>
-                <div className={s.btnDiv1} >
-                    {
-                        (url === '/') && <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
-                    }
-                    {
-                        (url === '/Menu') && <button className={s.btnsHeader} onClick={() => { navigate(`${routes.home}`) }} >HOME</button>
-                    }
-                    <button className={s.btnsHeader} >ABOUT US</button>
-                    <button className={s.btnsHeader}>CONTACT</button>
-                    <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
-                    <button className={s.btnsHeader} onClick={() => { navigate(`${routes.kitchen}`) }}>KITCHEN</button>
-                </div>
-                <div className={s.btnDiv2}>
-                    <button className={s.btnsHeader} onClick={modalControl2} >LOG IN</button>
-                    <button className={s.btnsHeader} onClick={modalControl1} >SIGN UP</button>
+
+    if(url === routes.home){
+        return (
+            <div className={s.header}>
+                <img className={s.icon} src={icon} alt='Restaurant Logo' />
+                <div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.menu}`) }} >MENU</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
+                        <button className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.kitchen}`) }}>KITCHEN</button>
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={modalControl2} >LOG IN</button>
+                        <button className={s.btnsHeader} onClick={modalControl1} >SIGN UP</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+
+    if(url === routes.menu){
+        return (
+            <div className={s.header}>
+                <img className={s.icon} src={icon} alt='Restaurant Logo' />
+                <div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.home}`) }} >HOME</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
+                        <button className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.kitchen}`) }}>KITCHEN</button>
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={modalControl2} >LOG IN</button>
+                        <button className={s.btnsHeader} onClick={modalControl1} >SIGN UP</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if(url === routes.UserMainPage){
+        return (
+            <div className={s.header}>
+                <img className={s.icon} src={icon} alt='Restaurant Logo' />
+                <div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.home}`) }} >HOME</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
+                        <button className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.kitchen}`) }}>KITCHEN</button>
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} >PROFILE</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    else{
+        return (
+            <div className={s.header}>
+                <img className={s.icon} src={icon} alt='Restaurant Logo' />
+                <div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.home}`) }} >HOME</button>
+                        <button className={s.btnsHeader} >ABOUT US</button>
+                        <button className={s.btnsHeader}>CONTACT</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.bills}`) }}>CHECK IN</button>
+                        <button className={s.btnsHeader} onClick={() => { navigate(`${routes.kitchen}`) }}>KITCHEN</button>
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={modalControl2} >LOG IN</button>
+                        <button className={s.btnsHeader} onClick={modalControl1} >SIGN UP</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 }

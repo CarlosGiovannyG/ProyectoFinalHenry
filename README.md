@@ -31,6 +31,8 @@ ___
 ___
 ## Juan 
 **Creara todo lo recionado con el carro de compras, formularios, modales, etc. Estara pendiente a correciones de css que hatan**
+**Main Page del usuario logueado con seleccion de items de forma dinamica y componente para seleccionar horario y cantidad de personas por mesa. Carrito con los pedidos actuales. Estilos y actualizacion dinamica de las pagina de cocina y facturas.**
+
 ___
 
 ___
