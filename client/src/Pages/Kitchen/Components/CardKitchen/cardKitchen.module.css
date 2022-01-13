@@ -27,7 +27,7 @@
   height: 45%;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
   padding:1%;
   gap: 1%;
   margin-bottom: -50%;

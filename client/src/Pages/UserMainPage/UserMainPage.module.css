@@ -1,0 +1,28 @@
+.container{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+.rightDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;       
+}
+
+.btnCart{
+  height: 8vh;
+  width: 12vw;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-size: 1.2rem;
+  border:none;
+  background-color: rgb(172, 171, 171);
+}
+
+.tooltip{
+  white-space:pre-wrap;
+  font-family: 'Montserrat';
+  width: 10vw;
+}
+

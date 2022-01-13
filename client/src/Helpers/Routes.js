@@ -7,6 +7,7 @@ const routes = {
   kitchen: '/kitchen',
   billClient: (id) => id ? `/billClient/:${id}` : "/billClient/:id",
   bill: (id) => id ? `/bill/:${id}` : "/bill/:id",
+  UserMainPage: '/UserMainPage',
 };
 
 

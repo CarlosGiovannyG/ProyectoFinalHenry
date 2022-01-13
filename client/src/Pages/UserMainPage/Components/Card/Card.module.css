@@ -1,24 +1,19 @@
 .cardContainer {
     width: 100%;
-    height: 100%;
+    height: 20vh;
     color: white; 
     display: flex; 
     flex-direction: column;
     justify-content: flex-end;
-
+    
     cursor: pointer;
     background-repeat: none repeat;
     background-size:cover;
     background-position: center;
     transition: transform .5s, box-shadow .5s;
+    border-radius: 5px;
 }
 
-.line {
-    background-color: white;
-    height: 3px;
-    width: 20%;
-    margin-bottom: 1rem;
-}
 
 .cardContainer:hover {
     transform: translate(0px, -10px);
@@ -33,16 +28,9 @@
 }
 
 .title{
+    
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
     text-align: center;
-    font-family: 'Suranna';
-    font-size: 1.8rem;
-    text-decoration: underline;
     background-color: rgba(34, 34, 34, .5);
-}
-
-.modal{
-    background-color: rgb(240, 239, 239);
-    position: absolute;
-    height: 200px;
-    width: 300px;
 }

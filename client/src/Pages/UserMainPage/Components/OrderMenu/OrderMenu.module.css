@@ -1,0 +1,59 @@
+
+.mainDiv{
+    margin-left: 2rem;
+    background-color: #dbdbdb;
+    padding: 1.5rem;
+
+
+    width: 75vw;
+    max-height: 85vh;
+    border-radius: .5rem;
+}
+
+.title{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.input{
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    margin-bottom: 20px;
+
+}
+
+.subtitle{
+    font-family: 'Montserrat';
+
+}
+
+.products{
+    height: 70vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+   
+
+::-webkit-scrollbar-thumb {
+    background: rgb(167, 166, 166); 
+    border-radius: 10px;
+} 

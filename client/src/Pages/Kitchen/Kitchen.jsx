@@ -82,7 +82,16 @@ const Kitchen = () => {
     statusCocina: "Open",
     tipoDePedido: null,
     _id: "61d85fe88afe91ecfa4612cf",
-  }, {
+  }, 
+  {
+    date: "2022-01-07T15:44:36.009Z",
+    description: null,
+    numeroMesa: null,
+    statusCocina: "Open",
+    tipoDePedido: null,
+    _id: "61d85fe88afe91ecfa4612cf",
+  },
+  {
     date: "2022-01-07T15:44:36.009Z",
     description: null,
     numeroMesa: null,
@@ -95,6 +104,7 @@ const Kitchen = () => {
       <div className={styles.containerCentro}>
         {infoKitchen &&
           makeados.map(info => (
+          
             <CardKitchen info={infoKitchen[0]} />
           ))
         }

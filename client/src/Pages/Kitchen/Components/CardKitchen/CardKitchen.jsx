@@ -15,17 +15,13 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
       {info &&
         <div className={styles.container}>
           <div className={styles.containerBotones}>
-            <button className={styles.Button} onClick={() => openCloseModal('kitchenDeatil', info._id)}>SEE DETAILS</button>
             <button className={styles.Button} onClick={() => openCloseModal('kitchenDeatil', info._id)}>CLOSE ORDER</button>
             <button className={styles.Button} onClick={() => openCloseModal('kitchenDeatil', info._id)}>CANCEL ORDER</button>
           </div>
           <div className={styles.containerCentro}>
             <div className={styles.title}> {info.description}</div>
             <div className={styles.title}>Mesa #: {info.numeroMesa}</div>
-            <div className={styles.title}>Status: {info.statusCocina}</div>
             <div className={styles.title}>Entrega en: {info.tipoDePedido}</div>
-            <div className={styles.title}>Fecha creación: {info.date}</div>
-            <div className={styles.title}>Hora de entrega: </div>
           </div>
           <div className={styles.containerProduct}>
             {info.products.map(dato => (
