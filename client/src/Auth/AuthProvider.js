@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
 
-  const openCloseModal = (caso , idBill) => {
+  const openCloseModal = (caso, idBill) => {
     (caso === 'allBills') && setModalAllBills(!modalAllBills);
     (caso === 'createBill') && setModalCreateBill(!modalCreateBill);
     if (caso === 'kitchenDeatil') {
@@ -25,12 +25,39 @@ const AuthProvider = ({ children }) => {
 
   }
 
+  //TODO LOGIN RECIBO TOKEN
+  //TODO VOY ABACK I COMPRUEBO TOKEN RECIBO ID MESSAGE EXITO
+
+  const [user, setUser] = useState(null);
+
+  const login = (credencials) => {
+    setUser({
+      id: 1,
+      name: 'Carlos',
+      email: 'cggualtero@hotmail.com',
+      phone: '3043912387',
+      role: 'regular'
+    })
+  }
+
+  const isLogged = () => !!user;
+  const logout = () => setUser(null);
+
+  const hasRole = (role) => user?.role !== role;
+
   const contextValue = {
     modalAllBills,
     openCloseModal,
     modalCreateBill,
     kitchenDeatil,
     billKitchenDetail,
+
+    user,
+    login,
+    isLogged,
+    logout,
+    hasRole,
+
   }
 
   return (

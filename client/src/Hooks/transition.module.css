@@ -1,0 +1,13 @@
+
+.MyClassEnterActive {
+    opacity: 0;
+    transform: translate(0px, 10px);
+    transition: transform .5s, opacity .4s linear;
+  }
+  
+.MyClassEnterDone {
+    opacity: 1;
+    transform: translate(0px, -10px);
+    transition: transform .5s, opacity .4s linear;
+}
+  

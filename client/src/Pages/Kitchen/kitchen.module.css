@@ -2,7 +2,7 @@
   width: 98%;
   height: 89vh;
   margin: -2px auto;
-  /* background: url("../../img/kitchenPage.jpg") center/cover; */
+  background: url("../../img/kitchenPage.jpg") center/cover;
   border-radius: 15px;
   display: flex;
 }
@@ -13,7 +13,7 @@
   width: 99%;
   height: 87vh;
   border-radius: 15px;
-  background-color: rgba(7, 6, 6);
+  background-color: rgba(7, 6, 6, 0.622);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding:1%;

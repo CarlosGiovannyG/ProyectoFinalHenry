@@ -1,0 +1,53 @@
+.header{
+    display: flex;
+    height: 11vh; 
+    width: 100%;
+     background-color: rgb(255, 255, 255);
+}
+
+.icon{
+    margin-left: 1.2%;
+    text-align: center;
+    height: 60px;
+    width: 60px;
+}
+
+.headerbtns{
+    width: 100%;
+    display: flex;
+    margin-right: 1.2%;
+    align-content: space-between;
+}
+
+
+.btnDiv1{
+    width: 70%;
+    height: 90%;
+    margin-left: 1%;
+    display: flex;
+    justify-content:start;
+    gap: 3%;
+}
+
+.btnDiv2{
+    width: 27%;
+    display: flex;
+    justify-content:end;
+    gap: 5%;
+}
+
+
+.btnsHeader{
+    font-family: 'Montserrat', sans-serif;
+    background: none;
+    border-style: none;
+    color: black;
+    font-size: 1.3em;
+    font-weight: 400;
+    transition: color .3s;
+}
+
+.btnsHeader:hover{
+    color: rgb(161, 161, 161);
+    transition: color .3s;
+}
