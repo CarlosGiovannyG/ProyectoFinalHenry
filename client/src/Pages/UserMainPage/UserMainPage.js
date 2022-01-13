@@ -5,6 +5,8 @@ import { useModal } from 'react-hooks-use-modal';
 import OrderProductDetail from './Components/OrderProductDetail/OrderProductDetail';
 import Bookings from './Components/Bookings/Bookings';
 import ReactTooltip from 'react-tooltip';
+import routes from '../../Helpers/Routes';
+import { useNavigate } from 'react-router-dom';
 
 const products = [
     {   
@@ -170,17 +172,20 @@ export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
     const [cart, setCart] = React.useState([]);
-    const [cartData, setCartData] = React.useState([]);
+    const navigate = useNavigate();
+
     // Aca va la query de productos, que esta hardcodeada en products por el tema del filtrado por categorias que no estan cargadas todavia.
 
-    
+    const redirect = function (){
+        navigate(`${routes.cart}`)
+    }
 
     return(
         <div className={s.container}>
             <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
             
             <div className={s.rightDiv}>
-                <button className={s.btnCart} data-tip data-for='tooltip'>YOUR ORDER ({cart.length})</button>
+                <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
                 <Bookings/>
             </div>
 
