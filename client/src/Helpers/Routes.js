@@ -12,6 +12,7 @@ const routes = {
   billClient: (id) => id ? `/billClient/:${id}` : "/billClient/:id",
   bill: (id) => id ? `/bill/:${id}` : "/bill/:id",
   UserMainPage: '/UserMainPage',
+  cart: '/Cart'
 };
 
 
