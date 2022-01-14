@@ -1,0 +1,18 @@
+.container{
+text-align: center;
+}
+
+.item{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    background-color: rgb(184, 183, 183);
+    padding: .8rem;
+    margin-top: .9rem;
+    cursor: pointer;
+    transition: background-color .5s;
+}
+
+.item:hover{
+    background-color: rgb(163, 163, 163);
+    transition: background-color .5s;
+}

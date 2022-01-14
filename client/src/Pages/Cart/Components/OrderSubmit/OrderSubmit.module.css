@@ -1,0 +1,43 @@
+
+.container{
+    margin-top: 1.5rem;
+    width: 20vw;
+    min-height: 9vh;
+    background-color: #dbdbdb;
+    border-radius: 7px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.header{
+    font-family: 'Montserrat';
+}
+
+.subtotal{
+    font-size: 1.3rem;
+}
+
+.total{
+    font-size: 1.5rem;
+}
+    
+.btn{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    background-color: rgb(184, 183, 183);
+    padding: .8rem;
+    cursor: pointer;
+    transition: background-color .5s;
+
+    align-self: center;
+    text-align: center;
+    width: 100%;
+}
+
+.btn:hover{
+    background-color: rgb(163, 163, 163);
+    transition: background-color .5s;
+}

@@ -7,6 +7,7 @@ import Bookings from './Components/Bookings/Bookings';
 import ReactTooltip from 'react-tooltip';
 import routes from '../../Helpers/Routes';
 import { useNavigate } from 'react-router-dom';
+import Transsition from '../../Hooks/Transsition';
 
 const products = [
     {   
@@ -182,11 +183,17 @@ export default function UserMainPage() {
 
     return(
         <div className={s.container}>
-            <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
+            <Transsition>
+                <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
+            </Transsition>
             
             <div className={s.rightDiv}>
-                <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
-                <Bookings/>
+                <Transsition>
+                    <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
+                </Transsition>
+                <Transsition>
+                    <Bookings/>
+                </Transsition>
             </div>
 
             <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
