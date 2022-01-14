@@ -6,14 +6,16 @@ import s from './ProductDetail.module.css';
 import { AiOutlineLike } from 'react-icons/ai'
 import { GrClose, GrView, GrContact, GrChatOption } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
-import { CSSTransition } from 'react-transition-group';
+import Transsition from '../../../../Hooks/Transsition';
+import routes from '../../../../Helpers/Routes';
 
+const ProductDetail = ({ openCreateCom, openComment, modalControl, productId, setCart }) => {
 
-const ProductDetail = ({ openCreateCom, openComment, modalControl, productId }) => {
-
+  const url = window.location.href.slice(21);
   const [newLike, setNewLike] = useState(null)
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
   const [ProductLike] = useMutation(Mutations.LIKE_PRODUCTS, {
+  
     // refetchQueries: [{ query: Queries.ALL_PRODUCTS }],
     onError: error => {
 
@@ -52,61 +54,65 @@ const ProductDetail = ({ openCreateCom, openComment, modalControl, productId }) 
   }
   if (data && !loading) {
     var { product } = data.ProductById;
-    return (
-      <CSSTransition
-        in={true}
-        timeout={0}
-        appear={true}
-        key={0}
-        classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
-      >
-        <div className={s.container}>
-          <GrClose size='1.5rem' className={s.close} onClick={modalControl} />
-          <div className={s.info} >
-            <h2 className={s.name}>
-              {product.name}
-            </h2>
-            <div className={s.description}>
-              {product.description}
-            </div>
-          </div>
-          <div>
-            <img className={s.imagen} src={product.image} alt={product.name} />
-            <div className={s.icons}>
-              <div className={s.price}>
-                ${product.price}
+      return (
+        <Transsition>
+          <div className={s.container}>
+            <GrClose size='1.5rem' className={s.close} onClick={modalControl} />
+            <div className={s.info} >
+              <h2 className={s.name}>
+                {product.name}
+              </h2>
+              <div className={s.description}>
+                {product.description}
               </div>
-              <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
-              <GrView size='2rem' data-tip data-for='views' />
-              <GrContact
-                size='2rem'
-                data-tip data-for='comments'
-                onClick={() => {
-                  openComment()
-                }} />
-              <GrChatOption
-                size='2rem'
-                data-tip data-for='createcomment'
-                onClick={() => {
-                  openCreateCom()
-                }} />
             </div>
+            <div className={s.divDerecha}>
+              <img className={s.imagen} src={product.image} alt={product.name} />
+              <div className={s.icons}>
+                <div className={s.price}>
+                  ${product.price}
+                </div>
+                <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
+                <GrView size='2rem' data-tip data-for='views' />
+                <GrContact
+                  size='2rem'
+                  data-tip data-for='comments'
+                  onClick={() => {
+                    openComment()
+                  }} />
+                <GrChatOption
+                  size='2rem'
+                  data-tip data-for='createcomment'
+                  onClick={() => {
+                    openCreateCom()
+                  }} />
+                  {
+                    url===routes.UserMainPage && 
+                    <button className={s.btnAdd} onClick={()=>{setCart((prev)=>[...prev, product])}} >ADD</button>
+                  }
+                  {
+                    url===routes.cart && 
+                    <button className={s.btnAdd} 
+                    onClick={()=>{alert('Sacar item del carrito en estado global,cerrar modal y actualizar el carrito')}}>REMOVE</button>
+                  }
+              </div>
+            </div>
+            <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
+              {newLike ? newLike : product.rating}
+            </ReactTooltip>
+            <ReactTooltip className={s.tooltip} id='views' place='top' effect="solid" >
+              {product.views}
+            </ReactTooltip>
+            <ReactTooltip className={s.tooltip} id='comments' place='top' effect="solid" >
+              Ver {product.comments}  comentarios
+            </ReactTooltip>
+            <ReactTooltip className={s.tooltip} id='createcomment' place='top' effect="solid" >
+              Deja tu comentario
+            </ReactTooltip>
           </div>
-          <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
-            {newLike ? newLike : product.rating}
-          </ReactTooltip>
-          <ReactTooltip className={s.tooltip} id='views' place='top' effect="solid" >
-            {product.views}
-          </ReactTooltip>
-          <ReactTooltip className={s.tooltip} id='comments' place='top' effect="solid" >
-            Ver {product.comments}  comentarios
-          </ReactTooltip>
-          <ReactTooltip className={s.tooltip} id='createcomment' place='top' effect="solid" >
-            Deja tu comentario
-          </ReactTooltip>
-        </div>
-      </CSSTransition>
-    )
+        </Transsition>
+      )
+    
   }
   return (
     <div className={s.loading}>

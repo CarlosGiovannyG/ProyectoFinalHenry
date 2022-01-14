@@ -1,6 +1,6 @@
 .container{
     background-color: rgb(240, 239, 239);
-    width: auto;
+    width: 50vw;
     min-height: 300px;
     position: relative;
     display: flex;
@@ -18,9 +18,13 @@
     margin-left: 92%;
 }
 
+.divDerecha{
+    width: 55%;
+} 
+
 .imagen{
-    width: 400px;
-    height: 280px;
+    width: 100%;
+    height: auto;
     margin-top: 40px;
 }
 
@@ -62,7 +66,21 @@
     padding-top: 3px;
 }
 
+.btnAdd{
+    font-size: 1.1rem;
+    font-family: 'Montserrat';
+    border: none;
+    background-color: rgb(209, 209, 209);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    transition: background-color .5s;
+}
 
+.btnAdd:hover{
+    background-color: rgb(187, 186, 186);
+    transition: background-color .5s;
+}
 
 
 .MyClassEnterActive {

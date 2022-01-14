@@ -23,12 +23,8 @@ export function validate(input) {
     errors.comment = '• Please, maximun of 260 characters.';
   }
 
-  if (!/\S+@\S+\.\S+/.test(input.email)) {
-    errors.email = '• Invalid Email.';
-  }
-
   if (!input.email) {
-    errors.email = '• Email is required.';
+    errors.email = '• Name is required.';
   }
 
   return errors;
@@ -108,14 +104,14 @@ const ModalCreateComments = ({ modalControl, productId }) => {
                 <input
                   className={s.inputName}
                   name='title'
-                  placeholder={'Motivo del comentario...'}
+                  placeholder={'Motive...'}
                   value={input.title}
                   onChange={handleInputChange} />
                 <input
                   className={s.inputEmail}
                   type='text'
                   name='email'
-                  placeholder={'Tu Email...'}
+                  placeholder={'Name...'}
                   value={input.email}
                   onChange={handleInputChange} />
 
@@ -140,12 +136,12 @@ const ModalCreateComments = ({ modalControl, productId }) => {
                       className={s.btnRegister}
                       type="submit"
                       onClick={handleSubmit}
-                    >Register</button> :
+                    >Create</button> :
                     <button
                       className={s.btnRegisterError}
                       data-tip data-for='tooltip'
                       onClick={(e) => e.preventDefault()}
-                    >Register</button>
+                    >Create</button>
                 }
                 {(Object.keys(errors).length > 0) ? (
                   <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >

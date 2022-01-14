@@ -20,9 +20,17 @@
     background-color: rgb(112, 206, 120);
 }
 
-.title{
+.titleOn{
     font-family: 'Montserrat';
     font-size: 1.5rem;
+    transition: color .3s;
+}
+
+.titleOff{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    color: rgb(189, 187, 187);
+    transition: color .3s;
 }
 
 .modules{

@@ -22,6 +22,8 @@
 .menu-info h2 {
     font-size: 7rem;
     font-family: 'Suranna', serif;
+    color: white;
+    margin-bottom: 0;
 }
 
 .line {

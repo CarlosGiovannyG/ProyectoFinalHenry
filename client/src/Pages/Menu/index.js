@@ -9,12 +9,11 @@ import s from './index.module.css';
 import ModalComments from "../../Components/Comments/CommentsViews/ModalComments";
 import ModalCreateComments from "../../Components/Comments/CommentsCreate/CreateComments";
 import ProductDetail from "./components/ProdutDetail/ProductDetail";
+import loadingGif from '../../img/loading.gif';
 import NavBar from "../../Components/NavBar/NavBar";
 // import Transsition from "../../Hooks/Transsition";
 // import SignUpForm from "../../Components/Froms/SignUpForm/SignUpForm";
 // import LogInForm from "../../Components/Froms/LogInForm/LogInForm";
-
-
 
 export const Menu = () => {
     // const [OpenModalLogin, openLogin, closeLogin] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -28,7 +27,7 @@ export const Menu = () => {
     if (loading) {
         return (
             <div>
-                Cargando....
+                <img className={s.loading} src={loadingGif} alt="Loading Gif"/>
             </div>
         )
     }
