@@ -16,8 +16,11 @@ export default function Bookings(){
     return(
         <div className={s.container}>
             <div className={s.header}>
-                <h3 className={s.title} >SALON / DELIVERY</h3>
+                <h3 className={!toggle ? s.titleOn : s.titleOff} >SALON</h3>
+                <h3 className={s.title} >/</h3>
+                <h3 className={toggle ? s.titleOn : s.titleOff} >DELIVERY</h3>
                 <Switch className={s.toggle} onClick={handleToggle}/>
+                
             </div>
             <div className={s.modules} >
                 

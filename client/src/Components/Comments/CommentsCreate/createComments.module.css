@@ -12,7 +12,7 @@
     margin-left: 93%;
 }
 .title{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Suranna';
     font-weight: lighter;
     color: black;
     font-size: 3rem;
@@ -23,6 +23,7 @@
 .inputs{
     text-align: center;
     margin-top: 20px;
+    font-family: 'Montserrat';
 }
 
 .inputName{

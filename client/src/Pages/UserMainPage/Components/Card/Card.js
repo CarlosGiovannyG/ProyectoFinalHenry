@@ -8,10 +8,10 @@ export default function Card({setProductID,openModalProduct,product}) {
         <div
         onClick={()=>{
             openModalProduct();
-            setProductID(product.id);
+            setProductID(product._id);
         }}
         className={s.cardContainer}
-        style={{ backgroundImage: "url(" + product.img + ")" }}
+        style={{ backgroundImage: "url(" + product.image + ")" }}
         >
             <h4 className={s.title} >{product.name}</h4>
         </div>

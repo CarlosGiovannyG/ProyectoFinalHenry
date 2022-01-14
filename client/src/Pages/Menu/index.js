@@ -9,8 +9,7 @@ import s from './index.module.css';
 import ModalComments from "../../Components/Comments/CommentsViews/ModalComments";
 import ModalCreateComments from "../../Components/Comments/CommentsCreate/CreateComments";
 import ProductDetail from "./components/ProdutDetail/ProductDetail";
-
-
+import loadingGif from '../../img/loading.gif';
 
 export const Menu = () => {
 
@@ -23,7 +22,7 @@ export const Menu = () => {
     if (loading) {
         return (
             <div>
-                Cargando....
+                <img className={s.loading} src={loadingGif} alt="Loading Gif"/>
             </div>
         )
     }
