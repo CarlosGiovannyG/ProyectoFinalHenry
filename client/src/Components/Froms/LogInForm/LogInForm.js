@@ -2,6 +2,8 @@ import React from 'react';
 import s from './LogInForm.module.css';
 import ReactTooltip from 'react-tooltip';
 import useAuth from '../../../Auth/useAuth';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../Helpers/Routes';
 
 export function validate(input) {
     let errors = {};
@@ -26,6 +28,8 @@ export default function LogInForm({ close }) {
     const [input, setInput] = React.useState({ email: '', password: null });
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();
+    const navigate = useNavigate();
+
 
     const handleInputChange = function (e) {    // esta funcion recibe los inputs para majearlos.
 
@@ -48,6 +52,7 @@ export default function LogInForm({ close }) {
         // llamado al back end para verificar si existe el user y si la contraseña esta bien
         login()
         close()
+        navigate(`${routes.menu}`)
     }
 
     return (

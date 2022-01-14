@@ -4,19 +4,19 @@ import useAuth from '../../../../Auth/useAuth';
 import { toast } from 'react-toastify';
 import styles from './profilePic.module.css';
 
-const ProfilePic = ({ close}) => {
+const ProfilePic = ({ close }) => {
   const { updateUser } = useAuth();
   const [fileName, setFileName] = useState('Subir Imagen')
   const [selectedFile, setSelectedFile] = useState(null)
 
   const handleFileChange = (e) => {
     const [file] = e.target.files
-    const sizeImage_50MB = 50 * 1024 * 1024;
+    const sizeImage_50MB = 25 * 512 * 512;
     const isValidSize = file.size < sizeImage_50MB
     const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
     const isValidType = isNameOfOneImageRegEx.test(file.name);
 
-    if (!isValidSize) return toast.error('El máximo es de 50MB')
+    if (!isValidSize) return toast.error('El máximo es de 25MB')
     if (!isValidType) return toast.error('Solo se permiten imagenes')
 
     setFileName(file.name)
@@ -46,13 +46,15 @@ const ProfilePic = ({ close}) => {
             id="picture"
             accept='.jpg, .jpeg, .gif, .png'
             className={styles.PicturInput}
-              onChange={handleFileChange}
+            onChange={handleFileChange}
           />
         </div>
       </form>
       {selectedFile &&
+
+        // TODO: PREVISUALIZACION DE IMAEN CARGADA
         <img
-        className={styles.picture}
+          className={styles.picture}
           src={selectedFile}
           alt='profile-previw'
         />

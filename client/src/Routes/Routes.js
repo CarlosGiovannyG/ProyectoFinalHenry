@@ -21,7 +21,7 @@ const Rout = () => {
       <BrowserRouter>
         <Routes>
           <Route path={routes.home} element={<Home />} />
-          <Route path={routes.menu} element={<Layouts><Menu /></Layouts>} />
+          <Route path={routes.menu} element={<Menu />} />
           <Route path={routes.cart} element={<Layouts><Cart /></Layouts>} />
           <Route path={routes.checkIn} element={<CreateBill />} />
           <Route path={routes.bills} element={<Layouts><Bills /></Layouts>} />

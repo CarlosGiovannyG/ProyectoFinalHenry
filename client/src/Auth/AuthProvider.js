@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
       name: 'Carlos',
       email: 'cggualtero@hotmail.com',
       phone: '3043912387',
-      role: 'regular'
+      role: 'cook' //TODO: 'cashier'  'regular' 
     })
   }
 
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
   }
   const isLogged = () => !!user;
   const logout = () => setUser(null);
-  const hasRole = (role) => user?.role !== role;
+  const hasRole = (role) => user?.role === role;
 
   const contextValue = {
     modalAllBills,

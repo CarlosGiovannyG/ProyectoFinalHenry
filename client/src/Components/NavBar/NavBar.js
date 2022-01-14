@@ -2,16 +2,17 @@ import React from 'react';
 import s from './NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
 import icon from '../../img/MAIN_ICON.png';
-import links from '../../Helpers/Navgation'
+import links from '../../Helpers/Navigation'
 import useAuth from '../../Auth/useAuth';
 import routes from '../../Helpers/Routes'
 
 
 export default function NavBar({ openLogin, openRegister }) {
 
-    const { isLogged, logout } = useAuth()
+    const { isLogged, logout, hasRole } = useAuth()
     const login = isLogged()
 
+    console.log('cashier', hasRole('cashier'))
 
     const navigate = useNavigate();
     const url = window.location.href.slice(21);
@@ -48,8 +49,8 @@ export default function NavBar({ openLogin, openRegister }) {
                     }
                 </div>
             }
-            {login &&
-                <div className={s.headerbtns}>
+            {login && !hasRole('cashier') && !hasRole('cook') ?
+                (<div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         {
                             links.isLogin.map(link => (
@@ -67,7 +68,49 @@ export default function NavBar({ openLogin, openRegister }) {
                         <button className={s.btnsHeader} onClick={handleLogout} >LOGOUT</button>
                     </div>
 
-                </div>
+                </div>) : null
+            }
+            {login && hasRole('cashier') ?
+                (<div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        {
+                            links.iscashier.map(link => (
+                                <button
+                                    key={link.id}
+                                    className={s.btnsHeader}
+                                    onClick={() => {
+                                        navigate(`${link.path}`)
+                                    }}
+                                >{link.title}</button>
+                            ))
+                        }
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={handleLogout} >LOGOUT</button>
+                    </div>
+
+                </div>) : null
+            }
+            {login && hasRole('cook') ?
+                (<div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        {
+                            links.iscook.map(link => (
+                                <button
+                                    key={link.id}
+                                    className={s.btnsHeader}
+                                    onClick={() => {
+                                        navigate(`${link.path}`)
+                                    }}
+                                >{link.title}</button>
+                            ))
+                        }
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={handleLogout} >LOGOUT</button>
+                    </div>
+
+                </div>) : null
             }
         </div>
     )
