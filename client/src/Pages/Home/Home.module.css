@@ -1,6 +1,7 @@
 
 .mainContainer{
  text-align: center;
+ height: 100vh;
 }
 
 .info{
@@ -24,6 +25,8 @@
 .title{
     font-size: 6rem;
     font-family: 'Suranna', serif;
+    color: white;
+    margin-bottom: 0;
 }
 
 .line{

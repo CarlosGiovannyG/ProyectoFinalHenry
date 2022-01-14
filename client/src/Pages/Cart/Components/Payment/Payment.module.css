@@ -1,0 +1,33 @@
+
+.container{
+    margin-top: 2rem;
+    width: 20vw;
+    min-height: 10vh;
+    background-color: #dbdbdb;
+    border-radius: 7px;
+    padding: .8rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.header{
+    font-family: 'Montserrat';
+}
+    
+.item{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    background-color: rgb(184, 183, 183);
+    padding: .8rem;
+    cursor: pointer;
+    transition: background-color .5s;
+    width: 80%;
+    margin-bottom: .8rem;
+    align-self: center;
+}
+
+.item:hover{
+    background-color: rgb(163, 163, 163);
+    transition: background-color .5s;
+}

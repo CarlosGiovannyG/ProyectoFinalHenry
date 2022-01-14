@@ -1,0 +1,40 @@
+
+
+.table{
+    width: 100%;
+    display: flex;
+    margin-top: .5rem;
+    justify-content: space-between;
+}
+
+.date{
+    display: flex;
+    margin-top: .5rem;
+    justify-content: space-between;
+}
+
+.label{
+    font-family: 'Montserrat';
+    font-size: 1.3rem;
+    margin-right: 1rem;
+}
+
+.input1{
+    border: none;
+    background-color: rgb(175, 173, 173);
+    width: 30%;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Montserrat';
+    outline: none;
+}
+
+.input2{
+    border: none;
+    background-color: rgb(175, 173, 173);
+    font-family: 'Montserrat';
+    border-radius: 5px;
+    padding: 5px;
+    width: 70%;
+    outline: none;
+}

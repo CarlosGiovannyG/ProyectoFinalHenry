@@ -11,13 +11,20 @@
 }
 
 .btnCart{
+  margin-bottom: 2rem;
   height: 8vh;
   width: 12vw;
   font-family: 'Montserrat';
   font-weight: bold;
   font-size: 1.2rem;
   border:none;
-  background-color: rgb(172, 171, 171);
+  background-color: rgb(184, 183, 183);
+  transition: background-color .5s;
+}
+
+.btnCart:hover{
+  background-color: rgb(163, 163, 163);
+  transition: background-color .5s;
 }
 
 .tooltip{

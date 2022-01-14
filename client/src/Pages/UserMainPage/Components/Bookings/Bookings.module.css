@@ -1,8 +1,31 @@
 .container{
-    margin-top: 2rem;
     width: 20vw;
-    height: 20vh;
+    min-height: 10vh;
     background-color: #dbdbdb;
     border-radius: 7px;
+    padding: .8rem;
+    display: flex;
+    flex-direction: column;
+    
+}
 
+.header{
+    display: flex;
+    justify-content: space-around;
+    margin-top: .2rem;
+    
+}
+
+.toggle{
+    background-color: rgb(112, 206, 120);
+}
+
+.title{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+}
+
+.modules{
+    align-self: center;
+    width: 80%;
 }
