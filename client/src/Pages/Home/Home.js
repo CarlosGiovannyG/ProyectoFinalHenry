@@ -4,13 +4,16 @@ import NewSwiper from '../../Components/NewSwiper/NewSwiper';
 import NavBar from '../../Components/NavBar/NavBar';
 import SignUpForm from '../../Components/Froms/SignUpForm/SignUpForm';
 import LogInForm from '../../Components/Froms/LogInForm/LogInForm';
-import useModalPage from '../../Hooks/useModalPage'
 import Transsition from '../../Hooks/Transsition';
-import Closed from '../../Hooks/Closed';
+import useModal from '../../Hooks/useModal';
+import Modal from '../../Components/Modal/Modal';
+
+
+
 export default function Home() {
 
-    const [ModalLogin, openLogin, closeLogin] = useModalPage();
-    const [ModalRegister, openRegister, closeRegister] = useModalPage();
+    const [isOpenModalLogin, openLogin, closeLogin] = useModal();
+    const [isOpenModalRegister, openRegister, closeRegister] = useModal();
 
     return (
         <div className={s.mainContainer}>
@@ -24,23 +27,16 @@ export default function Home() {
             </div>
             <NavBar openLogin={openLogin} openRegister={openRegister} />
             <div style={{ position: 'absolute' }} >
-                <ModalRegister>
+                <Modal isOpen={isOpenModalRegister} closeModal={closeRegister}>
                     <Transsition>
-                        <div className={s.modal}>
-                            <Closed style={s.cross} click={closeRegister} size='1.5rem' />
-                            <SignUpForm />
-                        </div>
+                        <SignUpForm />
                     </Transsition>
-                </ModalRegister>
-
-                <ModalLogin>
+                </Modal>
+                <Modal isOpen={isOpenModalLogin} closeModal={closeLogin}>
                     <Transsition>
-                        <div className={s.modal2}>
-                            <Closed style={s.cross} click={closeLogin} size='1.5rem' />
-                            <LogInForm />
-                        </div>
+                        <LogInForm close={closeLogin} />
                     </Transsition>
-                </ModalLogin>
+                </Modal>
             </div>
         </div>
     )

@@ -40,9 +40,14 @@ const AuthProvider = ({ children }) => {
     })
   }
 
+  const updateUser = (data) => {
+    setUser({
+      ...user,
+      ...data,
+    })
+  }
   const isLogged = () => !!user;
   const logout = () => setUser(null);
-
   const hasRole = (role) => user?.role !== role;
 
   const contextValue = {
@@ -57,6 +62,7 @@ const AuthProvider = ({ children }) => {
     isLogged,
     logout,
     hasRole,
+    updateUser,
 
   }
 

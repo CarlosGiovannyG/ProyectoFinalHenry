@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import Transsition from '../../Hooks/Transsition';
 
 const products = [
-    {   
+    {
         id: 0,
         category: "main",
         name: 'American Burger',
@@ -177,39 +177,39 @@ export default function UserMainPage() {
 
     // Aca va la query de productos, que esta hardcodeada en products por el tema del filtrado por categorias que no estan cargadas todavia.
 
-    const redirect = function (){
+    const redirect = function () {
         navigate(`${routes.cart}`)
     }
 
-    return(
+    return (
         <div className={s.container}>
             <Transsition>
                 <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
             </Transsition>
-            
+
             <div className={s.rightDiv}>
                 <Transsition>
                     <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
                 </Transsition>
                 <Transsition>
-                    <Bookings/>
+                    <Bookings />
                 </Transsition>
             </div>
 
             <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
-                Your Order: <br/>
+                Your Order: <br />
                 {cart.map(p => (
                     `• ${p.name}\n`
                 ))}
-                <br/>
+                <br />
                 Total: $la data hardcodeada no tiene precio jeje
             </ReactTooltip>
 
             <ModalProduct>
-                <OrderProductDetail 
-                closeModalProduct={closeModalProduct} 
-                product={(products.filter((p)=>{return p.id === productID}))[0]}
-                setCart={setCart}
+                <OrderProductDetail
+                    closeModalProduct={closeModalProduct}
+                    product={(products.filter((p) => { return p.id === productID }))[0]}
+                    setCart={setCart}
                 />
             </ModalProduct>
         </div>

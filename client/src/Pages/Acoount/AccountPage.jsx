@@ -7,17 +7,26 @@ import styles from './account.module.css';
 import DeleteAccount from './Components/DeleteAccount/DeleteAccount';
 import EditAccount from './Components/EditAccount/EditAccount';
 import Transsition from '../../Hooks/Transsition';
+import useAuth from '../../Auth/useAuth';
+import ProfilePic from './Components/ProfilePic/ProfilePic';
 
 const AccountPage = () => {
+  const { user } = useAuth();
   const [isOpenChangePassword, openChangePassword, closeChangePassword] = useModal();
   const [isOpenDeleteAccount, openDeleteAccount, closeDeleteAccount] = useModal();
   const [isOpenEditAccount, openEditAccount, closeEditAccount] = useModal();
+  const [isOpenProfilePic, openProfilePic, closeProfilePic] = useModal();
 
   return (
     <div className={styles.container} >
       <div className={styles.containerCentro}>
         <div className={styles.containerImage}>
-          <img src={imageDefault} alt='profile' className={styles.profile} />
+          <img
+            src={user?.profilePic || imageDefault}
+            alt='profile'
+            className={styles.profile}
+            onClick={openProfilePic}
+          />
         </div>
         <div className={styles.containerInfo}>
           <p className="text-center"><b>Nombre:</b>Carlos</p>
@@ -32,19 +41,24 @@ const AccountPage = () => {
         </div>
       </div>
 
-        <Transsition>
-      <Modal isOpen={isOpenChangePassword} closeModal={closeChangePassword}>
-        <ChangePassword />
-      </Modal>
-        </Transsition>
-      <Modal isOpen={isOpenDeleteAccount} closeModal={closeDeleteAccount}>
-        <Transsition>
-        <DeleteAccount />
-        </Transsition>
-      </Modal>
+      <Transsition>
+        <Modal isOpen={isOpenChangePassword} closeModal={closeChangePassword}>
+          <ChangePassword />
+        </Modal>
+      </Transsition>
       <Modal isOpen={isOpenEditAccount} closeModal={closeEditAccount}>
         <Transsition>
-        <EditAccount />
+          <EditAccount user={user} />
+        </Transsition>
+      </Modal>
+      <Modal isOpen={isOpenDeleteAccount} closeModal={closeDeleteAccount}>
+        <Transsition>
+          <DeleteAccount close={closeDeleteAccount} />
+        </Transsition>
+      </Modal>
+      <Modal isOpen={isOpenProfilePic} closeModal={closeProfilePic}>
+        <Transsition>
+          <ProfilePic close={closeProfilePic} />
         </Transsition>
       </Modal>
     </div>

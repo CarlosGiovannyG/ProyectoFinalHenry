@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './LogInForm.module.css';
 import ReactTooltip from 'react-tooltip';
+import useAuth from '../../../Auth/useAuth';
 
 export function validate(input) {
     let errors = {};
@@ -20,7 +21,8 @@ export function validate(input) {
     return errors;
 }
 
-export default function LogInForm() {
+export default function LogInForm({ close }) {
+    const { login } = useAuth()
     const [input, setInput] = React.useState({ email: '', password: null });
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();
@@ -44,12 +46,12 @@ export default function LogInForm() {
     const handleSubmit = function (e) {
         e.preventDefault();
         // llamado al back end para verificar si existe el user y si la contraseña esta bien
-
+        login()
+        close()
     }
 
-
     return (
-        <div>
+        <div className={s.container}>
             <div>
                 <h1 className={s.title}>Log In</h1>
             </div>

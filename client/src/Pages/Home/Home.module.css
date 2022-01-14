@@ -50,26 +50,3 @@
     height:847px;
     vertical-align: middle;
 }
-
-
-.modal{
-    width: 900px;
-    height: 390px;
-    position: relative;
-    background-color: rgb(240, 239, 239);
-    padding-top: 40px;
-}
-
-.modal2{
-    width: 900px;
-    height: 300px;
-    position: relative;
-    background-color: rgb(240, 239, 239);
-    padding-top: 40px;
-}
-
-.cross{
-    position: absolute;
-    margin-left: 830px;
-    cursor: pointer;
-}

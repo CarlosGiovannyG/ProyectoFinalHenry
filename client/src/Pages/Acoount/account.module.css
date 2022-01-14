@@ -22,8 +22,8 @@
 }
 
 .containerImage {
-  height: 35%;
-  width: 17%;
+  height: 45%;
+  width: 27%;
   display: flex;
   position: relative;
   top: 0;
@@ -31,12 +31,12 @@
   margin-bottom: 2%;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 .profile {
   height: 100%;
   width: 100%;
-  border-radius: 50%;
+  border-radius: 20%;
   cursor: pointer;
 }
 
