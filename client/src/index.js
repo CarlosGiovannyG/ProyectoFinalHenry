@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import client from './Utils/Conectec';
 
@@ -13,10 +15,10 @@ import "./App.css"
 
 
 ReactDOM.render(
-    <ApolloProvider client={client} >
+  <ApolloProvider client={client} >
     <App />
-    </ApolloProvider>
- ,
+  </ApolloProvider>
+  ,
   document.getElementById('root')
 );
 

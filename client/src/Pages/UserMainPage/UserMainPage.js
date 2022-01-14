@@ -14,8 +14,6 @@ import ProductDetail from '../Menu/components/ProdutDetail/ProductDetail';
 import ModalComments from '../../Components/Comments/CommentsViews/ModalComments';
 import ModalCreateComments from '../../Components/Comments/CommentsCreate/CreateComments';
 
-
-
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -25,11 +23,8 @@ export default function UserMainPage() {
     const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
 
-    const redirect = function (){
-        navigate(`${routes.cart}`);
-    }
 
-    console.log(data.allProducts.products)
+ 
 
     if (loading) {
         return (
@@ -40,29 +35,30 @@ export default function UserMainPage() {
     }
     if (error) return null
 
-    return(
+    return (
         <div className={s.container}>
             <Transsition>
                 <OrderMenu products={data.allProducts.products} openModalProduct={openModalProduct} setProductID={setProductID} />
             </Transsition>
-            
+
             <div className={s.rightDiv}>
                 <Transsition>
                     <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
                 </Transsition>
                 <Transsition>
-                    <Bookings/>
+                    <Bookings />
                 </Transsition>
             </div>
 
             <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
-                Your Order: <br/>
+                Your Order: <br />
                 {cart.map(p => (
                     `• ${p.name}\n`
                 ))}
-                <br/>
+                <br />
                 Total: $la data hardcodeada no tiene precio jeje
             </ReactTooltip>
+
 
             <div className={s.modal} >
                 <ModalProduct>

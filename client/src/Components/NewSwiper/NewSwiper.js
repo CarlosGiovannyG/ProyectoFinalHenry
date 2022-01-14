@@ -44,7 +44,7 @@ export default function NewSwiper() {
     return (
         <>
           <Swiper 
-          style={{width: '100%', height: '847px'}}
+          style={{width: '100%', height: '90vh'}}
           spaceBetween={0} centeredSlides={true} autoplay={{
             "delay": 4000,
             "disableOnInteraction": false

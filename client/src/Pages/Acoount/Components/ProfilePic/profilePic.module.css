@@ -1,0 +1,78 @@
+.container{
+  margin-top: 5%;
+}
+
+.title{
+    font-family: 'Suranna', serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.LabePic{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.PicturInput{
+  display: none;
+}
+
+.picture{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-left: 30%;
+  margin-top: -5%;
+
+}
+
+.containerBotones {
+   width: 40%;
+  height: 10%;
+  display: flex;
+  margin: 5% auto;
+  gap: 2.5%;
+  bottom:.5px;
+}
+
+.ButtonCancel{
+  margin-bottom: 0px;
+   width: 70%;
+  height: 10%;
+  background: none;
+  border-radius: 10px;
+  padding: 2%;
+  cursor: pointer;
+font-weight: 600;
+}
+
+.ButtonCancel:hover {
+  background:red;
+}
+
+
+.ButtonConfir{
+  margin-bottom: 0px;
+   width: 70%;
+  height: 10%;
+  background: none;
+  border-radius: 10px;
+  padding: 2%;
+  cursor: pointer;
+font-weight: 600;
+}
+
+.ButtonConfir:hover{
+  background:green;
+}
