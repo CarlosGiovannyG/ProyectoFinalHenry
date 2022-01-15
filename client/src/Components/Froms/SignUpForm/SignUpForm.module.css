@@ -1,9 +1,10 @@
 .container{
-    margin-top: 5%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .title{
-    width: 90%;
+    width: 100%;
     font-family: 'Suranna', serif;
     font-weight: lighter;
     color: black;

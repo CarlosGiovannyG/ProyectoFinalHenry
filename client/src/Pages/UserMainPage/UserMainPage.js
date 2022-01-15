@@ -23,9 +23,6 @@ export default function UserMainPage() {
     const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
 
-
-
-
     if (loading) {
         return (
             <div>
