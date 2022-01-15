@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import { GrClose } from 'react-icons/gr';
 import useAuth from '../../../../Auth/useAuth';
 import CardProductBill from '../CardProducBill/CardProductBill';
 import CardProductKitchen from '../CardProductKitchen/CardProductKitchen';
-import styles from './cardKitchen.module.css'
+import styles from './cardKitchen.module.css';
+
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
 
@@ -11,29 +13,30 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 
   return (
     <>
-
       {info &&
         <div className={styles.container}>
-          <div className={styles.containerBotones}>
-            <button className={styles.Button} onClick={() => openCloseModal('kitchenDeatil', info._id)}>CLOSE ORDER</button>
-            <button className={styles.Button} onClick={() => openCloseModal('kitchenDeatil', info._id)}>CANCEL ORDER</button>
-          </div>
-          <div className={styles.containerCentro}>
-            <div className={styles.title}> {info.description}</div>
-            <div className={styles.title}>Mesa #: {info.numeroMesa}</div>
-            <div className={styles.title}>Entrega en: {info.tipoDePedido}</div>
+          <div className={styles.containerHeader}>
+            <div className={styles.titles}>
+              <div className={styles.table}>TABLE {info.numeroMesa}</div>
+              <div className={styles.type}>{info.tipoDePedido.toUpperCase()}</div>
+            </div>
+            <div className={styles.containerBotones}>
+              <GrClose size={'2rem'} className={styles.btnCancel} onClick={() => close('kitchenDeatilClose', null)} />
+            </div>
           </div>
           <div className={styles.containerProduct}>
             {info.products.map(dato => (
               <CardProductBill dato={dato} />
             ))}
           </div>
-
+          <div className={styles.btnCloseContainer}>
+              <button className={styles.btnClose} >MARK AS READY</button> 
+          </div>
         </div>
       }
       {infoKitchen &&
         <div className={styles.containerModal}>
-          <GrClose size='2.5rem' className={styles.close} onClick={() => close('kitchenDeatilClose', null)} />
+          <GrClose size='2.5rem' className={styles.close}  />
           <div className={styles.containerCentro}>
             <div className={styles.title}> {infoKitchen.description}</div>
             <div className={styles.title}>Mesa #: {infoKitchen.numeroMesa}</div>
