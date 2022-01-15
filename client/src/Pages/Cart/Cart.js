@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Cart.module.css';
 import { useModal } from 'react-hooks-use-modal';
 import Transsition from '../../Hooks/Transsition';
@@ -7,71 +7,98 @@ import Bookings from '../UserMainPage/Components/Bookings/Bookings';
 import Payment from './Components/Payment/Payment';
 import OrderSubmit from './Components/OrderSubmit/OrderSubmit';
 import ProductDetail from '../Menu/components/ProdutDetail/ProductDetail';
+import { useMutation, useQuery } from '@apollo/client';
+import Mutations from '../../Utils/Mutations';
+import Queries from '../../Utils/Queries';
+import useAuth from '../../Auth/useAuth';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../Helpers/Routes'
 
-const products = [{
-    category: "main",
-    comments: 1,
-    description: "American beef patty  with cheddar cheese, caramelized onions, bacon and BBQ sauce.",
-    image: "http://res.cloudinary.com/drbbfr7mz/image/upload/v1641834197/cdrb3yqtryvammixfgl8.jpg",
-    name: "American Burger",
-    price: 28000,
-    public_id: "cdrb3yqtryvammixfgl8",
-    rating: 7,
-    timestamps: "2022-01-10T16:06:40.428Z",
-    views: 10,
-    __typename: "ProductDetail",
-    _id: "61dc66d84fab02dd51816af7"
-},
-{
-    category: "main",
-    comments: 0,
-    description: " Juicy Argentine beef Steak with side of fries.",
-    image: "http://res.cloudinary.com/drbbfr7mz/image/upload/v1641834348/bngj2cblkc6xu7usczoa.jpg",
-    name: "Argentine Steak",
-    price: 48000,
-    public_id: "bngj2cblkc6xu7usczoa",
-    rating: 0,
-    timestamps: "2022-01-10T16:06:40.428Z",
-    views: 4,
-    __typename: "ProductDetail",
-    _id: "61dc676e4fab02dd51816af9"
-}, {
-    category: "main",
-    comments: 0,
-    description: "Classic Italian spaghetti with tomato sauce.",
-    image: "http://res.cloudinary.com/drbbfr7mz/image/upload/v1641834430/ajo2qtw6tluvewduzrqo.jpg",
-    name: "Italian Spaghetti",
-    price: 34000,
-    public_id: "ajo2qtw6tluvewduzrqo",
-    rating: 0,
-    timestamps: "2022-01-10T16:06:40.428Z",
-    views: 3,
-    __typename: "ProductDetail",
-    _id: "61dc67c04fab02dd51816afb",
-}, {
-    category: "main",
-    comments: 0,
-    description: "A nice filet of  with Kosher salt, black pepper and a side of fried eggs.",
-    image: "http://res.cloudinary.com/drbbfr7mz/image/upload/v1641834502/l7gwwtfx5tn6ed3yk0mp.jpg",
-    name: "Grilled Salmon",
-    price: 54000,
-    public_id: "l7gwwtfx5tn6ed3yk0mp",
-    rating: 0,
-    timestamps: "2022-01-10T16:06:40.428Z",
-    views: 4,
-    __typename: "ProductDetail",
-    _id: "61dc68084fab02dd51816afd"
-}
-];
 
 export default function Cart() {
+    const { user } = useAuth();
+    const navigate = useNavigate();
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
-    const [cart, setCart] = React.useState(products);
+
+    const [newBill, setNewBill] = useState({
+        idUser: '',
+        description: 'GENERADA POR SISTEMA',
+        products: [],
+        numeroMesa: 'GENERADA POR SISTEMA',
+        tipoDePedido: 'salon'
+    })
+
+    const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
+        refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
+        onError: err => {
+            console.log('ERRORES', err.graphQLErrors)
+        }
+    })
 
     // Lee los datos del carrito del store o estado global
+
+    const Cart = () => {
+
+        if (localStorage.getItem('order')) {
+            let products = localStorage.getItem('order')
+            products = JSON.parse(products)
+            return products
+        }
+        return []
+    }
+
+    let products = Cart()
+
+
+    let subTotal = 0
+    let total = 0
+
+    for (let i = 0; i < products.length; i++) {
+        subTotal = products[i].price + subTotal
+        total = (subTotal * 20 / 100) + subTotal
+    }
+
+    let aux = products.map(({ _id, name, price }) => { return { _id, name, price } })
+
+
+
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        let prov = {
+            idUser: '4568',
+            description: 'GENERADA POR SISTEMA',
+            products: aux,
+            numeroMesa: '',
+            tipoDePedido: 'salon',
+            subTotal: subTotal,
+            total: total
+        }
+
+
+        let response = await CreateBills({
+            variables: {
+                "input": {
+                    "idUser": prov.idUser,
+                    "description": prov.description,
+                    "products": aux,
+                    "numeroMesa": prov.numeroMesa,
+                    "tipoDePedido": prov.tipoDePedido,
+                    subTotal: prov.subTotal,
+                    total: prov.total,
+                }
+            }
+        })
+        const resp = response.data.CreateBills.message
+        alert(resp)
+        localStorage.removeItem('order')
+        navigate(`${routes.UserMainPage}`)
+    }
+
 
     return (
         <div className={s.container}>
@@ -86,7 +113,7 @@ export default function Cart() {
                     <Payment />
                 </Transsition>
                 <Transsition>
-                    <OrderSubmit />
+                    <OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} />
                 </Transsition>
             </div>
 
@@ -96,7 +123,6 @@ export default function Cart() {
                     productId={productID}
                     openComment={openModal}
                     openCreateCom={openCreateCom}
-                    setCart={setCart}
                 />
             </ModalProduct>
         </div>

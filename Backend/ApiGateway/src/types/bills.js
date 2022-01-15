@@ -18,6 +18,8 @@ input createBill{
   products:[productsId]
   numeroMesa:String
   tipoDePedido:String
+  subTotal: Int,
+  total: Int,
 }
 
 input productsId{ 

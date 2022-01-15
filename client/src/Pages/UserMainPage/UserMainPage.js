@@ -9,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import Transsition from '../../Hooks/Transsition';
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
-import loadingGif from '../../img/loading.gif';
 import ProductDetail from '../Menu/components/ProdutDetail/ProductDetail';
 import ModalComments from '../../Components/Comments/CommentsViews/ModalComments';
 import ModalCreateComments from '../../Components/Comments/CommentsCreate/CreateComments';
+import Loading from '../../Components/Loading/Loading';
+import { useEffect } from 'react';
 
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -23,17 +24,40 @@ export default function UserMainPage() {
     const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
 
+    useEffect(() => {
+        (function Cart() {
+            if (localStorage.getItem('order')) {
+                let productsCart = localStorage.getItem('order')
+                productsCart = JSON.parse(productsCart)
+                return setCart(productsCart)
+            }
+            return []
+        })()
 
+    }, [cart])
+
+
+    let subTotal = 0
+    let total = 0
+
+    for (let i = 0; i < cart.length; i++) {
+        subTotal = cart[i].price + subTotal
+        total = (subTotal * 20 / 100) + subTotal
+    }
 
 
     if (loading) {
         return (
             <div>
-                <img className={s.loading} src={loadingGif} alt="Loading Gif" />
+                <Loading />
             </div>
         )
     }
     if (error) return null
+
+
+
+
 
     return (
         <div className={s.container}>
@@ -43,7 +67,10 @@ export default function UserMainPage() {
 
             <div className={s.rightDiv}>
                 <Transsition>
-                    <button className={s.btnCart} data-tip data-for='tooltip' >YOUR ORDER ({cart.length})</button>
+                    <button className={s.btnCart}
+                        data-tip data-for='tooltip'
+                        onClick={() => { navigate(`${routes.cart}`) }}
+                    >YOUR ORDER ({cart.length})</button>
                 </Transsition>
                 <Transsition>
                     <Bookings />
@@ -56,7 +83,7 @@ export default function UserMainPage() {
                     `• ${p.name}\n`
                 ))}
                 <br />
-                Total: $la data hardcodeada no tiene precio jeje
+                Total: $ {total}
             </ReactTooltip>
 
 
@@ -67,7 +94,7 @@ export default function UserMainPage() {
                         productId={productID}
                         openComment={openModal}
                         openCreateCom={openCreateCom}
-                        setCart={setCart}
+
                     />
                 </ModalProduct>
                 <ModalCom>
