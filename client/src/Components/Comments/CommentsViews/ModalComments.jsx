@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import Queries from '../../../Utils/Queries';
 import s from './comments.module.css';
-import { CSSTransition } from 'react-transition-group';
 import SwiperComments from '../../Swiper/Swiper';
+import Transsition from '../../../Hooks/Transsition';
 
-const ModalComments = ({ productId}) => {
+const ModalComments = ({ productId }) => {
 
   const [commentByProduct, { loading, error, data }] = useLazyQuery(Queries.COMMENT_BY_PRODUCT);
 
@@ -24,17 +24,11 @@ const ModalComments = ({ productId}) => {
   }
   if (data && !loading) {
     var comments = data.commentByProduct.comments;
-   
+
     return (
-      <CSSTransition
-      in={true}
-      timeout={0}
-      appear={true}
-      key={0}
-      classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
-    >
-      <SwiperComments comments={comments} />
-      </CSSTransition>
+      <Transsition>
+        <SwiperComments comments={comments} />
+      </Transsition>
     )
   }
   return (

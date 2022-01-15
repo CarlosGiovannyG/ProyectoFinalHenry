@@ -29,10 +29,10 @@ const AccountPage = () => {
           />
         </div>
         <div className={styles.containerInfo}>
-          <p className="text-center"><b>Nombre:</b>Carlos</p>
-          <p className="text-center"><b>Correo:</b>carlos@carlos.com</p>
-          <p className="text-center"><b>Teléfono:</b>3043912387</p>
-          <p className="text-center"><b>Rol:</b>User</p>
+          <p className="text-center"><b>Nombre:</b>{user.name}</p>
+          <p className="text-center"><b>Correo:</b>{user.email}</p>
+          <p className="text-center"><b>Teléfono:</b>{user.phone}</p>
+          <p className="text-center"><b>Rol:</b>{user.role}</p>
         </div>
         <div className={styles.containerBotones}>
           <button className={styles.ButtonEdit} onClick={openEditAccount}>EDIT ACCOUNT</button>
@@ -48,7 +48,7 @@ const AccountPage = () => {
       </Transsition>
       <Modal isOpen={isOpenEditAccount} closeModal={closeEditAccount}>
         <Transsition>
-          <EditAccount user={user} />
+          <EditAccount user={user} close={closeEditAccount} />
         </Transsition>
       </Modal>
       <Modal isOpen={isOpenDeleteAccount} closeModal={closeDeleteAccount}>

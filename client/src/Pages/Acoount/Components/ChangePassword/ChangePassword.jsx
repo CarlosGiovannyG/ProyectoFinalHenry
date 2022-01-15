@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import styles from './changePassword.module.css'
-import validatePassword from '../../../../validations/Password';
+import validate from '../../../../validations';
 
 
 
@@ -16,7 +16,7 @@ const ChangePassword = () => {
 
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
 
-    let errors = validatePassword({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+    let errors = validate.Password({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
     setErrors(errors);
 
     let arr = [];

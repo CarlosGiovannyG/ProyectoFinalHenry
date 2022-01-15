@@ -7,13 +7,11 @@ export const AuthContex = createContext();
 
 const AuthProvider = ({ children }) => {
   const [modalAllBills, setModalAllBills] = useState(false);
-  const [modalCreateBill, setModalCreateBill] = useState(false);
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
 
   const openCloseModal = (caso, idBill) => {
     (caso === 'allBills') && setModalAllBills(!modalAllBills);
-    (caso === 'createBill') && setModalCreateBill(!modalCreateBill);
     if (caso === 'kitchenDeatil') {
       setKitchenDeatil(!billKitchenDetail)
       setBillKitchenDetail(idBill)
@@ -36,6 +34,7 @@ const AuthProvider = ({ children }) => {
       name: 'Carlos',
       email: 'cggualtero@hotmail.com',
       phone: '3043912387',
+
       role: 'regular' //TODO: 'cashier'  'regular' cook
     })
   }
@@ -53,7 +52,6 @@ const AuthProvider = ({ children }) => {
   const contextValue = {
     modalAllBills,
     openCloseModal,
-    modalCreateBill,
     kitchenDeatil,
     billKitchenDetail,
 

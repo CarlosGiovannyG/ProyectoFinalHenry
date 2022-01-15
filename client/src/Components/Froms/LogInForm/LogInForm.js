@@ -4,24 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import useAuth from '../../../Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../../Helpers/Routes';
-
-export function validate(input) {
-    let errors = {};
-
-    if (!input.password) {
-        errors.password = '• Password is required.';
-    }
-
-    if (!/\S+@\S+\.\S+/.test(input.email)) {
-        errors.email = '• Invalid Email.';
-    }
-
-    if (!input.email) {
-        errors.email = '• Email is required.';
-    }
-
-    return errors;
-}
+import validate from '../../../validations'
 
 export default function LogInForm({ close }) {
     const { login } = useAuth()
@@ -35,7 +18,7 @@ export default function LogInForm({ close }) {
 
         setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
 
-        let errors = validate({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+        let errors = validate.Login({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
         setErrors(errors);
 
         let arr = [];

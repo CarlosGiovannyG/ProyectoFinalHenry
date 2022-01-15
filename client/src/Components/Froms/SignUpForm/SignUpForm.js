@@ -1,41 +1,8 @@
 import React from 'react';
 import s from './SignUpForm.module.css';
 import ReactTooltip from 'react-tooltip';
+import validate from '../../../validations'
 
-
-export function validate(input) {
-    let errors = {};
-
-    if (!input.name) {
-        errors.name = '• Name is required.';
-    }
-
-    if (!input.lastname) {
-        errors.lastname = '• Last Name is required.';
-    }
-
-    if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(input.password1))) {
-        errors.password1 = '• Passwords must contain at least 8 \ncharacters, a number and a letter.';
-    }
-
-    if (!input.password1) {
-        errors.password1 = '• Password is required.';
-    }
-
-    if (input.password1 !== input.password2) {
-        errors.password2 = "• Passwords don't match.";
-    }
-
-    if (!/\S+@\S+\.\S+/.test(input.email)) {
-        errors.email = '• Invalid Email.';
-    }
-
-    if (!input.email) {
-        errors.email = '• Email is required.';
-    }
-
-    return errors;
-}
 
 export default function SignUpForm() {
     const [input, setInput] = React.useState({ name: '', lastname: '', password1: null, password2: null, email: '' });
@@ -46,7 +13,7 @@ export default function SignUpForm() {
 
         setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
 
-        let errors = validate({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+        let errors = validate.Register({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
         setErrors(errors);
 
         let arr = [];

@@ -26,7 +26,7 @@ export default function UserMainPage() {
     if (loading) {
         return (
             <div>
-                <img className={s.loading} src={loadingGif} alt="Loading Gif"/>
+                <img className={s.loading} src={loadingGif} alt="Loading Gif" />
             </div>
         )
     }
@@ -40,7 +40,7 @@ export default function UserMainPage() {
 
             <div className={s.rightDiv}>
                 <Transsition>
-                    <button className={s.btnCart} data-tip data-for='tooltip' onClick={redirect} >YOUR ORDER ({cart.length})</button>
+                    <button className={s.btnCart} data-tip data-for='tooltip' >YOUR ORDER ({cart.length})</button>
                 </Transsition>
                 <Transsition>
                     <Bookings />

@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import s from './CommentCard.module.css';
 
-export default function CommentCard({ comment, infoKitchenBill}) {
+export default function CommentCard({ comment }) {
 
-    
-    return(
+
+    return (
         <>
             {comment &&
                 <div className={s.container} >
@@ -12,13 +12,8 @@ export default function CommentCard({ comment, infoKitchenBill}) {
                     <div className={s.comment}>{comment.comment} </div>
                 </div>
             }
-            {infoKitchenBill && 
-                <div className={s.container} >
-                    <div className={s.title}>{infoKitchenBill.name}</div>
-                    <label className={s.comment}>{infoKitchenBill.price}</label>
-                </div>
-            }
-       </>
+
+        </>
     )
 
 }
