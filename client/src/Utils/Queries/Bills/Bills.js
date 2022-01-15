@@ -4,9 +4,12 @@ import {
 
 const Bills = {
 
-  ALL_BILLS: gql `
+  ALL_BILLS: gql`
    query {
   allBills {
+    numeroMesa
+    statusCocina
+    _id
     idUser
     description
     products {
@@ -23,7 +26,7 @@ const Bills = {
   
   `,
 
-  
+
   BILL_BY_ID: gql`
 
   query BillsById($input: billsId) {

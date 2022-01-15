@@ -35,7 +35,7 @@ const products = [{
     views: 4,
     __typename: "ProductDetail",
     _id: "61dc676e4fab02dd51816af9"
-},{
+}, {
     category: "main",
     comments: 0,
     description: "Classic Italian spaghetti with tomato sauce.",
@@ -48,7 +48,7 @@ const products = [{
     views: 3,
     __typename: "ProductDetail",
     _id: "61dc67c04fab02dd51816afb",
-},{
+}, {
     category: "main",
     comments: 0,
     description: "A nice filet of  with Kosher salt, black pepper and a side of fried eggs.",
@@ -73,17 +73,17 @@ export default function Cart() {
 
     // Lee los datos del carrito del store o estado global
 
-    return(
+    return (
         <div className={s.container}>
             <Transsition>
                 <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
             </Transsition>
             <div className={s.rightDiv}>
                 <Transsition>
-                    <Bookings/>
+                    <Bookings />
                 </Transsition>
                 <Transsition>
-                    <Payment/>
+                    <Payment />
                 </Transsition>
                 <Transsition>
                     <OrderSubmit />

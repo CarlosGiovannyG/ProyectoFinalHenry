@@ -4,30 +4,31 @@ import { MenuContainer } from "./components/MenuContainer/MenuContainer";
 import { Footer } from "../../Components/Footer/Footer";
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
-import { useModal } from 'react-hooks-use-modal';
 import s from './index.module.css';
 import ModalComments from "../../Components/Comments/CommentsViews/ModalComments";
 import ModalCreateComments from "../../Components/Comments/CommentsCreate/CreateComments";
 import ProductDetail from "./components/ProdutDetail/ProductDetail";
-import loadingGif from '../../img/loading.gif';
 import NavBar from "../../Components/NavBar/NavBar";
-// import Transsition from "../../Hooks/Transsition";
-// import SignUpForm from "../../Components/Froms/SignUpForm/SignUpForm";
-// import LogInForm from "../../Components/Froms/LogInForm/LogInForm";
+import Transsition from "../../Hooks/Transsition";
+import SignUpForm from "../../Components/Froms/SignUpForm/SignUpForm";
+import LogInForm from "../../Components/Froms/LogInForm/LogInForm";
+import useModal from "../../Hooks/useModal";
+import Modal from "../../Components/Modal/Modal";
+import Loading from "../../Components/Loading/Loading";
 
 export const Menu = () => {
-    // const [OpenModalLogin, openLogin, closeLogin] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    //  const [OpenModalRegister, openRegister, closeRegister] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
+    const [isOpenModalLogin, openLogin, closeLogin] = useModal();
+    const [isOpenModalRegister, openRegister, closeRegister] = useModal();
+    const [isOpenProductDetail, openProductDetail, closeProductDetail] = useModal();
+    const [isOpenComent, openComent, closeComent] = useModal();
+    const [isOpenCreateComent, openCreateComent, closeCreateComent] = useModal();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS)
     const [idProduct, setIdProduct] = useState(null)
 
     if (loading) {
         return (
             <div>
-                <img className={s.loading} src={loadingGif} alt="Loading Gif"/>
+                <Loading />
             </div>
         )
     }
@@ -39,36 +40,44 @@ export const Menu = () => {
 
     return (
         <div>
-            <NavBar />
+            <NavBar openLogin={openLogin} openRegister={openRegister} />
             <MenuJumbotron />
             <MenuContainer
                 products={data.allProducts.products}
-                modalControl={open}
+                modalControl={openProductDetail}
                 productId={productId}
             />
             <div className={s.modal} >
-                <Modal>
-                    <ProductDetail
-                        modalControl={close}
-                        productId={idProduct}
-                        openComment={openModal}
-                        openCreateCom={openCreateCom}
-                    />
+                <Modal isOpen={isOpenProductDetail} closeModal={closeProductDetail}>
+                    <Transsition>
+                        <ProductDetail
+                            productId={idProduct}
+                            openComment={openComent}
+                            openCreateCom={openCreateComent}
+                        />
+                    </Transsition>
                 </Modal>
-                <ModalCom>
-                    <ModalComments
-                        modalControl={closeMod}
-                        productId={idProduct}
-                    />
-                </ModalCom>
-                <ModalCreateCom>
-                    <ModalCreateComments
-                        modalControl={closeCreteCom}
-                        productId={idProduct}
-                    />
-                </ModalCreateCom>
+
+                <Modal isOpen={isOpenComent} closeModal={closeComent}>
+                    <Transsition>
+                        <ModalComments
+                            productId={idProduct}
+                        />
+                    </Transsition>
+                </Modal>
+
+                <Modal isOpen={isOpenCreateComent} closeModal={closeCreateComent}>
+                    <Transsition>
+                        <ModalCreateComments
+                            productId={idProduct}
+                            close={closeCreateComent}
+                        />
+                    </Transsition>
+                </Modal>
+
             </div>
-            {/* <Modal isOpen={isOpenModalRegister} closeModal={closeRegister}>
+            <Footer />
+            <Modal isOpen={isOpenModalRegister} closeModal={closeRegister}>
                 <Transsition>
                     <SignUpForm />
                 </Transsition>
@@ -77,8 +86,7 @@ export const Menu = () => {
                 <Transsition>
                     <LogInForm close={closeLogin} />
                 </Transsition>
-            </Modal> */}
-            <Footer />
+            </Modal>
         </div>
     )
 

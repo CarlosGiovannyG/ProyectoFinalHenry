@@ -5,7 +5,6 @@ import SwiperComments from '../../Components/Swiper/Swiper';
 import { Modal } from '@material-ui/core';
 import BillsAll from './Components/BillsAll/BillsAll';
 import useAuth from '../../Auth/useAuth'
-import CreateBill from './Components/CreateBill/CreateBill';
 import Transsition from '../../Hooks/Transsition';
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -22,7 +21,7 @@ const options = [
 
 const Bills = () => {
 
-  const { modalAllBills, modalCreateBill, openCloseModal } = useAuth()
+  const { modalAllBills, openCloseModal } = useAuth()
   return (
     <div className={styles.container}>
       <div className={styles.containerCentro}>
@@ -33,9 +32,7 @@ const Bills = () => {
       <Modal open={modalAllBills} >
         {<BillsAll close={openCloseModal} />}
       </Modal>
-      <Modal open={modalCreateBill} >
-        {<CreateBill close={openCloseModal} />}
-      </Modal>
+
     </div>
   )
 }

@@ -8,6 +8,7 @@
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 40px;
+    margin-top:5%;
 }
 
 .close{
@@ -24,7 +25,7 @@
 
 .imagen{
     width: 100%;
-    height: auto;
+    height: 300px;
     margin-top: 40px;
 }
 

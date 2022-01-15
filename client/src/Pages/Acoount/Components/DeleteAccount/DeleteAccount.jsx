@@ -1,10 +1,12 @@
 import React from 'react'
 import useAuth from '../../../../Auth/useAuth';
-
 import styles from './deleteAccount.module.css'
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../../Helpers/Routes';
+
 
 const DeleteAccount = ({ close }) => {
-
+  const navigate = useNavigate();
   const { logout } = useAuth();
 
   const handleDelete = (e) => {
@@ -12,6 +14,7 @@ const DeleteAccount = ({ close }) => {
 
     logout();
     close()
+    navigate(`${routes.home}`)
   }
 
   return (

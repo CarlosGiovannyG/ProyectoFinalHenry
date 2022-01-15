@@ -1,0 +1,102 @@
+.container{
+    margin-top: 5%;
+}
+
+.title{
+    width: 90%;
+    font-family: 'Suranna', serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 3rem;
+    text-align: center;
+    
+}
+
+.inputs{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.inputName{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.inputLastname{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-left: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.inputDiv2{
+    margin-top: 30px;
+}
+
+.inputPassword1{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.inputEmail{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-left: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.inputDiv3{
+    margin-top: 30px;
+}
+
+.inputPassword2{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.btnRegister{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-left: 30px;
+    cursor: pointer;
+
+}
+
+.btnRegisterError{
+    border: none;
+    background-color: rgb(230, 228, 228);
+    height: 30px;
+    width: 300px;
+    margin-left: 30px;
+    color: rgb(113, 113, 114);
+    pointer-events: auto! important;
+    cursor: not-allowed! important;
+}

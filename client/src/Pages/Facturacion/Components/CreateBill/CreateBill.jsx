@@ -62,7 +62,9 @@ const CreateBill = ({ close }) => {
 
     const resp = response.data.CreateBills.message
     alert(resp)
+    close('createBill')
   }
+
   if (loading) {
     return (
       <div>
@@ -74,9 +76,7 @@ const CreateBill = ({ close }) => {
   const products = data.ProductsBills.products.map(({ _id, name, price }) => { return { _id, name, price } })
   return (
     <div className={s.modalContainer}>
-
       <div className={s.container}>
-        <GrClose size='1.5rem' className={s.close} onClick={() => close('createBill')} />
         <h3 className={s.title} >New Bill</h3>
         <div className={s.form}>
           <form >
@@ -112,7 +112,7 @@ const CreateBill = ({ close }) => {
                 }
               </select>
               <select name='tipoDePedido' className={s.type} onChange={handleInputs} >
-                <option selected >Select...</option>
+                <option default selected >Select...</option>
                 <option value='salon' >Salon...</option>
                 <option value='mesa' >Delvery...</option>
               </select>
