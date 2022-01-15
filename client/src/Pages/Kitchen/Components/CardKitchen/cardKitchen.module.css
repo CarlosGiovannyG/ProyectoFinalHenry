@@ -1,71 +1,87 @@
 .container {
   width: 100%; 
-  height: 97%;
-  padding: 2%;
-  align-items: center;
-  justify-content: center;
-   border-radius: 10px;
-  border-top: 6px solid rgba(255, 255, 255, 0.658);
-  border-left: 6px solid rgba(255, 255, 255, 0.658);
-  box-shadow: 0 0px 10px rgba(255, 255, 255, 0.258);
-  gap: 10%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: #dbdbdb;
+  display: flex;
+  flex-direction: column;
 }
 
-.containerCentro {
+.containerHeader {
   width: 98%;
-   margin: 1% auto;
+  margin: 1%;
   border-radius: 10px;
   justify-content: space-between;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.658);
+  display: flex;
+
+}
+
+.titles{
+  font-family: 'Montserrat';
+  width: 60%;
+}
+
+.table{
+  font-weight: bold;
+  font-size: 2.3rem;
+  margin-bottom: -.6rem;
+}
+
+.type{
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.containerBotones{
+  background-color: #FC4472;
+  width: fit-content;
+  height: fit-content;
+  padding: .2rem;
+  border-radius: .5rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  z-index: 9;
+  cursor: pointer;
 }
 
 
 .containerProduct{
-   margin: 1% auto;
-   width: 98%;
-  height: 45%;
-  border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr ;
   padding:1%;
   gap: 1%;
-  margin-bottom: -50%;
-}
-
-.containerBotones{
-  margin: 1% auto;
-   width: 98%;
-  height: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  gap: 2.5%;
-}
-
-
-.title {
-  font-family: "Suranna", serif;
-  font-size: 1.5em;
-}
-
-.Button{
-  background: none;
-  border-radius: 10px;
-  color: blanchedalmond;
-  padding: 2%;
   cursor: pointer;
-font-weight: 600;
 }
 
+.btnCloseContainer{
+  width: 100%;
+  justify-content: center;
+  display: flex;
 
+}
+
+.btnClose{
+
+  font-family: 'Montserrat';
+  font-size: 1.7rem;
+  font-weight: bold;
+  width: 90%;
+  padding: .5rem;
+   
+  border: none;
+  background-color: #9ff588;
+  border-radius: .7rem;
+
+ margin-top: 80%;
+  
+}
 
 .containerModal{
-   background: url("../../../../img/kitchenPage.jpg") center/cover;
+  background: url("../../../../img/kitchenPage.jpg") center/cover;
   width: 50%;
   height: 60%;
-margin: 10% auto;
+  margin: 10% auto;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -75,9 +91,9 @@ margin: 10% auto;
 
 
 .close{
-    position: absolute;
-    cursor: pointer;
-    margin-top: -35%;
-    margin-left: 75%;
-    background-color: white;
+  position: absolute;
+  cursor: pointer;
+  margin-top: -35%;
+  margin-left: 75%;
+  background-color: white;
 }

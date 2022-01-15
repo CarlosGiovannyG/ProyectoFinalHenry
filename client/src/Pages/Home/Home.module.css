@@ -5,33 +5,34 @@
 }
 
 .info{
+    margin-top:14%;
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90%;
-    width: 96%;
-    z-index: 9;
+    height: 33%;
+    width: fit-content;
+    z-index: 8;
     color: white;
     text-align: center;
     margin-left: auto; 
     margin-right: auto; 
     left: 0; 
     right: 0;
-background-color: rgba(7, 6, 6, 0.522);
+
 }
 
 .title{
     font-size: 6rem;
     font-family: 'Suranna', serif;
     color: white;
-margin-top:10%;
+    margin-bottom: 0;
 }
 
 .line{
-    width: 96%;
+    width: 22%;
     background-color: white;
-    height: 2px;
+    height: 0.1rem;
 }
 
 .subtitle{

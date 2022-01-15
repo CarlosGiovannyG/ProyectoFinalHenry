@@ -8,8 +8,6 @@ import Transsition from '../../Hooks/Transsition';
 import useModal from '../../Hooks/useModal';
 import Modal from '../../Components/Modal/Modal';
 
-
-
 export default function Home() {
 
     const [isOpenModalLogin, openLogin, closeLogin] = useModal();
