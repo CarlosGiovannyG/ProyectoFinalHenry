@@ -4,23 +4,29 @@ import Queries from '../../../../Utils/Queries';
 import Mutations from '../../../../Utils/Mutations'
 import s from './ProductDetail.module.css';
 import { AiOutlineLike } from 'react-icons/ai'
-import { GrClose, GrView, GrContact, GrChatOption } from 'react-icons/gr';
+import { GrView, GrContact, GrChatOption } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
 import Transsition from '../../../../Hooks/Transsition';
 import routes from '../../../../Helpers/Routes';
+import Loading from '../../../../Components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
-const ProductDetail = ({ openCreateCom, openComment, productId, setCart }) => {
+
+
+
+
+
+const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) => {
 
   const url = window.location.href.slice(21);
   const [newLike, setNewLike] = useState(null)
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
+  const navigate = useNavigate();
+
+
   const [ProductLike] = useMutation(Mutations.LIKE_PRODUCTS, {
-
-    // refetchQueries: [{ query: Queries.ALL_PRODUCTS }],
-    onError: error => {
-
-      console.log(error.graphQLErrors[0].message)
-    }
+    refetchQueries: [{ query: Queries.ALL_PRODUCTS }],
+    onError: error => { console.log(error.graphQLErrors[0].message) }
   });
 
   useEffect(() => {
@@ -28,7 +34,6 @@ const ProductDetail = ({ openCreateCom, openComment, productId, setCart }) => {
   }, [getProduct, productId])
 
   const handleLike = async e => {
-
     let response = await ProductLike({
       variables: {
         "input": {
@@ -40,10 +45,41 @@ const ProductDetail = ({ openCreateCom, openComment, productId, setCart }) => {
     setNewLike(response.data.ProductLike.rating)
   }
 
+  const addCart = (objet) => {
+
+    let productsCart = [];
+
+    if (localStorage.getItem('order')) {
+      productsCart = localStorage.getItem('order');
+      productsCart = JSON.parse(productsCart);
+      objet.idUnico = productsCart.length + 1
+      productsCart.push(objet)
+      localStorage.setItem('order', JSON.stringify(productsCart))
+    } else {
+
+      productsCart.push(objet)
+      localStorage.setItem('order', JSON.stringify(productsCart))
+    }
+    modalControl()
+  }
+
+  const removeCart = (id) => {
+    let productsCart = [];
+    if (localStorage.getItem('order')) {
+      productsCart = localStorage.getItem('order');
+      productsCart = JSON.parse(productsCart);
+      let indexB = productsCart.findIndex(product => product._id === id);
+      productsCart = productsCart.filter((product, index) => index !== indexB)
+      localStorage.setItem('order', JSON.stringify(productsCart))
+      modalControl()
+    }
+  }
+
+
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
   if (loading) {
-    return <div className={s.loading}>
-      <p></p>
+    return <div >
+      <Loading />
     </div>
   }
   if (error) {
@@ -86,12 +122,25 @@ const ProductDetail = ({ openCreateCom, openComment, productId, setCart }) => {
                 }} />
               {
                 url === routes.UserMainPage &&
-                <button className={s.btnAdd} onClick={() => { setCart((prev) => [...prev, product]) }} >ADD</button>
+                <button
+                  className={s.btnAdd}
+                  onClick={() => {
+                    addCart(
+                      {
+                        _id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        category: product.category,
+                        description: product.description,
+                      })
+                  }}
+                >ADD</button>
               }
               {
                 url === routes.cart &&
                 <button className={s.btnAdd}
-                  onClick={() => { alert('Sacar item del carrito en estado global,cerrar modal y actualizar el carrito') }}>REMOVE</button>
+                  onClick={() => { removeCart(productId) }}>REMOVE</button>
               }
             </div>
           </div>
