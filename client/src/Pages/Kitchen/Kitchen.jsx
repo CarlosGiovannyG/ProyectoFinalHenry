@@ -8,49 +8,80 @@ import CardKitchen from './Components/CardKitchen/CardKitchen';
 import useAuth from '../../Auth/useAuth';
 import CardProductKitchen from './Components/CardProductKitchen/CardProductKitchen';
 import loadingGif from '../../img/loading.gif';
+import Swiper from '../../Components/Swiper/Swiper';
 
 const makeados = [{
   date: "2022-01-07T15:44:36.009Z",
   description: null,
-  numeroMesa: null,
+  numeroMesa: 3,
   statusCocina: "Open",
   tipoDePedido: null,
   _id: "61d85fe88afe91ecfa4612cf",
 }, {
   date: "2022-01-07T15:44:36.009Z",
   description: null,
-  numeroMesa: null,
+  numeroMesa: 6,
   statusCocina: "Open",
   tipoDePedido: null,
   _id: "61d85fe88afe91ecfa4612cf",
 }, {
   date: "2022-01-07T15:44:36.009Z",
   description: null,
-  numeroMesa: null,
+  numeroMesa: 1,
   statusCocina: "Open",
   tipoDePedido: null,
   _id: "61d85fe88afe91ecfa4612cf",
 }, {
   date: "2022-01-07T15:44:36.009Z",
   description: null,
-  numeroMesa: null,
+  numeroMesa: 11,
   statusCocina: "Open",
   tipoDePedido: null,
   _id: "61d85fe88afe91ecfa4612cf",
 }, {
   date: "2022-01-07T15:44:36.009Z",
   description: null,
-  numeroMesa: null,
+  numeroMesa: 12,
   statusCocina: "Open",
   tipoDePedido: null,
   _id: "61d85fe88afe91ecfa4612cf",
-}]
+}
+//, {
+//   date: "2022-01-07T15:44:36.009Z",
+//   description: null,
+//   numeroMesa: 6,
+//   statusCocina: "Open",
+//   tipoDePedido: null,
+//   _id: "61d85fe88afe91ecfa4612cf",
+// }, {
+//   date: "2022-01-07T15:44:36.009Z",
+//   description: null,
+//   numeroMesa: 1,
+//   statusCocina: "Open",
+//   tipoDePedido: null,
+//   _id: "61d85fe88afe91ecfa4612cf",
+// }, {
+//   date: "2022-01-07T15:44:36.009Z",
+//   description: null,
+//   numeroMesa: 11,
+//   statusCocina: "Open",
+//   tipoDePedido: null,
+//   _id: "61d85fe88afe91ecfa4612cf",
+// }, {
+//   date: "2022-01-07T15:44:36.009Z",
+//   description: null,
+//   numeroMesa: 12,
+//   statusCocina: "Open",
+//   tipoDePedido: null,
+//   _id: "61d85fe88afe91ecfa4612cf",
+// }
+];
 
 const Kitchen = () => {
 
   const { billKitchenDetail, kitchenDeatil, openCloseModal } = useAuth()
   const { loading, data, error } = useQuery(Queries.BILLS_KITCHEN);    // Query a las las bills abiertas
-  const [ClosedBill] = useMutation(Mutations.CLOSED_BILL, {            // Mutationa que postea bills que cerramos
+  const [ClosedBill] = useMutation(Mutations.CLOSED_BILL, {            // Mutation que postea bills que cerramos
     refetchQueries: [{ query: Queries.BILLS_KITCHEN }],
     onError: error => {
       console.log(error);
@@ -71,6 +102,7 @@ const Kitchen = () => {
     const { message } = response.data.ClosedBill
     alert(message)
   }
+
 
 
 
@@ -98,16 +130,16 @@ const Kitchen = () => {
   return (
     <div className={s.container}>
       <div className={s.containerCentro}>
-        {infoKitchen &&
-          makeados.map(info => (
-            <CardKitchen info={infoKitchen[0]} />
-          ))
-        }
-      </div>
-      {/* <Modal open={kitchenDeatil} >
-        <CardProductKitchen close={openCloseModal} infoKitchenBill={infoKitchenBill[0]} />
-      </Modal> */}
+        <Swiper infoKitchen={infoKitchen} />
 
+        {/* {infoKitchen &&
+          infoKitchen.map(info => {
+            return (
+            <CardKitchen info={info}/>
+            )
+          })
+        } */}
+      </div>
     </div>
   )
 }

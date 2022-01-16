@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
       email: 'cggualtero@hotmail.com',
       phone: '3043912387',
 
-      role: 'regular' //TODO: 'cashier'  'regular' cook
+      role: 'regular'  //TODO: 'cashier'  'regular' 'cook'
     })
   }
 
