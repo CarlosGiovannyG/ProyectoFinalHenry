@@ -28,7 +28,6 @@ SwiperCore.use([EffectCoverflow,EffectCube, Pagination]);
 
 export default function SwiperComments({ comments, options, infoKitchen, infoKitchenBill}) {
   
-
   return (
     <>
     { comments &&
@@ -65,20 +64,21 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
         ))}
         </Swiper>
       
-    }
-      {infoKitchen &&
-        <Swiper effect={'coverflow'} grabCursor={true} centeredSlides={true} slidesPerView={'auto'} coverflowEffect={{
-          "rotate": 50,
-          "stretch": 0,
-          "depth": 100,
-          "modifier": 1,
-          "slideShadows": true
-        }} pagination={true} className="mySwiper">
+      }
+
+
+      {
+        infoKitchen && 
+        <Swiper slidesPerView={5} spaceBetween={20} pagination={{
+        "clickable": true
+        }}
+        className="cardsCocina">
           {infoKitchen.map(info => (
             <SwiperSlide key={info._id}><CardKitchen info={info} /></SwiperSlide>
         ))}
         </Swiper>
       }
+
       {infoKitchenBill &&
 
         <Swiper slidesPerView={3} spaceBetween={10} pagination={{

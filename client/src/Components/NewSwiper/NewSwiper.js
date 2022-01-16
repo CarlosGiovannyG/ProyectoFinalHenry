@@ -45,7 +45,7 @@ export default function NewSwiper() {
         <>
           <Swiper 
           style={{width: '100%', height: '90.5vh'}}
-          spaceBetween={0} centeredSlides={true} autoplay={{
+          spaceBetween={0} centeredSlides={true} speed={1000} autoplay={{
             "delay": 4000,
             "disableOnInteraction": false
           }}
@@ -53,9 +53,8 @@ export default function NewSwiper() {
             "clickable": true
           }}
           navigation={true} className="mySwiper">
-          <SwiperSlide style={{ cursor: 'context-menu' }} ><img src={items[0].src} alt={items[0].alt} /></SwiperSlide>
+          <SwiperSlide style={{ cursor: 'context-menu' }}><img src={items[0].src} alt={items[0].alt} /></SwiperSlide>
           <SwiperSlide style={{ cursor: 'context-menu' }}><img src={items[1].src} alt={items[1].alt} /></SwiperSlide>
-          <SwiperSlide style={{ cursor: 'context-menu' }}><img src={items[2].src} alt={items[2].alt} /></SwiperSlide>
           <SwiperSlide style={{ cursor: 'context-menu' }}><img src={items[3].src} alt={items[3].alt} /></SwiperSlide>
           <SwiperSlide style={{ cursor: 'context-menu' }}><img src={items[4].src} alt={items[4].alt} /></SwiperSlide>
           </Swiper>

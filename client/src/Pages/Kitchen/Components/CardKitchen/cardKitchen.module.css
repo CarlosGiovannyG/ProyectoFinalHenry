@@ -6,31 +6,36 @@
   background-color: #dbdbdb;
   display: flex;
   flex-direction: column;
+  margin-top: 1.3rem;
+
 }
 
 .containerHeader {
   width: 98%;
-  margin: 1%;
+
   border-radius: 10px;
   justify-content: space-between;
   display: flex;
-
+  align-self: flex-start;
 }
 
 .titles{
   font-family: 'Montserrat';
   width: 60%;
+  margin-left: .5rem;
 }
 
 .table{
   font-weight: bold;
   font-size: 2.3rem;
   margin-bottom: -.6rem;
+  text-align: left;
 }
 
 .type{
   font-weight: bold;
   font-size: 1.4rem;
+  text-align: left;
 }
 
 .containerBotones{
@@ -51,30 +56,25 @@
   grid-template-columns: 1fr 1fr ;
   padding:1%;
   gap: 1%;
-  cursor: pointer;
+  text-align: left;
 }
 
 .btnCloseContainer{
+  display: flex;
   width: 100%;
   justify-content: center;
-  display: flex;
-
+  margin-top: auto;
 }
 
 .btnClose{
-
   font-family: 'Montserrat';
   font-size: 1.7rem;
   font-weight: bold;
-  width: 90%;
+  width: 98%;
   padding: .5rem;
-   
   border: none;
   background-color: #9ff588;
   border-radius: .7rem;
-
- margin-top: 80%;
-  
 }
 
 .containerModal{
