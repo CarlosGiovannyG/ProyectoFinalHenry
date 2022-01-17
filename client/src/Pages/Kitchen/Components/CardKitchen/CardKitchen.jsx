@@ -38,12 +38,16 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
     setReady(!ready);
   }
 
+  function getRandomInt(max) {           // vamos a asignar una mesa aleatoria hasta que tenamos las reales
+    return Math.floor(Math.random() * max);
+  }
+
   return (
     <Transsition>
         <div className={styles.container}>
           <div className={styles.containerHeader}>
             <div className={styles.titles}>
-              <div className={styles.table}>TABLE {info.numeroMesa}</div>
+              <div className={styles.table}>TABLE {getRandomInt(20)}</div>
               <div className={styles.type}>{info.tipoDePedido}</div>
             </div>
             <div className={styles.containerBotones}>

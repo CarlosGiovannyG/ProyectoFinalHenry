@@ -18,12 +18,13 @@ export default function OrderMenu({products, setProductID, openModalProduct}) {
         
         { (url === routes.UserMainPage) ? (<>
             <h1 className={s.title}>MENU</h1>
-            <input
+            {/* <input
             className={s.input}
             type='text'
             name='search'
             placeholder={'Find your plate...'}
-            value={input} onChange={handleInputChange} /></>) : 
+            value={input} onChange={handleInputChange} /> */}
+            </>) : 
             <h1 className={s.title}>YOUR ORDER</h1>
         }
         <div className={s.products}>
