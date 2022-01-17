@@ -17,12 +17,8 @@
 }
 .container {
   position: relative;
-  background-color: #fff;
-  min-width: 50%;
-  max-width: 60%;
-  min-height: 200px;
-  max-height: 600px;
-  overflow-y: auto;
+
+  overflow-y: hidden;
   padding:1rem;
 }
 .close {

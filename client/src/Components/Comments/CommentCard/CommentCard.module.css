@@ -2,6 +2,8 @@
     height: 100%;
     width: 100%;
     padding: 15px;
+    background-color: white;
+    
 }
 
 .title{
@@ -22,7 +24,7 @@
     outline: none;
     border: none;
     width: 100%;
-    height: 100%;
+    height:75%;
     cursor: context-menu;
     white-space: nowrap;
     overflow: hidden;

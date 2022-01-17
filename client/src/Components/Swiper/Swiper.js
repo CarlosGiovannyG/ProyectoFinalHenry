@@ -52,6 +52,7 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
         ))}
       </Swiper>
     }
+    
       {options &&
         <Swiper effect={'cube'} grabCursor={true} cubeEffect={{
           "shadow": true,

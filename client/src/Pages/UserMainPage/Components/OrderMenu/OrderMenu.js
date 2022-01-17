@@ -12,6 +12,7 @@ export default function OrderMenu({products, setProductID, openModalProduct}) {
         setInput(e.target.value);
     }
 
+
     return(
     <div  className={s.mainDiv}>
         

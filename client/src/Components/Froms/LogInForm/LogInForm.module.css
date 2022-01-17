@@ -1,7 +1,11 @@
 
 .container{
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background-color: white;
+    position: relative;
 }
 .title{
     font-family: 'Suranna', serif;
@@ -9,7 +13,6 @@
     color: black;
     font-size: 3rem;
     text-align: center;
-    
 }
 
 .inputs{

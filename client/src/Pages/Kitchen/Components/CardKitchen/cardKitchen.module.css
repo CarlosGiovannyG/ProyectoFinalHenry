@@ -55,7 +55,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr ;
   padding:1%;
-  gap: 1%;
+  gap: 2%;
   text-align: left;
 }
 
