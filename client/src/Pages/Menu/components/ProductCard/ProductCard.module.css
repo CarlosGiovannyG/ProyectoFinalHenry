@@ -1,23 +1,13 @@
 .cardContainer {
     width: 100%;
     height: 100%;
-    color: white; 
     display: flex; 
     flex-direction: column;
-    justify-content: flex-end;
-
+    justify-content: center;
+    position: relative;
     cursor: pointer;
-    background-repeat: none repeat;
-    background-size:cover;
-    background-position: center;
     transition: transform .5s, box-shadow .5s;
-}
-
-.line {
-    background-color: white;
-    height: 3px;
-    width: 20%;
-    margin-bottom: 1rem;
+    
 }
 
 .cardContainer:hover {
@@ -27,23 +17,22 @@
     cursor: pointer;
 }
 
-.Image{
-    width: 100px;
-    height: 100px;
+.image{
+    background-repeat: none repeat;
+    background-size:cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    filter:brightness(70%)
 }
 
 .title{
-    color: white;
+    color: rgb(255, 255, 255);
+    font-size: 2.8rem;
     text-align: center;
     font-family: 'Suranna';
-    font-size: 1.8rem;
-    text-decoration: underline;
-    background-color: rgba(34, 34, 34, .5);
-}
-
-.modal{
-    background-color: rgb(240, 239, 239);
+    margin-bottom: 0;
     position: absolute;
-    height: 200px;
-    width: 300px;
+    width: 100%;
+    
 }
