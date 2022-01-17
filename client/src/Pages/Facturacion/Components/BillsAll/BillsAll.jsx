@@ -23,7 +23,6 @@ const BillsAll = ({ close}) => {
 
   const datos = data.allBills
   const modalTable = datos.map(({ description, idUser, numeroMesa, status, statusCocina, subTotal, total, products }) => { return { description, idUser, numeroMesa, status, statusCocina, subTotal, total, products } })
-  const productsTable = modalTable.map(({ products }) => products[0])
 
 
   return (

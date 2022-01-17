@@ -14,7 +14,7 @@ class BillsApi extends RESTDataSource {
   }
 
   async allBills() {
-    return await this.get('/')
+    return await this.get(`/?status=Open`)
   }
 
   async BillsKitchen() {
@@ -36,6 +36,10 @@ class BillsApi extends RESTDataSource {
     return await this.put(`/${idBill}`, credencials)
   }
 
+  async PaidBill(input) {
+    return await this.post(`/paid/${input}`)
+  }
+
   async DeleteBill(input) {
     return await this.post(`/delete/${input}`)
   }
@@ -49,3 +53,6 @@ class BillsApi extends RESTDataSource {
 };
 
 module.exports = BillsApi;
+
+
+

@@ -12,7 +12,7 @@ query BillsKitchen {
     idUser
     description
     products {
-      idProduct
+      _id
       name
       price
     }

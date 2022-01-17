@@ -1,28 +1,44 @@
 .container{
-   width: 95%;
-    height: 89vh;
-    margin: -2px auto;
-    background: url("../../img/landing3.jpg")center/cover;
-    border-radius:  15px;
-    display: flex;
-}
-
-.containerCentro{
-  margin: 0px auto;
-  margin-top: .5%;
+  width: 98%;
+  min-height: 86vh;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 99%;
-  height: 87vh;
-  border-radius:  15px;
-  background-color: rgba(7, 6, 6, 0.622);
+  align-items: center;
+  transition: all 1.3s;
 }
 
-.close{
-  position: absolute;
-  cursor: pointer;
-  margin-top: -38%;
-  margin-left: 85%;
-  background-color: white;
+.containerCenter {
+  position: relative;
+ background-color: rgb(236, 236, 236);
+  min-width: 95%;
+  max-width: 95%;
+  min-height: 700px;
+  max-height: 700px;
+  padding:1rem;
+}
+
+.Create{
+   position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border: none;
+  height: 40px;  
+    background-color: rgb(194, 193, 193);
+    width: 200px;
+    cursor: pointer;
+}
+
+.containerTable {
+  background-color: rgb(240, 239, 239);
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 600px;
+  max-height: 600px;
+  margin: 3% auto;
+  overflow-y: auto;
+  padding:1rem;
 }

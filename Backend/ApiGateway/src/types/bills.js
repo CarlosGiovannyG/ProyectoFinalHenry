@@ -10,6 +10,8 @@ input updateBill{
   products:[productsId]
   numeroMesa:Int
   tipoDePedido:String
+   subTotal: Int
+  total: Int
 }
 
 input createBill{ 
@@ -18,8 +20,8 @@ input createBill{
   products:[productsId]
   numeroMesa:String
   tipoDePedido:String
-  subTotal: Int,
-  total: Int,
+  subTotal: Int
+  total: Int
 }
 
 input productsId{ 
@@ -42,6 +44,7 @@ type allBills{
   description:String
   products:[products]
   status:String
+  tipoDePedido:String
   date:String
   subTotal:Int
   total:Int
@@ -59,9 +62,9 @@ tipoDePedido:String
 }
 
 type products{ 
-  idProduct:String
+  _id:String
   name:String
-  price:String
+  price:Int
 }
 
 type billsCaja{
@@ -87,6 +90,7 @@ type Mutation{
   CreateBills(input:createBill):response
   UpdateBill(input:updateBill):allBills
   ClosedBill(input:billsId):response
+  PaidBill(input:billsId):response
   DeleteBill(input:billsId):response
 }
 `;

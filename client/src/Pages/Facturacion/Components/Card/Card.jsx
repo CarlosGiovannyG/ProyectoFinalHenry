@@ -6,13 +6,12 @@ import useAuth from '../../../../Auth/useAuth';
 
 const Card = ({ option }) => {
   
-  const { openCloseModal } = useAuth();
 
 
   return (
     <div className={styles.container}>
       
-      <div className={styles.containerCentro} onClick={() => openCloseModal(`${option.caso}`)}>
+      <div className={styles.containerCentro}>
         <div className={styles.title}> {option.span}</div>
       <div className={styles.title}> {option.title}</div>
       </div>

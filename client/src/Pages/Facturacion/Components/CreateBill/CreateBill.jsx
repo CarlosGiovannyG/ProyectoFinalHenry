@@ -12,12 +12,13 @@ const CreateBill = ({ close }) => {
   const { loading, data, error } = useQuery(Queries.PRODUCTS_BILLS);
 
   const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
-    refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
+    refetchQueries: [{ query: Queries.BILLS_KITCHEN },{query: Queries.ALL_BILLS}],
     onError: err => {
       console.log('ERRORES', err.graphQLErrors)
     }
   })
 
+  
   const [newBill, setNewBill] = useState({
     idUser: '',
     description: '',
@@ -35,11 +36,20 @@ const CreateBill = ({ close }) => {
   }
 
 
-
-
   const handleSubmit = async e => {
     e.preventDefault();
+    let aux = newBill.products
 
+    let subTotal = 0
+    let total = 0
+
+    for (let i = 0; i < aux.length; i++) {
+      subTotal = aux[i].price + subTotal
+      total = (subTotal * 20 / 100) + subTotal
+    }
+
+      
+      
     let response = await CreateBills({
       variables: {
         "input": {
@@ -48,6 +58,8 @@ const CreateBill = ({ close }) => {
           "products": newBill.products,
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
+          "subTotal": subTotal,
+          "total": total
         }
       }
     })

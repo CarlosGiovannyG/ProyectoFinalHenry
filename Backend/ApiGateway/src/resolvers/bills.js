@@ -32,6 +32,10 @@ const billsResolvers = {
       return await dataSources.BillsApi.ClosedBill(input.id)
     },
 
+    PaidBill: async (_, { input }, { dataSources }) => {
+      return await dataSources.BillsApi.PaidBill(input.id)
+    },
+
     DeleteBill: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.DeleteBill(input.id)
     },

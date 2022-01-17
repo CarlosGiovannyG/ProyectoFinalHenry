@@ -27,6 +27,11 @@ router.post("/cocina/closed/:id", require("../controllers/cocinaClosedBills"));
 
 router.get("/cliente/:id", require("../controllers/idClienteBills"));
 
+//Pagar una factura por ID enviada por paramas (no se borra de la DB, solo se cambia el status)
+//TODO RUTA LISTA APIGATEWAY
+
+router.post("/paid/:id", require("../controllers/paidBill"));
+
 //Eliminar una factura por ID enviada por query (no se borra de la DB, solo se cambia el status)
 //TODO RUTA LISTA APIGATEWAY
 

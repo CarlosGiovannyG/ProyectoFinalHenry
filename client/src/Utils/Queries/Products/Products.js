@@ -4,11 +4,11 @@ import {
 
 const Products = {
 
-  ALL_PRODUCTS: gql `
+  ALL_PRODUCTS: gql`
    query {
    allProducts {
     products {
-      _id
+       _id
       name
       description
       category
@@ -25,7 +25,7 @@ const Products = {
   
   `,
 
-  PRODUCTS_BILLS: gql `
+  PRODUCTS_BILLS: gql`
    query ProductsBills {
   ProductsBills {
     products {
@@ -37,7 +37,7 @@ const Products = {
 }
   
   `,
-  
+
 
   FIND_PRODUCT: gql`
   
@@ -59,10 +59,10 @@ const Products = {
   }
 }
   `,
- 
-  
+
+
 
 };
 
 
-export default  Products
+export default Products

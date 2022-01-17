@@ -1,40 +1,139 @@
-import React from 'react';
-import styles from './bills.module.css'
-import SwiperCore, { Pagination } from 'swiper';
-import SwiperComments from '../../Components/Swiper/Swiper';
-import { Modal } from '@material-ui/core';
-import BillsAll from './Components/BillsAll/BillsAll';
-import useAuth from '../../Auth/useAuth'
-import Transsition from '../../Hooks/Transsition';
-// install Swiper modules
-SwiperCore.use([Pagination]);
+import React, { useState } from 'react';
+import styles from './bills.module.css';
+import { Table } from 'reactstrap'
+import CreateBill from './Components/CreateBill/CreateBill';
+import useModal from '../../Hooks/useModal';
+import Modal from '../../Components/Modal/Modal';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import Queries from '../../Utils/Queries';
+import Mutations from '../../Utils/Mutations';
+import Loading from '../../Components/Loading/Loading';
+import { GrEdit, GrCheckmark, GrTrash } from 'react-icons/gr';
+import ReactTooltip from 'react-tooltip';
+import BillDetail from './Components/BillDetail/BillDetail';
 
 
-const options = [
-  { id: 1, span: 'Crear', title: 'Factura', caso: 'createBill' },
-  { id: 2, span: 'Ver', title: 'Todas', caso: 'allBills' },
-  { id: 3, span: 'Ver Factura', title: 'Por Cliente', caso: '' },
-  { id: 4, span: 'Ver Factura', title: 'Por Mesa', caso: '' },
-  { id: 5, span: 'Ver Factura', title: 'Por Estado', caso: '' },
+const Prueba = () => {
 
-]
+  const [idBill, setIdBill] = useState(null)
+  const [isOpenCreateBill, openCreateBill, closeCreateBill] = useModal();
+  const [isOpenBillDetail, openBillDetail, closeBillDetail] = useModal();
+  const [billDeatil, setBillDeatil] = useState(null)
 
-const Bills = () => {
+  const [PaidBill] = useMutation(Mutations.PAID_BILL, {
+    refetchQueries: [{ query: Queries.ALL_BILLS }],
+    onError: error => { console.log(error.graphQLErrors) }
+  });
 
-  const { modalAllBills, openCloseModal } = useAuth()
-  return (
-    <div className={styles.container}>
-      <div className={styles.containerCentro}>
-        <Transsition>
-          <SwiperComments options={options} />
-        </Transsition>
+
+
+  const { loading, data, error } = useQuery(Queries.ALL_BILLS);
+  const [getBillId] = useLazyQuery(Queries.BILL_BY_ID);
+  if (loading) {
+    return (
+      <div>
+        <Loading />
       </div>
-      <Modal open={modalAllBills} >
-        {<BillsAll close={openCloseModal} />}
-      </Modal>
+    )
+  }
+  if (error) return null
 
+  const datos = data.allBills
+
+  const billById = async (id) => {
+    openBillDetail()
+    let resultado = await getBillId({ variables: { input: { id: id } } })
+
+    let bill = resultado.data.BillsById
+    setBillDeatil(bill)
+
+  }
+
+  const handlePaidBill = async (id) => {
+
+    console.log(id)
+    let response = await PaidBill({
+      variables: {
+        "input": {
+          "id": id
+        }
+      }
+
+
+    })
+
+    let res = response.data.PaidBill.message
+    alert(res)
+
+  }
+
+  return (
+    <div className={styles.container} >
+      <div className={styles.containerCenter}>
+        <button className={styles.Create} onClick={openCreateBill}>CREATE BILL</button>
+        <div className={styles.containerTable}>
+          <Table striped hover={true} >
+            <thead>
+              <tr>
+                <th  >Table Number</th>
+                <th >Descriptions</th>
+                <th >Type of Order</th>
+                <th >Status</th>
+                <th >Status Kitchen</th>
+                <th >Subtotal</th>
+                <th >Total</th>
+                <th >Edit</th>
+                <th >Check In</th>
+                <th >Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                datos.map(dato => (
+                  <tr>
+                    <td >{dato.numeroMesa}</td>
+                    <td>{dato.description}</td>
+                    <td>{dato.tipoDePedido}</td>
+                    <td>{dato.status}</td>
+                    <td>{dato.statusCocina}</td>
+                    <td>{dato.subTotal}</td>
+                    <td>{dato.total}</td>
+                    <td >
+                      <GrEdit
+                        size='1.5rem'
+                        data-tip data-for='edit'
+                        onClick={() => {
+                          billById(dato._id)
+
+                        }}
+                      />
+                    </td>
+                    <td ><GrCheckmark
+                      size='1.5rem'
+                      data-tip data-for='save'
+                      onClick={() => {
+                        handlePaidBill(dato._id)
+                      }}
+                    /></td>
+                    <td ><GrTrash size='1.5rem' data-tip data-for='delete' /></td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </Table>
+          <ReactTooltip id='edit' place='left' effect="solid" > Edit Invoice </ReactTooltip>
+          <ReactTooltip id='save' place='left' effect="solid" > Check In </ReactTooltip>
+          <ReactTooltip id='delete' place='left' effect="solid" >DELETE </ReactTooltip>
+        </div>
+      </div>
+      <Modal isOpen={isOpenCreateBill} closeModal={closeCreateBill} >
+        {<CreateBill close={closeCreateBill} />}
+      </Modal>
+      <Modal isOpen={isOpenBillDetail} closeModal={closeBillDetail} >
+        {<BillDetail close={closeBillDetail} billDeatil={billDeatil} setBillDeatil={setBillDeatil} />}
+      </Modal>
     </div>
   )
 }
 
-export default Bills
+export default Prueba

@@ -13,11 +13,12 @@ const Bills = {
     idUser
     description
     products {
-      idProduct
+      _id
       name
       price
     }
     status
+    tipoDePedido
     date
     subTotal
     total
@@ -37,7 +38,7 @@ const Bills = {
     idUser
     description
     products {
-      idProduct
+      _id
       name
       price
     }
@@ -45,6 +46,7 @@ const Bills = {
     date
     subTotal
     total
+    tipoDePedido
   }
 }
   
