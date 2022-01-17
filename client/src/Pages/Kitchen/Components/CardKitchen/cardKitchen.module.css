@@ -38,6 +38,12 @@
   text-align: left;
 }
 
+.typeDescription{
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+}
+
 .containerBotones{
   background-color: #FC4472;
   width: fit-content;

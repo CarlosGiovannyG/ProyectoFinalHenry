@@ -49,6 +49,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
             <div className={styles.titles}>
               <div className={styles.table}>TABLE {getRandomInt(20)}</div>
               <div className={styles.type}>{info.tipoDePedido}</div>
+              <div className={styles.typeDescription}>{info.description}</div>
             </div>
             <div className={styles.containerBotones}>
               <GrClose size={'2rem'} className={styles.btnCancel} onClick={handleClose} />
