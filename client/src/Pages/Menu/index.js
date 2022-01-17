@@ -70,7 +70,7 @@ export const Menu = () => {
                     <Transsition>
                         <ModalCreateComments
                             productId={idProduct}
-                            close={closeCreateComent}
+                            modalControl={closeCreateComent}
                         />
                     </Transsition>
                 </Modal>

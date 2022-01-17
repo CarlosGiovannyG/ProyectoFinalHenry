@@ -1,15 +1,8 @@
-.swiper {
-  width:100%;
-  height:847px;
-}
 
 
-  
 .swiper-slide {
 text-align: center;
 font-size: 18px;
-
-filter: brightness(70%);
 
 /* Center slide text vertically */
 display: -webkit-box;

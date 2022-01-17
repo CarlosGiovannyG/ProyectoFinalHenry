@@ -4,7 +4,6 @@ import OrderMenu from './Components/OrderMenu/OrderMenu';
 import { useModal } from 'react-hooks-use-modal';
 import Bookings from './Components/Bookings/Bookings';
 import ReactTooltip from 'react-tooltip';
-import routes from '../../Helpers/Routes';
 import { useNavigate } from 'react-router-dom';
 import Transsition from '../../Hooks/Transsition';
 import { useQuery } from '@apollo/client';
@@ -14,6 +13,7 @@ import ModalComments from '../../Components/Comments/CommentsViews/ModalComments
 import ModalCreateComments from '../../Components/Comments/CommentsCreate/CreateComments';
 import Loading from '../../Components/Loading/Loading';
 import { useEffect } from 'react';
+import BotonCart from './Components/BotonCart/BotonCart';
 
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -23,7 +23,7 @@ export default function UserMainPage() {
     const [cart, setCart] = React.useState([]);
     const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
-
+    const compra = localStorage.getItem('order');
 
     useEffect(() => {
         (function Cart() {
@@ -34,9 +34,7 @@ export default function UserMainPage() {
             }
             return []
         })()
-
-    }, [cart])
-
+    }, [compra])
 
     let subTotal = 0
     let total = 0
@@ -68,10 +66,7 @@ export default function UserMainPage() {
 
             <div className={s.rightDiv}>
                 <Transsition>
-                    <button className={s.btnCart}
-                        data-tip data-for='tooltip'
-                        onClick={() => { navigate(`${routes.cart}`) }}
-                    >YOUR ORDER ({cart.length})</button>
+                    <BotonCart data-tip data-for='tooltip' cart={cart} />
                 </Transsition>
                 <Transsition>
                     <Bookings />

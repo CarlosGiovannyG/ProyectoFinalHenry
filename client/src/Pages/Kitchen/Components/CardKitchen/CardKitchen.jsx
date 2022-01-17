@@ -6,14 +6,40 @@ import CardProductBill from '../CardProducBill/CardProductBill';
 import CardProductKitchen from '../CardProductKitchen/CardProductKitchen';
 import styles from './cardKitchen.module.css';
 import Transsition from '../../../../Hooks/Transsition';
+import { useMutation } from '@apollo/client';
+import Mutations from '../../../../Utils/Mutations';
+import Queries from '../../../../Utils/Queries';
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ready, setReady] = React.useState(false);
 
-  const { openCloseModal } = useAuth();
+  const [ClosedBill] = useMutation(
+    Mutations.CLOSED_BILL,
+    { 
+      refetchQueries: [{query: Queries.BILLS_KITCHEN}],
+      onError: (error) => { console.log('Errores', error.graphQLErrors); }
+    }
+  )
+
+  const handleClose = async function(id){
+    
+    const response = await ClosedBill({
+    variables: {
+      "input": {
+        "id": info._id
+      }
+    }
+    })
+    let respuesta = response.data.ClosedBill.message; 
+    alert(respuesta);
+  }
 
   const handleButton = function(){
     setReady(!ready);
+  }
+
+  function getRandomInt(max) {           // vamos a asignar una mesa aleatoria hasta que tenamos las reales
+    return Math.floor(Math.random() * max);
   }
 
   return (
@@ -21,11 +47,11 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
         <div className={styles.container}>
           <div className={styles.containerHeader}>
             <div className={styles.titles}>
-              <div className={styles.table}>TABLE {info.numeroMesa}</div>
+              <div className={styles.table}>TABLE {getRandomInt(20)}</div>
               <div className={styles.type}>{info.tipoDePedido}</div>
             </div>
             <div className={styles.containerBotones}>
-              <GrClose size={'2rem'} className={styles.btnCancel} onClick={() => close('kitchenDeatilClose', null)} />
+              <GrClose size={'2rem'} className={styles.btnCancel} onClick={handleClose} />
             </div>
           </div>
           <div className={styles.containerProduct}>

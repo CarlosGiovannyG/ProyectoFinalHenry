@@ -41,52 +41,54 @@ export default function LogInForm({ close }) {
     return (
         <div className={s.container}>
             <div>
-                <h1 className={s.title}>Log In</h1>
-            </div>
-            <div>
-                <form>
-                    {/*  Inputs */}
-                    <div className={s.inputs}>
-                        <div>
-                            <input
-                                className={s.inputEmail}
-                                type='text'
-                                name='email'
-                                placeholder={'Email...'}
-                                value={input.email}
-                                onChange={handleInputChange} />
-                            <input
-                                className={s.inputPassword}
-                                type='text'
-                                name='password'
-                                placeholder={'Password...'}
-                                value={input.password}
-                                onChange={handleInputChange} />
+                <div>
+                    <h1 className={s.title}>Log In</h1>
+                </div>
+                <div>
+                    <form>
+                        {/*  Inputs */}
+                        <div className={s.inputs}>
+                            <div>
+                                <input
+                                    className={s.inputEmail}
+                                    type='text'
+                                    name='email'
+                                    placeholder={'Email...'}
+                                    value={input.email}
+                                    onChange={handleInputChange} />
+                                <input
+                                    className={s.inputPassword}
+                                    type='text'
+                                    name='password'
+                                    placeholder={'Password...'}
+                                    value={input.password}
+                                    onChange={handleInputChange} />
+                            </div>
+                            <div className={s.btnDiv}>
+                                {
+                                    (input.email !== '' && !errors.password && !errors.email) ?
+                                        <button
+                                            className={s.btnRegister}
+                                            type="submit"
+                                            onClick={handleSubmit}
+                                        >Log In</button> :
+                                        <button
+                                            className={s.btnRegisterError}
+                                            data-tip data-for='tooltip'
+                                            onClick={(e) => e.preventDefault()}
+                                        >Log In</button>
+                                }
+                                {(Object.keys(errors).length > 0) ? (
+                                    <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
+                                        {errorData.split("\n").map((i, key) => {
+                                            return <div key={key}>{i}</div>;
+                                        })}
+                                    </ReactTooltip>) : null
+                                }
+                            </div>
                         </div>
-                        <div className={s.btnDiv}>
-                            {
-                                (input.email !== '' && !errors.password && !errors.email) ?
-                                    <button
-                                        className={s.btnRegister}
-                                        type="submit"
-                                        onClick={handleSubmit}
-                                    >Log In</button> :
-                                    <button
-                                        className={s.btnRegisterError}
-                                        data-tip data-for='tooltip'
-                                        onClick={(e) => e.preventDefault()}
-                                    >Log In</button>
-                            }
-                            {(Object.keys(errors).length > 0) ? (
-                                <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
-                                    {errorData.split("\n").map((i, key) => {
-                                        return <div key={key}>{i}</div>;
-                                    })}
-                                </ReactTooltip>) : null
-                            }
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     )

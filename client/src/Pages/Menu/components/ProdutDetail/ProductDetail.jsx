@@ -79,12 +79,12 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
   if (loading) {
     return <div >
-      <Loading />
+      
     </div>
   }
   if (error) {
     return <div className={s.error}>
-      <p>There was an error..</p>
+      <p></p>
     </div>
   }
   if (data && !loading) {
@@ -102,47 +102,57 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
           </div>
           <div className={s.divDerecha}>
             <img className={s.imagen} src={product.image} alt={product.name} />
-            <div className={s.icons}>
-              <div className={s.price}>
-                ${product.price}
-              </div>
-              <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
-              <GrView size='2rem' data-tip data-for='views' />
-              <GrContact
-                size='2rem'
-                data-tip data-for='comments'
-                onClick={() => {
-                  openComment()
-                }} />
-              <GrChatOption
-                size='2rem'
-                data-tip data-for='createcomment'
-                onClick={() => {
-                  openCreateCom()
-                }} />
               {
-                url === routes.UserMainPage &&
-                <button
-                  className={s.btnAdd}
+                !(url === routes.cart) &&    // Si el url no es cart, mostame los comments y todo eso
+                <div className={s.icons}>
+                <div className={s.price}>
+                  ${product.price}
+                </div>
+  
+                <AiOutlineLike size='2rem' data-tip data-for='tooltip' onClick={handleLike} />
+                <GrView size='2rem' data-tip data-for='views' />
+                <GrContact
+                  size='2rem'
+                  data-tip data-for='comments'
                   onClick={() => {
-                    addCart(
-                      {
-                        _id: productId,
-                        name: product.name,
-                        price: product.price,
-                        image: product.image,
-                        category: product.category,
-                        description: product.description,
-                      })
-                  }}
-                >ADD</button>
+                    openComment()
+                  }} />
+                <GrChatOption
+                  size='2rem'
+                  data-tip data-for='createcomment'
+                  onClick={() => {
+                    openCreateCom()
+                  }} />
+                {
+                  url === routes.UserMainPage &&
+                  <button
+                    className={s.btnAdd}
+                    onClick={() => {
+                      addCart(
+                        {
+                          _id: productId,
+                          name: product.name,
+                          price: product.price,
+                          image: product.image,
+                          category: product.category,
+                          description: product.description,
+                        })
+                    }}
+                  >ADD</button>
+                }
+              </div>
               }
               {
-                url === routes.cart &&
-                <button className={s.btnAdd}
+                url === routes.cart &&  // Si es cart, mostrame solo precio y remove
+                <div className={s.icons}>
+                  <div className={s.price}>
+                    ${product.price}
+                  </div>
+                  <button className={s.btnAdd}
                   onClick={() => { removeCart(productId) }}>REMOVE</button>
+                  </div>
               }
-            </div>
+
           </div>
           <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
             {newLike ? newLike : product.rating}
@@ -151,10 +161,10 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
             {product.views}
           </ReactTooltip>
           <ReactTooltip className={s.tooltip} id='comments' place='top' effect="solid" >
-            Ver {product.comments}  comentarios
+            See {product.comments} comments
           </ReactTooltip>
           <ReactTooltip className={s.tooltip} id='createcomment' place='top' effect="solid" >
-            Deja tu comentario
+            Leave a comment
           </ReactTooltip>
         </div>
       </Transsition>
