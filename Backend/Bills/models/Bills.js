@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+let fecha = new Date()
+fecha = fecha.toLocaleString()
 
 const BillsSchema = new mongoose.Schema(
   {
@@ -38,6 +40,11 @@ const BillsSchema = new mongoose.Schema(
     statusCocina: {
       type: String,
       default: "Open" 
+    },
+    fechaEntrega: {
+      type: String,
+      default: fecha,
+      required: true
     }
   },
   { timestamps: false }
@@ -45,5 +52,3 @@ const BillsSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("Bills", BillsSchema);
 
-
-// modelococina: id usuario, productos {}, mesa,  
