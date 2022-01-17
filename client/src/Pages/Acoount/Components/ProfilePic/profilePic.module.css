@@ -1,5 +1,9 @@
 .container{
-  margin-top: 5%;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 .title{
@@ -30,18 +34,18 @@
 
 .picture{
   position: relative;
-  width: 250px;
+  width: 280px;
   height: 250px;
-  margin-left: 30%;
-  margin-top: -5%;
+  margin: 0 auto;
+  margin-top: 5%;
 
 }
 
 .containerBotones {
-   width: 40%;
-  height: 10%;
+   width: 100%;
+  height: 15%;
   display: flex;
-  margin: 5% auto;
+  margin: 8% auto;
   gap: 2.5%;
   bottom:.5px;
 }

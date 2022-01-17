@@ -25,7 +25,6 @@ const EditAccount = ({ close }) => {
     }
 
     setErrorData(arr.join('\n'))
-
   }
 
   const handleSubmit = function (e) {
@@ -38,7 +37,7 @@ const EditAccount = ({ close }) => {
   return (
     <div className={s.container} >
       <div>
-        <h1 className={s.title}>Sign Up</h1>
+        <h1 className={s.title}>Edit Account</h1>
       </div>
       <div>
         <form>
@@ -81,7 +80,6 @@ const EditAccount = ({ close }) => {
               </select>
             </div>
             <div className={s.inputDiv3}>
-
               {
                 (!errors.name
                   && !errors.phone
@@ -96,7 +94,9 @@ const EditAccount = ({ close }) => {
                     data-tip data-for='tooltip'
                     onClick={(e) => e.preventDefault()}
                   >TO UPDATE</button>
+                
               }
+             
               {(Object.keys(errors).length > 0) ? (
                 <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
                   {errorData.split("\n").map((i, key) => {

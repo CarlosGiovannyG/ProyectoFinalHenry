@@ -60,7 +60,7 @@ const ProfilePic = ({ close }) => {
         />
       }
       <div className={styles.containerBotones} >
-        <button className={styles.ButtonCancel} >CANCEL</button>
+        <button className={styles.ButtonCancel} onClick={close} >CANCEL</button>
         <button
           className={styles.ButtonConfir}
           onClick={handleUpdateProfilePic}

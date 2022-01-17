@@ -34,7 +34,7 @@ const ChangePassword = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <h1 className={styles.title}>Change Password</h1>
       </div>

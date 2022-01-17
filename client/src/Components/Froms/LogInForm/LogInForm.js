@@ -35,7 +35,7 @@ export default function LogInForm({ close }) {
         // llamado al back end para verificar si existe el user y si la contraseña esta bien
         login()
         close()
-        navigate(`${routes.menu}`)
+        navigate(`${routes.UserMainPage}`)
     }
 
     return (

@@ -1,5 +1,9 @@
 .container{
-    margin-top: 5%;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 .title{
@@ -9,7 +13,6 @@
     color: black;
     font-size: 3rem;
     text-align: center;
-    
 }
 
 .inputs{
