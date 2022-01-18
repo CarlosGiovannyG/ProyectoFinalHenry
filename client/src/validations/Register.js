@@ -1,6 +1,10 @@
 
-const register =(input)=> {
+const register = (input) => {
   let errors = {};
+
+  if (!input.username) {
+    errors.username = '• Username is required.';
+  }
 
   if (!input.name) {
     errors.name = '• Name is required.';
@@ -10,16 +14,16 @@ const register =(input)=> {
     errors.lastname = '• Last Name is required.';
   }
 
-  if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(input.password1))) {
-    errors.password1 = '• Passwords must contain at least 8 \ncharacters, a number and a letter.';
+  if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(input.password))) {
+    errors.password = '• Passwords must contain at least 8 \ncharacters, a number and a letter.';
   }
 
-  if (!input.password1) {
-    errors.password1 = '• Password is required.';
+  if (!input.password) {
+    errors.password = '• Password is required.';
   }
 
-  if (input.password1 !== input.password2) {
-    errors.password2 = "• Passwords don't match.";
+  if (input.password !== input.passwordConfirm) {
+    errors.passwordConfirm = "• Passwords don't match.";
   }
 
   if (!/\S+@\S+\.\S+/.test(input.email)) {

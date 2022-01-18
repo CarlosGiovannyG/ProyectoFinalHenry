@@ -14,6 +14,7 @@ const server = new ApolloServer({
     ProductsApi: new Apis.ProductsApi(),
     BillsApi: new Apis.BillsApi(),
     CommentsApi: new Apis.CommentsApi(),
+    UsersApi: new Apis.UsersApi(),
   }),
   introspection: true,
   playground: true,

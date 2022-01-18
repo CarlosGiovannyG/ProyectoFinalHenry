@@ -10,6 +10,6 @@ module.exports = {
   allComments: 'http://localhost:5000/products/bycomment',
 
   // URLS USERS
-
+  allUsers: 'http://localhost:5002/users'
 
 };

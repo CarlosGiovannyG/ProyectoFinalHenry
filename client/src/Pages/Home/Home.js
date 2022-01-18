@@ -27,7 +27,7 @@ export default function Home() {
             <div style={{ position: 'absolute' }} >
                 <Modal isOpen={isOpenModalRegister} closeModal={closeRegister}>
                     <Transsition>
-                        <SignUpForm />
+                        <SignUpForm close={closeRegister} />
                     </Transsition>
                 </Modal>
                 <Modal isOpen={isOpenModalLogin} closeModal={closeLogin}>
