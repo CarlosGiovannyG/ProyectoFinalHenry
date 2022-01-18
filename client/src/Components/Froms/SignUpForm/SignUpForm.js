@@ -4,18 +4,16 @@ import ReactTooltip from 'react-tooltip';
 import validate from '../../../validations';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../Utils/Mutations';
-
-
+import routes from '../../../Helpers/Routes';
 
 export default function SignUpForm({ close }) {
-
+    const url = window.location.href.slice(21);
 
     const [RegisterUsers] = useMutation(Mutations.REGISTER_USERS, {
         onError: err => {
             console.log('ERRORES', err.graphQLErrors[0])
         }
     })
-
 
     const [input, setInput] = React.useState({
         username: '',
@@ -47,6 +45,10 @@ export default function SignUpForm({ close }) {
 
     }
 
+    const handleSelector = function(e){
+        setInput(prevInput => ({ ...prevInput, rool: e.target.value }));
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -70,7 +72,7 @@ export default function SignUpForm({ close }) {
         close()
     }
 
-
+    console.log(input);
     return (
         <div className={s.container} >
             <div>
@@ -143,13 +145,16 @@ export default function SignUpForm({ close }) {
                                 onChange={handleInputChange} />
                         </div>
                         <div className={s.inputDiv3}>
-                            {/* <input
-                                className={s.inputPassword2}
-                                type='text'
-                                name='password2'
-                                placeholder={'Repeat Password...'}
-                                value={input.password2}
-                                onChange={handleInputChange} />   */}
+                            {url===routes.AdminMainPage && 
+                                <select className={s.inputPassword2} onChange={handleSelector}>
+                                    <option value="regular">Regular</option>
+                                    <option value="cook">Cook</option>
+                                    <option value="cashier">Cashier</option>
+                                    <option value="metre">Metre</option>
+                                    <option value="admin">Admin</option>
+                                    <option selected value={null} >Role</option>
+                                </select>
+                            }
                             {
                                 (input.name !== '' && input.username !== ''
                                     && !errors.lastname

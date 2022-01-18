@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
 import { GrClose } from 'react-icons/gr';
 import s from './createBill.module.css'
+import CreateBillProductCart from './Components/CreateBillProductCart';
 
 
 const CreateBill = ({ close }) => {
   //PRODUCTS_BILLS
 
   const { loading, data, error } = useQuery(Queries.PRODUCTS_BILLS);
+  const selector = useRef('Select...');
 
   const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
     refetchQueries: [{ query: Queries.BILLS_KITCHEN },{query: Queries.ALL_BILLS}],
@@ -31,8 +33,10 @@ const CreateBill = ({ close }) => {
     setNewBill({ ...newBill, [e.target.name]: e.target.value })
   }
   const handleSelect = e => {
-    let aux = products.filter(product => { return product._id === e.target.value })
-    setNewBill({ ...newBill, products: [...newBill.products, aux[0]] })
+    if(e.target.value !== 'Select...'){
+      let aux = products.filter(product => { return product._id === e.target.value });
+      setNewBill({ ...newBill, products: [...newBill.products, aux[0]] });
+    }
   }
 
 
@@ -77,6 +81,8 @@ const CreateBill = ({ close }) => {
     close('createBill')
   }
 
+  console.log(newBill.products);
+
   if (loading) {
     return (
       <div>
@@ -92,11 +98,11 @@ const CreateBill = ({ close }) => {
         <h3 className={s.title} >New Bill</h3>
         <div className={s.form}>
           <form >
-            <div className={s.inputs1}>
+            <div className={s.inputs}>
               <input
                 placeholder='Client ID...'
                 type='text'
-                className={s.id}
+                className={s.input}
                 name="idUser"
                 value={newBill.idUser}
                 onChange={handleInputs}
@@ -104,17 +110,18 @@ const CreateBill = ({ close }) => {
               <input
                 placeholder='Table Number...'
                 type='number'
-                className={s.table}
+                className={s.input}
                 name="numeroMesa"
                 value={newBill.numeroMesa}
                 onChange={handleInputs}
               />
             </div>
-            <div className={s.inputs2}>
+            <div className={s.inputs}>
               <select
-                className={s.products}
+                className={s.input}
                 name='es'
                 onChange={handleSelect}
+                ref={selector}
               >
                 <option selected>Select...</option>
                 {products &&
@@ -123,12 +130,22 @@ const CreateBill = ({ close }) => {
                   ))
                 }
               </select>
-              <select name='tipoDePedido' className={s.type} onChange={handleInputs} >
+              <select name='tipoDePedido' className={s.input} onChange={handleInputs} >
                 <option default selected >Select...</option>
                 <option value='salon' >Salon...</option>
                 <option value='mesa' >Delvery...</option>
               </select>
             </div>
+
+            {
+              newBill.products[0] && 
+              <div className={s.cards}>{
+                newBill.products.map((p, index)=>{
+                  return <CreateBillProductCart name={p.name} setNewBill={setNewBill} index={index} newBill={newBill}/>
+                })}
+              </div>
+            }
+
             <div className={s.textareaContainer}>
               <textarea
                 className={s.description}

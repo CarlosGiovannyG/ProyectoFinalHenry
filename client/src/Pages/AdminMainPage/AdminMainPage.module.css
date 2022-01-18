@@ -1,0 +1,26 @@
+.container{
+    margin: 2rem;
+    background-color: #F7F7F7;
+    width: 96vw;
+    min-height: 70vh;
+    border-radius: 1rem;
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    padding: 2rem;
+
+}
+
+.btn{
+    height: 10vh;
+    justify-self: center;
+    width: 80%;
+    font-family: 'Montserrat';
+    font-size: 1.8vw;
+    border: none;
+    background-color: #E6E7E8;
+    border-radius: .5rem;
+}

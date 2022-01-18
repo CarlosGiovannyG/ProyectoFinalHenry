@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import routes from '../Helpers/Routes'
+import routes from '../Helpers/Routes';
 import BillModal from '../Pages/Facturacion/BillById/BillModal';
 import BillClient from '../Pages/Facturacion/BillClient/BillClient';
 import Home from '../Pages/Home/Home';
@@ -12,6 +12,7 @@ import Kitchen from '../Pages/Kitchen/Kitchen';
 import AccountPage from '../Pages/Acoount/AccountPage';
 import UserMainPage from '../Pages/UserMainPage/UserMainPage';
 import Cart from '../Pages/Cart/Cart';
+import AdminMainPage from '../Pages/AdminMainPage/AdminMainPage';
 
 const Rout = () => {
   return (
@@ -28,6 +29,7 @@ const Rout = () => {
           <Route path={routes.kitchen} element={<Layouts><Kitchen /></Layouts>} />
           <Route path={routes.account} element={<Layouts><AccountPage /></Layouts>} />
           <Route path={routes.UserMainPage} element={<Layouts><UserMainPage /></Layouts>} />
+          <Route path={routes.AdminMainPage} element={<Layouts><AdminMainPage /></Layouts>} />
           <Route path={routes.billClient()} element={<BillClient />} />
           <Route path={routes.bill()} element={<BillModal />} />
         </Routes>
