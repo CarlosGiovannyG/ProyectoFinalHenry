@@ -7,19 +7,22 @@ import useAuth from '../../Auth/useAuth';
 import routes from '../../Helpers/Routes'
 
 
+
+
 export default function NavBar({ openLogin, openRegister }) {
 
-    const { isLogged, logout, hasRole } = useAuth()
+    const { isLogged, hasRole } = useAuth()
     const login = isLogged()
-
-    console.log('cashier', hasRole('cashier'))
 
     const navigate = useNavigate();
     const url = window.location.href.slice(21);
 
     const handleLogout = (e) => {
         e.preventDefault();
-        logout()
+        localStorage.removeItem('token')
+        localStorage.removeItem('login')
+        localStorage.removeItem('rool')
+        localStorage.removeItem('userId')
         navigate(`${routes.home}`)
     }
 
@@ -66,6 +69,7 @@ export default function NavBar({ openLogin, openRegister }) {
                     </div>
                     <div className={s.btnDiv2}>
                         <button className={s.btnsHeader} onClick={handleLogout} >LOGOUT</button>
+
                     </div>
 
                 </div>) : null

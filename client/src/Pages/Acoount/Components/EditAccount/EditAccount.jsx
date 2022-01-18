@@ -8,7 +8,15 @@ import validate from '../../../../validations';
 const EditAccount = ({ close }) => {
   const { updateUser, hasRole, user } = useAuth()
 
-  const [input, setInput] = React.useState({ name: user.name, phone: user.phone, role: user.role, email: user.email });
+  const [input, setInput] = React.useState({
+    username: user.username,
+    name: user.name,
+    last_name: user.last_name,
+    email: user.email,
+    addres: user.addres,
+    phone: user.phone,
+    role: user.role,
+  });
   const [errors, setErrors] = React.useState({});
   const [errorData, setErrorData] = React.useState();
 
@@ -46,9 +54,27 @@ const EditAccount = ({ close }) => {
             <div className={s.inputDiv1}>
               <input
                 className={s.inputName}
-                type='text' name='name'
+                type='text'
+                name='username'
+                placeholder={user.username}
+                value={input.username}
+                onChange={handleInputChange} />
+              <input
+                className={s.inputEmail}
+                type='text'
+                name='name'
                 placeholder={user.name}
                 value={input.name}
+                onChange={handleInputChange} />
+
+            </div>
+            <div className={s.inputDiv2}>
+              <input
+                className={s.inputName}
+                type='text'
+                name='last_name'
+                placeholder={user.last_name}
+                value={input.last_name}
                 onChange={handleInputChange} />
               <input
                 className={s.inputEmail}
@@ -61,18 +87,28 @@ const EditAccount = ({ close }) => {
             </div>
             <div className={s.inputDiv2}>
               <input
-                className={s.inputPassword1}
+                className={s.inputName}
+                type='text'
+                name='addres'
+                placeholder={user.addres}
+                value={input.addres}
+                onChange={handleInputChange} />
+              <input
+                className={s.inputEmail}
                 type='text'
                 name='phone'
                 placeholder={user.phone}
                 value={input.phone} onChange={handleInputChange} />
+            </div>
+            <div className={s.inputDiv2}>
+
               <select
-                className={s.inputEmail}
+                className={s.inputSelect}
                 name='role'
                 disabled={hasRole('regular')}
                 onChange={handleInputChange}
               >
-                <option default selected>{user.role}</option>
+                <option default selected>Rool: {user.rool}</option>
                 <option value='cook'>COOK</option>
                 <option value='regular'>REGULAR</option>
                 <option value='cashier'>CASHIER</option>
@@ -94,9 +130,9 @@ const EditAccount = ({ close }) => {
                     data-tip data-for='tooltip'
                     onClick={(e) => e.preventDefault()}
                   >TO UPDATE</button>
-                
+
               }
-             
+
               {(Object.keys(errors).length > 0) ? (
                 <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
                   {errorData.split("\n").map((i, key) => {

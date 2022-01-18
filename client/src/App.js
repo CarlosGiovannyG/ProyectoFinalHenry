@@ -1,8 +1,7 @@
 import React from "react";
 import AuthProvider from "./Auth/AuthProvider";
 import Rout from "./Routes/Routes";
-import { ToastContainer } from 'react-toastify';
-
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <AuthProvider>
         <Rout />
       </AuthProvider>
-      <ToastContainer />
+      <Toaster />
     </>
   );
 }

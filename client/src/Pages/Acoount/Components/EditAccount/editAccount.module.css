@@ -68,6 +68,16 @@
     outline: none;
 }
 
+.inputSelect{
+     border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 150px;
+    margin-left: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
 .inputDiv3{
     margin-top: 30px;
 }

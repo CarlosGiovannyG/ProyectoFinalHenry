@@ -1,7 +1,7 @@
 // configuracion mensaje de error por email o username duplicados
 const handleDuplicateKeyError = (err, res) => {
   const fiel = Object.keys(err.keyValue);
-  const code = 200;
+  const code = 201;
   const error = `Ya existe una cuenta con ese  ${fiel}.`;
   res.status(code).send({ message: error, field: fiel });
 }
@@ -11,12 +11,12 @@ const handleDuplicateKeyError = (err, res) => {
 const handleValidationtError = (err, res) => {
   let errors = Object.values(err.errors).map(err => err.message);
   let fields = Object.values(err.errors).map(err => err.path);
-  let code = 200;
+  let code = 201;
   if (errors.length > 1) {
-    const formattedErrors = errors.join(' ');
-    res.status(code).send({message:formattedErrors, field:fields})
+    const formattedErrors = errors.join(' ').split('');
+    res.status(code).send({ message: formattedErrors, field: fields })
   } else {
-    res.status(code).send({ message: errors, field:fields})
+    res.status(code).send({ message: errors, field: fields })
   }
 }
 

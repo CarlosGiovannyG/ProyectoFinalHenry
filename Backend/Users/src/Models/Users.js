@@ -36,20 +36,22 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    select: false,
     required: [true, 'Introduzca una contraseña'],
     minLength: [8, 'La contraseña debe tener minimo 8 caracteres'],
   },
-    rool: {
+  rool: {
     type: String,
-    default: 'regular',
+    default: '',
   },
   avatar: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   registration: {
     type: Date,
-    default:Date.now(),
+    default: Date.now(),
   },
   lastLogin: {
     type: Date,
@@ -59,4 +61,6 @@ const UserSchema = new Schema({
 
 
 const User = model('User', UserSchema);
+
+
 module.exports = User;

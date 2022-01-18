@@ -1,20 +1,16 @@
 const { ApolloServer } = require('apollo-server');
-
-
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const Apis = require('./sources')
 
 
-
-
 const server = new ApolloServer({
-  context: () => { }, typeDefs, resolvers,
+  context: () => { },
+  typeDefs, resolvers,
   dataSources: () => ({
     ProductsApi: new Apis.ProductsApi(),
     BillsApi: new Apis.BillsApi(),
     CommentsApi: new Apis.CommentsApi(),
-    UsersApi: new Apis.UsersApi(),
   }),
   introspection: true,
   playground: true,
