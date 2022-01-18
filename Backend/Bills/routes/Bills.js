@@ -21,6 +21,8 @@ router.post("/cocina/:id", require("../controllers/idCocinaBills"));
 
 router.post("/cocina/closed/:id", require("../controllers/cocinaClosedBills"));
 
+router.post("/cocina/working/:id", require("../controllers/cocinaWorkingBills"));
+
 
 //Obtener Facturas De Un Cliente (Por ID del cliente enviado como query)
 //TODO RUTA LISTA APIGATEWAY
