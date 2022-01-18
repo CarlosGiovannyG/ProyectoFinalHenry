@@ -90,6 +90,7 @@ type Mutation{
   CreateBills(input:createBill):response
   UpdateBill(input:updateBill):allBills
   ClosedBill(input:billsId):response
+  WorkingBill(input:billsId):response
   PaidBill(input:billsId):response
   DeleteBill(input:billsId):response
 }

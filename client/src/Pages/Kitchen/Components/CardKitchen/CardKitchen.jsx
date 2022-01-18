@@ -15,27 +15,46 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 
   const [ClosedBill] = useMutation(
     Mutations.CLOSED_BILL,
-    { 
-      refetchQueries: [{query: Queries.BILLS_KITCHEN}],
+    {
+      refetchQueries: [{ query: Queries.BILLS_KITCHEN }],
       onError: (error) => { console.log('Errores', error.graphQLErrors); }
     }
   )
 
-  const handleClose = async function(id){
-    
-    const response = await ClosedBill({
-    variables: {
-      "input": {
-        "id": info._id
-      }
+  const [WorkingBill] = useMutation(
+    Mutations.WORKING_BILL,
+    {
+      refetchQueries: [{ query: Queries.ALL_BILLS }],
+      onError: (error) => { console.log('Errores', error.graphQLErrors); }
     }
+  )
+
+  const handleClose = async function (id) {
+
+    const response = await ClosedBill({
+      variables: {
+        "input": {
+          "id": info._id
+        }
+      }
     })
-    let respuesta = response.data.ClosedBill.message; 
+    let respuesta = response.data.ClosedBill.message;
     alert(respuesta);
   }
 
-  const handleButton = function(){
+  const handleButton = async function () {
     setReady(!ready);
+
+
+    const response = await WorkingBill({
+      variables: {
+        "input": {
+          "id": info._id
+        }
+      }
+    })
+    let respuesta = response.data.WorkingBill.message;
+    alert(respuesta);
   }
 
   function getRandomInt(max) {           // vamos a asignar una mesa aleatoria hasta que tenamos las reales
@@ -44,48 +63,34 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 
   return (
     <Transsition>
-        <div className={styles.container}>
-          <div className={styles.containerHeader}>
-            <div className={styles.titles}>
-              <div className={styles.table}>TABLE {getRandomInt(20)}</div>
-              <div className={styles.type}>{info.tipoDePedido}</div>
-              <div className={styles.typeDescription}>{info.description}</div>
-            </div>
-            <div className={styles.containerBotones}>
-              <GrClose size={'2rem'} className={styles.btnCancel} onClick={handleClose} />
-            </div>
+      <div className={styles.container}>
+        <div className={styles.containerHeader}>
+          <div className={styles.titles}>
+            <div className={styles.table}>TABLE {getRandomInt(20)}</div>
+            <div className={styles.type}>{info.tipoDePedido}</div>
           </div>
-          <div className={styles.containerProduct}>
-            {info.products.map(dato => (
-              <CardProductBill dato={dato} />
-            ))}
-          </div>
-          <div className={styles.btnCloseContainer}>
-            
-            {
-              !ready && <Transsition><button className={styles.btnClose} onClick={handleButton}  >MARK AS READY</button></Transsition>
-            }
-            {
-              ready && <Transsition><button className={styles.btnClose} onClick={handleButton} >READY</button></Transsition>
-            }
-            
+          <div className={styles.containerBotones}>
+            <GrClose size={'2rem'} className={styles.btnCancel} onClick={handleClose} />
           </div>
         </div>
-        </Transsition>
+        <div className={styles.containerProduct}>
+          {info.products.map(dato => (
+            <CardProductBill dato={dato} />
+          ))}
+        </div>
+        <div className={styles.btnCloseContainer}>
 
-      //* {infoKitchen &&
-      //   <div className={styles.containerModal}>
-      //     <GrClose size='2.5rem' className={styles.close}  />
-      //     <div className={styles.containerCentro}>
-      //       <div className={styles.title}> {infoKitchen.description}</div>
-      //       <div className={styles.title}>Mesa #: {infoKitchen.numeroMesa}</div>
-      //       <div className={styles.title}>Status: {infoKitchen.statusCocina}</div>
-      //       <div className={styles.title}>Entrega en: {infoKitchen.tipoDePedido}</div>
-      //       <div className={styles.title}>Fecha creación: {infoKitchen.date}</div>
-      //       <div className={styles.title}>Hora de entrega: </div>
-      //     </div>
-      //   </div>
-      // }
+          {
+            !ready && <Transsition><button className={styles.btnClose} onClick={handleButton}  >MARK AS READY</button></Transsition>
+          }
+          {
+            ready && <Transsition><button className={styles.btnClose}  >WORKING</button></Transsition>
+          }
+
+        </div>
+      </div>
+    </Transsition>
+
 
   )
 }

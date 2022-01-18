@@ -12,10 +12,21 @@ const Bills = {
 }
   `,
 
+
   CLOSED_BILL: gql`
 
   mutation ClosedBill($input: billsId) {
   ClosedBill(input: $input) {
+    message
+  }
+}
+ 
+  `,
+
+  WORKING_BILL: gql`
+
+  mutation WorkingBill($input: billsId) {
+  WorkingBill(input: $input) {
     message
   }
 }

@@ -49,6 +49,11 @@ class BillsApi extends RESTDataSource {
   }
 
 
+  async WorkingBill(input) {
+    return await this.post(`/cocina/working/${input}`)
+  }
+
+
 
 };
 
