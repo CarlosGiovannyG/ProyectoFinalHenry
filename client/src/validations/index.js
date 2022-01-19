@@ -3,7 +3,7 @@ import validateEditAccount from './EditAccount'
 import createComment from './CreateComment';
 import login from './Login';
 import register from './Register';
-
+import CreateProduct from './CreateProduct';
 
 const validate = {
   Register: register,
@@ -11,7 +11,7 @@ const validate = {
   Password: validatePassword,
   EditAccount: validateEditAccount,
   CreateComment: createComment,
-
+  CreateProduct: CreateProduct
 }
 
 export default validate;
