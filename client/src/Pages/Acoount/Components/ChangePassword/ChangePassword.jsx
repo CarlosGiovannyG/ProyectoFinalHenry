@@ -2,21 +2,34 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import styles from './changePassword.module.css'
 import validate from '../../../../validations';
+import { useMutation } from '@apollo/client';
+import Mutations from '../../../../Utils/Mutations';
+import Queries from '../../../../Utils/Queries';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../../Helpers/Routes'
 
 
+const ChangePassword = ({ userId, close }) => {
 
-const ChangePassword = () => {
+  const [ChangePassword] = useMutation(Mutations.CHANGE_PASSWORD, {
+    refetchQueries: [{ query: Queries.USER_BY_ID }],
+    onError: error => {
+      toast.error(error.graphQLErrors[0].extensions.response.body.mensage)
+      console.log(error.graphQLErrors[0])
+    }
+  });
 
-
-  const [input, setInput] = React.useState({ currentPassword: '', password1: null, password2: null, });
+  const navigate = useNavigate();
+  const [input, setInput] = React.useState({ currentPassword: '', password1: '', password2: '', });
   const [errors, setErrors] = React.useState({});
   const [errorData, setErrorData] = React.useState();
 
-  const handleInputChange = function (e) {    // esta funcion recibe los inputs para majearlos.
+  const handleInputChange = function (e) {
 
-    setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
+    setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
 
-    let errors = validate.Password({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+    let errors = validate.Password({ ...input, [e.target.name]: e.target.value });
     setErrors(errors);
 
     let arr = [];
@@ -28,9 +41,43 @@ const ChangePassword = () => {
 
   }
 
-  const handleSubmit = function (e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // llamado al back end para postear el nuevo usuario si no existe
+
+    let response = await ChangePassword({
+      variables: {
+        "input": {
+          "id": userId,
+          "currentPassword": input.currentPassword,
+          "newPassword": input.password1
+        }
+      }
+
+    })
+
+    const { data } = response
+    if (data) {
+      const { message } = data.ChangePassword
+      toast.success(message)
+
+      localStorage.removeItem('login')
+      localStorage.removeItem('rool')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('token')
+      close()
+      navigate(`${routes.home}`)
+
+    } else {
+      close()
+      setInput({
+        currentPassword: '',
+        password1: '',
+        password2: '',
+      })
+      setErrors({})
+      setErrorData()
+    }
+
   }
 
   return (

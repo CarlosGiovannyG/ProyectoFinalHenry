@@ -12,15 +12,20 @@ class UsersApi extends RESTDataSource {
     credencials = new Object(credencials);
     return await this.post(`/register`, credencials)
   }
-  
+
   async LoginUsers(credencials) {
     credencials = new Object(credencials);
     return await this.post(`/login`, credencials)
   }
-  
+
   async UserById(input) {
-   
+
     return await this.get(`/${input.id}`)
+  }
+
+  async ChangePassword(credencials) {
+    credencials = new Object(credencials);
+    return await this.post(`/${credencials.id}/admin`, credencials)
   }
 
 };

@@ -47,9 +47,7 @@ const AccountPage = () => {
     if (UserById.message) {
       toast.error(UserById.message)
     } else {
-      console.log(UserById);
       return (
-
         <div className={styles.container} >
           <div className={styles.containerCentro}>
             <div className={styles.containerImage}>
@@ -78,7 +76,7 @@ const AccountPage = () => {
 
           <Transsition>
             <Modal isOpen={isOpenChangePassword} closeModal={closeChangePassword}>
-              <ChangePassword />
+              <ChangePassword userId={userId} close={closeChangePassword} />
             </Modal>
           </Transsition>
           <Modal isOpen={isOpenEditAccount} closeModal={closeEditAccount}>

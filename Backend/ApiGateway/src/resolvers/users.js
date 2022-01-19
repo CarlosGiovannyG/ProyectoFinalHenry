@@ -6,12 +6,11 @@ const UsersResolvers = {
     },
 
     UserById: async (_, { input }, { UserAccess, dataSources }) => {
-      
-      if (input.id === UserAccess.userId ) {
-        console.log(UserAccess, 'RESOLVER');
+
+      if (input.id === UserAccess.userId) {
         return await dataSources.UsersApi.UserById(input)
-      }else {
-        return { message:'Acceso no autorizado'}
+      } else {
+        return { message: 'Acceso no autorizado' }
       }
     },
   },
@@ -21,6 +20,18 @@ const UsersResolvers = {
     RegisterUsers: async (_, { input }, { dataSources }) => {
       return await dataSources.UsersApi.RegisterUsers(input)
     },
+
+    ChangePassword: async (_, { input }, { UserAccess, dataSources }) => {
+
+      if (input.id === UserAccess.userId) {
+        return await dataSources.UsersApi.ChangePassword(input)
+      } else {
+        return { message: 'Acceso no autorizado' }
+      }
+
+    },
+
+
   }
 
 };

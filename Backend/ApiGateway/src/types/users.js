@@ -48,6 +48,12 @@ type responseUserById{
 
 }
 
+input changePassword{
+  id:String
+  currentPassword:String
+  newPassword:String
+}
+
 
 type Query{
 LoginUsers(input:loginUsers):responseLogin
@@ -56,20 +62,8 @@ UserById(input:userById):responseUserById
 
 type Mutation {
   RegisterUsers(input:userData):responseUsers
+  ChangePassword(input:changePassword):responseUsers
 }
 `;
 
-module.exports = usersTypes; 
-
-// {
-// "input": {
-// "username": "pruebaApollo",
-// "name": "pruebaApollo",
-// "last_name": "pruebaApollo",
-// "email": "pruebaApollo@apollo.com",
-// "addres": "pruebaApollo",
-// "phone": "3043912387",
-// "password": "pruebaApollo",
-// "rool": "admin"
-// }
-// }
+module.exports = usersTypes;

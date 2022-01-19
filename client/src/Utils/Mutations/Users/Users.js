@@ -14,6 +14,16 @@ const Users = {
   
   `,
 
+  CHANGE_PASSWORD: gql`
+   
+  mutation ChangePassword($input: changePassword) {
+   ChangePassword(input: $input) {
+    message
+  }
+}
+  
+  `,
+
 };
 
 export default Users 
