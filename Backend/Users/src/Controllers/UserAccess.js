@@ -8,8 +8,11 @@ const access = async (req, res) => {
 
   user ? res.json(
     {
-      userId: user._id,
-      rool:user.rool,
+      UserAccess: {
+        userId: user._id,
+        rool: user.rool,
+      }
+
     }) : res.status(500).json({ message: "Usuario no encontrado" })
 
 }

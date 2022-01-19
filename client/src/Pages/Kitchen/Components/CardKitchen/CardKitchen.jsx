@@ -16,7 +16,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ClosedBill] = useMutation(
     Mutations.CLOSED_BILL,
     {
-      refetchQueries: [{ query: Queries.BILLS_KITCHEN }],
+      refetchQueries: [{ query: Queries.BILLS_KITCHEN }, { query: Queries.ALL_BILLS }],
       onError: (error) => { console.log('Errores', error.graphQLErrors); }
     }
   )
@@ -96,3 +96,6 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 }
 
 export default CardKitchen
+
+
+

@@ -41,9 +41,11 @@
 }
 
 .containerImage:hover .profile {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
+
+
 .containerImage {
   overflow: hidden;
 }
@@ -80,6 +82,20 @@
   font-weight: 600;
 }
 .ButtonEdit:hover {
+  background-color: rgba(219, 215, 215, 0.658);
+  color: rgb(11, 129, 31);
+}
+
+.ButtonEditInfo {
+  padding: 5%;
+  background-color: rgb(11, 129, 31);
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-weight: 600;
+}
+.ButtonEditInfo:hover {
   background-color: rgba(219, 215, 215, 0.658);
   color: rgb(11, 129, 31);
 }

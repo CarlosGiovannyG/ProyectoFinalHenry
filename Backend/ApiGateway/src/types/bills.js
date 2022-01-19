@@ -10,6 +10,7 @@ input updateBill{
   products:[productsId]
   numeroMesa:Int
   tipoDePedido:String
+  statusCocina:String
    subTotal: Int
   total: Int
 }

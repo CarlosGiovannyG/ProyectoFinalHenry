@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
   const [modalAllBills, setModalAllBills] = useState(false);
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
-  const [user, setUser] = useState(null)
 
   const openCloseModal = (caso, idBill) => {
     (caso === 'allBills') && setModalAllBills(!modalAllBills);
@@ -28,75 +27,6 @@ const AuthProvider = ({ children }) => {
     };
 
   }
-
-  //TODO LOGIN RECIBO TOKEN
-  //TODO VOY ABACK I COMPRUEBO TOKEN RECIBO ID MESSAGE EXITO
-
-
-
-  const login = async (object) => {
-
-    let responseLogin = await axios.post(`${URL_USERS}/login`, object);
-    if (responseLogin.status === 200) {
-      const { message, token } = responseLogin.data
-      localStorage.setItem('token', token)
-
-      let responseAccess = await axios.post(`${URL_USERS}/access`, {}, {
-        headers: {
-          'Authorization': token
-        }
-      })
-
-      const { userId, rool } = responseAccess.data
-
-
-      localStorage.setItem('login', true)
-      localStorage.setItem('userId', userId)
-      localStorage.setItem('rool', rool)
-
-      let responseUser = await axios.get(`${URL_USERS}/${userId}`,
-        {
-          headers: {
-            Authorization: `${localStorage.getItem('token')}`
-          }
-        });
-      const { addres, avatar, email, id, image, last_name, name, phone, username } = responseUser.data
-      setUser({
-        addres: addres,
-        avatar: avatar,
-        email: email,
-        name: name,
-        phone: phone,
-        username: username,
-        id: id,
-        image: image,
-        last_name: last_name,
-        rool: rool,
-      })
-      return { message }
-    } else {
-      let status = responseLogin.status
-      const { message } = responseLogin.data
-      return { message, status }
-    }
-  }
-
-  const userById = async (userId) => {
-
-    let responseUser = await axios.get(`${URL_USERS}/${userId}`,
-      {
-        headers: {
-          Authorization: `${localStorage.getItem('token')}`
-        }
-      });
-
-
-    // const { addres, avatar, email, id, image, last_name, name, phone, rool, username } = responseUser.data
-
-
-    return responseUser.data
-  }
-
 
   const updateUser = (data) => {
 
@@ -112,10 +42,7 @@ const AuthProvider = ({ children }) => {
     billKitchenDetail,
 
     URL_USERS,
-    login,
     isLogged,
-    userById,
-    user,
     hasRole,
     updateUser,
   }
@@ -128,10 +55,3 @@ const AuthProvider = ({ children }) => {
 }
 
 export default AuthProvider
-
-
-
-
-
-
-

@@ -19,10 +19,11 @@ export default function NavBar({ openLogin, openRegister }) {
 
     const handleLogout = (e) => {
         e.preventDefault();
-        localStorage.removeItem('token')
+        // localStorage.removeItem('token')
         localStorage.removeItem('login')
         localStorage.removeItem('rool')
         localStorage.removeItem('userId')
+        localStorage.removeItem('token')
         navigate(`${routes.home}`)
     }
 
@@ -52,7 +53,7 @@ export default function NavBar({ openLogin, openRegister }) {
                     }
                 </div>
             }
-            {login && !hasRole('cashier') && !hasRole('cook') ?
+            {login && hasRole('regular') ?
                 (<div className={s.headerbtns}>
                     <div className={s.btnDiv1} >
                         {
@@ -100,6 +101,27 @@ export default function NavBar({ openLogin, openRegister }) {
                     <div className={s.btnDiv1} >
                         {
                             links.iscook.map(link => (
+                                <button
+                                    key={link.id}
+                                    className={s.btnsHeader}
+                                    onClick={() => {
+                                        navigate(`${link.path}`)
+                                    }}
+                                >{link.title}</button>
+                            ))
+                        }
+                    </div>
+                    <div className={s.btnDiv2}>
+                        <button className={s.btnsHeader} onClick={handleLogout} >LOGOUT</button>
+                    </div>
+
+                </div>) : null
+            }
+            {login && hasRole('admin') ?
+                (<div className={s.headerbtns}>
+                    <div className={s.btnDiv1} >
+                        {
+                            links.isAdmin.map(link => (
                                 <button
                                     key={link.id}
                                     className={s.btnsHeader}

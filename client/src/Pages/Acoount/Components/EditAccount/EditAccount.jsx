@@ -5,8 +5,8 @@ import useAuth from '../../../../Auth/useAuth';
 import validate from '../../../../validations';
 
 
-const EditAccount = ({ close }) => {
-  const { updateUser, hasRole, user } = useAuth()
+const EditAccount = ({ close, user }) => {
+  const { updateUser, hasRole } = useAuth()
 
   const [input, setInput] = React.useState({
     username: user.username,
@@ -58,14 +58,17 @@ const EditAccount = ({ close }) => {
                 name='username'
                 placeholder={user.username}
                 value={input.username}
-                onChange={handleInputChange} />
+                onChange={handleInputChange}
+              />
               <input
                 className={s.inputEmail}
                 type='text'
                 name='name'
                 placeholder={user.name}
                 value={input.name}
-                onChange={handleInputChange} />
+                onChange={handleInputChange}
+
+              />
 
             </div>
             <div className={s.inputDiv2}>
@@ -75,14 +78,17 @@ const EditAccount = ({ close }) => {
                 name='last_name'
                 placeholder={user.last_name}
                 value={input.last_name}
-                onChange={handleInputChange} />
+                onChange={handleInputChange}
+
+              />
               <input
                 className={s.inputEmail}
                 type='text'
                 name='email'
                 placeholder={user.email}
                 value={input.email}
-                onChange={handleInputChange} />
+                onChange={handleInputChange}
+              />
 
             </div>
             <div className={s.inputDiv2}>
@@ -92,29 +98,20 @@ const EditAccount = ({ close }) => {
                 name='addres'
                 placeholder={user.addres}
                 value={input.addres}
-                onChange={handleInputChange} />
+                onChange={handleInputChange}
+
+              />
               <input
-                className={s.inputEmail}
+                className={s.inputPassword1}
                 type='text'
                 name='phone'
                 placeholder={user.phone}
-                value={input.phone} onChange={handleInputChange} />
-            </div>
-            <div className={s.inputDiv2}>
-
-              <select
-                className={s.inputSelect}
-                name='role'
-                disabled={hasRole('regular')}
+                value={input.phone}
                 onChange={handleInputChange}
-              >
-                <option default selected>Rool: {user.rool}</option>
-                <option value='cook'>COOK</option>
-                <option value='regular'>REGULAR</option>
-                <option value='cashier'>CASHIER</option>
-                <option value='admin'>ADINISTRADOR</option>
-              </select>
+
+              />
             </div>
+
             <div className={s.inputDiv3}>
               {
                 (!errors.name

@@ -4,6 +4,7 @@ import BillsClients from './Bills/BillsClients';
 import BillsKitchen from './Bills/BillsKitchen';
 import statsApp from './Stats/StatsApp';
 import Comments from './Comments/Comments';
+import Users from './Users/Users';
 
 
 const Queries = {
@@ -28,6 +29,11 @@ const Queries = {
 
   // BILLS KITCHEN
   BILLS_KITCHEN: BillsKitchen.BILLS_KITCHEN,
+
+
+  // USERS
+  LOGIN_USERS: Users.LOGIN_USERS,
+  USER_BY_ID: Users.USER_BY_ID,
 
 
 }

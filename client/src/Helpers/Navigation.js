@@ -35,6 +35,7 @@ const links = {
     { id: 1, title: 'HOME', path: routes.home },
     { id: 2, title: 'MENU', path: routes.menu },
     { id: 3, title: 'ACCOUNT', path: routes.account },
+    { id: 4, title: 'ADMIN PAGE', path: routes.AdminMainPage },
   ],
 
 };

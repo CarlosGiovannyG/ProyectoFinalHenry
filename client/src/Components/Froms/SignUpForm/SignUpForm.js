@@ -2,18 +2,22 @@ import React from 'react';
 import s from './SignUpForm.module.css';
 import ReactTooltip from 'react-tooltip';
 import validate from '../../../validations';
+import toast from 'react-hot-toast';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../Utils/Mutations';
 import routes from '../../../Helpers/Routes';
-import toast from 'react-hot-toast';
-import axios from 'axios'
-import useAuth from '../../../Auth/useAuth';
+
 
 
 export default function SignUpForm({ close }) {
-const url = window.location.href.slice(21);
-    const { URL_USERS } = useAuth()
 
+    const url = window.location.href.slice(21);
+
+    const [RegisterUsers] = useMutation(Mutations.REGISTER_USERS, {
+        onError: err => {
+            console.log('ERRORES', err.graphQLErrors[0])
+        }
+    })
 
     const [input, setInput] = React.useState({
         username: '',
@@ -40,40 +44,39 @@ const url = window.location.href.slice(21);
         for (const err in errors) {
             arr.push(errors[err]);
         }
-
         setErrorData(arr.join('\n'))
-
     }
-
-    const handleSelector = function(e){
+    const handleSelector = function (e) {
         setInput(prevInput => ({ ...prevInput, rool: e.target.value }));
     }
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // llamado al back end para postear el nuevo usuario si no existe
 
-        let responseRegister = await axios.post(
-            `${URL_USERS}/register`,
-            input
-        );
-        let status = responseRegister.status
-        const { message } = responseRegister.data
+        let response = await RegisterUsers({
+            variables: {
+                "input": {
+                    "username": input.username,
+                    "name": input.name,
+                    "last_name": input.last_name,
+                    "email": input.email,
+                    "addres": input.addres,
+                    "phone": input.phone,
+                    "password": input.password,
+                    "rool": input.rool,
+                }
+            }
+        })
 
-        if (status === 200) {
+        console.log(response);
+        const resp = response.data.RegisterUsers.message
 
-            toast.success(message)
-            close()
-        } else {
-
-            toast.error(message)
-        }
-
-
-        console.log(status, message)
-
+        toast.success(resp)
+        close()
     }
 
-    console.log(input);
     return (
         <div className={s.container} >
             <div>
@@ -146,7 +149,7 @@ const url = window.location.href.slice(21);
                                 onChange={handleInputChange} />
                         </div>
                         <div className={s.inputDiv3}>
-                            {url===routes.AdminMainPage && 
+                            {url === routes.AdminMainPage &&
                                 <select className={s.inputPassword2} onChange={handleSelector}>
                                     <option value="regular">Regular</option>
                                     <option value="cook">Cook</option>

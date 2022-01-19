@@ -8,12 +8,12 @@ import ReactTooltip from 'react-tooltip';
 import { useState } from 'react';
 
 
-const BillDetail = ({ billDeatil, setBillDeatil,close }) => {
+const BillDetail = ({ billDeatil, setBillDeatil, close }) => {
 
   const [change, setChange] = useState(false)
 
   const [UpdateBill] = useMutation(Mutations.UPDATE_BILL, {
-    refetchQueries: [{ query: Queries.ALL_BILLS }],
+    refetchQueries: [{ query: Queries.ALL_BILLS }, { query: Queries.BILLS_KITCHEN }],
     onError: error => { console.log(error.graphQLErrors) }
   });
 
@@ -30,7 +30,7 @@ const BillDetail = ({ billDeatil, setBillDeatil,close }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    alert('Submit')
     let products = billDeatil.products.map(({ _id, name, price }) => { return { _id, name, price } })
 
     let subTotal = 0
@@ -41,23 +41,23 @@ const BillDetail = ({ billDeatil, setBillDeatil,close }) => {
       total = (subTotal * 20 / 100) + subTotal
     }
 
-        let response = await UpdateBill({
-          variables: {
-            "input": {
-              "id": billDeatil._id,
-              "idUser": '456445',
-              "description": billDeatil.description,
-              "products": products,
-              "numeroMesa": Number(billDeatil.numeroMesa),
-              "tipoDePedido": billDeatil.tipoDePedido,
-              "subTotal": subTotal,
-              "total": total
-            }
-          }
-    
-    
-        })
-    
+    let response = await UpdateBill({
+      variables: {
+        "input": {
+          "id": billDeatil._id,
+          "idUser": '456445',
+          "description": billDeatil.description,
+          "products": products,
+          "numeroMesa": Number(billDeatil.numeroMesa),
+          "tipoDePedido": billDeatil.tipoDePedido,
+          statusCocina: 'Open',
+          "subTotal": subTotal,
+          "total": total
+        }
+      }
+
+    })
+
     let res = response.data.UpdateBill.message
     console.log('RESPPUESTA', response)
     close()

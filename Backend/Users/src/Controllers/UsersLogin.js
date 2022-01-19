@@ -20,11 +20,11 @@ const login = async (req, res, next) => {
       user.lastLogin = Date.now()
 
       await user.save();
-
       res.json({
         message: "Inicio de sesion exitoso",
         token: services.createToken(user),
-
+        rool: user.rool,
+        userId: user._id,
       })
 
     } else {

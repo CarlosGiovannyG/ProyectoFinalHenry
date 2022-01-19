@@ -5,11 +5,17 @@ import useAuth from '../../../Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../../Helpers/Routes';
 import validate from '../../../validations';
-// import { toast } from 'react-toastify';
 import toast from 'react-hot-toast';
+import { useLazyQuery } from '@apollo/client';
+import Queries from '../../../Utils/Queries';
+
+
+
 
 
 export default function LogInForm({ close }) {
+
+    const [LoginUsers] = useLazyQuery(Queries.LOGIN_USERS);
 
     const { login } = useAuth()
     const [input, setInput] = React.useState({ email: '', password: '' });
@@ -35,16 +41,44 @@ export default function LogInForm({ close }) {
 
     const handleSubmit = async function (e) {
         e.preventDefault();
-        let { message, status } = await login(input)
 
-        if (!status) {
+        let response = await LoginUsers({
+            variables: {
+                "input": {
+                    "email": input.email,
+                    "password": input.password,
+                }
+            }
+        })
+        const { message, token, rool, userId } = response.data.LoginUsers
+        console.log(response);
+
+        if (token) {
+            localStorage.setItem('login', true)
+            localStorage.setItem('token', token)
+            localStorage.setItem('rool', rool)
+            localStorage.setItem('userId', userId)
             toast.success(message)
+
             close()
             navigate(`${routes.UserMainPage}`)
         } else {
             toast.error(message)
             close()
         }
+
+
+
+        //         let { message, status } = await login(input)
+        // 
+        //         if (!status) {
+        //             
+        //             
+        //             
+        //         } else {
+        //             
+        //            
+        //         }
 
     }
 
