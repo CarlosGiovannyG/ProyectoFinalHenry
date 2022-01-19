@@ -5,20 +5,20 @@ import validate from '../../../validations';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../Utils/Mutations';
 import routes from '../../../Helpers/Routes';
+import toast from 'react-hot-toast';
+import axios from 'axios'
+import useAuth from '../../../Auth/useAuth';
+
 
 export default function SignUpForm({ close }) {
-    const url = window.location.href.slice(21);
+const url = window.location.href.slice(21);
+    const { URL_USERS } = useAuth()
 
-    const [RegisterUsers] = useMutation(Mutations.REGISTER_USERS, {
-        onError: err => {
-            console.log('ERRORES', err.graphQLErrors[0])
-        }
-    })
 
     const [input, setInput] = React.useState({
         username: '',
         name: '',
-        lastname: '',
+        last_name: '',
         addres: '',
         phone: '',
         password: '',
@@ -52,24 +52,25 @@ export default function SignUpForm({ close }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let response = await RegisterUsers({
-            variables: {
-                "input": {
-                    "username": input.username,
-                    "name": input.name,
-                    "last_name": input.lastname,
-                    "email": input.email,
-                    "addres": input.addres,
-                    "phone": input.phone,
-                    "password": input.password,
-                    "rool": input.rool,
-                }
-            }
-        })
+        let responseRegister = await axios.post(
+            `${URL_USERS}/register`,
+            input
+        );
+        let status = responseRegister.status
+        const { message } = responseRegister.data
 
-        const resp = response.data.RegisterUsers.message
-        alert(resp)
-        close()
+        if (status === 200) {
+
+            toast.success(message)
+            close()
+        } else {
+
+            toast.error(message)
+        }
+
+
+        console.log(status, message)
+
     }
 
     console.log(input);
@@ -101,9 +102,9 @@ export default function SignUpForm({ close }) {
                             <input
                                 className={s.inputName}
                                 type='text'
-                                name='lastname'
+                                name='last_name'
                                 placeholder={'Lastname...'}
-                                value={input.lastname}
+                                value={input.last_name}
                                 onChange={handleInputChange} />
                             <input
                                 className={s.inputEmail}
@@ -157,7 +158,7 @@ export default function SignUpForm({ close }) {
                             }
                             {
                                 (input.name !== '' && input.username !== ''
-                                    && !errors.lastname
+                                    && !errors.last_name
                                     && !errors.password
                                     && !errors.passwordConfirm
                                     && !errors.email) ?

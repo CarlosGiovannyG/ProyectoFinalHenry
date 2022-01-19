@@ -6,14 +6,14 @@ import statsApp from './Stats/StatsApp';
 import Comments from './Comments/Comments';
 
 
-const Queries = { 
-  
+const Queries = {
+
   //STATS_APP
   STATS_APP: statsApp.STATS_APP,
-  
+
   //COMMENTS
   COMMENT_BY_PRODUCT: Comments.COMMENT_BY_PRODUCT,
-  
+
   //PRODUCTS
   ALL_PRODUCTS: Products.ALL_PRODUCTS,
   FIND_PRODUCT: Products.FIND_PRODUCT,
@@ -28,6 +28,8 @@ const Queries = {
 
   // BILLS KITCHEN
   BILLS_KITCHEN: BillsKitchen.BILLS_KITCHEN,
+
+
 }
 
 

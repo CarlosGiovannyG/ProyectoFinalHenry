@@ -1,14 +1,20 @@
 import { createContext } from 'react';
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios'
+
+
 
 export const AuthContex = createContext();
 
 
+
 const AuthProvider = ({ children }) => {
+  const URL_USERS = 'http://localhost:5002/users'
   const [modalAllBills, setModalAllBills] = useState(false);
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
+  const [user, setUser] = useState(null)
 
   const openCloseModal = (caso, idBill) => {
     (caso === 'allBills') && setModalAllBills(!modalAllBills);
@@ -26,28 +32,78 @@ const AuthProvider = ({ children }) => {
   //TODO LOGIN RECIBO TOKEN
   //TODO VOY ABACK I COMPRUEBO TOKEN RECIBO ID MESSAGE EXITO
 
-  const [user, setUser] = useState(null);
 
-  const login = (credencials) => {
-    setUser({
-      id: 1,
-      name: 'Carlos',
-      email: 'cggualtero@hotmail.com',
-      phone: '3043912387',
 
-      role: 'cook'  //TODO: 'cashier'  'regular' 'cook'
-    })
+  const login = async (object) => {
+
+    let responseLogin = await axios.post(`${URL_USERS}/login`, object);
+    if (responseLogin.status === 200) {
+      const { message, token } = responseLogin.data
+      localStorage.setItem('token', token)
+
+      let responseAccess = await axios.post(`${URL_USERS}/access`, {}, {
+        headers: {
+          'Authorization': token
+        }
+      })
+
+      const { userId, rool } = responseAccess.data
+
+
+      localStorage.setItem('login', true)
+      localStorage.setItem('userId', userId)
+      localStorage.setItem('rool', rool)
+
+      let responseUser = await axios.get(`${URL_USERS}/${userId}`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem('token')}`
+          }
+        });
+      const { addres, avatar, email, id, image, last_name, name, phone, username } = responseUser.data
+      setUser({
+        addres: addres,
+        avatar: avatar,
+        email: email,
+        name: name,
+        phone: phone,
+        username: username,
+        id: id,
+        image: image,
+        last_name: last_name,
+        rool: rool,
+      })
+      return { message }
+    } else {
+      let status = responseLogin.status
+      const { message } = responseLogin.data
+      return { message, status }
+    }
   }
+
+  const userById = async (userId) => {
+
+    let responseUser = await axios.get(`${URL_USERS}/${userId}`,
+      {
+        headers: {
+          Authorization: `${localStorage.getItem('token')}`
+        }
+      });
+
+
+    // const { addres, avatar, email, id, image, last_name, name, phone, rool, username } = responseUser.data
+
+
+    return responseUser.data
+  }
+
 
   const updateUser = (data) => {
-    setUser({
-      ...user,
-      ...data,
-    })
+
   }
-  const isLogged = () => !!user;
-  const logout = () => setUser(null);
-  const hasRole = (role) => user?.role === role;
+
+  const isLogged = () => localStorage.getItem('login');
+  const hasRole = (role) => localStorage.getItem('rool') === role;
 
   const contextValue = {
     modalAllBills,
@@ -55,13 +111,13 @@ const AuthProvider = ({ children }) => {
     kitchenDeatil,
     billKitchenDetail,
 
-    user,
+    URL_USERS,
     login,
     isLogged,
-    logout,
+    userById,
+    user,
     hasRole,
     updateUser,
-
   }
 
   return (

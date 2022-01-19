@@ -10,8 +10,8 @@ const register = (input) => {
     errors.name = '• Name is required.';
   }
 
-  if (!input.lastname) {
-    errors.lastname = '• Last Name is required.';
+  if (!input.last_name) {
+    errors.last_name = '• Last Name is required.';
   }
 
   if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(input.password))) {

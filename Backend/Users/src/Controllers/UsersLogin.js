@@ -1,36 +1,42 @@
 const User = require('../Models/Users');
-const md5 = require('md5');
+const bcrypt = require('bcrypt');
+const services = require('../Helpers/services')
 
 
 
-const login = (req, res, next) => {
+const login = async (req, res, next) => {
+
+  const { email, password } = req.body;
+
 
   try {
-    const avatar = md5(req.body.email);
 
-    const newUser = new User({
-      username: req.body.username,
-      name: req.body.name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      addres: req.body.addres,
-      phone: req.body.phone,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      rool: req.body.rool,
-      avatar: avatar,
-    })
+    const user = await User.findOne({ email })
+    const passwordVer = bcrypt.compareSync(password, user.password);
 
-    newUser.save(err => {
-      if (err) {
-        console.log(err);
-        return next(err);
-      }
-      return res.json({ message: 'registro exitoso' })
-    })
+
+    if (user && passwordVer) {
+
+      user.lastLogin = Date.now()
+
+      await user.save();
+
+      res.json({
+        message: "Inicio de sesion exitoso",
+        token: services.createToken(user),
+
+      })
+
+    } else {
+      res.status(201).json({ message: "Usuario y/o Contraseña incorrecta" })
+    }
+
   } catch (error) {
-
+    console.log(error)
+    res.status(500).json({ message: "Ocurrio un error" })
   }
+
+
 }
 
 
