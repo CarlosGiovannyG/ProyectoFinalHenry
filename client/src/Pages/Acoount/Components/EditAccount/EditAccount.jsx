@@ -6,7 +6,7 @@ import validate from '../../../../validations';
 
 
 const EditAccount = ({ close, user }) => {
-  const { updateUser, hasRole } = useAuth()
+  const { updateUser } = useAuth()
 
   const [input, setInput] = React.useState({
     username: user.username,

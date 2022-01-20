@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import useAuth from '../../../../Auth/useAuth';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import styles from './profilePic.module.css';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../../Helpers/Routes'
 
-const ProfilePic = ({ close }) => {
-  const { updateUser } = useAuth();
+
+
+
+const ProfilePic = ({ close, userId }) => {
+
+  const navigate = useNavigate();
+  const inputFileRef = useRef()
+  const formData = new FormData()
+  const { URL_USERS } = useAuth();
   const [fileName, setFileName] = useState('Subir Imagen')
   const [selectedFile, setSelectedFile] = useState(null)
 
@@ -27,10 +37,37 @@ const ProfilePic = ({ close }) => {
     reader.readAsDataURL(file)
   }
 
-  const handleUpdateProfilePic = () => {
-    if (!selectedFile) return toast.error('Debes seleccionar una imagen');
-    updateUser({ profilePic: selectedFile })
+  const handleCancel = () => {
+
+    setFileName('Subir Imagen')
+    setSelectedFile(null)
     close()
+    navigate(`${routes.home}`)
+
+  }
+
+
+  const handleUpdateProfilePic = async () => {
+
+    if (!selectedFile) return toast.error('Debes seleccionar una imagen');
+
+    const image = inputFileRef.current.files[0];
+    formData.append('image', image)
+
+    const response = await axios({
+      url: `${URL_USERS}/${userId}/image`,
+      method: 'POST',
+      data: formData,
+    })
+
+    const { message } = response.data
+    toast.success(message)
+    console.log(response.data);
+    setFileName('Subir Imagen')
+    setSelectedFile(null)
+    close()
+
+
   }
 
   return (
@@ -44,6 +81,7 @@ const ProfilePic = ({ close }) => {
           <input
             type="file"
             id="picture"
+            ref={inputFileRef}
             accept='.jpg, .jpeg, .gif, .png'
             className={styles.PicturInput}
             onChange={handleFileChange}
@@ -60,7 +98,7 @@ const ProfilePic = ({ close }) => {
         />
       }
       <div className={styles.containerBotones} >
-        <button className={styles.ButtonCancel} onClick={close} >CANCEL</button>
+        <button className={styles.ButtonCancel} onClick={handleCancel} >CANCEL</button>
         <button
           className={styles.ButtonConfir}
           onClick={handleUpdateProfilePic}

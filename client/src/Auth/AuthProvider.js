@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 import React from 'react'
 import { useState } from 'react';
-import axios from 'axios'
 
 
 
@@ -28,9 +27,6 @@ const AuthProvider = ({ children }) => {
 
   }
 
-  const updateUser = (data) => {
-
-  }
 
   const isLogged = () => localStorage.getItem('login');
   const hasRole = (role) => localStorage.getItem('rool') === role;
@@ -44,7 +40,6 @@ const AuthProvider = ({ children }) => {
     URL_USERS,
     isLogged,
     hasRole,
-    updateUser,
   }
 
   return (

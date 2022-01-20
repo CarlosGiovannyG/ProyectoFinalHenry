@@ -1,16 +1,13 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require(`dotenv`).config();
 }
 
-const express = require("express");
-const config = require("./Server/Config")
+const app = require('./app');
 
-require("./Config/database");
-
-const app = config(express());
-
-
+//import la coneccion a la base de datos
+require('./config/database')
 
 app.listen(app.get('port'), () => {
-  console.log(`🚀 listen on port, http://localhost:${app.get('port')}`)
-})
+  console.log(`🚀 listening on port , http://localhost:${app.get('port')}`);
+  console.log('Environment:', process.env.NODE_ENV);
+});

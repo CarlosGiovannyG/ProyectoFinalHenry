@@ -17,7 +17,6 @@ export default function LogInForm({ close }) {
 
     const [LoginUsers] = useLazyQuery(Queries.LOGIN_USERS);
 
-    const { login } = useAuth()
     const [input, setInput] = React.useState({ email: '', password: '' });
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();
@@ -51,7 +50,6 @@ export default function LogInForm({ close }) {
             }
         })
         const { message, token, rool, userId } = response.data.LoginUsers
-        console.log(response);
 
         if (token) {
             localStorage.setItem('login', true)
@@ -66,19 +64,6 @@ export default function LogInForm({ close }) {
             toast.error(message)
             close()
         }
-
-
-
-        //         let { message, status } = await login(input)
-        // 
-        //         if (!status) {
-        //             
-        //             
-        //             
-        //         } else {
-        //             
-        //            
-        //         }
 
     }
 

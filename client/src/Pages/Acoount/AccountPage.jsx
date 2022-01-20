@@ -11,7 +11,6 @@ import ProfilePic from './Components/ProfilePic/ProfilePic';
 import Loading from '../../Components/Loading/Loading';
 import { useLazyQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
-import useAuth from '../../Auth/useAuth';
 import toast from 'react-hot-toast';
 
 
@@ -43,7 +42,6 @@ const AccountPage = () => {
   }
   if (data && !loading) {
     const { UserById } = data
-
     if (UserById.message) {
       toast.error(UserById.message)
     } else {
@@ -91,13 +89,12 @@ const AccountPage = () => {
           </Modal>
           <Modal isOpen={isOpenProfilePic} closeModal={closeProfilePic}>
             <Transsition>
-              <ProfilePic close={closeProfilePic} />
+              <ProfilePic userId={userId} close={closeProfilePic} />
             </Transsition>
           </Modal>
         </div>
       )
     }
-
   }
   return (
     <div className={styles.loading}>
