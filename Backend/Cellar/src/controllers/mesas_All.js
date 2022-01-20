@@ -11,7 +11,7 @@ const mesas_all =  (req, res) => {
          let mesas=c.map(m=>{
              console.log(m.dataValues.numero);
              console.log(m.dataValues.capacidad);
-             return "mesa:"+m.dataValues.numero+"C"+m.dataValues.capacidad
+             return {mesa:m.dataValues.numero , cap:m.dataValues.capacidad}
          })
          console.log(mesas);
          mesas.sort();
