@@ -46,6 +46,17 @@
     height: 20%;
 }
 
+.PicturInput{
+  display: none;
+}
+
+.picture{
+  position: relative;
+  width: 180px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 5%;
+}
 
 .inputDescription{
     border: none;

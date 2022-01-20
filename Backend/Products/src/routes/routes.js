@@ -1,9 +1,8 @@
 const { Router } = require("express")
 const router = Router();
-const ImagenesCreate = require('../config/storge')
 
 
-router.post("/", ImagenesCreate.single('image'), require("../controllers/productsCreate"))
+router.post("/", require("../controllers/productsCreate"))
 
 router.post("/:id/like", require("../controllers/productLike"))
 

@@ -1,14 +1,21 @@
-import React from 'react';
 import s from './CreateProduct.module.css';
 import ReactTooltip from 'react-tooltip';
 import validate from '../../../validations'
+import React, { useRef, useState } from 'react';
+import axios from 'axios'
+import toast from 'react-hot-toast';
+
+
 
 export default function LogInForm({ close }) {
-    const [input, setInput] = React.useState({ title: '', description: null, price: null, category: 'Category...', image: ''});
-    const [errors, setErrors] = React.useState({});
-    const [errorData, setErrorData] = React.useState();
 
-
+    const inputFileRef = useRef()
+    const formData = new FormData()
+    const [input, setInput] = useState({ name: '', description: null, price: null, category: 'Category...' });
+    const [fileName, setFileName] = useState('Select Image')
+    const [selectedFile, setSelectedFile] = useState(null)
+    const [errors, setErrors] = useState({});
+    const [errorData, setErrorData] = useState();
 
     const handleInputChange = function (e) {    // esta funcion recibe los inputs para majearlos.
 
@@ -26,13 +33,58 @@ export default function LogInForm({ close }) {
 
     }
 
-    const handleSubmit = function (e) {
-        e.preventDefault();
-        // enviar mutation al back cuando este el endpoint listo
+    const handleFileChange = (e) => {
+        const [file] = e.target.files
+        const sizeImage_50MB = 25 * 512 * 512;
+        const isValidSize = file.size < sizeImage_50MB
+        const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
+        const isValidType = isNameOfOneImageRegEx.test(file.name);
+
+        if (!isValidSize) return toast.error('El máximo es de 25MB')
+        if (!isValidType) return toast.error('Solo se permiten imagenes')
+
+        setFileName(file.name)
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setSelectedFile(reader.result)
+        }
+        reader.readAsDataURL(file)
     }
 
-    console.log(input);
-    console.log(errors)
+
+    //http://localhost:5000/products
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!selectedFile) return toast.error('Debes seleccionar una imagen');
+
+        const image = inputFileRef.current.files[0];
+        formData.append('name', input.name)
+        formData.append('description', input.description)
+        formData.append('price', input.price)
+        formData.append('category', input.category)
+        formData.append('id_autor', localStorage.getItem('userId'))
+        formData.append('image', image)
+
+        const response = await axios({
+            url: `http://localhost:5000/products`,
+            method: 'POST',
+            data: formData,
+        })
+
+        const { message } = response.data
+        toast.success(message)
+        setFileName('Select Image')
+        setSelectedFile(null)
+        setInput({
+            name: '',
+            description: null,
+            price: null,
+            category: 'Category...'
+        })
+        close()
+
+    }
 
     return (
 
@@ -48,9 +100,9 @@ export default function LogInForm({ close }) {
                             <input
                                 className={s.input}
                                 type='text'
-                                name='title'
+                                name='name'
                                 placeholder={'Title...'}
-                                value={input.title}
+                                value={input.name}
                                 onChange={handleInputChange} />
                             <select name='category' className={s.input} onChange={handleInputChange}>
                                 <option value="main">Main</option>
@@ -68,13 +120,16 @@ export default function LogInForm({ close }) {
                                 placeholder={'Price...'}
                                 value={input.price}
                                 onChange={handleInputChange} />
+                            <label className={s.input} for="picture">{fileName}</label>
                             <input
-                                className={s.input}
-                                type='text'
-                                name='image'
-                                placeholder={'Image...'}
-                                value={input.image}
-                                onChange={handleInputChange} />
+                                type="file"
+                                id="picture"
+                                ref={inputFileRef}
+                                accept='.jpg, .jpeg, .gif, .png'
+                                className={s.PicturInput}
+                                onChange={handleFileChange}
+                            />
+
                         </div>
                         <div className={s.inputDivDescription}>
                             <textarea
@@ -86,9 +141,18 @@ export default function LogInForm({ close }) {
                                 value={input.description}
                                 onChange={handleInputChange} />
                         </div>
+                        {selectedFile &&
+
+                            // TODO: PREVISUALIZACION DE IMAEN CARGADA
+                            <img
+                                className={s.picture}
+                                src={selectedFile}
+                                alt='profile-previw'
+                            />
+                        }
                         <div className={s.btnDiv}>
                             {
-                                (input.title !== '' && !errors.title && !errors.price && !errors.category && !errors.image && !errors.description ) ?
+                                (input.name !== '' && !errors.name && !errors.price && !errors.category && !errors.description) ?
                                     <button
                                         className={s.btnRegister}
                                         type="submit"
@@ -108,7 +172,7 @@ export default function LogInForm({ close }) {
                                 </ReactTooltip>) : null
                             }
                         </div>
-                     </div>
+                    </div>
                 </form>
             </div>
         </div>
