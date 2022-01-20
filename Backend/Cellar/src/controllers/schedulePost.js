@@ -9,7 +9,7 @@ const entry = async (req, res) => {
     const schedule= db.schedule;    // tabla de fechas de la base de datos
     const mesa= db.mesa;    // tabla mesa de la base de datos
     const usertable= db.usertable;
-    const { fecha, numero , idclient}= req.body ;  // la fecha y el numero de sillas 
+    const { fecha, estamesa , idclient}= req.body ;  // la fecha y el numero de sillas 
     //length
     let mesastotal=[];
     if(!fecha) return res.json( { message:"revisar datos ",fecha, numero , idclient } )
@@ -30,7 +30,7 @@ mesastotal = mesastotal.map(m=>{
   mesastotal.sort();
   mesastotal=mesastotal.toString()
   console.log("mesas totales: ",mesastotal);
-let verif =  verificacion({fecha , numero , idclient }) //funcion de verificacion 
+let verif =  verificacion({fecha , estamesa , idclient }) //funcion de verificacion 
 console.log(verif);
 if( verif.bandera1 && verif.bandera2 && verif.bandera3){  
   fechareserva =  verif.fechareserva
@@ -42,12 +42,11 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
         console.log("En esta fecha todas las mesas entan libres entan libres");
         // separa la mesa y entrega el resto         
        
-        let x= separamesa( mesastotal , numero ); //mesastotal es lo definitivo
+        let x= separamesa( mesastotal , estamesa ); //mesastotal es lo definitivo
            
         console.log("probando separamesa    probando separamesa   probando separamesa");
-        console.log(x); //{tomandomesa , libres: true, tomandosilla, lamesa }
-        if(!x.libres) return res.json({ message:"capacidad por mesa excedida, disminuye sillas y reserve otra mesa" } );
-        
+        console.log(x); //{tomandomesa ,  lamesa }
+                
         try {
           await usertable.create({
             idclient:  idclient, 
@@ -58,25 +57,14 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
           console.log(error);         
           return res.send(error);          
         }
-        /*
-        try {
-             await mesa.create({
-            numero: 36,       
-            capacidad: 4,               
-        });
-        } catch (error) {
-          console.log(error);         
-          return res.send(error);
-        }*/
-        mesastotal= x.tomandomesa;
-        let sillasLibres= x.tomandosilla
+        
+        mesastotal= x.tomandomesa;        
   
         try {
             console.log("En el try catch de schedulePost");
              const newIput= await schedule.create({
                fecha: fechareserva,
-               mesasLibres: mesastotal,
-               sillasLibres
+               mesasLibres: mesastotal,               
              });
             let messagefinal="Su reservación inicia: "+fechareserva+"  por toda una hora"
             return res.json(  { message:"la reservación esta creada con exito", messagefinal} );
@@ -86,12 +74,15 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
   
       } 
       if(k!=null){
-        //si existe la fecha entrada, se calcula si la 
-        //realizacion de la reservación es posible
-        let x= separamesa( k.dataValues.mesasLibres , numero );
-        console.log( x );
-        if(!x.libres) return res.json({ message:"capacidad por mesa excedida, disminuye sillas y reserve otra mesa" } );
-        
+
+         //si la reservación es posible actualiza la base de datos
+        let x= separamesa( k.dataValues.mesasLibres , estamesa );
+        console.log( x ); //{tomandomesa ,  lamesa }
+       
+        console.log("si la reservación es posible actualiza la base de datos :")
+        let tomandomesa= x.tomandomesa
+               
+                
         try {
           await usertable.create({
             idclient:  idclient, 
@@ -103,18 +94,12 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
           return res.send(error);          
         }
                 
-        //si la reservación es posible actualiza la base de datos
-        console.log("si la reservación es posible actualiza la base de datos :")
-        let tomandomesa= x.tomandomesa
-        let tomandosilla= x.sumasillas;
-
         
         try {
             console.log("En el try catch del put");
             const newIput= await schedule.update({
                 fecha: fechareserva,
-                mesasLibres: tomandomesa,
-                sillasLibres: tomandosilla
+                mesasLibres: tomandomesa                
               }, {where: {
                 fecha: fechareserva                                
               }});
@@ -129,7 +114,7 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
     .catch((err) => console.log("error error error error en schedulePost  "))
 
 }else{
-  let message ="el dato fecha: "+fecha+" masa: "+numero+ "idclient: "+idclient+  " no es válido "
+  let message ="el dato fecha: "+fecha+" masa: "+estamesa+ "idclient: "+idclient+  " no es válido "
     console.log(message)
     return res.json( { message } )
 }
