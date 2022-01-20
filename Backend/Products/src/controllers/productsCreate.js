@@ -34,7 +34,7 @@ const create = async (req, res) => {
 
       await fs.unlink(req.file.path)
 
-      res.json({ mmessages: 'Producto creado con exito' })
+      res.json({ message: 'Producto creado con exito' })
 
     } else {
 
@@ -42,12 +42,12 @@ const create = async (req, res) => {
 
       res.status(500).send({ message: 'Solo puedes guardar imagenes' })
     }
-    
+
   } catch (error) {
 
-    res.status(500).send({ message: 'Ocurrio un error inesperado', error})
+    res.status(500).send({ message: 'Ocurrio un error inesperado', error })
   }
-  
+
 };
 
 module.exports = create;

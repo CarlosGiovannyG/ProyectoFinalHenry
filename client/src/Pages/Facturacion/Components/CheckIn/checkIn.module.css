@@ -1,0 +1,68 @@
+.container{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.title{
+    width: 90%;
+    font-family: 'Suranna', serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.Label{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 200px;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.inputMount{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 200px;
+    margin-left: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.Change{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 400px;
+    margin-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+.inputDiv{
+    margin-top: 30px;
+}
+
+.inputs{
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.btnRegister{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 30px;
+    width: 300px;
+    margin-left: 30px;
+    cursor: pointer;
+
+}

@@ -13,6 +13,10 @@ const billsResolvers = {
       return await dataSources.BillsApi.BillsById(input.id)
     },
 
+    BillsCheckIn: async (_, { input }, { dataSources }) => {
+      return await dataSources.BillsApi.BillsCheckIn(input.id)
+    },
+
     BillsByClient: async (_, { input }, { dataSources }) => {
       return await dataSources.BillsApi.BillsByClient(input.id)
     },

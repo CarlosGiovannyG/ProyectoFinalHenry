@@ -29,7 +29,6 @@ const Bills = {
 
 
   BILL_BY_ID: gql`
-
   query BillsById($input: billsId) {
   BillsById(input: $input) {
     numeroMesa
@@ -49,8 +48,18 @@ const Bills = {
     tipoDePedido
   }
 }
-  
-   
+  `,
+
+  BILL_CHECK_IN: gql`
+  query BillsCheckIn($input: billsId) {
+  BillsCheckIn(input: $input) {
+    sumatotal
+    nombre {
+      cantidad
+      total
+    }
+  }
+}
   `,
 
 };

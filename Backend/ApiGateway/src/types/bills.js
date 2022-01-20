@@ -68,13 +68,14 @@ type products{
   price:Int
 }
 
-type billsCaja{
-productos:caja
-}
 
-type caja{
-  nombre:String
-  cantidad:Int
+type billsCheckIn{
+  sumatotal:String
+  nombre:productTotal
+  
+}
+type  productTotal{
+cantidad:Int
   total:Int
 }
  
@@ -85,6 +86,7 @@ allBills:[allBills]
 BillsById(input:billsId):allBills
 BillsByClient(input:billsId):[allBills]
 BillsKitchen:[billsKitchen]
+BillsCheckIn(input:billsId):billsCheckIn
 }
 
 type Mutation{

@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
-import { GrClose } from 'react-icons/gr';
 import s from './createBill.module.css'
 import CreateBillProductCart from './Components/CreateBillProductCart';
 

@@ -24,15 +24,24 @@ const Bills = {
   `,
 
   WORKING_BILL: gql`
-
+  
   mutation WorkingBill($input: billsId) {
-  WorkingBill(input: $input) {
+    WorkingBill(input: $input) {
+      message
+    }
+  }
+  
+  `,
+
+  DELETE_BILL: gql`
+
+  mutation DeleteBill($input: billsId) {
+  DeleteBill(input: $input) {
     message
   }
 }
  
   `,
-
 
 
 };

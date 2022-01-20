@@ -23,6 +23,7 @@ const Queries = {
   //BILLS
   ALL_BILLS: Bills.ALL_BILLS,
   BILL_BY_ID: Bills.BILL_BY_ID,
+  BILL_CHECK_IN: Bills.BILL_CHECK_IN,
 
   // BILLS CLIENTS
   BILL_BY_CLIENT: BillsClients.BILL_BY_CLIENT,

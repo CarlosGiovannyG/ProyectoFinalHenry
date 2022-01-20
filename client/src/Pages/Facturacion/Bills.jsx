@@ -11,16 +11,25 @@ import Loading from '../../Components/Loading/Loading';
 import { GrEdit, GrCheckmark, GrTrash } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
 import BillDetail from './Components/BillDetail/BillDetail';
+import CheckIn from './Components/CheckIn/CheckIn';
+import toast from 'react-hot-toast';
 
 
 const Prueba = () => {
 
-  const [idBill, setIdBill] = useState(null)
+  const [checkIn, setCheckIn] = useState(null)
   const [isOpenCreateBill, openCreateBill, closeCreateBill] = useModal();
   const [isOpenBillDetail, openBillDetail, closeBillDetail] = useModal();
+  const [isOpenCheckIn, openCheckIn, closeCheckIn] = useModal();
   const [billDeatil, setBillDeatil] = useState(null)
+  const [billId, setBillId] = useState(null)
 
   const [PaidBill] = useMutation(Mutations.PAID_BILL, {
+    refetchQueries: [{ query: Queries.ALL_BILLS }],
+    onError: error => { console.log(error.graphQLErrors) }
+  });
+
+  const [DeleteBill] = useMutation(Mutations.DELETE_BILL, {
     refetchQueries: [{ query: Queries.ALL_BILLS }],
     onError: error => { console.log(error.graphQLErrors) }
   });
@@ -29,6 +38,7 @@ const Prueba = () => {
 
   const { loading, data, error } = useQuery(Queries.ALL_BILLS);
   const [getBillId] = useLazyQuery(Queries.BILL_BY_ID);
+  const [BillsCheckIn] = useLazyQuery(Queries.BILL_CHECK_IN);
   if (loading) {
     return (
       <div>
@@ -49,20 +59,44 @@ const Prueba = () => {
 
   }
 
-  const handlePaidBill = async (id) => {
+  const handleCheckIn = async (id) => {
 
+    let resultado = await BillsCheckIn({ variables: { input: { id: id } } })
+    const { sumatotal } = resultado.data.BillsCheckIn
+    setCheckIn(sumatotal)
+    setBillId(id)
+    openCheckIn()
+
+  }
+
+  const handlePaidBill = async () => {
     let response = await PaidBill({
+      variables: {
+        "input": {
+          "id": billId
+        }
+      }
+
+    })
+
+    let res = response.data.PaidBill.message
+    toast.success(res)
+
+  }
+
+  const handleClosedBill = async (id) => {
+
+    let response = await DeleteBill({
       variables: {
         "input": {
           "id": id
         }
       }
 
-
     })
 
-    let res = response.data.PaidBill.message
-    alert(res)
+    let res = response.data.DeleteBill.message
+    toast.success(res)
 
   }
 
@@ -103,7 +137,6 @@ const Prueba = () => {
                         data-tip data-for='edit'
                         onClick={() => {
                           billById(dato._id)
-
                         }}
                       />
                     </td>
@@ -111,10 +144,16 @@ const Prueba = () => {
                       size='1.5rem'
                       data-tip data-for='save'
                       onClick={() => {
-                        handlePaidBill(dato._id)
+                        handleCheckIn(dato._id)
                       }}
                     /></td>
-                    <td ><GrTrash size='1.5rem' data-tip data-for='delete' /></td>
+                    <td ><GrTrash
+                      size='1.5rem'
+                      data-tip data-for='delete'
+                      onClick={() => {
+                        handleClosedBill(dato._id)
+                      }}
+                    /></td>
                   </tr>
                 ))
               }
@@ -130,6 +169,9 @@ const Prueba = () => {
       </Modal>
       <Modal isOpen={isOpenBillDetail} closeModal={closeBillDetail} >
         {<BillDetail close={closeBillDetail} billDeatil={billDeatil} setBillDeatil={setBillDeatil} />}
+      </Modal>
+      <Modal isOpen={isOpenCheckIn} closeModal={closeCheckIn} >
+        {<CheckIn close={closeCheckIn} checkIn={checkIn} handlePaidBill={handlePaidBill} />}
       </Modal>
     </div>
   )

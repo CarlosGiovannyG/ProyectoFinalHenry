@@ -29,6 +29,10 @@ class BillsApi extends RESTDataSource {
     return await this.get(`/cliente/${input}`)
   }
 
+  async BillsCheckIn(input) {
+    return await this.get(`/caja/${input}`)
+  }
+
 
   async UpdateBill(credencials) {
     credencials = new Object(credencials);

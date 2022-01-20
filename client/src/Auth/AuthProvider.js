@@ -10,12 +10,10 @@ export const AuthContex = createContext();
 
 const AuthProvider = ({ children }) => {
   const URL_USERS = 'http://localhost:5002/users'
-  const [modalAllBills, setModalAllBills] = useState(false);
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
 
   const openCloseModal = (caso, idBill) => {
-    (caso === 'allBills') && setModalAllBills(!modalAllBills);
     if (caso === 'kitchenDeatil') {
       setKitchenDeatil(!billKitchenDetail)
       setBillKitchenDetail(idBill)
@@ -32,7 +30,6 @@ const AuthProvider = ({ children }) => {
   const hasRole = (role) => localStorage.getItem('rool') === role;
 
   const contextValue = {
-    modalAllBills,
     openCloseModal,
     kitchenDeatil,
     billKitchenDetail,
