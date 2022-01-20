@@ -14,7 +14,7 @@ router.get("/:id", require("../controllers/productById"))
 
 router.get("/bycomment/:id", require("../controllers/commentByProduct"))
 
-
+router.post("/update/:id", require("../controllers/productUpdate"))
 
 
 module.exports = router
