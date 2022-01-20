@@ -3,6 +3,17 @@
     height: 9.5vh; 
     width: 100%;
     background-color: rgb(255, 255, 255);
+    z-index: 10;
+}
+
+.headerHome{
+    display: flex;
+    height: 9.5vh; 
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    z-index: 10;
 }
 
 .icon{

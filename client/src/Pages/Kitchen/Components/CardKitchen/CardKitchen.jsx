@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GrClose } from 'react-icons/gr';
 import useAuth from '../../../../Auth/useAuth';
 import CardProductBill from '../CardProducBill/CardProductBill';
@@ -12,6 +11,7 @@ import Queries from '../../../../Utils/Queries';
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ready, setReady] = React.useState(false);
+  const [mesa, setMesa] = React.useState(Math.floor(Math.random() * 30));
 
   const [ClosedBill] = useMutation(
     Mutations.CLOSED_BILL,
@@ -44,8 +44,6 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 
   const handleButton = async function () {
     setReady(!ready);
-
-
     const response = await WorkingBill({
       variables: {
         "input": {
@@ -57,16 +55,12 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
     alert(respuesta);
   }
 
-  function getRandomInt(max) {           // vamos a asignar una mesa aleatoria hasta que tenamos las reales
-    return Math.floor(Math.random() * max);
-  }
-
   return (
     <Transsition>
       <div className={styles.container}>
         <div className={styles.containerHeader}>
           <div className={styles.titles}>
-            <div className={styles.table}>TABLE {getRandomInt(20)}</div>
+            <div className={styles.table}>TABLE {mesa}</div>
             <div className={styles.type}>{info.tipoDePedido}</div>
           </div>
           <div className={styles.containerBotones}>
@@ -81,10 +75,10 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
         <div className={styles.btnCloseContainer}>
 
           {
-            !ready && <Transsition><button className={styles.btnClose} onClick={handleButton}  >MARK AS READY</button></Transsition>
+            !ready && <Transsition><button className={styles.btnClose} onClick={handleButton}  >START</button></Transsition>
           }
           {
-            ready && <Transsition><button className={styles.btnClose}  >WORKING</button></Transsition>
+            ready && <Transsition><button className={styles.btnClose}  >MARK AS READY</button></Transsition>
           }
 
         </div>

@@ -6,16 +6,16 @@ const links = {
   notLogin: [
     { id: 1, title: 'HOME', path: routes.home },
     { id: 2, title: 'MENU', path: routes.menu },
-    { id: 3, title: 'ABOUT US', path: routes.about },
-    { id: 4, title: 'CONTACT', path: routes.contact },
+    { id: 3, title: 'ABOUT', path: `${routes.home}#Navbar` },
+    { id: 4, title: 'CONTACT', path: `${routes.home}#AboutUs` },
 
   ],
   isLogin: [
     { id: 1, title: 'HOME', path: routes.home },
     { id: 2, title: 'ORDER', path: routes.UserMainPage },
     { id: 3, title: 'ACCOUNT', path: routes.account },
-    { id: 4, title: 'ABOUT US', path: routes.about },
-    { id: 5, title: 'CONTACT', path: routes.contact },
+    { id: 4, title: 'ABOUT', path: `${routes.home}#Navbar` },
+    { id: 5, title: 'CONTACT', path: `${routes.home}#AboutUs` },
 
     // 
     // { id: 7, title: 'CHECK IN', path: routes.bills },
