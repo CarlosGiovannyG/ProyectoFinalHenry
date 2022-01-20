@@ -7,6 +7,8 @@ import LogInForm from '../../Components/Froms/LogInForm/LogInForm';
 import Transsition from '../../Hooks/Transsition';
 import useModal from '../../Hooks/useModal';
 import Modal from '../../Components/Modal/Modal';
+import Info from './Components/Info/Info';
+import Footer from '../../Components/Footer/Footer';
 
 export default function Home() {
 
@@ -24,6 +26,9 @@ export default function Home() {
                 <NewSwiper />
             </div>
             <NavBar openLogin={openLogin} openRegister={openRegister} />
+            <Info/>
+            <Footer/>
+
             <div style={{ position: 'absolute' }} >
                 <Modal isOpen={isOpenModalRegister} closeModal={closeRegister}>
                     <Transsition>

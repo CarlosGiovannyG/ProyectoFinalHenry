@@ -1,0 +1,50 @@
+.container{
+    width: 30rem;
+    height: 12rem;
+    background-color: #E6E7E8;
+    border-radius: .7rem;
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem;
+    justify-content: space-around;
+
+}
+
+.img{
+    display: inline;
+    height: 9rem;
+    width: 9rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name{
+    font-family: 'Suranna';
+    font-size: 2rem;
+}
+
+.icons{
+    display: flex;
+    flex-direction: row;
+    height: 21%;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: .5rem;
+}
+
+.icon{
+    transition: transform .5s;
+}
+
+.icon:hover{
+    cursor: pointer;
+    transform: translate(0px, -5px);
+    transition: transform .2s;
+}

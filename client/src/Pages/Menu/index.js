@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MenuJumbotron } from "./components/MenuJumbotron/MenuJumbotron";
 import { MenuContainer } from "./components/MenuContainer/MenuContainer";
-import { Footer } from "../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
 import s from './index.module.css';
