@@ -51,7 +51,6 @@ const Prueba = () => {
 
   const handlePaidBill = async (id) => {
 
-    console.log(id)
     let response = await PaidBill({
       variables: {
         "input": {

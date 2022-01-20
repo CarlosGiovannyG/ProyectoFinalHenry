@@ -59,7 +59,6 @@ const BillDetail = ({ billDeatil, setBillDeatil, close }) => {
     })
 
     let res = response.data.UpdateBill.message
-    console.log('RESPPUESTA', response)
     close()
 
   }

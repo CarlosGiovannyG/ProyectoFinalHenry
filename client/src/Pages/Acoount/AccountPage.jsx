@@ -31,7 +31,7 @@ const AccountPage = () => {
 
   if (loading) {
     return <div >
-
+      <Loading />
     </div>
 
   }

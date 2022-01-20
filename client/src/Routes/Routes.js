@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import routes from '../Helpers/Routes';
-import BillModal from '../Pages/Facturacion/BillById/BillModal';
 import BillClient from '../Pages/Facturacion/BillClient/BillClient';
 import Home from '../Pages/Home/Home';
 import { Menu } from '../Pages/Menu';
@@ -31,7 +30,6 @@ const Rout = () => {
           <Route path={routes.UserMainPage} element={<Layouts><UserMainPage /></Layouts>} />
           <Route path={routes.AdminMainPage} element={<Layouts><AdminMainPage /></Layouts>} />
           <Route path={routes.billClient()} element={<BillClient />} />
-          <Route path={routes.bill()} element={<BillModal />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -31,6 +31,16 @@ const UsersResolvers = {
 
     },
 
+    ChangeInfo: async (_, { input }, { UserAccess, dataSources }) => {
+
+      if (input.id === UserAccess.userId) {
+        return await dataSources.UsersApi.ChangeInfo(input)
+      } else {
+        return { blocking: 'Acceso no autorizado' }
+      }
+
+    },
+
 
   }
 

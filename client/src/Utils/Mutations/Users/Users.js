@@ -24,6 +24,17 @@ const Users = {
   
   `,
 
+  CHANGE_INFO: gql`
+   
+  mutation ChangeInfo($input: changeInfo) {
+  ChangeInfo(input: $input) {
+    message
+     blocking
+  }
+}
+  
+  `,
+
 };
 
 export default Users 

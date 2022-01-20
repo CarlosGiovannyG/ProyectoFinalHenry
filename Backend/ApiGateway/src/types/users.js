@@ -15,6 +15,7 @@ input userData{
 }
 type responseUsers {
   message: String
+  blocking:String
 }
 
 input loginUsers{
@@ -54,6 +55,15 @@ input changePassword{
   newPassword:String
 }
 
+input changeInfo{
+  id:String
+  username:String
+  name:String
+  last_name:String
+  email:String
+  addres:String
+  phone:String
+}
 
 type Query{
 LoginUsers(input:loginUsers):responseLogin
@@ -63,6 +73,7 @@ UserById(input:userById):responseUserById
 type Mutation {
   RegisterUsers(input:userData):responseUsers
   ChangePassword(input:changePassword):responseUsers
+  ChangeInfo(input:changeInfo):responseUsers
 }
 `;
 

@@ -14,13 +14,13 @@ const CreateBill = ({ close }) => {
   const selector = useRef('Select...');
 
   const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
-    refetchQueries: [{ query: Queries.BILLS_KITCHEN },{query: Queries.ALL_BILLS}],
+    refetchQueries: [{ query: Queries.BILLS_KITCHEN }, { query: Queries.ALL_BILLS }],
     onError: err => {
       console.log('ERRORES', err.graphQLErrors)
     }
   })
 
-  
+
   const [newBill, setNewBill] = useState({
     idUser: '',
     description: '',
@@ -33,7 +33,7 @@ const CreateBill = ({ close }) => {
     setNewBill({ ...newBill, [e.target.name]: e.target.value })
   }
   const handleSelect = e => {
-    if(e.target.value !== 'Select...'){
+    if (e.target.value !== 'Select...') {
       let aux = products.filter(product => { return product._id === e.target.value });
       setNewBill({ ...newBill, products: [...newBill.products, aux[0]] });
     }
@@ -52,8 +52,8 @@ const CreateBill = ({ close }) => {
       total = (subTotal * 20 / 100) + subTotal
     }
 
-      
-      
+
+
     let response = await CreateBills({
       variables: {
         "input": {
@@ -81,7 +81,6 @@ const CreateBill = ({ close }) => {
     close('createBill')
   }
 
-  console.log(newBill.products);
 
   if (loading) {
     return (
@@ -138,10 +137,10 @@ const CreateBill = ({ close }) => {
             </div>
 
             {
-              newBill.products[0] && 
+              newBill.products[0] &&
               <div className={s.cards}>{
-                newBill.products.map((p, index)=>{
-                  return <CreateBillProductCart name={p.name} setNewBill={setNewBill} index={index} newBill={newBill}/>
+                newBill.products.map((p, index) => {
+                  return <CreateBillProductCart name={p.name} setNewBill={setNewBill} index={index} newBill={newBill} />
                 })}
               </div>
             }

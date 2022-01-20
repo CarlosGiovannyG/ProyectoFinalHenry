@@ -1,12 +1,25 @@
 import React from 'react';
 import s from './editAccount.module.css';
 import ReactTooltip from 'react-tooltip';
-import useAuth from '../../../../Auth/useAuth';
 import validate from '../../../../validations';
+import { useMutation } from '@apollo/client';
+import Mutations from '../../../../Utils/Mutations';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import routes from '../../../../Helpers/Routes'
+
 
 
 const EditAccount = ({ close, user }) => {
-  const { updateUser } = useAuth()
+
+  const [ChangeInfo] = useMutation(Mutations.CHANGE_INFO, {
+    onError: error => {
+      toast.error(error.graphQLErrors[0].extensions.response.body.mensage)
+      console.log(error.graphQLErrors[0])
+    }
+  });
+
+  const navigate = useNavigate();
 
   const [input, setInput] = React.useState({
     username: user.username,
@@ -15,7 +28,6 @@ const EditAccount = ({ close, user }) => {
     email: user.email,
     addres: user.addres,
     phone: user.phone,
-    role: user.role,
   });
   const [errors, setErrors] = React.useState({});
   const [errorData, setErrorData] = React.useState();
@@ -35,11 +47,60 @@ const EditAccount = ({ close, user }) => {
     setErrorData(arr.join('\n'))
   }
 
-  const handleSubmit = function (e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    updateUser(input);
-    close()
+    let response = await ChangeInfo({
+      variables: {
+        "input": {
+          "id": user.id,
+          "username": input.username,
+          "name": input.name,
+          "last_name": input.last_name,
+          "email": input.email,
+          "addres": input.addres,
+          "phone": input.phone,
+        }
+      }
+    })
+
+    const { data } = response
+
+    if (data) {
+      const { message, blocking } = data.ChangeInfo
+
+      if (blocking) {
+        toast.error(blocking)
+        setInput({
+          currentPassword: '',
+          password1: '',
+          password2: '',
+        })
+        setErrors({})
+        setErrorData()
+        close()
+      } else {
+        toast.success(message)
+        localStorage.removeItem('login')
+        localStorage.removeItem('rool')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('token')
+        close()
+        navigate(`${routes.home}`)
+
+      }
+
+    } else {
+      setInput({
+        currentPassword: '',
+        password1: '',
+        password2: '',
+      })
+      setErrors({})
+      setErrorData()
+      close()
+    }
+
   }
 
   return (

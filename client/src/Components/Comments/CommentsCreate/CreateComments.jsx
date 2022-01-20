@@ -1,37 +1,16 @@
 import React from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Mutations from '../../../Utils/Mutations';
 import Queries from '../../../Utils/Queries';
-
 import s from './createComments.module.css';
-import { CSSTransition } from 'react-transition-group';
 import { GrClose } from 'react-icons/gr';
 import ReactTooltip from 'react-tooltip';
-
-export function validate(input) {
-  let errors = {};
-
-  if (!input.title) {
-    errors.title = '• Title is required.';
-  }
-
-  if (!input.comment) {
-    errors.comment = '• Comment is required.';
-  }
-
-  if (input.comment.length > 256) {
-    errors.comment = '• Please, maximun of 260 characters.';
-  }
-
-  if (!input.email) {
-    errors.email = '• Name is required.';
-  }
-
-  return errors;
-}
+import Transsition from '../../../Hooks/Transsition';
+import validate from '../../../validations'
 
 
-const ModalCreateComments = ({ modalControl, productId }) => {
+
+const ModalCreateComments = ({ close, productId }) => {
 
   const [input, setInput] = React.useState({ title: '', comment: '', email: '' });
   const [errors, setErrors] = React.useState({});
@@ -40,7 +19,7 @@ const ModalCreateComments = ({ modalControl, productId }) => {
 
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
 
-    let errors = validate({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+    let errors = validate.CreateComment({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
     setErrors(errors);
 
     let arr = [];
@@ -76,22 +55,14 @@ const ModalCreateComments = ({ modalControl, productId }) => {
     setInput({ title: '', comment: '', email: '' })
 
     const resp = response.data.createComment.message
-    console.log(resp)
     alert(resp)
-    modalControl()
+    close()
   }
 
   return (
-
-    <CSSTransition
-      in={true}
-      timeout={0}
-      appear={true}
-      key={0}
-      classNames={{ appear: s.MyClassEnterActive, enterDone: s.MyClassEnterDone }}
-    >
+    <Transsition>
       <div className={s.container}>
-        <GrClose size='1.5rem' className={s.close} onClick={modalControl} />
+        <GrClose size='1.5rem' className={s.close} onClick={close} />
 
         <div>
           <h1 className={s.title}>Create Comment</h1>
@@ -155,8 +126,7 @@ const ModalCreateComments = ({ modalControl, productId }) => {
           </form>
         </div>
       </div>
-    </CSSTransition>
-
+    </Transsition>
   )
 
 }

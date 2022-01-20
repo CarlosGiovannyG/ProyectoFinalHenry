@@ -28,6 +28,11 @@ class UsersApi extends RESTDataSource {
     return await this.post(`/${credencials.id}/admin`, credencials)
   }
 
+  async ChangeInfo(credencials) {
+    credencials = new Object(credencials);
+    return await this.post(`/${credencials.id}/info`, credencials)
+  }
+
 };
 
 module.exports = UsersApi;

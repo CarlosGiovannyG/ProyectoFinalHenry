@@ -4,7 +4,6 @@ import styles from './changePassword.module.css'
 import validate from '../../../../validations';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
-import Queries from '../../../../Utils/Queries';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../../../Helpers/Routes'
@@ -13,7 +12,6 @@ import routes from '../../../../Helpers/Routes'
 const ChangePassword = ({ userId, close }) => {
 
   const [ChangePassword] = useMutation(Mutations.CHANGE_PASSWORD, {
-    refetchQueries: [{ query: Queries.USER_BY_ID }],
     onError: error => {
       toast.error(error.graphQLErrors[0].extensions.response.body.mensage)
       console.log(error.graphQLErrors[0])
@@ -52,9 +50,8 @@ const ChangePassword = ({ userId, close }) => {
           "newPassword": input.password1
         }
       }
-
+      // admin1234
     })
-
     const { data } = response
     if (data) {
       const { message } = data.ChangePassword

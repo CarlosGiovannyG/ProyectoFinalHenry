@@ -70,7 +70,6 @@ export default function SignUpForm({ close }) {
             }
         })
 
-        console.log(response);
         const resp = response.data.RegisterUsers.message
 
         toast.success(resp)

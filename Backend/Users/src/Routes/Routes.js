@@ -8,6 +8,7 @@ router.post('/login', require('../Controllers/UsersLogin'));
 router.post('/access', Auth, require('../Controllers/UserAccess'))
 router.post('/:id/admin', require('../Controllers/ChangePassword'))
 router.post('/:id/image', require('../Controllers/ChangeImage'))
+router.post('/:id/info', require('../Controllers/ChangeInfo'))
 router.get('/:id', require('../Controllers/UserById'))
 
 

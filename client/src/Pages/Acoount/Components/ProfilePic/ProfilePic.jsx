@@ -62,7 +62,6 @@ const ProfilePic = ({ close, userId }) => {
 
     const { message } = response.data
     toast.success(message)
-    console.log(response.data);
     setFileName('Subir Imagen')
     setSelectedFile(null)
     close()

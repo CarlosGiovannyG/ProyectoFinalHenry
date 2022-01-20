@@ -8,7 +8,6 @@ const UserSchema = new Schema({
     type: String,
     required: [true, 'Introduzca un nombre de usuario'],
     unique: [true, 'Este nombre de usuario esta siendo usado'],
-    lowercase: true,
   },
   name: {
     type: String,
@@ -41,7 +40,7 @@ const UserSchema = new Schema({
   },
   rool: {
     type: String,
-    default: '',
+    default: 'regular',
   },
   avatar: {
     type: String,
