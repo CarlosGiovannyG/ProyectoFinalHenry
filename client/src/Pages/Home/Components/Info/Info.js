@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import s from './Info.module.css';
 import Card from '../Card/Card';
 import RestaurantIcon from '../../../../img/MAIN_ICON.png';
-import LandingOrder from '../../../../img/LandingOrder.png';
+import LandingOrder from '../../../../img/LandingOrder.gif';
 import LandingKitchen from '../../../../img/LandingKitchen.png';
 import LandingBills from '../../../../img/LandingBills.png';
 import juan from '../../../../img/Miembros/juan.jpg';
 import giovanny from '../../../../img/Miembros/giovanny.jpg';
 import axel from '../../../../img/Miembros/axel.jpg';
 import rafa from '../../../../img/Miembros/rafa.jpeg';
+import routes from '../../../../Helpers/Routes';
 
 const cards = [
     {
@@ -42,9 +43,25 @@ const cards = [
 ]
 
 export default function Info() {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const url = window.location.href.slice(21);
+
+
+    const handleScroll = () => {              // Cosas del scroll fijo para home
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+    };
+    
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
-        <div className={s.main}>
+        <div id="info" className={(url.includes(routes.home) && scrollPosition > window.innerHeight*0.91 ) ? s.main : null}>
             <div className={s.about}>
                 <div className={s.Headline}>
                     <div className={s.line} />
@@ -94,9 +111,9 @@ export default function Info() {
             </div>
 
             <div className={s.about}>
-                <div className={s.Headline}>
+                <div  className={s.Headline}>
                     <div className={s.line} />
-                    <h2 className={s.title}>About Us</h2>
+                    <h2  className={s.title}>About Us</h2>
                     <div className={s.line} />
                 </div>
                 <div className={s.aboutUsItems} >

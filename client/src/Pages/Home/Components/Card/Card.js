@@ -9,7 +9,7 @@ export default function Card({ member }) {
     return (
         <div className={s.container} >
             <img className={s.img} alt="img" src={member.img} />
-            <div className={s.text}>
+            <div className={(member.name.includes('Axel') || member.name.includes('Rafael')) ? s.textBack : s.text}>
                 <p className={s.name}>{member.name}</p>
                 <div className={s.icons}>
                     <img className={s.icon} src={link} alt="linkedin" onClick={() => { window.open(member.linkedin, '_blank') }} />

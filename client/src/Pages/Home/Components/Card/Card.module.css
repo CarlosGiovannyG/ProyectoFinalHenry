@@ -25,6 +25,14 @@
     align-items: center;
 }
 
+.textBack{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.3rem
+}
+
 .name{
     font-family: 'Suranna';
     font-size: 2rem;

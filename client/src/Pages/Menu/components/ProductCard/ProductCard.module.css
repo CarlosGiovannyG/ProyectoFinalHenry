@@ -7,7 +7,6 @@
     position: relative;
     cursor: pointer;
     transition: transform .5s, box-shadow .5s;
-    
 }
 
 .cardContainer:hover {
