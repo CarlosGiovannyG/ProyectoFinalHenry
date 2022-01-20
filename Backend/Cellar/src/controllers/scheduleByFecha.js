@@ -8,11 +8,13 @@ const scheduleByFecha = async (req, res) => {
   console.log(" por parametros ", req.params.fecha)  ;
   if(req.params.fecha.length===16){
     fecha= req.params.fecha;
-  }else fecha=req.body.fecha;
-  
+  }else{
+    if(req.body.fecha && true ){ if(req.body.fecha.length===16){ fecha=req.body.fecha; } 
+      else return res.json( {message:"el dato ingresado no es válido"} )
+  }else return res.json( {message:"el dato ingresado no es válido"} )
+}  
 
 let verif =  verificacion({fecha }) //funcion de verificacion  
-
 
 if(verif.bandera2 && verif.bandera3){
 
