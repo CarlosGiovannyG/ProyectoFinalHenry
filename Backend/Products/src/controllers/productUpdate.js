@@ -1,51 +1,37 @@
 const Product = require("../models/product")
-const cloudinary = require("cloudinary");
-const path = require("path");
 const fs = require("fs-extra");
-
-cloudinary.config({
-  cloud_name: "drbbfr7mz",
-  api_key: "375458641246816",
-  api_secret: "e0EruBtidWaAyRa-fWNkTpNwBdE"
-});
-
 
 
 const update = async (req, res) => {
 
-  try {
-    const ext = path.extname(req.file.originalname).toLocaleLowerCase()
+  console.log("entrando pa actualizar");
 
-    if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
+  try {      
+      
 
-      const restimagen = await cloudinary.v2.uploader.upload(req.file.path)
+      const updateProdut = await Product.findOne({ _id: req.params.id });  //req.params.id
+      
+      // actualizando los datos enviados por body 
+      if(req.body.name && true) updateProdut.name = req.body.name ;
+      if(req.body.description && true) updateProdut.description = req.body.description ;
+      if(req.body.category && true) updateProdut.category = req.body.category ;
+      if(req.body.price && true) updateProdut.price = req.body.price ;
+      if(req.body.name && true) updateProdut.name = req.body.name ;
 
-      const newProducto = new Product({
-        name: req.body.name,
-        description: req.body.description,
-        category: req.body.category,
-        price: req.body.price,
-        image: restimagen.url,
-        public_id: restimagen.public_id,
-        id_autor: req.body.autor,
-      })
+      
+      await updateProdut.save();
 
-      await newProducto.save();
+      console.log("actualizando**********", updateProdut);
 
-      await fs.unlink(req.file.path)
 
-      res.json({ mmessages: 'Producto creado con exito' })
-
-    } else {
-
-      await fs.unlink(req.file.path)
-
-      res.status(500).send({ message: 'Solo puedes guardar imagenes' })
-    }
+      res.json({ mmessages: 'Producto actualizado con exito  ' })
     
   } catch (error) {
 
+    console.log('Rafa  Rafa   Rafa  Rafa  Rafa  Rafa',error);
+
     res.status(500).send({ message: 'Ocurrio un error inesperado', error})
+
   }
   
 };
