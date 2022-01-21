@@ -26,15 +26,18 @@ const AuthProvider = ({ children }) => {
 
   }
 
-
   const isLogged = () => localStorage.getItem('login');
 
 
   const token = localStorage.getItem('token');
-  const decoded = jwt_decode(token);
+  let decoded;
+  if (token) {
+    decoded = jwt_decode(token);
+  }
   const hasRole = (role) => decoded.rol === role;
   const userId = () => decoded.sub;
-  console.log(decoded);
+
+
   const contextValue = {
     openCloseModal,
     kitchenDeatil,
