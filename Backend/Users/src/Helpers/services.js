@@ -4,14 +4,15 @@ const auth = require('../Config/auth')
 
 
 
-const createToken = user => { 
+const createToken = user => {
   const payload = {
     sub: user._id,
+    rol: user.rool,
     iat: moment().unix(),
-    expires: moment().add(auth.expires,'days').unix(),
+    expires: moment().add(auth.expires, 'days').unix(),
   }
 
-  return jwt.sign(payload,auth.secret)
+  return jwt.sign(payload, auth.secret)
 };
 
 

@@ -49,18 +49,21 @@ export default function LogInForm({ close }) {
                 }
             }
         })
-        const { message, token, rool, userId } = response.data.LoginUsers
+        const { message, token } = response.data.LoginUsers
 
-        if (token) {
+        const tokenExists = localStorage.getItem('token')
+
+        if (tokenExists && token) {
+            localStorage.removeItem('token')
             localStorage.setItem('login', true)
             localStorage.setItem('token', token)
-            localStorage.setItem('rool', rool)
-            localStorage.setItem('userId', userId)
             toast.success(message)
 
             close()
             navigate(`${routes.UserMainPage}`)
-        } else {
+        }
+
+        if (!token) {
             toast.error(message)
             close()
         }

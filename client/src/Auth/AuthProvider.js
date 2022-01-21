@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import React from 'react'
 import { useState } from 'react';
+import jwt_decode from "jwt-decode";
 
 
 
@@ -27,8 +28,13 @@ const AuthProvider = ({ children }) => {
 
 
   const isLogged = () => localStorage.getItem('login');
-  const hasRole = (role) => localStorage.getItem('rool') === role;
 
+
+  const token = localStorage.getItem('token');
+  const decoded = jwt_decode(token);
+  const hasRole = (role) => decoded.rol === role;
+  const userId = () => decoded.sub;
+  console.log(decoded);
   const contextValue = {
     openCloseModal,
     kitchenDeatil,
@@ -37,6 +43,7 @@ const AuthProvider = ({ children }) => {
     URL_USERS,
     isLogged,
     hasRole,
+    userId,
   }
 
   return (

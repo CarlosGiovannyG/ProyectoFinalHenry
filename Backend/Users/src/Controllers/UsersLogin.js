@@ -23,8 +23,6 @@ const login = async (req, res, next) => {
       res.json({
         message: "Inicio de sesion exitoso",
         token: services.createToken(user),
-        rool: user.rool,
-        userId: user._id,
       })
 
     } else {

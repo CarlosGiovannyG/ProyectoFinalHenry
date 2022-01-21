@@ -6,11 +6,14 @@ const cookieParser = require('cookie-parser');
 const errorController = require('./Controllers/errorController')
 const multer = require('multer');
 const path = require('path');
+const swaggerDoc = require('./swagger.json')
+const swaggerUI = require('swagger-ui-express');
 
 
 // initializations
 const app = express();
 
+// swaggerDoc(app)
 //settings
 app.set('port', process.env.PORT || 5002);
 
@@ -19,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cors());
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 app.use(cookieParser())
 const storage = multer.diskStorage({
   destination: path.join(__dirname, 'public/uploads'),

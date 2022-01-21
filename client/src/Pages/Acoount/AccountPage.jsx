@@ -12,12 +12,13 @@ import Loading from '../../Components/Loading/Loading';
 import { useLazyQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
 import toast from 'react-hot-toast';
+import useAuth from '../../Auth/useAuth';
 
 
 
 const AccountPage = () => {
+  const { userId } = useAuth()
   const [UserById, { loading, error, data }] = useLazyQuery(Queries.USER_BY_ID);
-  const userId = localStorage.getItem('userId')
   const [isOpenChangePassword, openChangePassword, closeChangePassword] = useModal();
   const [isOpenDeleteAccount, openDeleteAccount, closeDeleteAccount] = useModal();
 
@@ -26,7 +27,7 @@ const AccountPage = () => {
   const [isOpenProfilePic, openProfilePic, closeProfilePic] = useModal();
 
   useEffect(() => {
-    UserById({ variables: { input: { id: `${userId}` } } })
+    UserById({ variables: { input: { id: `${userId()}` } } })
   }, [UserById, userId])
 
   if (loading) {
@@ -41,6 +42,7 @@ const AccountPage = () => {
     </div>
   }
   if (data && !loading) {
+    console.log(data);
     const { UserById } = data
     if (UserById.message) {
       toast.error(UserById.message)
