@@ -1,5 +1,5 @@
 const  db = require("../models/index");
-const mesas_all =  (req, res) => {
+const usertable =  (req, res) => {
     
   console.log("Estoy en el Get del usertable");
   const usertable = db.usertable;
@@ -16,4 +16,4 @@ const mesas_all =  (req, res) => {
     
 }
 
-module.exports = mesas_all;
+module.exports = usertable;
