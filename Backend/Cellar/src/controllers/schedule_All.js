@@ -10,36 +10,32 @@ const schedule_all =  (req, res) => {
      .then((c =>{
       fecha = c.map(d=>{      
         console.log(d.dataValues) 
-        let sillasLibres= d.dataValues.sillasLibres
-
+        
         let mesaslibres=  d.dataValues.mesasLibres
 
         let arraymesas = mesaslibres.split(","); // strign a arry
-        console.log("arraymesas y las sillas libres ", arraymesas, sillasLibres );
-        
-        //toma el numero de mesa y forma un arry de numeros
-        let sillaslibres= arraymesas.map(m => { return m[8]*1 }) ;
-        console.log( "sillaslibres" ,sillaslibres);
-        let sumasillas=0;
-        for (let i = 0; i < sillaslibres.length; i++) {
-          sumasillas= sillaslibres[i] + sumasillas         
-        }
+                
         arraymesas.sort();
-    
-        if(mesaslibres.length>0) return {fecha: d.dataValues.fecha, sillasLibres: sumasillas,  mesasLibres:arraymesas} 
+// *************************
+      
+      let arrmesas=[];
+
+      for (let i = 0; i < arraymesas.length; i++) {
+        let mesa= arraymesas[i][5] + arraymesas[i][6];
+        mesa= mesa*1;
+        let cap = arraymesas[i][8] ;
+        cap = cap*1;
+        arrmesas.push({mesa,  cap })
+        //{m.dataValues.numero , cap:m.dataValues.capacidad}   m[5] + m[6] 
+      }
+      
+
+        if(mesaslibres.length>0) return {fecha: d.dataValues.fecha,  arrmesas} 
         return d.dataValues.fecha+ " con : 0 sillas libres"
       })
-      let arreglo=[];
-      fecha.sort();
+      
       console.log(fecha); 
-      fecha.map(k=>{
-        console.log(k);
-        arreglo.push(k.fecha);
-        arreglo.push(k.arr); 
-        console.log(k);
-               
-      })
-      console.log(arreglo);
+     
       return  res.json( fecha )
 
       })).catch((err) => { 

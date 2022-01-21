@@ -1,8 +1,8 @@
 
 
-const verificacion = ({fecha, numero = 0 , idclient}) =>{
+const verificacion = ({fecha, estamesa = 0 , idclient}) =>{
     
-    console.log("fecha: ",fecha," numero: ",numero, );
+    console.log("fecha: ",fecha," esta mesa: ",estamesa, );
 
 // inicio verificacion de datos y seteo de esteaño, estemes, estedia
 let estafecha=new Date();
@@ -13,7 +13,7 @@ let estemes=estafecha.getMonth()+1 ,    estedia=estafecha.getDate() ;
 
 
 // primera verificacion
-if(numero*1>0 && numero*1 <=50 && idclient && idclient.length>2) bandera1= true ; 
+if(estamesa*1>9 && estamesa*1 <=99 && idclient && idclient.length>2) bandera1= true ; 
 
 //inicio la segunda verificacion con valores :) 
 let x1= fecha[4], x2 = fecha[7], x3= fecha[10], x4=fecha[13] ;

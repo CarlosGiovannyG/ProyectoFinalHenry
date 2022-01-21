@@ -38,7 +38,8 @@ if(verif.bandera2 && verif.bandera3){
                console.log(m.dataValues)
               let numero = m.dataValues.numero.toString()
               let capacidad = m.dataValues.capacidad.toString()
-              return "mesa:"+ numero+"C" + capacidad 
+              return  {mesa: numero, cap: capacidad  }  // "mesa:"+ numero+"C" + capacidad 
+              //{mesa:m.dataValues.numero , cap:m.dataValues.capacidad}
               
             })   //sort();
             mesastotal.sort()
@@ -58,7 +59,24 @@ if(verif.bandera2 && verif.bandera3){
 
       let fecha= k.dataValues.fecha, mesas= k.dataValues.mesasLibres, sillas= k.dataValues.sillasLibres   ;
       
-      return res.json({ message:"estos son las mesas disponibles", fecha, mesas, sillas});
+      let stringarraymesas = mesas.split(","); // strign a arry
+      stringarraymesas.sort();
+      console.log( stringarraymesas );
+
+      let arrmesas=[];
+
+      for (let i = 0; i < stringarraymesas.length; i++) {
+        let mesa= stringarraymesas[i][5] + stringarraymesas[i][6];
+        mesa= mesa*1;
+        let cap = stringarraymesas[i][8] ;
+        cap = cap*1;
+        arrmesas.push({mesa,  cap })
+        //{m.dataValues.numero , cap:m.dataValues.capacidad}   m[5] + m[6] 
+      }
+      
+      console.log(arrmesas);
+
+      return res.json({ message:"estos son las mesas disponibles", arrmesas });
 
     } 
   }) 
