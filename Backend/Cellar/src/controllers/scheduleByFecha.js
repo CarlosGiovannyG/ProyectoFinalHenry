@@ -60,6 +60,7 @@ if(verif.bandera2 && verif.bandera3){
       let fecha= k.dataValues.fecha, mesas= k.dataValues.mesasLibres, sillas= k.dataValues.sillasLibres   ;
       
       let stringarraymesas = mesas.split(","); // strign a arry
+      stringarraymesas.sort();
       console.log( stringarraymesas );
 
       let arrmesas=[];

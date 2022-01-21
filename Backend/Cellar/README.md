@@ -124,7 +124,7 @@ con la fecha , el número de sillas y el id del cliente por body
 
 { 
  "fecha": "2022-01-25T10:40" ,
-  "numero": 4 ,
+  "estamesa": 4 ,
   "idclient":"bero"
 }
 

@@ -123,10 +123,3 @@ if( verif.bandera1 && verif.bandera2 && verif.bandera3){
 
 module.exports = entry;
 
-/*
-fecha = Date()
-2022-01-17T01:26:15.235Z
-fecha.toLocaleString()
-'1/16/2022, 7:26:15 PM'
-
-*/
