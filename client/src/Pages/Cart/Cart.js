@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import s from './Cart.module.css';
 import { useModal } from 'react-hooks-use-modal';
 import Transsition from '../../Hooks/Transsition';
@@ -16,20 +16,14 @@ import routes from '../../Helpers/Routes'
 
 
 export default function Cart() {
-    const { user } = useAuth();
+    const { userId } = useAuth();
     const navigate = useNavigate();
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
 
-    const [newBill, setNewBill] = useState({
-        idUser: '',
-        description: 'GENERADA POR SISTEMA',
-        products: [],
-        numeroMesa: 'GENERADA POR SISTEMA',
-        tipoDePedido: 'salon'
-    })
+
 
     const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
         refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
@@ -70,7 +64,7 @@ export default function Cart() {
         e.preventDefault();
 
         let prov = {
-            idUser: '4568',
+            idUser: `${userId()}`,
             description: 'GENERADA POR SISTEMA',
             products: aux,
             numeroMesa: '',
@@ -79,7 +73,7 @@ export default function Cart() {
             total: total
         }
 
-
+        console.log(prov);
         let response = await CreateBills({
             variables: {
                 "input": {
@@ -88,8 +82,8 @@ export default function Cart() {
                     "products": aux,
                     "numeroMesa": prov.numeroMesa,
                     "tipoDePedido": prov.tipoDePedido,
-                    subTotal: prov.subTotal,
-                    total: prov.total,
+                    subTotal: Math.ceil(prov.subTotal),
+                    total: Math.ceil(prov.total),
                 }
             }
         })
