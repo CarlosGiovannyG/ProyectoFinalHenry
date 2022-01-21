@@ -1,6 +1,6 @@
 
 
-const verificacion = ({fecha, estamesa = 0 , idclient}) =>{
+const verificacion = ({fecha, estamesa = 0 , idclient = ""}) =>{
     
     console.log("fecha: ",fecha," esta mesa: ",estamesa, );
 

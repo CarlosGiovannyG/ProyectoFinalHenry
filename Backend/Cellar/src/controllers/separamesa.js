@@ -36,7 +36,8 @@ const separamesa = (mesasstring, estamesa ) => {
         let tomandomesa= arraymesas.filter(m=>{
           if(m.includes(lamesa)){ console.log(m) }else{ return m  }  
         });
-               
+
+        tomandomesa.sort() ;
         
         tomandomesa=tomandomesa.toString()
         console.log( "tomandomesa y la silla  : ", tomandomesa );
