@@ -20,7 +20,6 @@ export default function NavBar({ openLogin, openRegister }) {
     const handleLogout = (e) => {
         e.preventDefault();
         localStorage.removeItem('login')
-        localStorage.removeItem('token')
         navigate(`${routes.home}`)
     }
 
