@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import s from './NavBar.module.css';
 import { useNavigate } from 'react-router-dom';
 import icon from '../../img/MAIN_ICON.png';
 import links from '../../Helpers/Navigation'
 import useAuth from '../../Auth/useAuth';
-import routes from '../../Helpers/Routes';
+import routes from '../../Helpers/Routes'
+
+
+
 
 export default function NavBar({ openLogin, openRegister }) {
-    const [scrollPosition, setScrollPosition] = useState(0);
+
     const { isLogged, hasRole } = useAuth()
     const login = isLogged()
 
@@ -17,28 +20,12 @@ export default function NavBar({ openLogin, openRegister }) {
     const handleLogout = (e) => {
         e.preventDefault();
         localStorage.removeItem('login')
+        localStorage.removeItem('token')
         navigate(`${routes.home}`)
     }
 
-    const handleScroll = () => {              // Cosas del scroll fijo para home
-        const position = window.pageYOffset;
-        setScrollPosition(position);
-    };
-    
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll, { passive: true });
-    
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     return (
-        <div id='Navbar' 
-        className={((url === `${routes.home}` || url ===  `${routes.home}#Navbar` || url === `${routes.home}#AboutUs`) && 
-            scrollPosition > window.innerHeight*0.91) || url.includes(routes.menu)  ? 
-            s.headerHome : 
-            s.header} >
+        <div className={s.header}>
             <img className={s.icon} src={icon} alt='Restaurant Logo' />
             {!login &&
                 <div className={s.headerbtns}>

@@ -5,6 +5,7 @@ const productsResolvers = require('./products');
 const billsResolvers = require('./bills');
 const comentsResolvers = require('./comments');
 const UsersResolvers = require('./users');
+const tablesResolvers = require('./tables');
 
 
 const resolvers = lodash.merge(
@@ -12,5 +13,6 @@ const resolvers = lodash.merge(
   billsResolvers,
   comentsResolvers,
   UsersResolvers,
+  tablesResolvers,
 )
 module.exports = resolvers;

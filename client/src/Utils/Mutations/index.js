@@ -4,6 +4,7 @@ import Comments from './Comments/Comments'
 import UpdateBill from './Bills/UpdateBill';
 import PaidBill from './Bills/PaidBill';
 import Users from './Users/Users';
+import Tables from './Tables/Tables';
 
 
 const Mutations = {
@@ -26,6 +27,10 @@ const Mutations = {
   REGISTER_USERS: Users.REGISTER_USERS,
   CHANGE_PASSWORD: Users.CHANGE_PASSWORD,
   CHANGE_INFO: Users.CHANGE_INFO,
+
+  //USERS
+  BOOK_TABLES: Tables.BOOK_TABLES,
+
 
 };
 

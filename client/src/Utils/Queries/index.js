@@ -5,6 +5,7 @@ import BillsKitchen from './Bills/BillsKitchen';
 import statsApp from './Stats/StatsApp';
 import Comments from './Comments/Comments';
 import Users from './Users/Users';
+import Tables from './Tables/Tables';
 
 
 const Queries = {
@@ -35,6 +36,9 @@ const Queries = {
   // USERS
   LOGIN_USERS: Users.LOGIN_USERS,
   USER_BY_ID: Users.USER_BY_ID,
+
+  // TABLES
+  FREE_TABLES: Tables.FREE_TABLES,
 
 
 }
