@@ -1,5 +1,8 @@
 const { Router } = require("express")
 const router = Router();
+
+router.get("/metre", require("../controllers/metre"));
+
 //Para mostrar todas las reservaciones realizadas y las mesas relacionadas
 router.get("/usertable", require("../controllers/usertableAll"));
 
