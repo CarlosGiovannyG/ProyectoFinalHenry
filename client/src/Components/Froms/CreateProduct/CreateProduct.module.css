@@ -39,6 +39,17 @@
     outline: none;
 }
 
+.inputFile{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 1.9rem;
+    width: 45%;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    padding-top: .2rem;
+}
+
 .inputDivDescription{
     display: flex;
     justify-content: space-between;
@@ -52,8 +63,8 @@
 
 .picture{
   position: relative;
-  width: 180px;
-  height: 150px;
+  width: 24%;
+  height: auto;
   margin: 0 auto;
   margin-top: 5%;
 }

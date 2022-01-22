@@ -1,68 +1,54 @@
 .container{
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+    margin: 0 auto;
     background-color: white;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    width: 35vw;
+    height: 13.5vw;
+}
+
+.titleContainer{
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+    height: fit-content;
+    padding-top: 1rem;
 }
 
 .title{
-    width: 90%;
     font-family: 'Suranna', serif;
     font-weight: lighter;
-    color: black;
     font-size: 3rem;
+    color: black;
+    
+}
+
+.form{
     text-align: center;
 }
 
-.Label{
-    border: none;
-    background-color: rgb(194, 193, 193);
-    height: 30px;
-    width: 200px;
-    margin-right: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    outline: none;
-}
-
-.inputMount{
-    border: none;
-    background-color: rgb(194, 193, 193);
-    height: 30px;
-    width: 200px;
-    margin-left: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    outline: none;
-}
-
-.Change{
-    border: none;
-    background-color: rgb(194, 193, 193);
-    height: 30px;
-    width: 400px;
-    margin-right: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    outline: none;
-}
 .inputDiv{
-    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    justify-content: space-around;
+
 }
 
-.inputs{
-    text-align: center;
-    margin-top: 50px;
-}
-
-
-.btnRegister{
+.label{
+    font-family: 'Montserrat';
     border: none;
     background-color: rgb(194, 193, 193);
-    height: 30px;
-    width: 300px;
-    margin-left: 30px;
-    cursor: pointer;
+    height: 1.9rem;
+    width: 30%;
+    outline: none;
+    padding-top: .2rem;
+}
 
+.input{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 1.9rem;
+    width: 30%;
+    outline: none;
+    font-family: 'Montserrat';
+    padding-left: .3rem;
 }
