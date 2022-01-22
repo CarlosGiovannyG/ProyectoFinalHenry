@@ -120,7 +120,7 @@ export default function LogInForm({ close }) {
                                 placeholder={'Price...'}
                                 value={input.price}
                                 onChange={handleInputChange} />
-                            <label className={s.input} for="picture">{fileName}</label>
+                            <label className={s.inputFile} for="picture">{fileName}</label>
                             <input
                                 type="file"
                                 id="picture"
