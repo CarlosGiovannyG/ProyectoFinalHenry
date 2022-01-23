@@ -1,111 +1,211 @@
-import React, { useEffect } from 'react';
-import Modal from '../../Components/Modal/Modal';
-import useModal from '../../Hooks/useModal';
-import ChangePassword from './Components/ChangePassword/ChangePassword';
-import imageDefault from '../../img/male_avatar.svg'
-import styles from './account.module.css';
-import DeleteAccount from './Components/DeleteAccount/DeleteAccount';
-import EditAccount from './Components/EditAccount/EditAccount';
-import Transsition from '../../Hooks/Transsition';
-import ProfilePic from './Components/ProfilePic/ProfilePic';
-import Loading from '../../Components/Loading/Loading';
-import { useLazyQuery } from '@apollo/client';
-import Queries from '../../Utils/Queries';
+import React from 'react';
+import s from './SignUpForm.module.css';
+import ReactTooltip from 'react-tooltip';
+import validate from '../../../validations';
 import toast from 'react-hot-toast';
-import useAuth from '../../Auth/useAuth';
+import { useMutation } from '@apollo/client';
+import Mutations from '../../../Utils/Mutations';
+import routes from '../../../Helpers/Routes';
 
 
 
-const AccountPage = () => {
-    const { userId } = useAuth()
-    const [UserById, { loading, error, data }] = useLazyQuery(Queries.USER_BY_ID);
-    const [isOpenChangePassword, openChangePassword, closeChangePassword] = useModal();
-    const [isOpenDeleteAccount, openDeleteAccount, closeDeleteAccount] = useModal();
+export default function SignUpForm({ close }) {
 
-    const [isOpenEditAccount, openEditAccount, closeEditAccount] = useModal();
+    const url = window.location.href.slice(21);
 
-    const [isOpenProfilePic, openProfilePic, closeProfilePic] = useModal();
+    const [RegisterUsers] = useMutation(Mutations.REGISTER_USERS, {
+        onError: err => {
+            console.log('ERRORES', err.graphQLErrors[0])
+        }
+    })
 
-    useEffect(() => {
-        UserById({ variables: { input: { id: `${userId()}` } } })
-    }, [UserById, userId])
+    const [input, setInput] = React.useState({
+        username: '',
+        name: '',
+        last_name: '',
+        address_name: '',
+        address_description: '',
+        phone: '',
+        password: '',
+        passwordConfirm: '',
+        email: '',
+        rool: 'regular',
+    });
+    const [errors, setErrors] = React.useState({});
+    const [errorData, setErrorData] = React.useState();
 
-    if (loading) {
-        return <div >
-            <Loading />
-        </div>
+    const handleInputChange = function (e) {    // esta funcion recibe los inputs para majearlos.
 
+        setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));  // copiamos el estado y la propiedad e.target.name definile el valor del evento
+
+        let errors = validate.Register({ ...input, [e.target.name]: e.target.value }); // pasamos el valor ingresado en vez del estado, porque puede que no este modificado todavia!
+        setErrors(errors);
+
+        let arr = [];
+        for (const err in errors) {
+            arr.push(errors[err]);
+        }
+        setErrorData(arr.join('\n'))
     }
-    if (error) {
-        return <div className={styles.error}>
-            <p></p>
-        </div>
+    const handleSelector = function (e) {
+        setInput(prevInput => ({ ...prevInput, rool: e.target.value }));
     }
-    if (data && !loading) {
-        const { UserById } = data
-        if (UserById.message) {
-            toast.error(UserById.message)
-        } else {
-            return (
-                <div className={styles.container} >
-                    <div className={styles.containerCentro}>
-                        <div className={styles.containerImage}>
-                            <img
-                                src={UserById?.image || UserById?.avatar || imageDefault}
-                                alt='profile'
-                                className={styles.profile}
-                                onClick={openProfilePic}
-                            />
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // llamado al back end para postear el nuevo usuario si no existe
+
+        let response = await RegisterUsers({
+            variables: {
+                "input": {
+                    "username": input.username,
+                    "name": input.name,
+                    "last_name": input.last_name,
+                    "email": input.email,
+                    "address_name": input.address_name,
+                    "address_description": input.address_description,
+                    "phone": input.phone,
+                    "password": input.password,
+                    "rool": input.rool,
+                }
+            }
+        })
+
+        const resp = response.data.RegisterUsers.message
+        setInput({
+            username: '',
+            name: '',
+            last_name: '',
+            address_name: '',
+            address_description: '',
+            phone: '',
+            password: '',
+            passwordConfirm: '',
+            email: '',
+            rool: 'regular',
+        })
+        toast.success(resp)
+        close()
+    }
+    //TODO:     FALTA  COLOCAR INPUT PARA ADDRESS_DESCRIPTION
+    return (
+        <div className={s.container} >
+            <div>
+                <h1 className={s.title}>Sign Up</h1>
+            </div>
+            <div>
+                <form>
+                    {/*  Inputs */}
+                    <div className={s.inputs}>
+                        <div className={s.inputDiv1}>
+                            <input
+                                className={s.inputName}
+                                type='text'
+                                name='username'
+                                placeholder={'Username...'}
+                                value={input.username}
+                                onChange={handleInputChange} />
+                            <input
+                                className={s.inputLastname}
+                                type='text' name='name'
+                                placeholder={'Name...'}
+                                value={input.name}
+                                onChange={handleInputChange} />
                         </div>
-                        <div className={styles.containerInfo}>
-                            <p className="text-center"><b>Nombre de Usuario:</b>{UserById.username}</p>
-                            <p className="text-center"><b>Nombre:</b>{UserById.name}</p>
-                            <p className="text-center"><b>Apellido:</b>{UserById.last_name}</p>
-                            <p className="text-center"><b>Email:</b>{UserById.email}</p>
-                            <p className="text-center"><b>Telefono:</b>{UserById.phone}</p>
-                            {UserById.address &&
-                                UserById.address.map(a => (
-                                    <p className="text-center" key={a.description}><b>Direccion:</b>{"  "}{a.name}{" / "}{a.description}</p>
-                                ))
+                        <div className={s.inputDiv2}>
+                            <input
+                                className={s.inputName}
+                                type='text'
+                                name='last_name'
+                                placeholder={'Lastname...'}
+                                value={input.last_name}
+                                onChange={handleInputChange} />
+                            <input
+                                className={s.inputEmail}
+                                type='text'
+                                name='email'
+                                placeholder={'Email...'}
+                                value={input.email}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className={s.inputDiv2}>
+                            <input
+                                className={s.inputName}
+                                type='text'
+                                name='address_description'
+                                placeholder={'Address...'}
+                                value={input.address_description}
+                                onChange={handleInputChange} />
+                            <input
+                                className={s.inputEmail}
+                                type='text'
+                                name='address_name'
+                                placeholder={'Belonging to...House - Job - Office'}
+                                value={input.address_name}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className={s.inputDiv2}>
+                            <input
+                                className={s.inputPassword1}
+                                type='password'
+                                name='password'
+                                placeholder={'Password...'}
+                                value={input.password} onChange={handleInputChange} />
+                            <input
+                                className={s.inputEmail}
+                                type='password'
+                                name='passwordConfirm'
+                                placeholder={'Repeat Password...'}
+                                value={input.passwordConfirm}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className={s.inputDiv3}>
+                            <input
+                                className={s.inputPassword1}
+                                type='text'
+                                name='phone'
+                                placeholder={'Phone...'}
+                                value={input.phone}
+                                onChange={handleInputChange} />
+                            {url === routes.AdminMainPage &&
+                                <select className={s.inputPassword2} onChange={handleSelector}>
+                                    <option value="regular">Regular</option>
+                                    <option value="cook">Cook</option>
+                                    <option value="cashier">Cashier</option>
+                                    <option value="metre">Metre</option>
+                                    <option value="admin">Admin</option>
+                                    <option selected value={null} >Role</option>
+                                </select>
                             }
-                            <p className="text-center"><b>Rol:</b>{UserById.rool}</p>
-                        </div>
-                        <div className={styles.containerBotones}>
-                            <button className={styles.ButtonEdit} onClick={openEditAccount}>EDIT ACCOUNT</button>
-                            <button className={styles.ButtonChange} onClick={openChangePassword}>CHANGE PASSWORD</button>
-                            <button className={styles.ButtonDelete} onClick={openDeleteAccount}>DELETE ACCOUNT</button>
+                            {
+                                (input.name !== '' && input.username !== ''
+                                    && !errors.last_name
+                                    && !errors.password
+                                    && !errors.passwordConfirm
+                                    && !errors.email) ?
+                                    <button
+                                        className={s.btnRegister}
+                                        type="submit"
+                                        onClick={handleSubmit}
+                                    >Register</button> :
+                                    <button
+                                        className={s.btnRegisterError}
+                                        data-tip data-for='tooltip'
+                                        onClick={(e) => e.preventDefault()}
+                                    >Register</button>
+                            }
+                            {(Object.keys(errors).length > 0) ? (
+                                <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
+                                    {errorData.split("\n").map((i, key) => {
+                                        return <div key={key}>{i}</div>;
+                                    })}
+                                </ReactTooltip>) : null
+                            }
                         </div>
                     </div>
-
-                    <Transsition>
-                        <Modal isOpen={isOpenChangePassword} closeModal={closeChangePassword}>
-                            <ChangePassword userId={userId} close={closeChangePassword} />
-                        </Modal>
-                    </Transsition>
-                    <Modal isOpen={isOpenEditAccount} closeModal={closeEditAccount}>
-                        <Transsition>
-                            <EditAccount user={UserById} close={closeEditAccount} />
-                        </Transsition>
-                    </Modal>
-                    <Modal isOpen={isOpenDeleteAccount} closeModal={closeDeleteAccount}>
-                        <Transsition>
-                            <DeleteAccount close={closeDeleteAccount} />
-                        </Transsition>
-                    </Modal>
-                    <Modal isOpen={isOpenProfilePic} closeModal={closeProfilePic}>
-                        <Transsition>
-                            <ProfilePic userId={userId} close={closeProfilePic} />
-                        </Transsition>
-                    </Modal>
-                </div>
-            )
-        }
-    }
-    return (
-        <div className={styles.loading}>
-            <p></p>
+                </form>
+            </div>
         </div>
     )
 }
-
-export default AccountPage
