@@ -8,105 +8,94 @@
 //{  idclient, tabclien,  fecharsv,  }
 
 const  db = require("../models/index");  
-
-let tableUser=[];
-
 const usertable = db.usertable; 
- usertable.findAll()
- .then((c =>{
-     console.log(c);
-     tableUser=c;
-  return  c
-  })).catch((err) => { 
-      console.log(err);
-      return err
-      })
 
+const metre =  (req, res) => {
+    let fecha = "f"   
+    let cases= 0 ;
 
-const metre =  async (req, res) => {
-/** 
-const tableUser = ()=>{
-     console.log("pedido a la base de datos   pedido a la base de datos   pedido a la base de datos   ")
-  return usertable.findAll()
- .then((c =>{
-     console.log(c);
-  return  c
-  })).catch((err) => { 
-      console.log(err);
-      return err
-      })
-}
-*/
-
-const todas = ()=> {
+    let { idclient , fecharsv  } = req.body ;
+    if(fecharsv) fecha = fecharsv ;
+       
+    if(fecha.length===16){
+       cases = 10;
+       console.log( "Todas las fechas y los clientes" ,fecha);
+    }
+    if(fecha.length===10){
+        cases= 20 ;
+        console.log( "Las fechas y los clientes de todo un día" ,fecha);
+    }
+    if(idclient){
+        cases = cases + 1;
+        console.log( "filtra los anteriores por cliente" ,fecha," ",idclient);
+    }
+    console.log("el valor del caso :", cases)
     
-    console.log(tableUser);
 
-    return  res.json(tableUser)
-}
+    /* */
+    return usertable.findAll()
+    .then((c =>{ 
+        let mesas=[], hora=[];
 
-const pordia = () => {
-    
-    const delDia = [];
+    switch (cases) {
 
-    for (let i = 0; i < tableUser.length; i++) {
-        if(tableUser[i].dataValues.fecharsv === fecharsv){
-            delDia.push(tableUser[i]);
-        }            
-    }
-
-    return  res.json(delDia)
-}
-
-
-
-
-
-
-    let {idclient ="", tabclien ="",  fecharsv = "", } = req.body ;
-    //verificar cuales datos si llegaron y cuales no
-    let selector=0;
-    if(fecharsv.length===16){
-        selector=10;
-        todas();
-    }
-    if(fecharsv.length===10){
-        fecharsv = fecharsv+"T09:00" ;
-        selector=20;
-        console.log("desde por dia     desde por dia      desde por dia       ")
-        pordia();
-    }
-    if(idclient.length>2){
-        selector = selector + 1;
-    }
-
-    return  res.json({message: "Busqueda sin fruto con los Datos "+fecharsv });
-
-
-
-
-
-    switch (selector) {
         case 1:
-            return res.json({message: "informa todas la reservaciones de un cliente " });
+          
+           c.map(k=>  {
+               console.log("sacar reservas de un cliente",k.dataValues.idclient);
+               if(k.dataValues.idclient == idclient) mesas.push(k.dataValues)
+           })
+           console.log(mesas)
+        return  res.json({message: "todas Las reservas de un cliente ",mesas});  
 
-        case 10:
-            return res.json({message: "informa todas la reservaciones, todos los cliente " });           
-           
+        case 10 :
+         mesas=[];
+        c.map(k=>  {
+            console.log("Todos los clienteslas de la fechas y hora ",k.dataValues.idclient);
+            if(k.dataValues.fecharsv === fecharsv) mesas.push(k.dataValues)            
+        })
+        return  res.json({message: "Todos los clienteslas de la fechas y hora",mesas});
+
         case 11:
-            return res.json({message: "informa todas la reservaciones de un cliente " });
-           
-        case 20: 
-            return res.json({message: "informa todas la reservaciones del dia, todos los clientes " });
-            
-        case 21:
-            return res.json({message: "informa todas la reservaciones del dia de un cliente" });
-                
-        default:
-            return res.json({message: "busqueda infructuosa " });
-            
-    }
+            mesas=[];
+        c.map(k=>  {
+            console.log("las de un cliente en una fecha y hora",k.dataValues.idclient);
+            if(k.dataValues.fecharsv == fecharsv) mesas.push(k.dataValues);
+        })        
+        mesas.map(k=>{
+            if(k.idclient == idclient) hora.push(k);
+        })
+        console.log(mesas)
+        return  res.json({message: "las de un cliente en una fecha y hora", hora });
 
+        case 20:
+            mesas=[];
+        c.map(k=>  {
+            console.log("Las reservas de todos los clientes de todo un día",k.dataValues.fecharsv.slice(0, -6));
+            if(k.dataValues.fecharsv.slice(0, -6) == fecharsv) mesas.push(k.dataValues);
+        })
+        return  res.json({message: "Las reservas de todos los clientes de todo un día",mesas});
+
+        case 21:
+            mesas=[];
+            hora=[];
+        c.map(k=>  {
+            console.log("Las reservas de todos los clientes de todo un día",k.dataValues.fecharsv.slice(0, -6));
+            if(k.dataValues.fecharsv.slice(0, -6) == fecharsv) mesas.push(k.dataValues);
+        })
+        mesas.map(k=>{
+            if(k.idclient == idclient) hora.push(k);
+        })
+        return  res.json({message: "Las reservas  de un dia de un cliente ", hora });
+   
+        default:
+        return  res.json({message: "Busqueda sin fruto con los Datos "+fecharsv });
+   }
+
+})).catch((err) => { 
+    console.log(err);
+    return res.send(err)
+    })   
     
 }
 

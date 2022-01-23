@@ -29,6 +29,7 @@
   font-size: 1.9vw;
   margin-bottom: -.6rem;
   text-align: left;
+  white-space: nowrap;
 }
 
 .type{

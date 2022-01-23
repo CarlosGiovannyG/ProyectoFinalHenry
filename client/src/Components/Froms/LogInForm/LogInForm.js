@@ -77,7 +77,7 @@ export default function LogInForm({ close }) {
                     <form>
                         {/*  Inputs */}
                         <div className={s.inputs}>
-                            <div>
+
                                 <input
                                     className={s.inputEmail}
                                     type='text'
@@ -92,7 +92,7 @@ export default function LogInForm({ close }) {
                                     placeholder={'Password...'}
                                     value={input.password}
                                     onChange={handleInputChange} />
-                            </div>
+
                             <div className={s.btnDiv}>
                                 {
                                     (input.email !== '' && !errors.password && !errors.email) ?

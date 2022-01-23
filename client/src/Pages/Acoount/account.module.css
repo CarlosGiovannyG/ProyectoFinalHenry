@@ -81,6 +81,7 @@
   cursor: pointer;
   font-weight: 600;
 }
+
 .ButtonEdit:hover {
   background-color: rgba(219, 215, 215, 0.658);
   color: rgb(11, 129, 31);

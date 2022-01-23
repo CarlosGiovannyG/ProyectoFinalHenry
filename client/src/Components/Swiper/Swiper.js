@@ -70,9 +70,7 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
 
       {
         infoKitchen && 
-        <Swiper slidesPerView={5} spaceBetween={20} pagination={{
-        "clickable": true
-        }}
+        <Swiper slidesPerView={5} spaceBetween={20}
         className="cardsCocina">
           {infoKitchen.map(info => (
             <SwiperSlide key={info._id}><CardKitchen info={info} /></SwiperSlide>
