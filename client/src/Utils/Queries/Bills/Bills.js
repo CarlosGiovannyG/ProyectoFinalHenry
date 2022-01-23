@@ -54,13 +54,16 @@ const Bills = {
   query BillsCheckIn($input: billsId) {
   BillsCheckIn(input: $input) {
     sumatotal
-    nombre {
+    array {
+      name
       cantidad
       total
     }
   }
+
 }
   `,
+
 
 };
 

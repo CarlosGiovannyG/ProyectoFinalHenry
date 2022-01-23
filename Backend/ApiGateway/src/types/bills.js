@@ -71,12 +71,13 @@ type products{
 
 type billsCheckIn{
   sumatotal:String
-  nombre:productTotal
+  array:[productTotal]
   
 }
 type  productTotal{
-cantidad:Int
-  total:Int
+name:String
+  cantidad:Int
+  total: Int
 }
  
 

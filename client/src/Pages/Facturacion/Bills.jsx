@@ -62,8 +62,8 @@ const Prueba = () => {
   const handleCheckIn = async (id) => {
 
     let resultado = await BillsCheckIn({ variables: { input: { id: id } } })
-    const { sumatotal } = resultado.data.BillsCheckIn
-    setCheckIn(sumatotal)
+    const { sumatotal, array } = resultado.data.BillsCheckIn
+    setCheckIn({ sumatotal, array })
     setBillId(id)
     openCheckIn()
 
