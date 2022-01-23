@@ -34,7 +34,9 @@ const AuthProvider = ({ children }) => {
   if (token) {
     decoded = jwt_decode(token);
   }
-  const hasRole = (role) => decoded.rol === role;
+
+  const hasRole = (role) => decoded?.rol === role;
+
   const userId = () => decoded.sub;
 
 

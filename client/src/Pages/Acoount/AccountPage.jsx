@@ -42,7 +42,6 @@ const AccountPage = () => {
     </div>
   }
   if (data && !loading) {
-    console.log(data);
     const { UserById } = data
     if (UserById.message) {
       toast.error(UserById.message)
@@ -64,7 +63,11 @@ const AccountPage = () => {
               <p className="text-center"><b>Apellido:</b>{UserById.last_name}</p>
               <p className="text-center"><b>Email:</b>{UserById.email}</p>
               <p className="text-center"><b>Telefono:</b>{UserById.phone}</p>
-              <p className="text-center"><b>Direccion:</b>{UserById.addres}</p>
+              {UserById.address &&
+                UserById.address.map(a => (
+                  <p className="text-center" key={a.description}><b>Direccion:</b>{"  "}{a.name}{" / "}{a.description}</p>
+                ))
+              }
               <p className="text-center"><b>Rol:</b>{UserById.rool}</p>
             </div>
             <div className={styles.containerBotones}>

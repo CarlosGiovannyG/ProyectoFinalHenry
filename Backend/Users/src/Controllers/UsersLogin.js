@@ -12,21 +12,26 @@ const login = async (req, res, next) => {
   try {
 
     const user = await User.findOne({ email })
-    const passwordVer = bcrypt.compareSync(password, user.password);
+    if (user) {
 
+      const passwordVer = bcrypt.compareSync(password, user.password);
 
-    if (user && passwordVer) {
+      if (user && passwordVer) {
 
-      user.lastLogin = Date.now()
+        user.lastLogin = Date.now()
 
-      await user.save();
-      res.json({
-        message: "Inicio de sesion exitoso",
-        token: services.createToken(user),
-      })
+        await user.save();
+        res.json({
+          message: "Inicio de sesion exitoso",
+          token: services.createToken(user),
+        })
 
+      } else {
+        res.status(201).json({ message: "Usuario y/o Contraseña incorrecta" })
+      }
     } else {
-      res.status(201).json({ message: "Usuario y/o Contraseña incorrecta" })
+      res.status(201).json({ message: "Usuario y/o Contraseña no registrados" })
+
     }
 
   } catch (error) {

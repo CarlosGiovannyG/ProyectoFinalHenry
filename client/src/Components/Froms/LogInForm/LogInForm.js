@@ -41,6 +41,7 @@ export default function LogInForm({ close }) {
     const handleSubmit = async function (e) {
         e.preventDefault();
 
+        console.log(input);
         let response = await LoginUsers({
             variables: {
                 "input": {
@@ -61,6 +62,7 @@ export default function LogInForm({ close }) {
         } else {
 
             toast.error(message)
+            setInput({ email: '', password: '' })
             close()
         }
 
@@ -77,7 +79,7 @@ export default function LogInForm({ close }) {
                     <form>
                         {/*  Inputs */}
                         <div className={s.inputs}>
-
+                            <div>
                                 <input
                                     className={s.inputEmail}
                                     type='text'
@@ -87,12 +89,12 @@ export default function LogInForm({ close }) {
                                     onChange={handleInputChange} />
                                 <input
                                     className={s.inputPassword}
-                                    type='text'
+                                    type='password'
                                     name='password'
                                     placeholder={'Password...'}
                                     value={input.password}
                                     onChange={handleInputChange} />
-
+                            </div>
                             <div className={s.btnDiv}>
                                 {
                                     (input.email !== '' && !errors.password && !errors.email) ?

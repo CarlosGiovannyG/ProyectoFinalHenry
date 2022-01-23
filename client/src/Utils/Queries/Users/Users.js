@@ -9,8 +9,6 @@ const Users = {
   LoginUsers(input: $input) {
      message
     token
-    rool
-    userId
   }
 }
   
