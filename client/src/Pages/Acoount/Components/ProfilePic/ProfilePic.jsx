@@ -55,7 +55,7 @@ const ProfilePic = ({ close, userId }) => {
     formData.append('image', image)
 
     const response = await axios({
-      url: `${URL_USERS}/${userId}/image`,
+      url: `${URL_USERS}/${userId()}/image`,
       method: 'POST',
       data: formData,
     })

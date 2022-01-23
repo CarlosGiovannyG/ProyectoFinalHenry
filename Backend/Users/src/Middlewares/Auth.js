@@ -4,7 +4,6 @@ const auth = require('../Config/auth')
 
 module.exports = (req, res, next) => {
   
-  console.log(req.headers.authorization,'AUTH')
   if (!req.headers.authorization) {
     res.status(401).json({ message: 'Acceso no autorizado' })
     

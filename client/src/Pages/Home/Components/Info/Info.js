@@ -121,7 +121,7 @@ export default function Info() {
                     <div className={s.cards}   >
                         {
                             cards.map(c => (
-                                <Card member={c} />
+                                <Card member={c} key={c.name}/>
                             ))
                         }
                     </div>

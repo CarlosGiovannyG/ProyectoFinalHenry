@@ -45,7 +45,7 @@ const ChangePassword = ({ userId, close }) => {
     let response = await ChangePassword({
       variables: {
         "input": {
-          "id": userId,
+          "id": userId(),
           "currentPassword": input.currentPassword,
           "newPassword": input.password1
         }
