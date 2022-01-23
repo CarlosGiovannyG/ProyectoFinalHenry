@@ -27,11 +27,23 @@ const Mutations = {
   REGISTER_USERS: Users.REGISTER_USERS,
   CHANGE_PASSWORD: Users.CHANGE_PASSWORD,
   CHANGE_INFO: Users.CHANGE_INFO,
+  REGISTER_ADDRESS: Users.REGISTER_ADDRESS,
 
-  //USERS
+  //TABLES
   BOOK_TABLES: Tables.BOOK_TABLES,
 
 
 };
 
 export default Mutations;
+
+
+//TODO:  INPUT REGISTRO DE DIRECCION
+//
+// {
+//   "input": {
+//     "userId": "61ece02d977bf7cd1a934511",
+//       "name": "direccionApollo",
+//         "description": "carrera 101"
+//   }
+// }

@@ -24,7 +24,10 @@ const Users = {
     name
     last_name
     email
-    addres
+    address {
+      name
+      description
+    }
     phone
     rool
     avatar

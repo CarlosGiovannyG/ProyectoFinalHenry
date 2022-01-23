@@ -1,0 +1,271 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "description": "Este microservicio maneja todo lo relacionado con productos que haga uso la App Restaurante, creda por el equipo 10 como proyecto final grupal de la cursada en SOY HENRY del Cohorte 19-A. Esta implementada con nodeJS, expres, mongoose, mongoDB, multer, cloudinary.",
+    "version": "1.0.0",
+    "title": "Microservicio de Productos",
+    "termsOfService": "https://github.com/SarriaRafael",
+    "contact": {
+      "email": "rafael3sarria@gmail.com",
+      "name": "Rafael Sarria"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/products"
+    }
+  ],
+  "tags": [
+    {
+      "name": "products",
+      "description": "Es modelo contiene diferentes rutas la cual es entregada en formato JS."
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Creacion de productos",
+        "description": "Se debe roporcionar los datos necesarios para la creacion de un producto, incluyendo una imagen",
+        "requestBody": {
+          "content": {
+            "form/data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProduct"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "(OK) Imagen creada con exito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateProductOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Listar todos los productos almacenados en la base de datos.",
+        "description": "El usuario debe proporsionar email con el se registro y su contraseña",
+        "responses": {
+          "200": {
+            "description": "(OK)Listado de todos los productos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllProductsOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Unauthorized": {
+        "description": "(Unauthorized) no hay autorizacion para llamar al servicio"
+      },
+      "NotFound": {
+        "description": "(NotFound) no se encontro la informacion"
+      },
+      "BadRequest": {
+        "description": "(BadRequest) los datos enviados son incorrectos o hay datos obligatorios no enviados"
+      },
+      "ServerError": {
+        "description": "(ServerError) Error en el servidor"
+      }
+    },
+    "schemas": {
+      "CreateProduct": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Un nombre  asignado al producto"
+          },
+          "description": {
+            "type": "string",
+            "description": "La descripcion del producto"
+          },
+          "category": {
+            "type": "string",
+            "description": "A que categoria pertenece el producto, entrada, plato principal, postre etc"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Ela valor de venta del producto"
+          },
+          "id_autor": {
+            "type": "string",
+            "description": "Identificacion unica de la persona que crea el producto, Este dato viene del microservicio de usuarios."
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Una imagen del producto a crear. con execelente definicion"
+          }
+        }
+      },
+      "CreateProductOK": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Un mensaje que indica que el registro del producto fue exitoso"
+          }
+        }
+      },
+      "AllProductsOK": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PoductsDetail"
+            }
+          },
+          "resumen": {
+            "properties": {
+              "stats": {
+                "$ref": "#/components/schemas/Stats"
+              },
+              "newComments": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Comments"
+                }
+              },
+              "productsPopulated": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PoductsDetail"
+                }
+              },
+              "productsViewed": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PoductsDetail"
+                }
+              }
+            }
+          }
+        }
+      },
+    
+      "PoductsDetail": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "rating": {
+            "type": "integer"
+          },
+          "views": {
+            "type": "integer"
+          },
+          "comments": {
+            "type": "integer"
+          },
+          "image": {
+            "format": "hostname"
+          },
+          "public_id": {
+            "type": "string"
+          },
+          "timestamps": {
+            "type": "string"
+          }
+        }
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "produts": {
+            "type": "integer"
+          },
+          "comments": {
+            "type": "integer"
+          },
+          "views": {
+            "type": "integer"
+          },
+          "rating": {
+            "type": "integer"
+          }
+        }
+      },
+      "Comments": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "timestamps": {
+            "format": "date-time"
+          },
+          "avatar": {
+            "format": "uuid"
+          }
+        }
+      }
+    }
+  }
+}

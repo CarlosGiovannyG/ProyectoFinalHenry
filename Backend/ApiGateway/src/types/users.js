@@ -8,7 +8,8 @@ input userData{
       name: String
       last_name: String
       email: String
-      addres: String
+      address_name: String
+      address_description:String
       phone: String
       password:String
       rool: String
@@ -26,8 +27,6 @@ input loginUsers{
 type responseLogin {
   message: String
   token:String
-  rool:String
-  userId:String
 }
 
 input userById{
@@ -40,13 +39,18 @@ type responseUserById{
   name:String
   last_name:String
   email:String
-  addres:String
+  address:[addresUser]
   phone:String
   rool:String
   avatar:String
   image:String
   message:String
 
+}
+
+type addresUser{
+  name:String
+  description:String
 }
 
 input changePassword{
@@ -65,6 +69,12 @@ input changeInfo{
   phone:String
 }
 
+input registerAddress {
+  userId:String
+  name:String
+  description:String
+}
+
 type Query{
 LoginUsers(input:loginUsers):responseLogin
 UserById(input:userById):responseUserById
@@ -74,6 +84,7 @@ type Mutation {
   RegisterUsers(input:userData):responseUsers
   ChangePassword(input:changePassword):responseUsers
   ChangeInfo(input:changeInfo):responseUsers
+  RegisterAddress(input:registerAddress):responseUsers
 }
 `;
 

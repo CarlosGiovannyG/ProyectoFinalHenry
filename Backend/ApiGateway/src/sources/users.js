@@ -33,6 +33,11 @@ class UsersApi extends RESTDataSource {
     return await this.post(`/${credencials.id}/info`, credencials)
   }
 
+  async RegisterAddress(credencials) {
+    credencials = new Object(credencials);
+    return await this.post(`/${credencials.userId}/address`, credencials)
+  }
+
 };
 
 module.exports = UsersApi;

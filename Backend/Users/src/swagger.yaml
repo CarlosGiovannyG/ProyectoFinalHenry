@@ -1,0 +1,344 @@
+openapi: 3.0.3
+info:
+  description: >-
+    Este microservicio maneja todo lo relaciona con usuarios que hagan uso de la
+    App Restaurante, creda por el equipo 10 como proyecto final grupal de la
+    cursada en SOY HENRY del Cohorte 19-A. Esta implementada con nodeJS, expres,
+    jsonwebtoken,mongoose, mongoDB.
+  version: 1.0.0
+  title: Microservicio de Usuarios
+  termsOfService: https://github.com/CarlosGiovannyG
+  contact:
+    email: cggualtero@hotmail.com
+    name: Carlos Giovanny Gualtero
+servers:
+  - url: http://localhost:5002/users
+tags:
+  - name: users
+    description: Es modelo contiene diferentes rutas la cual es entregada en formato JS.
+paths:
+  /register:
+    post:
+      tags:
+        - users
+      summary: Registro de usuarios en la DB.
+      description: El usuario debe proporsionar ciertos datos para poderse registrar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPost'
+        required: true
+      responses:
+        '200':
+          description: (OK) Registro exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /login:
+    post:
+      tags:
+        - users
+      summary: Inicio de sesion de un usuario.
+      description: El usuario debe proporsionar email con el se registro y su contraseña
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        '200':
+          description: (OK) mensaje confirmacion exitiso, token creado para el usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLoginOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /access:
+    post:
+      tags:
+        - users
+      summary: Validacion de la valides del token y identidad del usuario
+      description: Con el token generado al iniciar sesion se valida al usuario
+      parameters:
+        - name: token
+          in: header
+          required: true
+          description: Token de validacion del usuario
+          schema:
+            type: string
+      responses:
+        '200':
+          description: (OK) la informacion del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateUser'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /{idUser}:
+    get:
+      tags:
+        - users
+      summary: Ver informacion de un usuario por id
+      parameters:
+        - name: token
+          in: header
+          required: true
+          description: Token de validacion del usuario
+          schema:
+            type: string
+        - name: idUser
+          in: path
+          description: Identificador del cliente
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: (OK) la informacion del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserByIdGet'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /{idUser}/admin:
+    post:
+      tags:
+        - users
+      summary: Cambio de contraseña
+      parameters:
+        - name: idUser
+          in: path
+          description: Identificador del usuario
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAdmin'
+        required: true
+      responses:
+        '200':
+          description: (OK) mensaje de confirmacion del cambio de la contraseña
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAdminOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /{idUser}/image:
+    post:
+      tags:
+        - users
+      summary: Asignacion de una imagen de perfil
+      parameters:
+        - name: idUser
+          in: path
+          description: Identificador del usuario
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeImage'
+        required: true
+      responses:
+        '200':
+          description: (OK) mensaje de confirmacion del cambio de la imagen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeImageOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Unauthorized:
+      description: (Unauthorized) no hay autorizacion para llamar al servicio
+    NotFound:
+      description: (NotFound) no se encontro la informacion
+    BadRequest:
+      description: (BadRequest) los datos enviados son incorrectos o hay datos obligatorios
+        no enviados
+    ServerError:
+      description: (ServerError) Error en el servidor
+  schemas:
+    UserPost:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Nombre se usuario
+        name:
+          type: string
+          description: El primer nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          format: email
+          description: Un correo electronico
+        address_description:
+          type: string
+          description: Una direccion de ubicacion
+        address_name:
+          type: string
+          description: A donde pertenece la direccion ingresada
+        phone:
+          type: integer
+          description: Numero telefonico
+        password:
+          format: password
+          description: La contraseña secreta del usuario
+    registerOK:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Un mensaje que indica que el registro fue exitoso
+    UserLogin:
+      type: object
+      properties:
+        email:
+          format: email
+          description: El correo electronico que registro
+        password:
+          format: password
+          description: La contraseña secreta que regsitro
+    UserLoginOK:
+      type: object
+      properties:
+        message:
+          type: string
+          description: confirmacion de inicio de sesion
+        token:
+          type: string
+          description: token creado para la sesion del usuario
+    ValidateUser:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: El numero de identificacion en la base de datos
+        rool:
+          type: string
+          description: Rool que tiene el usuario para generar permisos de acciones dentro
+            de la aplicacion
+    UserByIdGet:
+      type: object
+      properties:
+        id:
+          type: string
+          description: El numero de identificacion en la base de datos
+        username:
+          type: string
+          description: Nombre se usuario
+        name:
+          type: string
+          description: El primer nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          format: email
+          description: Un correo electronico
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/address'
+        phone:
+          type: integer
+          description: Numero telefonico
+        rool:
+          type: string
+          description: La contraseña secreta del usuario
+        avatar:
+          format: hostname
+          description: url para visualizar un avatar
+        image:
+          format: hostname
+          description: url para visualizar imagen de perfil
+    
+    address:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        userId:
+          type: string
+          
+    UserAdmin:
+      type: object
+      properties:
+        currentPassword:
+          format: password
+          description: La contraseña secreta que registro
+        newPassowrd:
+          format: password
+          description: La nueva contraseña secreta que asignara
+    UserAdminOK:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Un mensaje que indica que el cambio de contraseña fue exitoso
+    ChangeImage:
+      type: object
+      properties:
+        image:
+          type: string
+          format: binary
+          description: Una imagen que el usuario quiera asignar para el perfil
+    ChangeImageOK:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Un mensaje indicando que fue exitoso elcambio de la imagen

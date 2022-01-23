@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const validator = require('validator');
 
 
@@ -26,9 +26,6 @@ const UserSchema = new Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Introduzca un correo valido'],
   },
-  addres: {
-    type: String
-  },
   phone: {
     type: String,
     validate: [validator.isNumeric, 'Introduzca un numero valido']
@@ -41,6 +38,13 @@ const UserSchema = new Schema({
   rool: {
     type: String,
     default: 'regular',
+  },
+  address: {
+    type: Array,
+    default: [{
+      type: Types.ObjectId,
+      ref: 'Address'
+    }]
   },
   avatar: {
     type: String,
@@ -55,7 +59,9 @@ const UserSchema = new Schema({
   lastLogin: {
     type: Date,
   }
-});
+}, {
+  versionKey: false
+})
 
 
 

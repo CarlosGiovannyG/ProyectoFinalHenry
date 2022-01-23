@@ -23,7 +23,8 @@ export default function SignUpForm({ close }) {
         username: '',
         name: '',
         last_name: '',
-        addres: '',
+        address_name: '',
+        address_description: '',
         phone: '',
         password: '',
         passwordConfirm: '',
@@ -62,7 +63,8 @@ export default function SignUpForm({ close }) {
                     "name": input.name,
                     "last_name": input.last_name,
                     "email": input.email,
-                    "addres": input.addres,
+                    "address_name": input.address_name,
+                    "address_description": input.address_description,
                     "phone": input.phone,
                     "password": input.password,
                     "rool": input.rool,
@@ -75,7 +77,7 @@ export default function SignUpForm({ close }) {
         toast.success(resp)
         close()
     }
-
+    //TODO:     FALTA  COLOCAR INPUT PARA ADDRESS_DESCRIPTION
     return (
         <div className={s.container} >
             <div>
@@ -120,9 +122,9 @@ export default function SignUpForm({ close }) {
                             <input
                                 className={s.inputName}
                                 type='text'
-                                name='addres'
+                                name='address_name'
                                 placeholder={'Address...'}
-                                value={input.addres}
+                                value={input.address_name}
                                 onChange={handleInputChange} />
                             <input
                                 className={s.inputEmail}

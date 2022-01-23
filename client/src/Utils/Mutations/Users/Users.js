@@ -35,6 +35,17 @@ const Users = {
   
   `,
 
+  REGISTER_ADDRESS: gql`
+   
+  mutation ChangeInfo($input: changeInfo) {
+  ChangeInfo(input: $input) {
+    message
+     blocking
+  }
+}
+  
+  `,
+
 };
 
 export default Users 

@@ -24,9 +24,7 @@
   "paths": {
     "/register": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Registro de usuarios en la DB.",
         "description": "El usuario debe proporsionar ciertos datos para poderse registrar",
         "requestBody": {
@@ -64,9 +62,7 @@
     },
     "/login": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Inicio de sesion de un usuario.",
         "description": "El usuario debe proporsionar email con el se registro y su contraseña",
         "requestBody": {
@@ -104,9 +100,7 @@
     },
     "/access": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Validacion de la valides del token y identidad del usuario",
         "description": "Con el token generado al iniciar sesion se valida al usuario",
         "parameters": [
@@ -148,9 +142,7 @@
     },
     "/{idUser}": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Ver informacion de un usuario por id",
         "parameters": [
           {
@@ -200,9 +192,7 @@
     },
     "/{idUser}/admin": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Cambio de contraseña",
         "parameters": [
           {
@@ -253,9 +243,7 @@
     },
     "/{idUser}/image": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Asignacion de una imagen de perfil",
         "parameters": [
           {
@@ -340,9 +328,13 @@
             "format": "email",
             "description": "Un correo electronico"
           },
-          "address": {
+          "address_description": {
             "type": "string",
-            "description": "Direccion del usuario"
+            "description": "Una direccion de ubicacion"
+          },
+          "address_name": {
+            "type": "string",
+            "description": "A donde pertenece la direccion ingresada"
           },
           "phone": {
             "type": "integer",
@@ -426,8 +418,10 @@
             "description": "Un correo electronico"
           },
           "address": {
-            "type": "string",
-            "description": "Direccion del usuario"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/address"
+            }
           },
           "phone": {
             "type": "integer",
@@ -444,6 +438,23 @@
           "image": {
             "format": "hostname",
             "description": "url para visualizar imagen de perfil"
+          }
+        }
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
           }
         }
       },
