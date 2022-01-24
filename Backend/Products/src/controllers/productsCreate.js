@@ -34,7 +34,7 @@ const create = async (req, res) => {
 
       await fs.unlink(req.file.path)
 
-      res.json({ message: 'Producto creado con exito' })
+      res.status(201).send({ message: 'Producto creado con exito' })
 
     } else {
 

@@ -13,7 +13,9 @@ const ProductComment = async (req, res) => {
       const newComment = new Comment(req.body);
       newComment.avatar = md5(newComment.email);
       newComment.save();
-      res.json({ message: "Gracias por su comentario" })
+      res.status(201).send({ message: "Gracias por su comentario" })
+    } else {
+      res.status(204).send({ message: "No se encontro producto" })
     }
   } catch (error) {
     res.status(500).send({ message: "ocurrio un error ", error })

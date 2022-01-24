@@ -30,10 +30,7 @@ const AuthProvider = ({ children }) => {
 
 
   const token = localStorage.getItem('token');
-  let decoded;
-  if (token) {
-    decoded = jwt_decode(token);
-  }
+  let decoded = token && jwt_decode(token);
 
   const hasRole = (role) => decoded?.rol === role;
 

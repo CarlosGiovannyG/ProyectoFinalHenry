@@ -51,9 +51,6 @@ export default function LogInForm({ close }) {
         reader.readAsDataURL(file)
     }
 
-
-    //http://localhost:5000/products
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!selectedFile) return toast.error('Debes seleccionar una imagen');
@@ -67,7 +64,7 @@ export default function LogInForm({ close }) {
         formData.append('image', image)
 
         const response = await axios({
-            url: `http://localhost:5000/products`,
+            url: `http://localhost:5000/products/create`,
             method: 'POST',
             data: formData,
         })
@@ -120,7 +117,7 @@ export default function LogInForm({ close }) {
                                 placeholder={'Price...'}
                                 value={input.price}
                                 onChange={handleInputChange} />
-                            <label className={s.inputFile} for="picture">{fileName}</label>
+                            <label className={s.input} for="picture">{fileName}</label>
                             <input
                                 type="file"
                                 id="picture"

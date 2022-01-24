@@ -2,7 +2,7 @@ const { Router } = require("express")
 const router = Router();
 
 
-router.post("/", require("../controllers/productsCreate"))
+router.post("/create", require("../controllers/productsCreate"))
 
 router.post("/:id/like", require("../controllers/productLike"))
 
@@ -14,7 +14,7 @@ router.get("/:id", require("../controllers/productById"))
 
 router.get("/bycomment/:id", require("../controllers/commentByProduct"))
 
-router.post("/update/:id", require("../controllers/productUpdate"))
+
 
 
 module.exports = router

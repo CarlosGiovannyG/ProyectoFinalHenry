@@ -22,11 +22,9 @@
     }
   ],
   "paths": {
-    "/products": {
+    "/create": {
       "post": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Creacion de productos",
         "description": "Se debe roporcionar los datos necesarios para la creacion de un producto, incluyendo una imagen",
         "requestBody": {
@@ -40,7 +38,7 @@
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "(OK) Imagen creada con exito",
             "content": {
               "application/json": {
@@ -64,9 +62,7 @@
     },
     "/": {
       "get": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Listar todos los productos almacenados en la base de datos.",
         "description": "El usuario debe proporsionar email con el se registro y su contraseña",
         "responses": {
@@ -91,12 +87,209 @@
           }
         }
       }
+    },
+    "/{id}/like": {
+      "post": {
+        "tags": ["products"],
+        "summary": "Dar like a un producto",
+        "description": "Se envia el id del producto para sumar un like a ese producto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del producto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) rating del producto",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "properties": {
+                    "rating": {
+                      "type": "number",
+                      "description": "Los likes que haya sumado el producto hasta el momento"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/{id}/comment": {
+      "post": {
+        "tags": ["products"],
+        "summary": "Crear un comentario a un producto",
+        "description": "Se envia el id del producto y el nuevo comentario a ese producto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del producto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/newComment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "(OK) Mensaje",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensaje de agradecimiento por el comentario"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": ["products"],
+        "summary": "Ver informacion  completa de un solo producto",
+        "description": "Se envia el id del producto a buscar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del producto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Detalle del producto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PoductById"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/bycomment/{id}": {
+      "get": {
+        "tags": ["products"],
+        "summary": "Ver los comentarios de un prducto especifico",
+        "description": "Se envia el id del producto que se quiere ver los comentarios",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id del producto a ver los comentarios",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Todos los comentarios que tenga ese producto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Comments"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
     }
   },
   "components": {
     "responses": {
       "Unauthorized": {
         "description": "(Unauthorized) no hay autorizacion para llamar al servicio"
+      },
+      "NoContent": {
+        "description": "(No Content) no se encontro registro en la DB"
       },
       "NotFound": {
         "description": "(NotFound) no se encontro la informacion"
@@ -163,10 +356,7 @@
                 "$ref": "#/components/schemas/Stats"
               },
               "newComments": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Comments"
-                }
+                "$ref": "#/components/schemas/newComments"
               },
               "productsPopulated": {
                 "type": "array",
@@ -184,7 +374,6 @@
           }
         }
       },
-    
       "PoductsDetail": {
         "type": "object",
         "properties": {
@@ -223,6 +412,50 @@
           }
         }
       },
+      "PoductById": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "rating": {
+            "type": "integer"
+          },
+          "views": {
+            "type": "integer"
+          },
+          "comments": {
+            "type": "integer"
+          },
+          "image": {
+            "format": "hostname"
+          },
+          "public_id": {
+            "type": "string"
+          },
+          "timestamps": {
+            "type": "string"
+          },
+          "listComments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comments"
+            }
+          }
+        }
+      },
       "Stats": {
         "type": "object",
         "properties": {
@@ -238,6 +471,12 @@
           "rating": {
             "type": "integer"
           }
+        }
+      },
+      "newComments": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Comments"
         }
       },
       "Comments": {
@@ -256,13 +495,32 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "El email de la persona que hizo el comentario"
           },
           "timestamps": {
             "format": "date-time"
           },
           "avatar": {
-            "format": "uuid"
+            "format": "uuid",
+            "description": "Avatar de la persona que hizo el comentario"
+          }
+        }
+      },
+      "newComment": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "el nombre que se dara al comentario"
+          },
+          "comment": {
+            "type": "string",
+            "description": "El comentario que se le hara al producto"
+          },
+          "email": {
+            "type": "string",
+            "description": "El correo electronico de la persona que hace el comentario"
           }
         }
       }

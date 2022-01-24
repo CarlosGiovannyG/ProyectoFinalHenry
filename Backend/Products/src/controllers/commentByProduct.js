@@ -6,7 +6,11 @@ const commentByProduct = async (req, res) => {
 
     const wantedComentd = await Comment.find({ product_id: req.params.id }).sort({ timestamps: -1 });
 
-    res.json({ comments: wantedComentd })
+    if (wantedComentd) {
+      res.json({ comments: wantedComentd })
+    } else {
+      res.status(204).send({ message: "No se encontro producto" })
+    }
 
   } catch (error) {
     res.status(500).send({ message: "ocurrio un error ", error })
