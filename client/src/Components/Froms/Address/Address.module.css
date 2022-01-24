@@ -1,0 +1,63 @@
+.container{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-family: 'Montserrat';
+    width: 45vw;
+}
+ 
+.title{
+    width: 100%;
+    font-family: 'Suranna', serif;
+    font-weight: lighter;
+    color: black;
+    font-size: 3rem;
+    text-align: center;
+    
+}
+
+.inputs{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.inputDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+.input{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 1.9rem;
+    width: 45%;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+
+.btnRegister{
+    border: none;
+    background-color: rgb(194, 193, 193);
+    height: 1.9rem;
+    width: 45%;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.btnRegisterError{
+    border: none;
+    background-color: rgb(230, 228, 228);
+    height: 1.9rem;
+    width: 45%;
+    color: rgb(113, 113, 114);
+    pointer-events: auto! important;
+    cursor: not-allowed! important;
+}
