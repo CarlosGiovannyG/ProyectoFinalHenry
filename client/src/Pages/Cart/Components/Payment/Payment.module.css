@@ -3,7 +3,8 @@
     margin-top: 1.5rem;
     width: 20vw;
     min-height: 10vh;
-    background-color: #dbdbdb;
+    background-color: gray;
+    /* background-color: #dbdbdb; */
     border-radius: 7px;
     padding: .8rem;
     display: flex;

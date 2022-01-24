@@ -104,7 +104,7 @@ export default function Cart() {
                     <Bookings />
                 </Transsition>
                 <Transsition>
-                    <Payment />
+                    <Payment total={total} />
                 </Transsition>
                 <Transsition>
                     <OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} />
