@@ -2,7 +2,7 @@
     margin: 0 auto;
     background-color: white;
     width: 35vw;
-    height: 13.5vw;
+    height: 23.5vw;
 }
 
 .titleContainer{
@@ -11,6 +11,7 @@
     margin: 0 auto;
     height: fit-content;
     padding-top: 1rem;
+
 }
 
 .title{
@@ -18,7 +19,7 @@
     font-weight: lighter;
     font-size: 3rem;
     color: black;
-    
+    text-align: center;
 }
 
 .form{

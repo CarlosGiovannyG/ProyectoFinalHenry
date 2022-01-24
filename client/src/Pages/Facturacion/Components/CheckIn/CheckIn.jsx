@@ -20,7 +20,7 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
   console.log(checkIn, 'chec');
   return (
     <div className={styles.container} >
-      <div>
+      <div className={styles.titleContainer}>
         <h1 className={styles.title}>CHECK IN</h1>
       </div>
       <div>
@@ -48,11 +48,11 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
       </div>
       <div>
         <form>
-          <div className={styles.inputs}>
-            <div className={styles.inputDiv1}>
-              <label className={styles.Label} >Total Bill:{checkIn?.sumatotal}</label>
+          <div className={styles.form}>
+            <div className={styles.inputDiv}>
+              <label className={styles.label} >Total Bill: ${checkIn?.sumatotal}</label>
               <input
-                className={styles.inputMount}
+                className={styles.input}
                 type='text'
                 name='mount'
                 placeholder='Enter an amount'
@@ -61,18 +61,18 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
               />
 
             </div>
-            <div className={styles.inputDiv}>
-              <label
-                className={styles.Change}
+            <div className={styles.inputDiv} >
+              <label 
+                className={styles.label}
                 onChange={handleChange}
-              >Change:{input && Number(input) - Number(checkIn)}</label>
+              >Change: ${input && Number(input) - Number(checkIn.sumatotal)}</label>
 
             </div>
 
-            <div className={styles.inputDiv}>
+            <div className={styles.inputDiv} >
               {
                 <button
-                  className={styles.btnRegister}
+                className={styles.input}
                   type="submit"
                   onClick={handleSubmit}
                 >CONFIRM</button>
