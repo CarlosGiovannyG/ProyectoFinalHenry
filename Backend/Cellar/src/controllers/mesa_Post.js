@@ -1,9 +1,10 @@
 const  db = require("../models/index");
 
 const entry = async (req, res) => {
-    
-    const mesa= db.mesa;    
-    
+    console.log("Estoy en el Post");
+    const mesa= db.mesa;
+    const usertable = db.usertable;
+    console.log(usertable);
     let { 
         numero,       
         capacidad,  
@@ -16,7 +17,7 @@ const entry = async (req, res) => {
         menssage: " El numero debe ser mayor que 10 y unico  "}); 
     numero=numero.toString() ;
     try {
-        
+        console.log("En el try catch");
         let newIput= await mesa.create({
             numero,       
             capacidad,               
