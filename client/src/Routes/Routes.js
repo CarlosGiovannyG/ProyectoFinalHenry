@@ -12,6 +12,7 @@ import AccountPage from '../Pages/Acoount/AccountPage';
 import UserMainPage from '../Pages/UserMainPage/UserMainPage';
 import Cart from '../Pages/Cart/Cart';
 import AdminMainPage from '../Pages/AdminMainPage/AdminMainPage';
+import Address from '../Components/Froms/Address/Address';
 
 const Rout = () => {
   return (
@@ -30,6 +31,7 @@ const Rout = () => {
           <Route path={routes.UserMainPage} element={<Layouts><UserMainPage /></Layouts>} />
           <Route path={routes.AdminMainPage} element={<Layouts><AdminMainPage /></Layouts>} />
           <Route path={routes.billClient()} element={<BillClient />} />
+          <Route path={'/Address'} element={<Layouts><Address /></Layouts>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -4,6 +4,7 @@ import createComment from './CreateComment';
 import login from './Login';
 import register from './Register';
 import CreateProduct from './CreateProduct';
+import Address from './Address';
 
 const validate = {
   Register: register,
@@ -11,7 +12,8 @@ const validate = {
   Password: validatePassword,
   EditAccount: validateEditAccount,
   CreateComment: createComment,
-  CreateProduct: CreateProduct
+  CreateProduct: CreateProduct,
+  Address: Address
 }
 
 export default validate;
