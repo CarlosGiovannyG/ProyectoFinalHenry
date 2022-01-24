@@ -11,13 +11,12 @@ const schedule_all =  (req, res) => {
       fecha = c.map(d=>{      
         console.log(d.dataValues) 
         
-        let mesaslibres=  d.dataValues.mesasLibres
+        let mesaslibres=  d.mesasLibres
 
         let arraymesas = mesaslibres.split(","); // strign a arry
                 
         arraymesas.sort();
-// *************************
-      
+
       let arrmesas=[];
 
       for (let i = 0; i < arraymesas.length; i++) {
@@ -25,13 +24,9 @@ const schedule_all =  (req, res) => {
         mesa= mesa*1;
         let cap = arraymesas[i][8] ;
         cap = cap*1;
-        arrmesas.push({mesa,  cap })
-        //{m.dataValues.numero , cap:m.dataValues.capacidad}   m[5] + m[6] 
+        arrmesas.push({mesa,  cap })         
       }
-      
-
-        if(mesaslibres.length>0) return {fecha: d.dataValues.fecha,  arrmesas} 
-        return d.dataValues.fecha+ " con : 0 sillas libres"
+        return {fechaIn: d.fechaIn, fechaOut: d.fechaOut,  arrmesas} 
       })
       
       console.log(fecha); 
@@ -40,7 +35,7 @@ const schedule_all =  (req, res) => {
 
       })).catch((err) => { 
           console.log(err);
-          return res.json("error  error error  error error  error")
+          return res.json({message: "error  error error  error error  error", err})
           })          
 }
 

@@ -8,7 +8,9 @@ module.exports = (sequelize) => {
 
     tabclien: { type: DataTypes.STRING, unique: false },
 
-    fecharsv: { type: DataTypes.STRING, unique: false },
+    fecharsvIn: { type: DataTypes.STRING, unique: false },
+
+    fecharsvOut: { type: DataTypes.STRING, unique: false },
 
   },
   
