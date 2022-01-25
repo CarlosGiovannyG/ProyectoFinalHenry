@@ -35,8 +35,6 @@ export default function Cart() {
 
     }, [userId])
 
-    console.log(address);
-
     const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
         refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
         onError: err => {
@@ -112,17 +110,18 @@ export default function Cart() {
         }
 
 
-        toast.success(message)
-        toast.success(messagefinal)
-        const resp = response.data.CreateBills.message
+        toast.success(message);
+        toast.success(messagefinal);
+        const resp = response.data.CreateBills.message;
 
-        resp && toast.success(resp)
+        resp && toast.success(resp);
 
-        localStorage.removeItem('order')
-        localStorage.removeItem('date')
-        localStorage.removeItem('mesa')
-        localStorage.removeItem('tipoDePedido')
-        navigate(`${routes.UserMainPage}`)
+        localStorage.removeItem('order');
+        localStorage.removeItem('date');
+        localStorage.removeItem('cap');
+        localStorage.removeItem('mesa');
+        localStorage.removeItem('tipoDePedido');
+        navigate(`${routes.UserMainPage}`);
     }
 
 

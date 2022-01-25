@@ -2,7 +2,7 @@ const db = require("../models/index");
 const verificacion = require("./verificacion");
    
 const scheduleByFecha = async (req, res) => {
-
+  console.log(req.params)
   const schedule = db.schedule;
   let fecha = "";  
    
