@@ -78,49 +78,84 @@ export default function Cart() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-
-        let responseTable = await BookTable({
-            variables: {
-                "input": {
-                    "fechaIn": `${localStorage.getItem('date')}`,
-                    "estamesa": `${localStorage.getItem('mesa')}`,
-                    "idclient": `${userId()}`
-                }
-            }
-        })
-
-        const { message, messagefinal } = responseTable.data.BookTable
-
+        const tipoPedido = localStorage.getItem('tipoDePedido')
         let response;
-        if (messagefinal) {
+        let messageTable;
+        let messagefinalTable;
+        let resp;
+        
+
+
+        if (tipoPedido === 'domicilio') {
+                               
             response = await CreateBills({
                 variables: {
                     "input": {
                         "idUser": `${userId()}`,
                         "products": aux,
-                        "numeroMesa": `${localStorage.getItem('mesa')}`,
+                        description:'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
-                        "fechaEntrega": `${localStorage.getItem('date')}`,
+                        "direccionEntrega": `${localStorage.getItem('address')}`,
+                        // "fechaEntrega": `${localStorage.getItem('date')}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }
                 }
             })
 
+            resp = response.data.CreateBills.message;
+         
         }
 
 
-        toast.success(message);
-        toast.success(messagefinal);
-        const resp = response.data.CreateBills.message;
+        if (tipoPedido === 'salon') {
 
-        resp && toast.success(resp);
+            let responseTable = await BookTable({
+                variables: {
+                    "input": {
+                        "fechaIn": `${localStorage.getItem('date')}`,
+                        "estamesa": `${localStorage.getItem('mesa')}`,
+                        "idclient": `${userId()}`
+                    }
+                }
+            })
+
+            let { message, messagefinal } = responseTable.data.BookTable
+
+             messageTable = message
+             messagefinalTable = messagefinal
+
+            if (messagefinal) {
+                response = await CreateBills({
+                    variables: {
+                        "input": {
+                            "idUser": `${userId()}`,
+                            "products": aux,
+                            "numeroMesa": `${localStorage.getItem('mesa')}`,
+                            "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
+                            "fechaEntrega": `${localStorage.getItem('date')}`,
+                            subTotal: Math.ceil(subTotal),
+                            total: Math.ceil(total),
+                        }
+                    }
+                })
+                resp = response.data.CreateBills.message;
+            }
+           
+        }
+
+        toast.success(messageTable);
+        toast.success(messagefinalTable);
+       
+
+        toast.success(resp);
 
         localStorage.removeItem('order');
         localStorage.removeItem('date');
         localStorage.removeItem('cap');
         localStorage.removeItem('mesa');
         localStorage.removeItem('tipoDePedido');
+        localStorage.removeItem('address');
         navigate(`${routes.UserMainPage}`);
     }
 

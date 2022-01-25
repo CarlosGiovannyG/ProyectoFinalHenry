@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from './Bookings.module.css';
 import { Switch } from 'antd';
 import Salon from './Components/Salon';
@@ -8,6 +8,8 @@ import Transsition from '../../../../Hooks/Transsition';
 
 export default function Bookings({ address }) {
     const [toggle, setToggle] = React.useState(false);
+
+
 
     const handleToggle = function () {
         toggle ? setToggle(false) : setToggle(true);

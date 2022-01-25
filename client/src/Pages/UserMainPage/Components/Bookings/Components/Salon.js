@@ -82,7 +82,7 @@ export default function Salon() {
                         }
                         {freeTables &&
                             freeTables.map(t => (
-                                <option value={JSON.stringify(t)} key={t.cap} >{t.cap}</option>
+                                <option value={JSON.stringify(t)}  >{t.cap}</option>
                             ))
                         }
                     </select>
@@ -109,7 +109,6 @@ export default function Salon() {
     let hours2 = twoWeeks.getHours();
     let minutes2 = twoWeeks.getMinutes();
 
-    console.log(freeTables)
 
     return (
         <div className={s.container}>

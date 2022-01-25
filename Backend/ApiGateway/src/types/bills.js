@@ -22,6 +22,7 @@ input createBill{
   numeroMesa:String
   tipoDePedido:String
   fechaEntrega:String
+  direccionEntrega:String
   subTotal: Int
   total: Int
 }
