@@ -14,6 +14,8 @@ import ModalCreateComments from '../../Components/Comments/CommentsCreate/Create
 import Loading from '../../Components/Loading/Loading';
 import { useEffect } from 'react';
 import BotonCart from './Components/BotonCart/BotonCart';
+import axios from 'axios';
+import useAuth from '../../Auth/useAuth';
 
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -24,6 +26,18 @@ export default function UserMainPage() {
     const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
     const compra = localStorage.getItem('order');
+    const [address, setAddress] = React.useState(null);
+    const { userId } = useAuth();
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:5002/users/address/${userId()}`)
+            .then(rsp => rsp.data)
+            .then(data => setAddress(data.address))
+            .catch(err => console.error(err))
+
+    }, [userId])
+    
 
     useEffect(() => {
         (function Cart() {
@@ -69,7 +83,7 @@ export default function UserMainPage() {
                     <BotonCart data-tip data-for='tooltip' cart={cart} />
                 </Transsition>
                 <Transsition>
-                    <Bookings />
+                    <Bookings address={address} />
                 </Transsition>
             </div>
 
