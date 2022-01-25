@@ -37,6 +37,9 @@ const BillsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    direccionEntrega: {
+      type: String,
+    },
     statusCocina: {
       type: String,
       default: "Open"
