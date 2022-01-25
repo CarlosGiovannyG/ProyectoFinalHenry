@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose")
 
 const modelrafa = new Schema({
-    name: { type: String },
+    name: { type: String, unique: true },
     description: { type: String },
     category: { type: String },
     price: { type: Number, default: 0 },
