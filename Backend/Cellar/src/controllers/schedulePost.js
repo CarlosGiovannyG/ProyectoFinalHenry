@@ -43,7 +43,7 @@ const entry = async (req, res) => {
          
         
         if (!x.bandera) return res.json({
-          message: "la reservación no es posible", x
+          message: "la reservación no es posible ver:", fecha, estamesa
         });
 
         mesastotal = x.tomandomesa;
@@ -115,7 +115,11 @@ const entry = async (req, res) => {
     
   }
  
-  return res.json({ message: " ja aja ja ja ja " })
+  return res.json({ 
+    message: " la reservación no es posible, revisar: ",
+    fecha, 
+    estamesa
+   });
 }
 
 module.exports = entry;

@@ -42,6 +42,9 @@ const create = async (req, res) => {
 
       res.status(500).send({ message: 'Solo puedes guardar imagenes' })
     }
+    
+    await fs.unlink(req.file.path)
+    .catch(err=>{ console.log( "err,=: ", err );  });
 
   } catch (error) {
 
