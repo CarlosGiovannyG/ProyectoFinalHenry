@@ -72,6 +72,23 @@
   gap: 1%;
 }
 
+
+.ButtonAddress {
+  padding: 2%;
+  background-color: rgb(11, 195, 140);
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ButtonAddress:hover {
+  background-color: rgba(219, 215, 215, 0.658);
+  color: rgb(11, 195, 140);
+}
+
+
 .ButtonEdit {
   padding: 2%;
   background-color: rgb(11, 129, 31);
@@ -107,6 +124,7 @@
   color: white;
   transition: all 0.3s;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .ButtonChange:hover {

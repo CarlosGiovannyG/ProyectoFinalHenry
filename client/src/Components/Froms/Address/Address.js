@@ -73,12 +73,12 @@ export default function Address({ close }) {
                                             className={s.btnRegister}
                                             type="submit"
                                             onClick={handleSubmit}
-                                        >Log In</button> :
+                                        >Add Address</button> :
                                         <button
                                             className={s.btnRegisterError}
                                             data-tip data-for='tooltip'
                                             onClick={(e) => e.preventDefault()}
-                                        >Log In</button>
+                                        >Add Address</button>
                                 }
                                 {(Object.keys(errors).length > 0) ? (
                                     <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
