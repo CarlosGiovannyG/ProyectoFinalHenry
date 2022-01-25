@@ -13,6 +13,7 @@ import { useLazyQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
 import toast from 'react-hot-toast';
 import useAuth from '../../Auth/useAuth';
+import Address from '../../Components/Froms/Address/Address';
 
 
 
@@ -21,6 +22,7 @@ const AccountPage = () => {
   const [UserById, { loading, error, data }] = useLazyQuery(Queries.USER_BY_ID);
   const [isOpenChangePassword, openChangePassword, closeChangePassword] = useModal();
   const [isOpenDeleteAccount, openDeleteAccount, closeDeleteAccount] = useModal();
+  const [isOpenNewAddress, openNewAddress, closeNewAddress] = useModal();
 
   const [isOpenEditAccount, openEditAccount, closeEditAccount] = useModal();
 
@@ -58,19 +60,20 @@ const AccountPage = () => {
               />
             </div>
             <div className={styles.containerInfo}>
-              <p className="text-center"><b>Nombre de Usuario:</b>{UserById.username}</p>
-              <p className="text-center"><b>Nombre:</b>{UserById.name}</p>
-              <p className="text-center"><b>Apellido:</b>{UserById.last_name}</p>
-              <p className="text-center"><b>Email:</b>{UserById.email}</p>
-              <p className="text-center"><b>Telefono:</b>{UserById.phone}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Nombre de Usuario: </b>{UserById.username}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Nombre: </b>{UserById.name}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Apellido: </b>{UserById.last_name}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Email: </b>{UserById.email}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Telefono: </b>{UserById.phone}</p>
               {UserById.address &&
                 UserById.address.map(a => (
-                  <p className="text-center" key={a.description}><b>Direccion:</b>{"  "}{a.name}{" / "}{a.description}</p>
+                  <p className="text-center"style={{fontFamily: 'Montserrat'}} key={a.description}><b>Direccion: </b>{"  "}{a.name}{" / "}{a.description}</p>
                 ))
               }
-              <p className="text-center"><b>Rol:</b>{UserById.rool}</p>
+              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Rol: </b>{UserById.rool}</p>
             </div>
             <div className={styles.containerBotones}>
+              <button className={styles.ButtonAddress} onClick={openNewAddress}>NEW ADDRESS</button>
               <button className={styles.ButtonEdit} onClick={openEditAccount}>EDIT ACCOUNT</button>
               <button className={styles.ButtonChange} onClick={openChangePassword}>CHANGE PASSWORD</button>
               <button className={styles.ButtonDelete} onClick={openDeleteAccount}>DELETE ACCOUNT</button>
@@ -95,6 +98,11 @@ const AccountPage = () => {
           <Modal isOpen={isOpenProfilePic} closeModal={closeProfilePic}>
             <Transsition>
               <ProfilePic userId={userId} close={closeProfilePic} />
+            </Transsition>
+          </Modal>
+          <Modal isOpen={isOpenNewAddress} closeModal={closeNewAddress}>
+            <Transsition>
+                <Address/>
             </Transsition>
           </Modal>
         </div>
