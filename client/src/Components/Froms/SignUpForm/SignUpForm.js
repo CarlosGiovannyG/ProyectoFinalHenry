@@ -82,7 +82,6 @@ export default function SignUpForm({ close }) {
         toast.success(resp)
         close()
     }
-    //TODO:     FALTA  COLOCAR INPUT PARA ADDRESS_DESCRIPTION
     return (
         <div className={s.container} >
             <div>
@@ -138,7 +137,7 @@ export default function SignUpForm({ close }) {
                                 value={input.passwordConfirm}
                                 onChange={handleInputChange} />
                         </div>
-                        <div className={s.inputDiv3}>
+                        <div className={s.inputDiv2}>
                             <input
                                 className={s.inputPassword1}
                                 type='text'
@@ -147,7 +146,7 @@ export default function SignUpForm({ close }) {
                                 value={input.phone}
                                 onChange={handleInputChange} />
                             {url === routes.AdminMainPage &&
-                                <select className={s.inputPassword2} onChange={handleSelector}>
+                                <select className={s.inputEmail} onChange={handleSelector}>
                                     <option value="regular">Regular</option>
                                     <option value="cook">Cook</option>
                                     <option value="cashier">Cashier</option>
@@ -156,6 +155,8 @@ export default function SignUpForm({ close }) {
                                     <option selected value={null} >Role</option>
                                 </select>
                             }
+                        </div>
+                        <div className={s.inputDiv3}>                           
                             {
                                 (input.name !== '' && input.username !== ''
                                     && !errors.last_name

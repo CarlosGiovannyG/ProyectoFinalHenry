@@ -24,7 +24,7 @@ export default function AdminMainPage() {
             </div>
             <ModalCreateAccount>
                 <Transsition>
-                    <SignUpForm />
+                    <SignUpForm close={closeCreateAccount}/>
                 </Transsition>
             </ModalCreateAccount>
             <ModalCreateProduct>

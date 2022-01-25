@@ -12,27 +12,54 @@ import AccountPage from '../Pages/Acoount/AccountPage';
 import UserMainPage from '../Pages/UserMainPage/UserMainPage';
 import Cart from '../Pages/Cart/Cart';
 import AdminMainPage from '../Pages/AdminMainPage/AdminMainPage';
-import Address from '../Components/Froms/Address/Address';
+import PrivateRoutes from './PrivateRoutes';
+import PublicRoutes from './PublicRoutes';
 
 const Rout = () => {
   return (
 
+    // <Layouts><AdminMainPage /></Layouts>
 
     <>
       <BrowserRouter>
         <Routes>
           <Route path={routes.home} element={<Home />} />
+
           <Route path={routes.menu} element={<Menu />} />
-          <Route path={routes.cart} element={<Layouts><Cart /></Layouts>} />
-          <Route path={routes.checkIn} element={<CreateBill />} />
-          <Route path={routes.bills} element={<Layouts><Bills /></Layouts>} />
-          <Route path={routes.kitchen} element={<Layouts><Kitchen /></Layouts>} />
-          <Route path={routes.account} element={<Layouts><AccountPage /></Layouts>} />
-          <Route path={routes.UserMainPage} element={<Layouts><UserMainPage /></Layouts>} />
-          <Route path={routes.AdminMainPage} element={<Layouts><AdminMainPage /></Layouts>} />
-          <Route path={routes.billClient()} element={<BillClient />} />
-          <Route path={'/Address'} element={<Layouts><Address /></Layouts>} />
+          
+          
+          {/* RUTAS PUBLICAS */}
+          
+          
+          <Route path={routes.UserMainPage} element={<PublicRoutes  />}>
+            <Route path={routes.UserMainPage} element={<Layouts><UserMainPage /></Layouts>} />
+          </Route>
+          
+          <Route path={routes.account} element={<PublicRoutes  />}>
+            <Route path={routes.account} element={<Layouts><AccountPage /></Layouts>} />
+          </Route>
+
+
+
+          {/* RUTAS PRIVADAS */}
+          <Route path={routes.AdminMainPage} element={<PrivateRoutes hasRole='admin' />}>
+            <Route path={routes.AdminMainPage} element={<Layouts><AdminMainPage /></Layouts>} />
+          </Route>
+
+          <Route path={routes.kitchen} element={<PrivateRoutes hasRole='admin' hasRole2='cook' />}>
+            <Route path={routes.kitchen} element={<Layouts><Kitchen /></Layouts>} />
+          </Route>
+         
+          <Route path={routes.bills} element={<PrivateRoutes hasRole='admin' hasRole2='cashier' />}>
+            <Route path={routes.bills} element={<Layouts><Bills /></Layouts>} />
+          </Route>
+         
+          <Route path={routes.cart} element={<PrivateRoutes hasRole='admin' hasRole2='regular' />}>
+            <Route path={routes.cart} element={<Layouts><Cart /></Layouts>} />
+          </Route>
+
         </Routes>
+
       </BrowserRouter>
     </>
   )
