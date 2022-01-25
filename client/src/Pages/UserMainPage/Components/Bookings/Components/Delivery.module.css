@@ -6,13 +6,31 @@ text-align: center;
     font-family: 'Montserrat';
     font-size: 1.2rem;
     background-color: rgb(184, 183, 183);
-    padding: .8rem;
-    margin-top: .9rem;
+    padding: .6rem;
+    margin-top: .8rem;
     cursor: pointer;
-    transition: background-color .5s;
+    transition: background-color .5s, transform .5s;
+}
+
+.selected{
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    background-color: rgb(184, 183, 183);
+    padding: .6rem;
+    margin-top: .8rem;
+    cursor: pointer;
+    transition: background-color .5s, transform .5s;
+    transform: scale(1.07, 1.07);;
 }
 
 .item:hover{
     background-color: rgb(163, 163, 163);
-    transition: background-color .5s;
+    transition: background-color .5s, transform .5s;
+}
+
+.title{
+    font-size: 1.5rem;
+}   
+.street{
+    font-size: 1.2rem;
 }
