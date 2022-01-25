@@ -12,12 +12,10 @@ const UserSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Introduzca un nombre'],
-    validate: [validator.isAlpha, 'Introduzca un nombre valido'],
   },
   last_name: {
     type: String,
     required: [true, 'Introduzca un apellido'],
-    validate: [validator.isAlpha, 'Introduzca un apellido valido'],
   },
   email: {
     type: String,
