@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 let fecha = new Date()
-fecha = fecha.toLocaleString()
+fecha = fecha.toLocaleString('es')
 
 const BillsSchema = new mongoose.Schema(
   {
@@ -18,8 +18,8 @@ const BillsSchema = new mongoose.Schema(
       default: "Open",
     },
     date: {
-      type: Date,
-      default: Date.now()
+      type: String,
+      default: fecha
     },
     subTotal: {
       type: Number,
