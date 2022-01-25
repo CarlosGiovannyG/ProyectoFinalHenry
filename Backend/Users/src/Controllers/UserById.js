@@ -7,7 +7,6 @@ const userById = async (req, res) => {
     let user = await User.findById(req.params.id)
     let address = await Address.find({ userId: user._id })
 
-    console.log(address);
     let userEnvio = {
       id: user._id,
       username: user.username,

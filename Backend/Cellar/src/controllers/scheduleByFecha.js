@@ -2,7 +2,6 @@ const db = require("../models/index");
 const verificacion = require("./verificacion");
    
 const scheduleByFecha = async (req, res) => {
-  console.log(req.params)
   const schedule = db.schedule;
   let fecha = "";  
    
@@ -26,7 +25,6 @@ const scheduleByFecha = async (req, res) => {
           
                     
           const mesa = db.mesa;
-          const usertable = db.usertable;
           
           return mesa.findAll()
             .then((c => {

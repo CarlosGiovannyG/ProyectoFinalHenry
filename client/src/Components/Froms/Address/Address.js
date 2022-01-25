@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Address.module.css';
 import ReactTooltip from 'react-tooltip';
-import { useNavigate } from 'react-router-dom';
 import validate from '../../../validations';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../Utils/Mutations';
@@ -14,7 +13,7 @@ export default function Address({ close }) {
     const { userId }=useAuth()
     const [RegisterAddress] = useMutation(Mutations.REGISTER_ADDRESS, {
         onError: err => {
-            console.log('ERRORES', err)
+            console.log('ERRORES', err.graphQLErrors[0])
         }
     })
     const [input, setInput] = React.useState({
@@ -25,7 +24,6 @@ export default function Address({ close }) {
     });
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();
-    const navigate = useNavigate();
 
     const handleInputChange = function (e) {    // esta funcion recibe los inputs para majearlos.
 
@@ -60,7 +58,6 @@ export default function Address({ close }) {
         })
 
         const resp = response.data.RegisterAddress.message
-        console.log(response);
         setInput({
             name: '',
             city: '',
