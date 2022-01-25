@@ -12,6 +12,7 @@ const createBills = async (req, res) => {
       date: req.body.date,
       numeroMesa: req.body.numeroMesa,
       tipoDePedido: req.body.tipoDePedido,
+      direccionEntrega: req.body.direccionEntrega || "Sin Direccion De Entrega",
       subTotal: req.body.subTotal,
       fechaEntrega: req.body.fechaEntrega,
       statusCocina: req.body.statusCocina,
