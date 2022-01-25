@@ -1,0 +1,365 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "description": "Este microservicio maneja toda la informacion de facturas de la App Restaurante, reada por el equipo 10 como proyecto final grupal de la cursada ed SOY HENRY Cohorte 19-A. Esta implementada con nodeJS, express, mongoose, mongoDb.",
+    "version": "1.0.0",
+    "title": "Microservicio de Facturas",
+    "termsOfService": "https://github.com/AxelCastilloDev",
+    "contact": {
+      "email": "axelcastillo690@gmail.com",
+      "name": "Axel Castillo"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5001/bills"
+    }
+  ],
+  "tags": [
+    {
+      "name": "bills",
+      "description": "Es modelo contiene diferentes rutas la cual es entregada en formato JS."
+    }
+  ],
+  "paths": {
+    "/create": {
+      "post": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Creacion de de facturas",
+        "description": "Se debe proporcionar los datos necesarios para la creacion de una factura, deben ser ingresados en formato json.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBill"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Listar todas las facturas registradas en la DB.",
+        "description": "En esta ruta podemos obtener todas las facturas, si deseamos obtener algun estado de pago de la factura en especial lo ingresamos query.",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Algun estado de pago de la factura",
+            "example": "Open - Closed - Paid - Deleted",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Un array con objetos de todas las facturas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllBillsOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Listar una factura por su id.",
+        "description": "En esta ruta podemos obtener toda la informacion de una factura.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "La identificacion unica de la factura en la DB",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Un objeto con la informacion de la factura",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllBillsOK"
+                }
+              }
+            }
+          },
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/caja/{id}": {
+      "get": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Listar una factura por su id para ver los detalles y facturarla.",
+        "description": "En esta ruta podemos obtener los detalles de una factura.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "La identificacion unica de la factura en la DB",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Un objeto con la informacion detallada de la factura",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBillChekInOK"
+                }
+              }
+            }
+          },
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Unauthorized": {
+        "description": "(Unauthorized) no hay autorizacion para llamar al servicio"
+      },
+      "NoContent": {
+        "description": "(No Content) no se encontro registro en la DB"
+      },
+      "NotFound": {
+        "description": "(NotFound) no se encontro la informacion"
+      },
+      "BadRequest": {
+        "description": "(BadRequest) los datos enviados son incorrectos o hay datos obligatorios no enviados"
+      },
+      "ServerError": {
+        "description": "(ServerError) Error en el servidor"
+      }
+    },
+    "schemas": {
+      "CreateBill": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "string",
+            "description": "Identificacion unica en la App del usuario que crea la factura"
+          },
+          "description": {
+            "type": "string",
+            "description": "Un breve explicacion de la factura."
+          },
+          "numeroMesa": {
+            "type": "integer",
+            "description": "El numero de mesa a donde sera despachado el pedido hecho en la factura. Si este es para el salon."
+          },
+          "tipoDePedido": {
+            "type": "string",
+            "example": "salon / domicilio",
+            "description": "Se debe especificar si el pedido sera consumido en la mesa o sera entregado a domicilio"
+          },
+          "fechaEntrega": {
+            "type": "string",
+            "description": "Si es una reserva se asignara la fecha de llegada de los clientes al restaurante. Si es un pedido en la mesa se asignara la fecha actual."
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Products"
+            }
+          },
+          "subTotal": {
+            "type": "integer",
+            "description": "El total del valor de los productos listados antes de recargos y/o impuestos"
+          },
+          "total": {
+            "type": "integer",
+            "description": "El total del valor de los productos listados incluyendo impuesto y recargos"
+          }
+        }
+      },
+      "Products": {
+        "type": "object",
+        "properties": {
+          "idProduct": {
+            "type": "string",
+            "description": "Identificacion unica del producto en la App"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del producto."
+          },
+          "price": {
+            "description": "El valor del producto",
+            "type": "integer"
+          }
+        }
+      },
+      "CreateBillOK": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensaje de confiracion de creacion de la factura"
+          }
+        }
+      },
+      "GetAllBillsOK": {
+        "type": "object",
+        "properties": {
+          "idUser": {
+            "type": "string",
+            "description": "Identificacion unica en la App del usuario que crea la factura"
+          },
+          "description": {
+            "type": "string",
+            "description": "Un breve explicacion de la factura."
+          },
+          "numeroMesa": {
+            "type": "integer",
+            "description": "El numero de mesa a donde sera despachado el pedido hecho en la factura. Si este es para el salon."
+          },
+          "tipoDePedido": {
+            "type": "string",
+            "example": "salon / domicilio",
+            "description": "Se debe especificar si el pedido sera consumido en la mesa o sera entregado a domicilio"
+          },
+          "fechaEntrega": {
+            "type": "string",
+            "description": "Si es una reserva se asignara la fecha de llegada de los clientes al restaurante. Si es un pedido en la mesa se asignara la fecha actual."
+          },
+          "status": {
+            "type": "string",
+            "description": "El estado de pago de la factura.",
+            "example": "Open - Closed - Paid - Deleted"
+          },
+          "statusCocina": {
+            "type": "string",
+            "description": "El estado del proceso del pedido en la cocina.",
+            "example": "Open - Closed - Working"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Products"
+            }
+          },
+          "subTotal": {
+            "type": "integer",
+            "description": "El total del valor de los productos listados antes de recargos y/o impuestos"
+          },
+          "total": {
+            "type": "integer",
+            "description": "El total del valor de los productos listados incluyendo impuesto y recargos"
+          }
+        }
+      },
+      "GetBillChekInOK": {
+        "type": "object",
+        "properties": {
+          "sumatotal": {
+            "type": "integer",
+            "description": "La suma del valor de todos los productos contenidos en la factura"
+          },
+          "array": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetailProducts"
+            }
+          }
+        }
+      },
+      "DetailProducts": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "el nombre del producto"
+          },
+          "cantidad": {
+            "type": "integer",
+            "description": "Las veces que se repite ese producto en la factura"
+          },
+          "total": {
+            "type": "integer",
+            "description": "El costo total del valor del producto multiplado por las veces que se repite"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './LogInForm.module.css';
 import ReactTooltip from 'react-tooltip';
-import useAuth from '../../../Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../../Helpers/Routes';
 import validate from '../../../validations';
@@ -65,7 +64,6 @@ export default function LogInForm({ close }) {
             setInput({ email: '', password: '' })
             close()
         }
-
 
     }
 

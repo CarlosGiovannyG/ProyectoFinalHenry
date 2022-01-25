@@ -60,17 +60,17 @@ const AccountPage = () => {
               />
             </div>
             <div className={styles.containerInfo}>
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Nombre de Usuario: </b>{UserById.username}</p>
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Nombre: </b>{UserById.name}</p>
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Apellido: </b>{UserById.last_name}</p>
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Email: </b>{UserById.email}</p>
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Telefono: </b>{UserById.phone}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Nombre de Usuario: </b>{UserById.username}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Nombre: </b>{UserById.name}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Apellido: </b>{UserById.last_name}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Email: </b>{UserById.email}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Telefono: </b>{UserById.phone}</p>
               {UserById.address &&
                 UserById.address.map(a => (
-                  <p className="text-center"style={{fontFamily: 'Montserrat'}} key={a.description}><b>Direccion: </b>{"  "}{a.name}{" / "}{a.description}</p>
+                  <p className="text-center" style={{ fontFamily: 'Montserrat' }} key={a.description}><b>Direccion: </b>{"  "}{a.name}{" / "}{a.description}</p>
                 ))
               }
-              <p className="text-center" style={{fontFamily: 'Montserrat'}}><b>Rol: </b>{UserById.rool}</p>
+              <p className="text-center" style={{ fontFamily: 'Montserrat' }}><b>Rol: </b>{UserById.rool}</p>
             </div>
             <div className={styles.containerBotones}>
               <button className={styles.ButtonAddress} onClick={openNewAddress}>NEW ADDRESS</button>
@@ -102,7 +102,7 @@ const AccountPage = () => {
           </Modal>
           <Modal isOpen={isOpenNewAddress} closeModal={closeNewAddress}>
             <Transsition>
-                <Address/>
+              <Address />
             </Transsition>
           </Modal>
         </div>

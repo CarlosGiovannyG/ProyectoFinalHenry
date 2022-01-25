@@ -42,7 +42,7 @@ export default function Address({ close }) {
                     <form>
                         {/*  Inputs */}
                         <div className={s.inputs}>
-                            <div  className={s.inputDiv}>
+                            <div className={s.inputDiv}>
                                 <input
                                     className={s.input}
                                     type='text'
@@ -65,7 +65,7 @@ export default function Address({ close }) {
                                     name='city'
                                     placeholder={'City...'}
                                     value={input.city}
-                                    onChange={handleInputChange} /> 
+                                    onChange={handleInputChange} />
 
                                 {
                                     (input.street !== '' && !errors.number && !errors.city) ?

@@ -14,6 +14,7 @@ import useAuth from '../../Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../Helpers/Routes';
 import axios from 'axios'
+import toast from 'react-hot-toast';
 
 
 export default function Cart() {
@@ -109,14 +110,13 @@ export default function Cart() {
             })
 
         }
-        console.log(responseTable, 'RTESPUESTA MESAS');
-        console.log(response, 'FACTURAS');
 
-        alert(message)
-        alert(messagefinal)
 
+        toast.success(message)
+        toast.success(messagefinal)
         const resp = response.data.CreateBills.message
-        resp && alert(resp)
+
+        resp && toast.success(resp)
 
         localStorage.removeItem('order')
         localStorage.removeItem('date')
