@@ -17,7 +17,7 @@ const verificacion = ({ fecha, estamesa, idclient }) => {
     hora2 = hora2 + 2;
     let minutos = fecha[14] + fecha[15];
  
-    if (año * 1 >= esteaño && mes * 1 >= estemes && dia * 1 >= estedia) {        
+    if (año * 1 >= esteaño && mes * 1 >= estemes ) {        
         bandera2 = true;
     }   
 
