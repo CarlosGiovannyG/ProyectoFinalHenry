@@ -14,6 +14,8 @@ router.get("/:id", require("../controllers/productById"))
 
 router.get("/bycomment/:id", require("../controllers/commentByProduct"))
 
+router.delete("/:id", require("../controllers/productDelete"))
+
 
 
 
