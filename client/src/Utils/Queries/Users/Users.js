@@ -23,8 +23,11 @@ const Users = {
     last_name
     email
     address {
+      _id
       name
-      description
+      street
+      number
+      city
     }
     phone
     rool

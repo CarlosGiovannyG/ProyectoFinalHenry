@@ -53,7 +53,6 @@ const UsersResolvers = {
     },
 
     RegisterAddress: async (_, { input }, { UserAccess, dataSources }) => {
-
       if (input.userId === UserAccess.userId) {
         return await dataSources.UsersApi.RegisterAddress(input)
       } else {

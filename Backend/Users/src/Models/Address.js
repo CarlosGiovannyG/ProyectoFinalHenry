@@ -1,17 +1,22 @@
 const { Schema, model, Types } = require('mongoose');
 
-
 const AddressSchema = new Schema({
 
   name: {
     type: String,
   },
-  description: {
+  street: {
+    type: String,
+  },
+  number: {
+    type: String,
+  },
+  city: {
     type: String,
   },
   userId: {
     type: Types.ObjectId,
-  }
+  },
   
 }, {
   versionKey: false

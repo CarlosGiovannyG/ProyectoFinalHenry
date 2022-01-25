@@ -3,10 +3,26 @@ import s from './Address.module.css';
 import ReactTooltip from 'react-tooltip';
 import { useNavigate } from 'react-router-dom';
 import validate from '../../../validations';
+import { useMutation } from '@apollo/client';
+import Mutations from '../../../Utils/Mutations';
+import toast from 'react-hot-toast';
+import useAuth from '../../../Auth/useAuth';
+
 
 export default function Address({ close }) {
 
-    const [input, setInput] = React.useState({ street: '', number: 0, city: '' });
+    const { userId }=useAuth()
+    const [RegisterAddress] = useMutation(Mutations.REGISTER_ADDRESS, {
+        onError: err => {
+            console.log('ERRORES', err)
+        }
+    })
+    const [input, setInput] = React.useState({
+        name:'',
+        city: '',
+        street: '',
+        number:  '',
+    });
     const [errors, setErrors] = React.useState({});
     const [errorData, setErrorData] = React.useState();
     const navigate = useNavigate();
@@ -29,6 +45,31 @@ export default function Address({ close }) {
 
     const handleSubmit = async function (e) {
         e.preventDefault();
+
+        let response = await RegisterAddress({
+
+            variables: {
+                "input": {
+                    "userId": `${userId()}` ,
+                    "name":input.name ,
+                    "street":input.street ,
+                    "number":input.number ,
+                    "city": input.city
+                }
+            }
+        })
+
+        const resp = response.data.RegisterAddress.message
+        console.log(response);
+        setInput({
+            name: '',
+            city: '',
+            street: '',
+            number: '',
+        })
+        toast.success(resp)
+        close()
+
         
     }
 
@@ -46,19 +87,10 @@ export default function Address({ close }) {
                                 <input
                                     className={s.input}
                                     type='text'
-                                    name='street'
-                                    placeholder={'Street...'}
-                                    value={input.street}
+                                    name='name'
+                                    placeholder={'Name...'}
+                                    value={input.name}
                                     onChange={handleInputChange} />
-                                <input
-                                    className={s.input}
-                                    type='number'
-                                    name='number'
-                                    placeholder={'Number...'}
-                                    value={input.number}
-                                    onChange={handleInputChange} />
-                            </div>
-                            <div className={s.inputDiv}>
                                 <input
                                     className={s.input}
                                     type='text'
@@ -66,9 +98,29 @@ export default function Address({ close }) {
                                     placeholder={'City...'}
                                     value={input.city}
                                     onChange={handleInputChange} />
-
+                            </div>
+                            <div className={s.inputDiv}>
+                                <input
+                                    className={s.input}
+                                    type='text'
+                                    name='street'
+                                    placeholder={'Street...'}
+                                    value={input.street}
+                                    onChange={handleInputChange} />
+                                <input
+                                    className={s.input}
+                                    type='text'
+                                    name='number'
+                                    placeholder={'Number...'}
+                                    value={input.number}
+                                    onChange={handleInputChange} />
+                            </div>
+                            <div className={s.inputDiv2}>
                                 {
-                                    (input.street !== '' && !errors.number && !errors.city) ?
+                                    (input.name !== '' &&
+                                        input.street !== '' &&
+                                        !errors.number &&
+                                        !errors.city) ?
                                         <button
                                             className={s.btnRegister}
                                             type="submit"
@@ -81,7 +133,10 @@ export default function Address({ close }) {
                                         >Add Address</button>
                                 }
                                 {(Object.keys(errors).length > 0) ? (
-                                    <ReactTooltip className={s.tooltip} id='tooltip' place='top' effect="solid" >
+                                    <ReactTooltip className={s.tooltip}
+                                        id='tooltip'
+                                        place='top'
+                                        effect="solid" >
                                         {errorData.split("\n").map((i, key) => {
                                             return <div key={key}>{i}</div>;
                                         })}

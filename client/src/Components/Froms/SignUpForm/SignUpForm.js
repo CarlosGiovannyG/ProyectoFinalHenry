@@ -23,8 +23,6 @@ export default function SignUpForm({ close }) {
         username: '',
         name: '',
         last_name: '',
-        address_name: '',
-        address_description: '',
         phone: '',
         password: '',
         passwordConfirm: '',
@@ -63,8 +61,6 @@ export default function SignUpForm({ close }) {
                     "name": input.name,
                     "last_name": input.last_name,
                     "email": input.email,
-                    "address_name": input.address_name,
-                    "address_description": input.address_description,
                     "phone": input.phone,
                     "password": input.password,
                     "rool": input.rool,
@@ -77,8 +73,6 @@ export default function SignUpForm({ close }) {
             username: '',
             name: '',
             last_name: '',
-            address_name: '',
-            address_description: '',
             phone: '',
             password: '',
             passwordConfirm: '',
@@ -127,22 +121,6 @@ export default function SignUpForm({ close }) {
                                 name='email'
                                 placeholder={'Email...'}
                                 value={input.email}
-                                onChange={handleInputChange} />
-                        </div>
-                        <div className={s.inputDiv2}>
-                            <input
-                                className={s.inputName}
-                                type='text'
-                                name='address_description'
-                                placeholder={'Address...'}
-                                value={input.address_description}
-                                onChange={handleInputChange} />
-                            <input
-                                className={s.inputEmail}
-                                type='text'
-                                name='address_name'
-                                placeholder={'Belonging to...House - Job - Office'}
-                                value={input.address_name}
                                 onChange={handleInputChange} />
                         </div>
                         <div className={s.inputDiv2}>

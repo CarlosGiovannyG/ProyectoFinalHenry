@@ -8,8 +8,6 @@ input userData{
       name: String
       last_name: String
       email: String
-      address_name: String
-      address_description:String
       phone: String
       password:String
       rool: String
@@ -49,8 +47,11 @@ type responseUserById{
 }
 
 type addresUser{
-  name:String
-  description:String
+  _id:String
+   name:String
+  street:String
+  number:String
+  city:String
 }
 
 input changePassword{
@@ -70,9 +71,11 @@ input changeInfo{
 }
 
 input registerAddress {
-  userId:String
   name:String
-  description:String
+  street:String
+  number:String
+  city:String
+  userId: String
 }
 
 type responseAddressUserById{
@@ -82,8 +85,9 @@ address:[UserByIDaddress]
 type UserByIDaddress{
    _id: String
    name: String
-   description: String
-   userId: String
+   street: String
+   number:String
+   city:String
 }
 
 type Query{

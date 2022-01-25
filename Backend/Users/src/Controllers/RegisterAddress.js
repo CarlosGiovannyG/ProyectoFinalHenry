@@ -11,9 +11,12 @@ const registerAddress = async (req, res, next) => {
    if (wantedUser) {
      const newAddress = new Address({
        name: req.body.name,
-       description: req.body.description,
+       street: req.body.street,
+       number: req.body.number,
+       city: req.body.city,
        userId: Types.ObjectId(wantedUser._id)
      })
+
 
      wantedUser.address = [...wantedUser.address, newAddress._id]
      await wantedUser.save()

@@ -12,10 +12,9 @@ const server = new ApolloServer({
   typeDefs, resolvers,
   context: async ({ req }) => {
     const token = req.headers.authorization || '';
-
     if (token == '') return { UserAccess: null }
     else {
-
+      
       let response = await fetch(
         `${serverConfig.allUsers}/access`,
         {
@@ -23,7 +22,7 @@ const server = new ApolloServer({
           headers: { "Authorization": token },
           redirect: 'follow'
         }
-      )
+        )
       if (response.status == 200) return (await response.json())
       else throw new ApolloError((await response.json()).error, 401);
     }

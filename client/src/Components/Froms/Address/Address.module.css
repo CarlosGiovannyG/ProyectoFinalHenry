@@ -28,6 +28,11 @@
     justify-content: space-between;
     margin-top: 1.4rem;
 }
+.inputDiv2{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.4rem;
+}
 
 .input{
     border: none;

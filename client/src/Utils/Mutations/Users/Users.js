@@ -35,12 +35,13 @@ const Users = {
   
   `,
 
+
   REGISTER_ADDRESS: gql`
    
-  mutation ChangeInfo($input: changeInfo) {
-  ChangeInfo(input: $input) {
+  mutation RegisterAddress($input: registerAddress) {
+ RegisterAddress(input: $input) {
     message
-     blocking
+    blocking
   }
 }
   
