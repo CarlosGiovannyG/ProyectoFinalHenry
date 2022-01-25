@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from './Salon.module.css';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import Queries from '../../../../../Utils/Queries';
@@ -7,12 +7,27 @@ import Transsition from '../../../../../Hooks/Transsition';
 
 export default function Salon() {
 
-    const [booking, setBooking] = useState({})
+    const [booking, setBooking] = useState({date: localStorage.getItem('date')})
     const [freeTables, setFreeTables] = useState(null);
     const [FreeTables] = useLazyQuery(Queries.FREE_TABLES);
     const [dateSelected, setDateSelected] = useState(null); // Utilizo este estado para saber que se elegio una date y ahi renderizar la cantidad de personas
+    const defaultDate = localStorage.getItem('date');
 
+    useEffect(async() => {
+        
+        let resultado = await FreeTables({
+            variables: {
+                "input": {
+                    "fecha": `${booking.date}`
+                }
+            }
+        })
 
+        let tables = resultado.data.FreeTables.arrmesas
+
+        setFreeTables(tables);
+        
+    }, []);
 
     const handleDateChange = async (e) => {
 
@@ -33,7 +48,9 @@ export default function Salon() {
 
         let tables = resultado.data.FreeTables.arrmesas
 
-        setFreeTables(tables)
+        setFreeTables(tables);
+
+        
 
         //consolefreeTables.map(t =>  console.log('MESA',t.mesa,'CAPACIDAD',t.cap))
 
@@ -42,6 +59,8 @@ export default function Salon() {
 
 
     const renderInput = function () {
+        const mesa = localStorage.getItem('mesa');
+        const cap = localStorage.getItem('cap');
 
         return (
             <Transsition>
@@ -50,12 +69,20 @@ export default function Salon() {
                     <select
                         className={s.input1}
                         name="mesa"
-                        onChange={e => { localStorage.setItem(`mesa`, e.target.value) }}
+                        onChange={e => { 
+                            let obj = JSON.parse(e.target.value);
+                            localStorage.setItem(`mesa`, obj.mesa);
+                            localStorage.setItem(`cap`, obj.cap);
+                        }}
                     >
-                        <option selected>Select...</option>
+                        {
+                            mesa ? 
+                            <option selected>{cap}</option> : 
+                            <option selected>Select...</option>
+                        }
                         {freeTables &&
                             freeTables.map(t => (
-                                <option value={t.mesa} key={t.mesa}>{t.cap}</option>
+                                <option value={JSON.stringify(t)} key={t.cap} >{t.cap}</option>
                             ))
                         }
                     </select>
@@ -68,12 +95,21 @@ export default function Salon() {
         )
     }
 
-    let newDate = new Date()
+    let newDate = new Date()  // Hoy
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
     let hours = newDate.getHours();
     let minutes = newDate.getMinutes();
+
+    let twoWeeks = new Date(newDate.getTime() + 13*24*60*60*1000);  //  2 semanas desde hoy
+    let date2 = twoWeeks.getDate();
+    let month2 = twoWeeks.getMonth() + 1;
+    let year2 = twoWeeks.getFullYear();
+    let hours2 = twoWeeks.getHours();
+    let minutes2 = twoWeeks.getMinutes();
+
+    console.log(freeTables)
 
     return (
         <div className={s.container}>
@@ -82,11 +118,13 @@ export default function Salon() {
                 <input className={s.input2}
                     type="datetime-local"
                     name='date'
-                    defaultValue={`${year}-${month < 10 ? `0${month}` : `${month}`}-${date}T${hours}:${minutes}`}
+                    defaultValue={(defaultDate) ? defaultDate : `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
                     value={booking?.date}
+                    min={`${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
+                    max={`${year2}-${month2 < 10 ? `0${month2}` : `${month2}`}-${date2 < 10 ? `0${date2}` : `${date2}`}T${hours2}:${minutes2}`}
                     onChange={handleDateChange} />
             </div>
-            {dateSelected && renderInput()}
+            {(dateSelected || defaultDate) && renderInput()}
         </div>
     )
 }
