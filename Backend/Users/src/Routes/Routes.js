@@ -13,5 +13,6 @@ router.get('/:id', require('../Controllers/UserById'));
 
 // direciones
 router.post('/:id/address', require('../Controllers/RegisterAddress'));
+router.get('/address/:id', require('../Controllers/AddressUserById'));
 
 module.exports = router;

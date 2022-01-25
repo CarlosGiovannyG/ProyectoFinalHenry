@@ -6,8 +6,8 @@ const Tables = {
 
   BOOK_TABLES: gql`
    
-   mutation BookTable($bookTableInput2: bookTable) {
-    BookTable(input: $bookTableInput2) {
+   mutation BookTable($input: bookTable) {
+    BookTable(input: $input) {
       message
       messagefinal
     }

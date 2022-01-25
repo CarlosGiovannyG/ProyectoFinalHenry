@@ -10,7 +10,7 @@ const BillsSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      default: "Generada por sistema",
     },
     products: [],
     status: {
@@ -18,8 +18,8 @@ const BillsSchema = new mongoose.Schema(
       default: "Open",
     },
     date: {
-        type: Date,
-        default: Date.now()
+      type: Date,
+      default: Date.now()
     },
     subTotal: {
       type: Number,
@@ -29,7 +29,7 @@ const BillsSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    numeroMesa : {
+    numeroMesa: {
       type: Number,
       default: 0
     },
@@ -39,7 +39,7 @@ const BillsSchema = new mongoose.Schema(
     },
     statusCocina: {
       type: String,
-      default: "Open" 
+      default: "Open"
     },
     fechaEntrega: {
       type: String,
@@ -52,3 +52,5 @@ const BillsSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("Bills", BillsSchema);
 
+
+// modelococina: id usuario, productos {}, mesa,  

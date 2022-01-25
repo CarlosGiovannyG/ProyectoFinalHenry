@@ -32,7 +32,7 @@ router.get("/id/:numero", require("../controllers/mesaByNumero"));
 //la capacidad de un dígito entre 1 y 9 
 //ejemplo { "numero" : 11, "capacidad": 2 }
 
-router.post("/", require("../controllers/mesa_Post")); 
+router.post("/", require("../controllers/mesa_Post"));
 
 //para mostrar mesas
 router.get("/", require("../controllers/mesas_All"));

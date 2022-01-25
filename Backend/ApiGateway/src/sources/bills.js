@@ -10,7 +10,7 @@ class BillsApi extends RESTDataSource {
 
   async CreateBills(credencials) {
     credencials = new Object(credencials);
-    return await this.post(`/`, credencials)
+    return await this.post(`/create`, credencials)
   }
 
   async allBills() {

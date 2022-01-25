@@ -75,9 +75,21 @@ input registerAddress {
   description:String
 }
 
+type responseAddressUserById{
+address:[UserByIDaddress]
+}
+
+type UserByIDaddress{
+   _id: String
+   name: String
+   description: String
+   userId: String
+}
+
 type Query{
 LoginUsers(input:loginUsers):responseLogin
 UserById(input:userById):responseUserById
+AddressUserById(input:userById):responseAddressUserById
 }
 
 type Mutation {

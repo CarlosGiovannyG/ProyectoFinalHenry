@@ -13,6 +13,17 @@ const UsersResolvers = {
         return { message: 'Acceso no autorizado' }
       }
     },
+
+    AddressUserById: async (_, { input }, { UserAccess, dataSources }) => {
+
+      if (input.id === UserAccess.userId) {
+        return await dataSources.UsersApi.AddressUserById(input)
+      } else {
+
+        return { message: 'Acceso no autorizado' }
+      }
+    },
+
   },
 
 

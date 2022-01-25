@@ -17,7 +17,6 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
     handlePaidBill()
     close()
   }
-  console.log(checkIn, 'chec');
   return (
     <div className={styles.container} >
       <div className={styles.titleContainer}>
@@ -62,7 +61,7 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
 
             </div>
             <div className={styles.inputDiv} >
-              <label 
+              <label
                 className={styles.label}
                 onChange={handleChange}
               >Change: ${input && Number(input) - Number(checkIn.sumatotal)}</label>
@@ -72,7 +71,7 @@ const CheckIn = ({ close, checkIn, handlePaidBill }) => {
             <div className={styles.inputDiv} >
               {
                 <button
-                className={styles.input}
+                  className={styles.input}
                   type="submit"
                   onClick={handleSubmit}
                 >CONFIRM</button>

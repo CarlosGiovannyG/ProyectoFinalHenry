@@ -6,11 +6,13 @@ import Delivery from './Components/Delivery';
 import Transsition from '../../../../Hooks/Transsition';
 
 
-export default function Bookings() {
+export default function Bookings({ address }) {
     const [toggle, setToggle] = React.useState(false);
 
     const handleToggle = function () {
         toggle ? setToggle(false) : setToggle(true);
+        localStorage.setItem('tipoDePedido', 'domicilio')
+
     }
 
     return (
@@ -28,7 +30,7 @@ export default function Bookings() {
                     !toggle && (<Transsition><Salon /></Transsition>)
                 }
                 {
-                    toggle && (<Transsition><Delivery /></Transsition>)
+                    toggle && (<Transsition><Delivery address={address} /></Transsition>)
                 }
             </div>
         </div>

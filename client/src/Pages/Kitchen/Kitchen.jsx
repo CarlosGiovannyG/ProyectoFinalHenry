@@ -8,7 +8,7 @@ import Swiper from '../../Components/Swiper/Swiper';
 
 const Kitchen = () => {
 
-  const { loading, data, error } = useQuery(Queries.BILLS_KITCHEN);
+  const { loading, data, error } = useQuery(Queries.BILLS_KITCHEN);    // TODO: ,{pollInterval:5000}
 
 
   if (loading) {

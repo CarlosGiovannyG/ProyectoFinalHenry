@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 // Crear Una Factura
 //TODO RUTA LISTA APIGATEWAY
-router.post("/", require("../controllers/createBills"));
+router.post("/create", require("../controllers/createBills"));
 
 //Obtener todas las facturas
 //TODO RUTA LISTA APIGATEWAY
@@ -39,13 +39,13 @@ router.get("/:id", require("../controllers/byIdBills"));
 //TODO RUTA LISTA APIGATEWAY
 router.post("/cocina/working/:id", require("../controllers/cocinaWorkingBills"));
 
+//TODO RUTA LISTA APIGATEWAY
+router.get("/caja/:id", require("../controllers/cajaIdBills"));
 
 
 
 
 //Ruta para caja con filtrado de elementos //todo PENDIENTE EN APYGATEWAY
-
-router.get("/caja/:id", require("../controllers/cajaIdBills"));
 
 router.post("/cocina/:id", require("../controllers/idCocinaBills"));
 

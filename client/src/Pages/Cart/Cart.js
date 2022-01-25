@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Cart.module.css';
 import { useModal } from 'react-hooks-use-modal';
 import Transsition from '../../Hooks/Transsition';
@@ -7,12 +7,13 @@ import Bookings from '../UserMainPage/Components/Bookings/Bookings';
 import Payment from './Components/Payment/Payment';
 import OrderSubmit from './Components/OrderSubmit/OrderSubmit';
 import ProductDetail from '../Menu/components/ProdutDetail/ProductDetail';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Mutations from '../../Utils/Mutations';
 import Queries from '../../Utils/Queries';
 import useAuth from '../../Auth/useAuth';
 import { useNavigate } from 'react-router-dom';
-import routes from '../../Helpers/Routes'
+import routes from '../../Helpers/Routes';
+import axios from 'axios'
 
 
 export default function Cart() {
@@ -22,10 +23,26 @@ export default function Cart() {
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
+    const [address, setAddress] = useState(null);
 
+    useEffect(() => {
 
+        axios.get(`http://localhost:5002/users/address/${userId()}`)
+            .then(rsp => rsp.data)
+            .then(data => setAddress(data.address))
+            .catch(err => console.error(err))
+
+    }, [userId])
+
+    console.log(address);
 
     const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
+        refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
+        onError: err => {
+            console.log('ERRORES', err.graphQLErrors)
+        }
+    })
+    const [BookTable] = useMutation(Mutations.BOOK_TABLES, {
         refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
         onError: err => {
             console.log('ERRORES', err.graphQLErrors)
@@ -63,35 +80,51 @@ export default function Cart() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        let prov = {
-            idUser: `${userId()}`,
-            description: 'GENERADA POR SISTEMA',
-            products: aux,
-            numeroMesa: '',
-            tipoDePedido: 'salon',
-            subTotal: subTotal,
-            total: total
-        }
-
-        console.log(prov);
-        let response = await CreateBills({
+        let responseTable = await BookTable({
             variables: {
                 "input": {
-                    "idUser": prov.idUser,
-                    "description": prov.description,
-                    "products": aux,
-                    "numeroMesa": prov.numeroMesa,
-                    "tipoDePedido": prov.tipoDePedido,
-                    subTotal: Math.ceil(prov.subTotal),
-                    total: Math.ceil(prov.total),
+                    "fechaIn": `${localStorage.getItem('date')}`,
+                    "estamesa": `${localStorage.getItem('mesa')}`,
+                    "idclient": `${userId()}`
                 }
             }
         })
+
+        const { message, messagefinal } = responseTable.data.BookTable
+
+        let response;
+        if (messagefinal) {
+            response = await CreateBills({
+                variables: {
+                    "input": {
+                        "idUser": `${userId()}`,
+                        "products": aux,
+                        "numeroMesa": `${localStorage.getItem('mesa')}`,
+                        "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
+                        "fechaEntrega": `${localStorage.getItem('date')}`,
+                        subTotal: Math.ceil(subTotal),
+                        total: Math.ceil(total),
+                    }
+                }
+            })
+
+        }
+        console.log(responseTable, 'RTESPUESTA MESAS');
+        console.log(response, 'FACTURAS');
+
+        alert(message)
+        alert(messagefinal)
+
         const resp = response.data.CreateBills.message
-        alert(resp)
+        resp && alert(resp)
+
         localStorage.removeItem('order')
+        localStorage.removeItem('date')
+        localStorage.removeItem('mesa')
+        localStorage.removeItem('tipoDePedido')
         navigate(`${routes.UserMainPage}`)
     }
+
 
 
     return (
@@ -101,7 +134,7 @@ export default function Cart() {
             </Transsition>
             <div className={s.rightDiv}>
                 <Transsition>
-                    <Bookings />
+                    <Bookings address={address} />
                 </Transsition>
                 <Transsition>
                     <Payment total={total} />

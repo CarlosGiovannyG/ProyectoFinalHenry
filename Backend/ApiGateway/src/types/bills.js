@@ -21,6 +21,7 @@ input createBill{
   products:[productsId]
   numeroMesa:String
   tipoDePedido:String
+  fechaEntrega:String
   subTotal: Int
   total: Int
 }

@@ -13,7 +13,9 @@ const CreateBill = ({ close }) => {
   const selector = useRef('Select...');
 
   const [CreateBills] = useMutation(Mutations.CREATE_BILL, {
-    refetchQueries: [{ query: Queries.BILLS_KITCHEN }, { query: Queries.ALL_BILLS }],
+    refetchQueries: [{ query: Queries.BILLS_KITCHEN },
+    { query: Queries.ALL_BILLS },
+    { query: Queries.BILLS_KITCHEN }],
     onError: err => {
       console.log('ERRORES', err.graphQLErrors)
     }
@@ -61,6 +63,7 @@ const CreateBill = ({ close }) => {
           "products": newBill.products,
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
+          "fechaEntrega": Date.now(),
           "subTotal": subTotal,
           "total": total
         }

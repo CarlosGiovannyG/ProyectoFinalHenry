@@ -23,6 +23,12 @@ class UsersApi extends RESTDataSource {
     return await this.get(`/${input.id}`)
   }
 
+  async AddressUserById(input) {
+    let resp = await this.get(`/address/${input.id}`)
+    console.log(resp);
+    return await this.get(`/address/${input.id}`)
+  }
+
   async ChangePassword(credencials) {
     credencials = new Object(credencials);
     return await this.post(`/${credencials.id}/admin`, credencials)

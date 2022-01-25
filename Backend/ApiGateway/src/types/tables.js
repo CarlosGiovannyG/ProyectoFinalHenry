@@ -14,8 +14,9 @@ type freeTables{
 
 }
 
+
 input bookTable{
-  fecha:String
+   fechaIn:String
   estamesa:String
   idclient:String
 }

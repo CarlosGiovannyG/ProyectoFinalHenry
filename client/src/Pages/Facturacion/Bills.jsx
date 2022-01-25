@@ -36,7 +36,7 @@ const Prueba = () => {
 
 
 
-  const { loading, data, error } = useQuery(Queries.ALL_BILLS);
+  const { loading, data, error } = useQuery(Queries.ALL_BILLS); // TODO: , { pollInterval: 5000 }
   const [getBillId] = useLazyQuery(Queries.BILL_BY_ID);
   const [BillsCheckIn] = useLazyQuery(Queries.BILL_CHECK_IN);
   if (loading) {
