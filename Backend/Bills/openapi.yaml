@@ -1,6 +1,10 @@
 openapi: 3.0.3
 info:
-  description: Este microservicio maneja toda la informacion de facturas de la App Restaurante, reada por el equipo 10 como proyecto final grupal de la cursada ed SOY HENRY Cohorte 19-A. Esta implementada con nodeJS, express, mongoose, mongoDb.
+  description: >-
+    Este microservicio maneja toda la informacion de facturas de la App
+    Restaurante, reada por el equipo 10 como proyecto final grupal de la cursada
+    ed SOY HENRY Cohorte 19-A. Esta implementada con nodeJS, express, mongoose,
+    mongoDb.
   version: 1.0.0
   title: Microservicio de Facturas
   termsOfService: https://github.com/AxelCastilloDev
@@ -18,7 +22,8 @@ paths:
       tags:
         - bills
       summary: Creacion de de facturas
-      description: Se debe proporcionar los datos necesarios para la creacion de una
+      description: >-
+        Se debe proporcionar los datos necesarios para la creacion de una
         factura, deben ser ingresados en formato json.
       requestBody:
         content:
@@ -27,24 +32,26 @@ paths:
               $ref: '#/components/schemas/CreateBill'
         required: true
       responses:
-        200:
+        '200':
           description: (OK) Mensaje de confirmacion
           content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/CreateBillOK'
-        400:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        500:
+        '500':
           $ref: '#/components/responses/ServerError'
   /:
     get:
       tags:
         - bills
       summary: Listar todas las facturas registradas en la DB.
-      description: En esta ruta podemos obtener todas las facturas, si deseamos obtener algun estado de pago de la factura en especial lo ingresamos query.
+      description: >-
+        En esta ruta podemos obtener todas las facturas, si deseamos obtener
+        algun estado de pago de la factura en especial lo ingresamos query.
       parameters:
         - name: status
           in: query
@@ -54,17 +61,17 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: (OK) Un array con objetos de todas las facturas
           content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/GetAllBillsOK'
-        400:
+                $ref: '#/components/schemas/GetAllBillsOK'
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        500:
+        '500':
           $ref: '#/components/responses/ServerError'
   /{id}:
     get:
@@ -80,53 +87,94 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: (OK) Un objeto con la informacion de la factura
           content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/GetAllBillsOK'
-        201:
+                $ref: '#/components/schemas/GetAllBillsOK'
+        '201':
           $ref: '#/components/responses/NoContent'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        500:
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cocina:
+    get:
+      tags:
+        - bills
+      summary: Entrega todas las facturas para cocina con status Open, listadas por fechas de entrega.
+      responses:
+        '200':
+          description: (OK) Un array con todas las facturas con "statuscocina" Open.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllBillsOK'
+        '201':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cliente/{id}:
+    get:
+      tags:
+        - bills
+      summary: Entrega todas las facturas de un cliente con el id proporcionado.
+      parameters:
+        - name: id
+          in: path
+          description: La identificacion unica del cliente.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: (OK) Un array con todas las facturas de un cliente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllBillsOK'
+        '201':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
           $ref: '#/components/responses/ServerError'
   /caja/{id}:
     get:
       tags:
         - bills
-      summary: Listar una factura por su id para ver los detalles y facturarla.
-      description: En esta ruta podemos obtener los detalles de una factura.
+      summary: Entrega los detalles de una factura para el area de caja cuando se le entrega un id de factura.
       parameters:
         - name: id
           in: path
-          description: La identificacion unica de la factura en la DB
+          description: La identificacion unica de la factura.
           required: true
           schema:
             type: string
       responses:
-        200:
-          description: (OK) Un objeto con la informacion detallada de la factura
+        '200':
+          description: (OK) Un JSON con los detalles de la factura para el area de caja.
           content:
             application/json:
               schema:
-                 $ref: '#/components/schemas/GetBillChekInOK'
-        201:
+                $ref: '#/components/schemas/DetailProducts'
+        '201':
           $ref: '#/components/responses/NoContent'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        500:
+        '500':
           $ref: '#/components/responses/ServerError'
-          
-          
-      
- 
-
 components:
   responses:
     Unauthorized:
@@ -136,10 +184,11 @@ components:
     NotFound:
       description: (NotFound) no se encontro la informacion
     BadRequest:
-      description: (BadRequest) los datos enviados son incorrectos o hay datos obligatorios no enviados
+      description: >-
+        (BadRequest) los datos enviados son incorrectos o hay datos obligatorios
+        no enviados
     ServerError:
       description: (ServerError) Error en el servidor
-
   schemas:
     CreateBill:
       type: object
@@ -152,31 +201,41 @@ components:
           description: Un breve explicacion de la factura.
         numeroMesa:
           type: integer
-          description: El numero de mesa a donde sera despachado el pedido hecho en la factura. Si este es para el salon.
+          description: >-
+            El numero de mesa a donde sera despachado el pedido hecho en la
+            factura. Si este es para el salon.
         tipoDePedido:
           type: string
-          example: "salon / domicilio"
-          description: Se debe especificar si el pedido sera consumido en la mesa o sera entregado a domicilio
+          example: salon / domicilio
+          description: >-
+            Se debe especificar si el pedido sera consumido en la mesa o sera
+            entregado a domicilio
         fechaEntrega:
           type: string
-          description: Si es una reserva se asignara la fecha de llegada de los clientes al restaurante. Si es un pedido en la mesa se asignara la fecha actual.
+          description: >-
+            Si es una reserva se asignara la fecha de llegada de los clientes al
+            restaurante. Si es un pedido en la mesa se asignara la fecha actual.
         products:
           type: array
           items:
             $ref: '#/components/schemas/Products'
         subTotal:
           type: integer
-          description: El total del valor de los productos listados antes de recargos y/o impuestos
+          description: >-
+            El total del valor de los productos listados antes de recargos y/o
+            impuestos
         total:
           type: integer
-          description: El total del valor de los productos listados incluyendo impuesto y recargos
+          description: >-
+            El total del valor de los productos listados incluyendo impuesto y
+            recargos
     Products:
       type: object
       properties:
-        idProduct: 
+        idProduct:
           type: string
           description: Identificacion unica del producto en la App
-        name: 
+        name:
           type: string
           description: Nombre del producto.
         price:
@@ -185,7 +244,7 @@ components:
     CreateBillOK:
       type: object
       properties:
-        message: 
+        message:
           type: string
           description: Mensaje de confiracion de creacion de la factura
     GetAllBillsOK:
@@ -199,14 +258,20 @@ components:
           description: Un breve explicacion de la factura.
         numeroMesa:
           type: integer
-          description: El numero de mesa a donde sera despachado el pedido hecho en la factura. Si este es para el salon.
+          description: >-
+            El numero de mesa a donde sera despachado el pedido hecho en la
+            factura. Si este es para el salon.
         tipoDePedido:
           type: string
-          example: "salon / domicilio"
-          description: Se debe especificar si el pedido sera consumido en la mesa o sera entregado a domicilio
+          example: salon / domicilio
+          description: >-
+            Se debe especificar si el pedido sera consumido en la mesa o sera
+            entregado a domicilio
         fechaEntrega:
           type: string
-          description: Si es una reserva se asignara la fecha de llegada de los clientes al restaurante. Si es un pedido en la mesa se asignara la fecha actual.
+          description: >-
+            Si es una reserva se asignara la fecha de llegada de los clientes al
+            restaurante. Si es un pedido en la mesa se asignara la fecha actual.
         status:
           type: string
           description: El estado de pago de la factura.
@@ -221,10 +286,14 @@ components:
             $ref: '#/components/schemas/Products'
         subTotal:
           type: integer
-          description: El total del valor de los productos listados antes de recargos y/o impuestos
+          description: >-
+            El total del valor de los productos listados antes de recargos y/o
+            impuestos
         total:
           type: integer
-          description: El total del valor de los productos listados incluyendo impuesto y recargos
+          description: >-
+            El total del valor de los productos listados incluyendo impuesto y
+            recargos
     GetBillChekInOK:
       type: object
       properties:
@@ -238,7 +307,7 @@ components:
     DetailProducts:
       type: object
       properties:
-        name: 
+        name:
           type: string
           description: el nombre del producto
         cantidad:
@@ -246,4 +315,6 @@ components:
           description: Las veces que se repite ese producto en la factura
         total:
           type: integer
-          description: El costo total del valor del producto multiplado por las veces que se repite
+          description: >-
+            El costo total del valor del producto multiplado por las veces que
+            se repite
