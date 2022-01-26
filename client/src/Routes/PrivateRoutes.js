@@ -8,11 +8,10 @@ import routes from '../Helpers/Routes';
 const PrivateRoutes = ({ hasRole: role, hasRole2:role2}) => {
 
 
-  const { hasRole} = useAuth();
+  const { hasRole, isLogged} = useAuth();
 
 
-  console.log(hasRole(role),'PRIVATE');
-  if (role && !hasRole(role) && !hasRole(role2)) return <Navigate to={routes.home}/>
+  if (!isLogged()) return <Navigate to={routes.home}/>
   
   return (
     <Outlet/>

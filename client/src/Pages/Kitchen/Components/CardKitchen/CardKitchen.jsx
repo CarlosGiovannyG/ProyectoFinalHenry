@@ -69,7 +69,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
         </div>
         <div className={styles.containerProduct}>
           {info.products.map(dato => (
-            <CardProductBill dato={dato} />
+            <CardProductBill key={Math.random()} dato={dato} />
           ))}
         </div>
         <div className={styles.btnCloseContainer}>

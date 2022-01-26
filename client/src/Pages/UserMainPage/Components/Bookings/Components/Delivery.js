@@ -13,8 +13,8 @@ export default function Delivery({ address }) {
         <div className={s.container}>
             {address &&
                 address.map(d => (
-                    <div>
-                        <div className={ `${d.street} ${d.number}` === selected ? s.selected  : s.item} 
+                    <div key={Math.random()*20 }>
+                        <div  className={ `${d.street} ${d.number}` === selected ? s.selected  : s.item} 
                             onClick={()=>{setSelected(`${d.street} ${d.number}`);
                                  localStorage.setItem('address', `${d.street} ${d.number}`);}} >
 

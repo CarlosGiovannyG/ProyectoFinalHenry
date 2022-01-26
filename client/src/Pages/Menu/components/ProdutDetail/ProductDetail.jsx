@@ -10,14 +10,11 @@ import Transsition from '../../../../Hooks/Transsition';
 import routes from '../../../../Helpers/Routes';
 import Loading from '../../../../Components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-
+import useAuth from '../../../../Auth/useAuth';
 
 const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) => {
 
+  const { isLogged, hasRole } = useAuth()
   const url = window.location.href.slice(21);
   const [newLike, setNewLike] = useState(null)
   const [getProduct, { loading, error, data }] = useLazyQuery(Queries.FIND_PRODUCT);
@@ -73,6 +70,10 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
       localStorage.setItem('order', JSON.stringify(productsCart))
       modalControl()
     }
+  }
+
+  const productDelete = function(){
+
   }
 
 
@@ -139,6 +140,13 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
                         })
                     }}
                   >ADD</button>
+                }
+                {
+                  (url === routes.menu && hasRole('admin')) && 
+                  <button
+                    className={s.btnAdd}
+                    onClick={productDelete}
+                  >DELETE</button>
                 }
               </div>
               }

@@ -73,7 +73,7 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
         <Swiper slidesPerView={5} spaceBetween={20}
         className="cardsCocina">
           {infoKitchen.map(info => (
-            <SwiperSlide key={info._id}><CardKitchen info={info} /></SwiperSlide>
+            <SwiperSlide key={info._id}><CardKitchen key={info._id} info={info} /></SwiperSlide>
         ))}
         </Swiper>
       }
