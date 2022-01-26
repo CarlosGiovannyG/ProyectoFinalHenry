@@ -65,8 +65,9 @@ export default function Address({ close }) {
             number: '',
         })
         toast.success(resp)
+        window.location.reload();
         close()
-
+        
         
     }
 

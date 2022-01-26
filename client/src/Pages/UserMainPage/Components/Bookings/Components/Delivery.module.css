@@ -20,12 +20,17 @@ text-align: center;
     margin-top: .8rem;
     cursor: pointer;
     transition: background-color .5s, transform .5s;
-    transform: scale(1.07, 1.07);;
+    transform: scale(1.07, 1.07);
 }
 
 .item:hover{
     background-color: rgb(163, 163, 163);
-    transition: background-color .5s, transform .5s;
+    transition: background-color .5s;
+}
+
+.selected:hover{
+    background-color: rgb(163, 163, 163);
+    transition: background-color .5s;
 }
 
 .title{

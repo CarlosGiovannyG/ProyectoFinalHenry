@@ -5,7 +5,6 @@ import Salon from './Components/Salon';
 import Delivery from './Components/Delivery';
 import Transsition from '../../../../Hooks/Transsition';
 
-
 export default function Bookings({ address }) {
     const [toggle, setToggle] = React.useState(false);
 
