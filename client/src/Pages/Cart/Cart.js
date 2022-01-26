@@ -18,14 +18,20 @@ import toast from 'react-hot-toast';
 
 
 export default function Cart() {
-    const { userId } = useAuth();
+    const { userId, btnValidate, submitBtn } = useAuth();
     const navigate = useNavigate();
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
     const [address, setAddress] = useState(null);
-    const [displaySubmit, setDisplaySubmit] = useState(true);
+    const [displaySubmit, setDisplaySubmit] = useState( localStorage.getItem('displayBtn'));
+
+    console.log(btnValidate)
+
+    useEffect(() => {
+        setDisplaySubmit(localStorage.getItem('displayBtn'))
+    }, [submitBtn])
 
     useEffect(() => {
 
@@ -157,6 +163,7 @@ export default function Cart() {
         localStorage.removeItem('mesa');
         localStorage.removeItem('tipoDePedido');
         localStorage.removeItem('address');
+        btnValidate(null, null, null)
         navigate(`${routes.UserMainPage}`);
     }
 
