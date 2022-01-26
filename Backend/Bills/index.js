@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 
-const billsRoute = require("./routes/Bills");
+const billsRoute = require("./src/routes/Bills");
 
 mongoose
   .connect(`${process.env.CONEXION_AXEL}`)

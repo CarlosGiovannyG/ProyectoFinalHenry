@@ -148,18 +148,49 @@
         }
       }
     },
-    "/caja/{id}": {
+    "/cocina": {
       "get": {
         "tags": [
           "bills"
         ],
-        "summary": "Listar una factura por su id para ver los detalles y facturarla.",
-        "description": "En esta ruta podemos obtener los detalles de una factura.",
+        "summary": "Entrega todas las facturas para cocina con status Open, listadas por fechas de entrega.",
+        "responses": {
+          "200": {
+            "description": "(OK) Un array con todas las facturas con \"statuscocina\" Open.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllBillsOK"
+                }
+              }
+            }
+          },
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/cliente/{id}": {
+      "get": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Entrega todas las facturas de un cliente con el id proporcionado.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "La identificacion unica de la factura en la DB",
+            "description": "La identificacion unica del cliente.",
             "required": true,
             "schema": {
               "type": "string"
@@ -168,11 +199,54 @@
         ],
         "responses": {
           "200": {
-            "description": "(OK) Un objeto con la informacion detallada de la factura",
+            "description": "(OK) Un array con todas las facturas de un cliente.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetBillChekInOK"
+                  "$ref": "#/components/schemas/GetAllBillsOK"
+                }
+              }
+            }
+          },
+          "201": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/caja/{id}": {
+      "get": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Entrega los detalles de una factura para el area de caja cuando se le entrega un id de factura.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "La identificacion unica de la factura.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "(OK) Un JSON con los detalles de la factura para el area de caja.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetailProducts"
                 }
               }
             }
