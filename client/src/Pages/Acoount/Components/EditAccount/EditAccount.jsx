@@ -163,7 +163,7 @@ const EditAccount = ({ close, user }) => {
 
               />
               <input
-                className={s.inputPassword1}
+                className={s.inputEmail}
                 type='text'
                 name='phone'
                 placeholder={user.phone}
@@ -182,12 +182,12 @@ const EditAccount = ({ close, user }) => {
                     className={s.btnRegister}
                     type="submit"
                     onClick={handleSubmit}
-                  >TO UPDATE</button> :
+                  >UPDATE</button> :
                   <button
                     className={s.btnRegisterError}
                     data-tip data-for='tooltip'
                     onClick={(e) => e.preventDefault()}
-                  >TO UPDATE</button>
+                  >UPDATE</button>
 
               }
 

@@ -7,12 +7,13 @@
 }
 
 .title{
-    width: 90%;
+    width: 100%;
     font-family: 'Suranna', serif;
     font-weight: lighter;
     color: black;
     font-size: 3rem;
     text-align: center;
+    
 }
 
 .inputs{
@@ -78,9 +79,6 @@
     padding-right: 10px;
     outline: none;
 }
-.inputDiv3{
-    margin-top: 30px;
-}
 
 .inputPassword2{
     border: none;
@@ -93,12 +91,17 @@
     outline: none;
 }
 
+.inputDiv3{
+    margin-top: 30px;
+    justify-content: center;
+}
+
 .btnRegister{
     border: none;
     background-color: rgb(194, 193, 193);
     height: 30px;
     width: 300px;
-    margin-left: 30px;
+
     cursor: pointer;
 
 }
