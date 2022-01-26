@@ -97,7 +97,10 @@ export default function Cart() {
 
 
         if (tipoPedido === 'domicilio') {
-                               
+            
+            const d = new Date();
+            let twentyMinutes = new Date(d.getTime() + 20*60*1000);
+
             response = await CreateBills({
                 variables: {
                     "input": {
@@ -106,7 +109,7 @@ export default function Cart() {
                         description:'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
                         "direccionEntrega": `${localStorage.getItem('address')}`,
-                        // "fechaEntrega": `${localStorage.getItem('date')}`,
+                         "fechaEntrega": `${twentyMinutes}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }

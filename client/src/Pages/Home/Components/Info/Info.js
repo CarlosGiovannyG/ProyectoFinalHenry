@@ -37,7 +37,7 @@ const cards = [
         name: 'Rafael Sarria Salcedo',
         git: 'https://github.com/SarriaRafael',
         linkedin: 'https://www.linkedin.com/in/rafael-sarria-salcedo-74a121219/',
-        mail: '',
+        mail: 'rafael3sarria@gmail.com',
         img: rafa
     },
 ]
