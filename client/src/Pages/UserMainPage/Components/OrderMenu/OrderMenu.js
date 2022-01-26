@@ -35,7 +35,7 @@ export default function OrderMenu({products, setProductID, openModalProduct}) {
             <h3 className={s.subtitle} >BEVERAGES</h3>
             <Cards openModalProduct={openModalProduct} setProductID={setProductID} products={products.filter((p)=>{return p.category === 'beverages'})}/>
             <h3 className={s.subtitle} >DESSERTS</h3>
-            <Cards openModalProduct={openModalProduct} setProductID={setProductID} products={products.filter((p)=>{return p.category === 'desserts'})} />
+            <Cards openModalProduct={openModalProduct} setProductID={setProductID} products={products.filter((p)=>{return p.category === 'dessert'})} />
         </div>
     </div>
     )

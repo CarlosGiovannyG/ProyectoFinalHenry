@@ -24,9 +24,9 @@ const DeleteAccount = ({ close }) => {
       </div>
       <div className={styles.containerDialog}>
         <label className={styles.containerDialog}>
-          Estas seguro de eliminar permanentemente tu cuenta?
+          Are you sure you want to permanently delete your account?
           <br />
-          <b>Se perderá toda tu información</b>
+          <b>All your information will be lost</b>
 
         </label>
       </div>
