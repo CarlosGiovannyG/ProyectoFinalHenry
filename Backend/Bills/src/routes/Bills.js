@@ -50,6 +50,15 @@ router.get("/caja/:id", require("../controllers/cajaIdBills"));
 router.post("/cocina/:id", require("../controllers/idCocinaBills"));
 
 
+// BORRA TODAS LAS FACTURAS, USAR CON CUIDADO, PELIGRO!!
+
+
+router.put("/peligro/borrartodaslasfacturas", require("../controllers/deleteAllBillsDanger"));
+
+
+
+
+
 module.exports = router;
 
 
