@@ -12,7 +12,6 @@ import toast from 'react-hot-toast';
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ready, setReady] = React.useState(false);
-  const [mesa, setMesa] = React.useState(Math.floor(Math.random() * 30));
 
   const [ClosedBill] = useMutation(
     Mutations.CLOSED_BILL,
@@ -56,13 +55,12 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
     let respuesta = response.data.WorkingBill.message;
     toast.success(respuesta);
   }
-
   return (
     <Transsition>
       <div className={styles.container}>
         <div className={styles.containerHeader}>
           <div className={styles.titles}>
-            <div className={styles.table}>TABLE {mesa}</div>
+            <div className={styles.table}>TABLE {info.numeroMesa}</div>
             <div className={styles.type}>{info.tipoDePedido}</div>
           </div>
           <div className={styles.containerBotones}>
