@@ -114,6 +114,8 @@ export default function Cart() {
             })
 
             resp = response.data.CreateBills.message;
+            messageTable = `${localStorage.getItem('address')}`
+                messagefinalTable = "El pedido será entregado"
          
         }
 

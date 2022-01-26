@@ -4,11 +4,14 @@ import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
 import s from './createBill.module.css'
 import CreateBillProductCart from './Components/CreateBillProductCart';
+import useAuth from '../../../../Auth/useAuth';
+import toast from 'react-hot-toast';
 
 
 const CreateBill = ({ close }) => {
   //PRODUCTS_BILLS
 
+  const { userId } = useAuth()
   const { loading, data, error } = useQuery(Queries.PRODUCTS_BILLS);
   const selector = useRef('Select...');
 
@@ -23,7 +26,7 @@ const CreateBill = ({ close }) => {
 
 
   const [newBill, setNewBill] = useState({
-    idUser: '',
+    idUser: `${userId()}`,
     description: '',
     products: [],
     numeroMesa: '',
@@ -43,6 +46,15 @@ const CreateBill = ({ close }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    let newDate = new Date()  // Hoy
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let hours = newDate.getHours();
+    let minutes = newDate.getMinutes();
+
+
     let aux = newBill.products
 
     let subTotal = 0
@@ -53,19 +65,19 @@ const CreateBill = ({ close }) => {
       total = (subTotal * 20 / 100) + subTotal
     }
 
-
+    
 
     let response = await CreateBills({
       variables: {
         "input": {
           "idUser": newBill.idUser,
-          "description": newBill.description,
           "products": newBill.products,
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
-          "fechaEntrega": Date.now(),
-          "subTotal": subTotal,
-          "total": total
+          "fechaEntrega": `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`,
+          "subTotal": Math.ceil(subTotal),
+          "total": Math.ceil(total),
+          "description": newBill.description,
         }
       }
     })
@@ -79,8 +91,8 @@ const CreateBill = ({ close }) => {
     })
 
     const resp = response.data.CreateBills.message
-    alert(resp)
-    close('createBill')
+    toast.success(resp)
+    close()
   }
 
 
@@ -100,14 +112,7 @@ const CreateBill = ({ close }) => {
         <div className={s.form}>
           <form >
             <div className={s.inputs}>
-              <input
-                placeholder='Client ID...'
-                type='text'
-                className={s.input}
-                name="idUser"
-                value={newBill.idUser}
-                onChange={handleInputs}
-              />
+              <label className={s.input}>{userId()}</label>
               <input
                 placeholder='Table Number...'
                 type='number'
@@ -134,7 +139,7 @@ const CreateBill = ({ close }) => {
               <select name='tipoDePedido' className={s.input} onChange={handleInputs} >
                 <option default selected >Select...</option>
                 <option value='salon' >Salon...</option>
-                <option value='mesa' >Delvery...</option>
+                <option value='domicilio' >Delvery...</option>
               </select>
             </div>
 

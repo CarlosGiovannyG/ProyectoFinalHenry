@@ -8,6 +8,7 @@ import Transsition from '../../../../Hooks/Transsition';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
+import toast from 'react-hot-toast';
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ready, setReady] = React.useState(false);
@@ -31,6 +32,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
 
   const handleClose = async function (id) {
 
+
     const response = await ClosedBill({
       variables: {
         "input": {
@@ -39,7 +41,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
       }
     })
     let respuesta = response.data.ClosedBill.message;
-    alert(respuesta);
+    toast.success(respuesta);
   }
 
   const handleButton = async function () {
@@ -52,7 +54,7 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
       }
     })
     let respuesta = response.data.WorkingBill.message;
-    alert(respuesta);
+    toast.success(respuesta);
   }
 
   return (

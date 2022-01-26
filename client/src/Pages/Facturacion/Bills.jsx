@@ -16,6 +16,7 @@ import toast from 'react-hot-toast';
 
 
 const Prueba = () => {
+  
 
   const [checkIn, setCheckIn] = useState(null)
   const [isOpenCreateBill, openCreateBill, closeCreateBill] = useModal();
