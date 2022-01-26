@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import BotonCart from './Components/BotonCart/BotonCart';
 import axios from 'axios';
 import useAuth from '../../Auth/useAuth';
+import { validate } from 'graphql';
 
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -28,6 +29,28 @@ export default function UserMainPage() {
     const compra = localStorage.getItem('order');
     const [address, setAddress] = React.useState(null);
     const { userId } = useAuth();
+    const [displaySubmit, setDisplaySubmit] = React.useState({tipo: null, mesa: null, address: null });
+    const [validateBtn, setValidateBtn] = React.useState(false);
+
+    useEffect(() => {
+
+        if(displaySubmit.mesa && displaySubmit.tipo === 'salon'){
+            setValidateBtn(true);
+        }
+        if(displaySubmit.tipo === 'domicilio' && displaySubmit.address){
+            setValidateBtn(true);
+        }
+        if(!displaySubmit.mesa && displaySubmit.tipo === 'salon'){
+            setValidateBtn(false);
+        }
+        if(displaySubmit.tipo === 'domicilio' && !displaySubmit.address){
+            setValidateBtn(false);
+        }
+        if(!cart.length){
+            setValidateBtn(false);
+        }
+
+    }, [displaySubmit, cart])
 
     useEffect(() => {
 
@@ -68,9 +91,8 @@ export default function UserMainPage() {
     }
     if (error) return null
 
-
-
-
+    console.log(displaySubmit)
+    console.log(validateBtn)
 
     return (
         <div className={s.container}>
@@ -80,22 +102,32 @@ export default function UserMainPage() {
 
             <div className={s.rightDiv}>
                 <Transsition>
-                    <BotonCart data-tip data-for='tooltip' cart={cart} />
+                    <BotonCart validateBtn={validateBtn} data-tip data-for='tooltip' cart={cart} />
                 </Transsition>
                 <Transsition>
-                    <Bookings address={address} />
+                    <Bookings address={address} setDisplaySubmit={setDisplaySubmit} />
                 </Transsition>
             </div>
 
-            <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
-                Your Order: <br />
-                {cart.map(p => (
-                    `• ${p.name}\n`
-                ))}
-                <br />
-                Total: $ {total}
-            </ReactTooltip>
-
+            {
+                validateBtn ? 
+                    <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
+                        Your Order: <br />
+                        {cart.map(p => (
+                            `• ${p.name}\n`
+                        ))}
+                        <br />
+                        Total: $ {total}
+                    </ReactTooltip> :
+                        (cart.length ?
+                            <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
+                            Select date and table or delivery adress.
+                        </ReactTooltip> :
+                        <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
+                            Please add at least one item to your order.
+                        </ReactTooltip>
+                            )
+            }
 
             <div className={s.modal} >
                 <ModalProduct>

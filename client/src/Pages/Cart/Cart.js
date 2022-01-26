@@ -170,24 +170,24 @@ export default function Cart() {
     }
 
     return (
-        <div className={s.container}>
+        <div className={products.length? s.container : s.containerEmpty}>
             <Transsition>
                 <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
             </Transsition>
             <div className={s.rightDiv}>
-                <Transsition>
-                    <Bookings address={address} />
-                </Transsition>
-                <Transsition>
-                    <Payment total={total} />
-                </Transsition>
-                
-                    {   
-                        (displaySubmit) ?
-                        <Transsition><OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} /></Transsition>:
-                        null
-                    }
-                
+                {products.length ?
+                    <Transsition>
+                        <Payment total={total} />
+                    </Transsition>:
+                    null
+                }  
+
+                {products.length ?
+                    <Transsition>
+                        <OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} />
+                    </Transsition>:
+                    null
+                }  
             </div>
 
             <ModalProduct>

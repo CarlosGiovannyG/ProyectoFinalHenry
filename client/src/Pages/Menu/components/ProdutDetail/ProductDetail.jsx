@@ -109,7 +109,6 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl,clo
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
   if (loading) {
     return <div >
-      <Loading/>
     </div>
   }
   if (error) {

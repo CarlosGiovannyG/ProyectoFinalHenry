@@ -3,6 +3,13 @@
     justify-content: space-evenly;
     margin-top: 2rem;
   }
+
+  .containerEmpty{
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+  
   
   .rightDiv{
     display: flex;
