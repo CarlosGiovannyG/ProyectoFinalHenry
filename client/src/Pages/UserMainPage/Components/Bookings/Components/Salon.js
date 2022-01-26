@@ -36,7 +36,6 @@ export default function Salon() {
         setBooking(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
         localStorage.setItem(`date`, e.target.value);
-        localStorage.setItem('tipoDePedido', 'salon')
 
         let resultado = await FreeTables({
             variables: {
