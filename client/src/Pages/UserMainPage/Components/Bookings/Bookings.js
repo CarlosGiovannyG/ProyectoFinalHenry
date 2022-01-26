@@ -6,7 +6,7 @@ import Delivery from './Components/Delivery';
 import Transsition from '../../../../Hooks/Transsition';
 import useAuth from "../../../../Auth/useAuth";
 
-export default function Bookings({ address }) {
+export default function Bookings({ address, setDisplaySubmit }) {
 
     const { btnValidate} = useAuth();
 
@@ -16,13 +16,16 @@ export default function Bookings({ address }) {
 
         if (localStorage.getItem('tipoDePedido') === 'salon' ){
             setToggle(false);
+            setDisplaySubmit(prev=>({...prev, tipo: 'salon'}))
         }
         if (localStorage.getItem('tipoDePedido') === 'domicilio' ){
             setToggle(true);
+            setDisplaySubmit(prev=>({...prev, tipo: 'domicilio'}))
         }
         if (!(localStorage.getItem('tipoDePedido'))){
             setToggle(false);
             localStorage.setItem('tipoDePedido', 'salon')
+            setDisplaySubmit(prev=>({...prev, tipo: 'salon'}))
         }
         
     }, []);
@@ -31,7 +34,14 @@ export default function Bookings({ address }) {
     const handleToggle = function () {
         
         toggle ? setToggle(false) : setToggle(true);
-        toggle ? localStorage.setItem('tipoDePedido', 'salon') : localStorage.setItem('tipoDePedido', 'domicilio')
+
+        if(toggle){
+            localStorage.setItem('tipoDePedido', 'salon');
+            setDisplaySubmit(prev=>({...prev, tipo: 'salon'}))
+        }else{
+            localStorage.setItem('tipoDePedido', 'domicilio');
+            setDisplaySubmit(prev=>({...prev, tipo: 'domicilio'}))
+        }
         
         
     }
@@ -49,10 +59,10 @@ export default function Bookings({ address }) {
             <div className={s.modules} >
 
                 {
-                    !toggle && (<Transsition><Salon /></Transsition>)
+                    !toggle && (<Transsition><Salon setDisplaySubmit={setDisplaySubmit} /></Transsition>)
                 }
                 {
-                    toggle && (<Transsition><Delivery address={address} /></Transsition>)
+                    toggle && (<Transsition><Delivery address={address} setDisplaySubmit={setDisplaySubmit} /></Transsition>)
                 }
             </div>
         </div>

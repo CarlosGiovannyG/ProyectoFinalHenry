@@ -6,7 +6,7 @@ import Transsition from '../../../../../Hooks/Transsition';
 import useAuth from "../../../../../Auth/useAuth";
 
 
-export default function Salon() {
+export default function Salon({setDisplaySubmit}) {
 
     const { btnValidate } = useAuth();
 
@@ -29,6 +29,12 @@ export default function Salon() {
         let tables = resultado.data.FreeTables.arrmesas
 
         setFreeTables(tables);
+
+        const mesa = localStorage.getItem('mesa');
+
+        if(mesa){
+            setDisplaySubmit(prev=>({...prev, mesa: mesa}))
+        }
         
     }, []);
 
@@ -62,6 +68,7 @@ export default function Salon() {
 
     const renderInput = function () {
         const mesa = localStorage.getItem('mesa');
+
         const cap = localStorage.getItem('cap');
 
         return (
@@ -75,6 +82,7 @@ export default function Salon() {
                             let obj = JSON.parse(e.target.value);
                             localStorage.setItem(`mesa`, obj.mesa);
                             localStorage.setItem(`cap`, obj.cap);
+                            setDisplaySubmit(prev=>({...prev, mesa: obj.mesa}))
                         }}
                     >
                         {
