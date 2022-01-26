@@ -76,12 +76,12 @@ export default function Salon() {
                     >
                         {
                             mesa ? 
-                            <option selected>{cap}</option> : 
-                            <option selected>Select...</option>
+                            <option id={cap} value={cap} >{cap}</option> : 
+                            <option key={Math.random()*20 } value='select'>Select...</option>
                         }
                         {freeTables &&
                             freeTables.map(t => (
-                                <option value={JSON.stringify(t)}  >{t.cap}</option>
+                                <option value={JSON.stringify(t)} key={Math.random()*20 }  >{t.cap}</option>
                             ))
                         }
                     </select>
@@ -117,7 +117,6 @@ export default function Salon() {
                     type="datetime-local"
                     name='date'
                     defaultValue={(defaultDate) ? defaultDate : `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
-                    value={booking?.date}
                     min={`${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
                     max={`${year2}-${month2 < 10 ? `0${month2}` : `${month2}`}-${date2 < 10 ? `0${date2}` : `${date2}`}T${hours2}:${minutes2}`}
                     onChange={handleDateChange} />
