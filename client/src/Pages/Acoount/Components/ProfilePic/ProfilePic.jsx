@@ -65,6 +65,7 @@ const ProfilePic = ({ close, userId }) => {
     setFileName('Subir Imagen')
     setSelectedFile(null)
     close()
+    window.location.reload();
 
 
   }
