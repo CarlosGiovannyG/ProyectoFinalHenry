@@ -13,8 +13,18 @@ const Products = {
 }
   
   `,
-
   
+ DELETE_PRODUCT: gql`
+   
+  mutation  DeleteProduct($input: productId) {
+ DeleteProduct(input: $input) {
+      message
+      blocking
+    }
+}
+  
+  `,
+
 
 };
 

@@ -11,6 +11,7 @@ const Mutations = {
 
   //PRODUCTS
   LIKE_PRODUCTS: Products.LIKE_PRODUCTS,
+  DELETE_PRODUCT: Products.DELETE_PRODUCT,
 
   //PRODUCTS
   CREATE_COMMENT: Comments.CREATE_COMMENT,
@@ -36,14 +37,3 @@ const Mutations = {
 };
 
 export default Mutations;
-
-
-//TODO:  INPUT REGISTRO DE DIRECCION
-//
-// {
-//   "input": {
-//     "userId": "61ece02d977bf7cd1a934511",
-//       "name": "direccionApollo",
-//         "description": "carrera 101"
-//   }
-// }

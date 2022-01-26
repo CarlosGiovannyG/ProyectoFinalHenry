@@ -54,6 +54,7 @@ export const Menu = () => {
                             productId={idProduct}
                             openComment={openComent}
                             openCreateCom={openCreateComent}
+                            close={closeProductDetail}
                         />
                     </Transsition>
                 </Modal>

@@ -11,8 +11,9 @@ import routes from '../../../../Helpers/Routes';
 import Loading from '../../../../Components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../../Auth/useAuth';
+import toast from 'react-hot-toast';
 
-const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) => {
+const ProductDetail = ({ openCreateCom, openComment, productId, modalControl,close }) => {
 
   const { isLogged, hasRole } = useAuth()
   const url = window.location.href.slice(21);
@@ -22,6 +23,12 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
 
 
   const [ProductLike] = useMutation(Mutations.LIKE_PRODUCTS, {
+    refetchQueries: [{ query: Queries.ALL_PRODUCTS }],
+    onError: error => { console.log(error.graphQLErrors[0].message) }
+  });
+  
+  
+  const [DeleteProduct] = useMutation(Mutations.DELETE_PRODUCT, {
     refetchQueries: [{ query: Queries.ALL_PRODUCTS }],
     onError: error => { console.log(error.graphQLErrors[0].message) }
   });
@@ -72,7 +79,29 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
     }
   }
 
-  const productDelete = function(){
+  const productDelete = async () => {
+
+    let response = await DeleteProduct({
+      variables: {
+        "input": {
+          "id": productId
+        }
+      }
+    }
+    )
+    const { message, blocking } = response.data.DeleteProduct
+
+    if (message) {
+      
+      toast.success(message)
+      close()
+    } else {
+
+      toast.error(blocking)
+      close()
+    }
+
+
 
   }
 
@@ -80,7 +109,7 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl }) 
   //todo RESIVO LOS DATOS DE CADA PRODUCTO
   if (loading) {
     return <div >
-      
+      <Loading/>
     </div>
   }
   if (error) {

@@ -33,6 +33,10 @@ class ProductsApi extends RESTDataSource {
   async ProductLike(input) {
     return await this.post(`/${input}/like`)
   }
+
+  async DeleteProduct(input) {
+    return await this.delete(`/${input}`)
+  }
 };
 
 module.exports = ProductsApi;

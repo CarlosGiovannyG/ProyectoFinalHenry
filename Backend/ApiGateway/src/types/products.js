@@ -60,6 +60,7 @@ input createComment{
 }
 type responseCreated{
   message:String
+  blocking:String
 }
 
 type Query {
@@ -72,6 +73,7 @@ ProductById(input:productId):product
 type Mutation {
   ProductLike(input:productId):resLike
   createComment(input:createComment):responseCreated
+  DeleteProduct(input:productId):responseCreated
 
 }
 

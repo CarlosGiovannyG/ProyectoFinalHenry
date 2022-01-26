@@ -16,7 +16,7 @@ const ProductDelete = async (req, res) => {
       .catch(err=>{ produtEnv.listComments = err})
       
       produtEnv.listComments = comments;
-      res.json( {message:"producto borrado", produtEnv } );
+      res.json( {message:"producto borrado" } );
     } else {
       res.status(204).send({ message: 'No se encontro producto' })
 
