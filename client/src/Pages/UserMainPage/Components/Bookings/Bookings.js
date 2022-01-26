@@ -4,8 +4,12 @@ import { Switch } from 'antd';
 import Salon from './Components/Salon';
 import Delivery from './Components/Delivery';
 import Transsition from '../../../../Hooks/Transsition';
+import useAuth from "../../../../Auth/useAuth";
 
 export default function Bookings({ address }) {
+
+    const { btnValidate} = useAuth();
+
     const [toggle, setToggle] = React.useState(false);
 
     useEffect(async() => {
@@ -25,8 +29,10 @@ export default function Bookings({ address }) {
 
 
     const handleToggle = function () {
+        
         toggle ? setToggle(false) : setToggle(true);
         toggle ? localStorage.setItem('tipoDePedido', 'salon') : localStorage.setItem('tipoDePedido', 'domicilio')
+        
         
     }
 

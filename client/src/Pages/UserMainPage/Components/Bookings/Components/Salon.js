@@ -3,9 +3,12 @@ import s from './Salon.module.css';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import Queries from '../../../../../Utils/Queries';
 import Transsition from '../../../../../Hooks/Transsition';
+import useAuth from "../../../../../Auth/useAuth";
 
 
 export default function Salon() {
+
+    const { btnValidate } = useAuth();
 
     const [booking, setBooking] = useState({date: localStorage.getItem('date')})
     const [freeTables, setFreeTables] = useState(null);

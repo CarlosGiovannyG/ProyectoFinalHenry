@@ -16,7 +16,7 @@ export default function Delivery({ address }) {
                     <div key={Math.random()*20 }>
                         <div  className={ `${d.street} ${d.number}` === selected ? s.selected  : s.item} 
                             onClick={()=>{setSelected(`${d.street} ${d.number}`);
-                                 localStorage.setItem('address', `${d.street} ${d.number}`);
+                                localStorage.setItem('address', `${d.street} ${d.number}`);
                                  }} >
 
                                 <p className={s.title}>{d.name}</p>

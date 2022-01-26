@@ -10,8 +10,6 @@ export const AuthContex = createContext();
 
 
 const AuthProvider = ({ children }) => {
-  const [submitBtn, setSubmitBtn] = useState(false);
-
   const URL_USERS = 'http://localhost:5002/users'
   const [kitchenDeatil, setKitchenDeatil] = useState(false);
   const [billKitchenDetail, setBillKitchenDetail] = useState(null)
@@ -31,20 +29,19 @@ const AuthProvider = ({ children }) => {
   const isLogged = () => localStorage.getItem('login');
 
 
-  const btnValidate = function (){
-    let tipoDePedido = localStorage.getItem('tipoDePedido');
-    let mesa = localStorage.getItem('mesa');
-    let address = localStorage.getItem('address');
-
-    if(tipoDePedido ==='salon' && mesa){
-      setSubmitBtn(true)
-      localStorage.setItem('displayBtn', true);
+  const btnValidate = function (tipoDePedido, mesa, address, valor) {
+   
+    
+    console.log(tipoDePedido, mesa, address,valor,'PROVA');
+    
+    if (tipoDePedido === 'salon' && mesa && valor){
+      return true;
     }else 
-    if(tipoDePedido ==='domicilio' && address){
-      setSubmitBtn(true)
-      localStorage.setItem('displayBtn', true);
-    }
-    return submitBtn;
+      if (tipoDePedido === 'domicilio' && address && valor){
+        return true;
+      } 
+      
+      return false;
   }
 
 
@@ -62,7 +59,6 @@ const AuthProvider = ({ children }) => {
     kitchenDeatil,
     billKitchenDetail,
     btnValidate,
-    submitBtn,
     URL_USERS,
     isLogged,
     hasRole,

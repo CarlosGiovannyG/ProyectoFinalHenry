@@ -18,20 +18,23 @@ import toast from 'react-hot-toast';
 
 
 export default function Cart() {
-    const { userId, btnValidate, submitBtn } = useAuth();
+    const { userId, btnValidate } = useAuth();
     const navigate = useNavigate();
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCom, openModal, closeMod] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
     const [address, setAddress] = useState(null);
-    const [displaySubmit, setDisplaySubmit] = useState( localStorage.getItem('displayBtn'));
+    const [displaySubmit, setDisplaySubmit] = useState();
 
-    console.log(btnValidate)
-
+   
     useEffect(() => {
-        setDisplaySubmit(localStorage.getItem('displayBtn'))
-    }, [submitBtn])
+        setDisplaySubmit(btnValidate(localStorage.getItem('tipoDePedido'),
+            localStorage.getItem('mesa'),
+            localStorage.getItem('address'),
+            localStorage.getItem('order')?.length
+        ))
+    }, [btnValidate])
 
     useEffect(() => {
 
@@ -163,7 +166,6 @@ export default function Cart() {
         localStorage.removeItem('mesa');
         localStorage.removeItem('tipoDePedido');
         localStorage.removeItem('address');
-        btnValidate(null, null, null)
         navigate(`${routes.UserMainPage}`);
     }
 
