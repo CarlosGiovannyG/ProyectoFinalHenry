@@ -25,6 +25,7 @@ export default function Cart() {
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
     const [address, setAddress] = useState(null);
+    const [displaySubmit, setDisplaySubmit] = useState(true);
 
     useEffect(() => {
 
@@ -159,8 +160,6 @@ export default function Cart() {
         navigate(`${routes.UserMainPage}`);
     }
 
-
-
     return (
         <div className={s.container}>
             <Transsition>
@@ -173,9 +172,13 @@ export default function Cart() {
                 <Transsition>
                     <Payment total={total} />
                 </Transsition>
-                <Transsition>
-                    <OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} />
-                </Transsition>
+                
+                    {   
+                        (displaySubmit) ?
+                        <Transsition><OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} /></Transsition>:
+                        null
+                    }
+                
             </div>
 
             <ModalProduct>
