@@ -246,7 +246,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DetailProducts"
+                  "$ref": "#/components/schemas/GetBillChekInOK"
                 }
               }
             }
