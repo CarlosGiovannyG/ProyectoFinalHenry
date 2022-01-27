@@ -62,6 +62,166 @@
         }
       }
     },
+    "/cocina/closed/:id": {
+      "post": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Cambia el status de cocina de una factura.",
+        "description": "Se debe entregar el ID de la factura por params y el el status cambia a Closed.",
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/paid/:id": {
+      "post": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Cambia el status de pago de una factura.",
+        "description": "Se debe entregar el ID de la factura por params y el el status cambia a Paid.",
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/delete/:id": {
+      "post": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Cambia el status de una factura.",
+        "description": "Se debe entregar el ID de la factura por params y el el status cambia a Deleted. No se borra de la DB.",
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/cocina/working/:id": {
+      "post": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Cambia el status de cocina de una factura.",
+        "description": "Se debe entregar el ID de la factura por params y el el status de cocina cambia a \"Working\".",
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/:id": {
+      "put": {
+        "tags": [
+          "bills"
+        ],
+        "summary": "Modificacion de de facturas",
+        "description": "Se debe proporcionar los datos necesarios para la creacion de una factura, deben ser ingresados en formato json.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBill"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "(OK) Mensaje de confirmacion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBillOK"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "tags": [

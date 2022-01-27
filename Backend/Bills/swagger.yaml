@@ -1,6 +1,7 @@
 openapi: 3.0.3
 info:
-  description: Este microservicio maneja toda la informacion de facturas de la App
+  description: >-
+    Este microservicio maneja toda la informacion de facturas de la App
     Restaurante, reada por el equipo 10 como proyecto final grupal de la cursada
     ed SOY HENRY Cohorte 19-A. Esta implementada con nodeJS, express, mongoose,
     mongoDb.
@@ -21,7 +22,115 @@ paths:
       tags:
         - bills
       summary: Creacion de de facturas
-      description: Se debe proporcionar los datos necesarios para la creacion de una
+      description: >-
+        Se debe proporcionar los datos necesarios para la creacion de una
+        factura, deben ser ingresados en formato json.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBill'
+        required: true
+      responses:
+        '200':
+          description: (OK) Mensaje de confirmacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cocina/closed/:id:
+    post:
+      tags:
+        - bills
+      summary: Cambia el status de cocina de una factura.
+      description: >-
+        Se debe entregar el ID de la factura por params y el el status cambia a Closed.
+      responses:
+        '200':
+          description: (OK) Mensaje de confirmacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /paid/:id:
+    post:
+      tags:
+        - bills
+      summary: Cambia el status de pago de una factura.
+      description: >-
+        Se debe entregar el ID de la factura por params y el el status cambia a Paid.
+      responses:
+        '200':
+          description: (OK) Mensaje de confirmacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /delete/:id:
+    post:
+      tags:
+        - bills
+      summary: Cambia el status de una factura.
+      description: >-
+        Se debe entregar el ID de la factura por params y el el status cambia a Deleted. No se borra de la DB.
+      responses:
+        '200':
+          description: (OK) Mensaje de confirmacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cocina/working/:id:
+    post:
+      tags:
+        - bills
+      summary: Cambia el status de cocina de una factura.
+      description: >-
+        Se debe entregar el ID de la factura por params y el el status de cocina cambia a "Working".
+      responses:
+        '200':
+          description: (OK) Mensaje de confirmacion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBillOK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /:id:
+    put:
+      tags:
+        - bills
+      summary: Modificacion de de facturas
+      description: >-
+        Se debe proporcionar los datos necesarios para la creacion de una
         factura, deben ser ingresados en formato json.
       requestBody:
         content:
@@ -47,7 +156,8 @@ paths:
       tags:
         - bills
       summary: Listar todas las facturas registradas en la DB.
-      description: En esta ruta podemos obtener todas las facturas, si deseamos obtener
+      description: >-
+        En esta ruta podemos obtener todas las facturas, si deseamos obtener
         algun estado de pago de la factura en especial lo ingresamos query.
       parameters:
         - name: status
@@ -102,7 +212,9 @@ paths:
     get:
       tags:
         - bills
-      summary: Entrega todas las facturas para cocina con status Open, listadas por fechas de entrega.
+      summary: >-
+        Entrega todas las facturas para cocina con status Open, listadas por
+        fechas de entrega.
       responses:
         '200':
           description: (OK) Un array con todas las facturas con "statuscocina" Open.
@@ -149,7 +261,9 @@ paths:
     get:
       tags:
         - bills
-      summary: Entrega los detalles de una factura para el area de caja cuando se le entrega un id de factura.
+      summary: >-
+        Entrega los detalles de una factura para el area de caja cuando se le
+        entrega un id de factura.
       parameters:
         - name: id
           in: path
@@ -181,7 +295,8 @@ components:
     NotFound:
       description: (NotFound) no se encontro la informacion
     BadRequest:
-      description: (BadRequest) los datos enviados son incorrectos o hay datos obligatorios
+      description: >-
+        (BadRequest) los datos enviados son incorrectos o hay datos obligatorios
         no enviados
     ServerError:
       description: (ServerError) Error en el servidor
@@ -197,16 +312,19 @@ components:
           description: Un breve explicacion de la factura.
         numeroMesa:
           type: integer
-          description: El numero de mesa a donde sera despachado el pedido hecho en la
+          description: >-
+            El numero de mesa a donde sera despachado el pedido hecho en la
             factura. Si este es para el salon.
         tipoDePedido:
           type: string
           example: salon / domicilio
-          description: Se debe especificar si el pedido sera consumido en la mesa o sera
+          description: >-
+            Se debe especificar si el pedido sera consumido en la mesa o sera
             entregado a domicilio
         fechaEntrega:
           type: string
-          description: Si es una reserva se asignara la fecha de llegada de los clientes al
+          description: >-
+            Si es una reserva se asignara la fecha de llegada de los clientes al
             restaurante. Si es un pedido en la mesa se asignara la fecha actual.
         products:
           type: array
@@ -214,11 +332,13 @@ components:
             $ref: '#/components/schemas/Products'
         subTotal:
           type: integer
-          description: El total del valor de los productos listados antes de recargos y/o
+          description: >-
+            El total del valor de los productos listados antes de recargos y/o
             impuestos
         total:
           type: integer
-          description: El total del valor de los productos listados incluyendo impuesto y
+          description: >-
+            El total del valor de los productos listados incluyendo impuesto y
             recargos
     Products:
       type: object
@@ -249,16 +369,19 @@ components:
           description: Un breve explicacion de la factura.
         numeroMesa:
           type: integer
-          description:  El numero de mesa a donde sera despachado el pedido hecho en la
+          description: >-
+            El numero de mesa a donde sera despachado el pedido hecho en la
             factura. Si este es para el salon.
         tipoDePedido:
           type: string
           example: salon / domicilio
-          description: Se debe especificar si el pedido sera consumido en la mesa o sera
+          description: >-
+            Se debe especificar si el pedido sera consumido en la mesa o sera
             entregado a domicilio
         fechaEntrega:
           type: string
-          description: Si es una reserva se asignara la fecha de llegada de los clientes al
+          description: >-
+            Si es una reserva se asignara la fecha de llegada de los clientes al
             restaurante. Si es un pedido en la mesa se asignara la fecha actual.
         status:
           type: string
@@ -274,11 +397,13 @@ components:
             $ref: '#/components/schemas/Products'
         subTotal:
           type: integer
-          description: El total del valor de los productos listados antes de recargos y/o
+          description: >-
+            El total del valor de los productos listados antes de recargos y/o
             impuestos
         total:
           type: integer
-          description: El total del valor de los productos listados incluyendo impuesto y
+          description: >-
+            El total del valor de los productos listados incluyendo impuesto y
             recargos
     GetBillChekInOK:
       type: object
@@ -301,5 +426,6 @@ components:
           description: Las veces que se repite ese producto en la factura
         total:
           type: integer
-          description: El costo total del valor del producto multiplado por las veces que
+          description: >-
+            El costo total del valor del producto multiplado por las veces que
             se repite

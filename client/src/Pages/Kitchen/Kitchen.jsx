@@ -10,7 +10,6 @@ const Kitchen = () => {
 
   const { loading, data, error } = useQuery(Queries.BILLS_KITCHEN);    // TODO: ,{pollInterval:5000}
 
-
   if (loading) {
     return (
       <div>
