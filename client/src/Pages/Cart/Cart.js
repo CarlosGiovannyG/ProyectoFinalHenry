@@ -106,6 +106,7 @@ export default function Cart() {
             let year2 = twoWeeks.getFullYear();
             let hours2 = twoWeeks.getHours();
             let minutes2 = twoWeeks.getMinutes();
+            let seconds2 = twoWeeks.getSeconds();
 
             response = await CreateBills({
                 variables: {
@@ -115,7 +116,9 @@ export default function Cart() {
                         description:'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
                         "direccionEntrega": `${localStorage.getItem('address')}`,
-                         "fechaEntrega": `${year2}-${month2 < 10 ? `0${month2}` : `${month2}`}-${date2 < 10 ? `0${date2}` : `${date2}`}T${hours2}:${minutes2}`,
+                        "fechaEntrega": `${year2}${month2 < 10 ? `0${month2}` :
+                            `${month2}`}${date2 < 10 ? `0${date2}` : `${date2}`}${hours2}${minutes2}
+                            ${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }
@@ -146,6 +149,12 @@ export default function Cart() {
              messageTable = message
              messagefinalTable = messagefinal
 
+
+            let date = localStorage.getItem('date')            
+            let hora = date.replace(/\D/g, "")
+            let newDate = new Date()
+            let seconds2 = newDate.getSeconds();
+
             if (messagefinal) {
                 response = await CreateBills({
                     variables: {
@@ -154,7 +163,7 @@ export default function Cart() {
                             "products": aux,
                             "numeroMesa": `${localStorage.getItem('mesa')}`,
                             "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
-                            "fechaEntrega": `${localStorage.getItem('date')}`,
+                            "fechaEntrega": `${hora}${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
                             subTotal: Math.ceil(subTotal),
                             total: Math.ceil(total),
                         }

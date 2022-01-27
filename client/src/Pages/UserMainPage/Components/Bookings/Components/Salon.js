@@ -127,9 +127,17 @@ export default function Salon({setDisplaySubmit}) {
                 <input className={s.input2}
                     type="datetime-local"
                     name='date'
-                    defaultValue={(defaultDate) ? defaultDate : `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
-                    min={`${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`}
-                    max={`${year2}-${month2 < 10 ? `0${month2}` : `${month2}`}-${date2 < 10 ? `0${date2}` : `${date2}`}T${hours2}:${minutes2}`}
+                    defaultValue={(defaultDate) ? defaultDate :
+                        `${year}-${month < 10 ? `0${month}` :
+                            `${month}`}-${date < 10 ? `0${date}` :
+                            `${date}`}T${hours}:${minutes}`}
+                    min={`${year}-${month < 10 ? `0${month}` :
+                        `${month}`}-${date < 10 ? `0${date}` :
+                            `${date}`}T${hours}:${minutes}`}
+                    max={`${year2}-${month2 < 10 ? `0${month2}` :
+                        `${month2}`}-${date2 < 10 ? `0${date2}` :
+                            `${date2}`}T${hours2}:${minutes2}`}
+                    
                     onChange={handleDateChange} />
             </div>
             {(dateSelected || defaultDate) && renderInput()}

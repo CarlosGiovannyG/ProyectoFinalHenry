@@ -53,6 +53,7 @@ const CreateBill = ({ close }) => {
     let year = newDate.getFullYear();
     let hours = newDate.getHours();
     let minutes = newDate.getMinutes();
+    let seconds2 = newDate.getSeconds();
 
 
     let aux = newBill.products
@@ -74,7 +75,10 @@ const CreateBill = ({ close }) => {
           "products": newBill.products,
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
-          "fechaEntrega": `${year}-${month < 10 ? `0${month}` : `${month}`}-${date < 10 ? `0${date}` : `${date}`}T${hours}:${minutes}`,
+          "fechaEntrega": `${year}${month < 10 ? `0${month}` :
+            `${month}`}${date < 10 ? `0${date}` :
+              `${date}`}${hours}${minutes} 
+              ${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
           "subTotal": Math.ceil(subTotal),
           "total": Math.ceil(total),
           "description": newBill.description,

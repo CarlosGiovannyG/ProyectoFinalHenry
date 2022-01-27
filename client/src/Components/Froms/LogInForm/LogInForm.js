@@ -56,8 +56,8 @@ export default function LogInForm({ close }) {
             localStorage.setItem('token', token)
             toast.success(message)
             navigate(`${routes.UserMainPage}`)
-            close()
             window.location.reload();
+            close()
         } else {
 
             toast.error(message)
