@@ -98,15 +98,23 @@ export default function Cart() {
 
         if (tipoPedido === 'domicilio') {
 
-            let newDate = new Date()  // hoy
-        
-            let twoWeeks = new Date(newDate.getTime() + 20*60*1000);
-            let date2 = twoWeeks.getDate();
-            let month2 = twoWeeks.getMonth() + 1;
-            let year2 = twoWeeks.getFullYear();
-            let hours2 = twoWeeks.getHours();
-            let minutes2 = twoWeeks.getMinutes();
-            let seconds2 = twoWeeks.getSeconds();
+            let newDate = new Date()  // Hoy
+            let date = newDate.getDate();
+            let month = newDate.getMonth() + 1;
+            let year = newDate.getFullYear();
+            let hours = newDate.getHours();
+            let minutes = newDate.getMinutes();
+            let seconds2 = newDate.getSeconds();
+
+        //     let newDate = new Date()  // hoy
+        // 
+        //     let twoWeeks = new Date(newDate.getTime() + 20*60*1000);
+        //     let date2 = twoWeeks.getDate();
+        //     let month2 = twoWeeks.getMonth() + 1;
+        //     let year2 = twoWeeks.getFullYear();
+        //     let hours2 = twoWeeks.getHours();
+        //     let minutes2 = twoWeeks.getMinutes();
+        //     let seconds2 = new Date().getSeconds();
 
             response = await CreateBills({
                 variables: {
@@ -116,14 +124,13 @@ export default function Cart() {
                         description:'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
                         "direccionEntrega": `${localStorage.getItem('address')}`,
-                        "fechaEntrega": `${year2}${month2 < 10 ? `0${month2}` :
-                            `${month2}`}${date2 < 10 ? `0${date2}` : `${date2}`}${hours2}${minutes2}
-                            ${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
+                        "fechaEntrega":`${year}${month < 10 ? `0${month}` : `${month}`}${date < 10 ? `0${date}` : `${date}`}${hours < 10 ? `0${hours}` : `${hours}`}${minutes < 10 ? `0${minutes}` : `${minutes}`}${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }
                 }
             })
+
 
             resp = response.data.CreateBills.message;
             messageTable = `${localStorage.getItem('address')}`

@@ -2,7 +2,6 @@ const Bills = require("../models/Bills");
 
 const createBills = async (req, res) => {
 
-  console.log(req.body);
   try {
 
     let newBill = new Bills({

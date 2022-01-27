@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  description: Este microservicio maneja toda la informacion de correspondiente al inmobiliario de la App Restaurante, creda por el equipo 10 como proyecto final grupal de la
+    cursada en SOY HENRY del Cohorte 19-A. Esta implementada con nodeJS, express,
+    pg, sequelize. 
+  version: 1.0.0
+  title: Microservicio de Mesas
+  termsOfService: https://github.com/SarriaRafael
+  contact:
+    email: rafael3sarria@gmail.com
+    name: Rafael Sarria
+servers:
+  - url: http://localhost:5003/mesas
+tags:
+  - name: cellar
+    description: Es modelo contiene diferentes rutas la cual es entregada en formato JS.
+paths:
+  /schedule/{date}:
+    get:
+      tags:
+        - cellar
+      summary: Listar mesas disponibles segun hora y fecha, enviada via params.
+      description: Al enviar una fecha y hora, se recibe el listado de las mesas disponibles en espacio de tiempo.
+      parameters:
+        - name: date
+          in: path
+          required: true
+          description: Fecha y hora a consultar disponibilidad
+          schema:
+            type: string
+            format: date-time
+            example: 2022-01-27T11:00
+      responses: 
+        200:
+          description: (OK) Listado de mesas disponibles
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje informativo
+                  arrmesas:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tables'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'         
+          
+  /schedule:
+    post:
+      tags:
+        - cellar
+      summary: Hacer la reserva de la mesa en una fecha y hora solicitada
+      description: Resividos, numero de mesa, fecha, hora y  ID del cliente se hace la reservacion de la mesa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookTable'
+      responses: 
+        200:
+          description: (OK) Listado de mesas disponibles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookTableOK'
+        204:
+          $ref: '#/components/responses/NoContent'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+              
+
+components:
+  responses:
+    Unauthorized:
+      description: (Unauthorized) no hay autorizacion para llamar al servicio
+    NoContent:
+      description: (No Content) no se encontro registro en la DB
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                description: Mensaje informando porque no se hizo la reserva
+              fecha:
+                type: string
+                format: date-time
+                example: 2022-01-26T17:15
+                description: La misma fecha en que hizo la solicitud
+              estamesa:
+                type: integer
+                description: El numero de mesa que se pidio en reserva, comenzando a partir de la mesa numero 10
+                example: 10 ... 99
+    NotFound:
+      description: (NotFound) no se encontro la informacion
+    BadRequest:
+      description: (BadRequest) los datos enviados son incorrectos o hay datos obligatorios
+          no enviados
+    ServerError:
+      description: (ServerError) Error en el servidor
+  
+  schemas:
+    Tables:
+      type: object
+      properties:
+        mesa:
+          type: integer
+          description: El numero de la mesa
+        cap:
+          type: integer
+          description: Capacidad de la mesa
+    BookTable:
+      type: object
+      properties:
+        fechaIn:
+          type: string
+          format: date-time
+          example: 2022-01-26T17:15
+          description: Fecha y hora de la reserva
+        estamesa:
+          type: integer
+          description: El numero de mesa a reservar, comenzando a partir de la mesa numero 10
+          example: 10 ... 99
+        idclient:
+          type: string
+          description: Identificacion unica en la App, del usuario que hace la reserva
+          example: 61e62f3ddbff556c34ae5f73
+    BookTableOK:
+      type: object
+      properties:
+        message: 
+          type: string
+          description: Mensaje afirmativo de la reservacion
+        messagefinal: 
+          type: string
+          description: Informando desde que hora hasta que hora fue hecha la reserva
+         
+      
+ 
