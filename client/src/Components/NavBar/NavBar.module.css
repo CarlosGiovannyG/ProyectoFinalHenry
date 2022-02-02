@@ -1,67 +1,162 @@
-.header{
-    display: flex;
-    height: 9.5vh; 
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    z-index: 10;
+.header {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  z-index: 10;
 }
 
-.headerHome{
-    display: flex;
-    height: 9.5vh; 
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    top: 0;
-    z-index: 10;
+.headerHome {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
-.icon{
-    margin-left: 1.2%;
-    text-align: center;
-    height: 60px;
-    width: 60px;
-    margin-top: .7rem;
+.icon {
+  margin-left: 1.2%;
+  text-align: center;
+  height: 60px;
+  width: 60px;
+  margin-top: 0.7rem;
 }
 
-.headerbtns{
-    width: 100%;
-    display: flex;
-    margin-right: 1.2%;
-    align-content: space-between;
-    margin-top: .7rem;
+.headerbtns {
+  width: 100%;
+  display: flex;
+  margin-right: 1.2%;
+  align-content: space-between;
+  margin-top: 0.7rem;
 }
 
+.btnDiv1 {
+  width: 70%;
+  height: 90%;
+  margin-left: 1%;
+  display: flex;
+  justify-content: start;
+  gap: 3%;
+}
 
-.btnDiv1{
-    width: 70%;
-    height: 90%;
+.btnDiv2 {
+  height: 90%;
+  width: 27%;
+  display: flex;
+  justify-content: end;
+  gap: 5%;
+}
+
+.btnsHeader {
+  font-family: "Montserrat", sans-serif;
+  background: none;
+  border-style: none;
+  color: black;
+  font-size: 1.3em;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.btnsHeader:hover {
+  color: rgb(161, 161, 161);
+  transition: color 0.3s;
+}
+
+.btnMenu {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  line-height: 9vh;
+  padding: 0 15px;
+  font-size: 35px;
+  font-weight: bold;
+  z-index: 1000;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 75px;
+  }
+
+  .headerHome {
+    height: 75px;
+   
+  }
+
+  .icon {
     margin-left: 1%;
-    display: flex;
-    justify-content:start;
-    gap: 3%;
-}
+    height: 40px;
+    width: 40px;
+    margin-top: 0.1rem;
+  }
 
-.btnDiv2{
-    height: 90%;
-    width: 27%;
-    display: flex;
-    justify-content:end;
-    gap: 5%;
-}
+  .headerbtns {
+      display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    justify-content: center;
+    background-color: rgb(212, 204, 204);
+    top: 60px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    overflow-y: auto;
+    transition: left 0.5s;
+    left:100%;
+  }
 
+  .btnDiv1 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 0;
+    height: 140px;
+    width: 100%;
+    gap: 15px;
+  }
 
-.btnsHeader{
-    font-family: 'Montserrat', sans-serif;
+  .btnDiv2 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 80px;
+    width: 100%;
+    gap: 15px;
+  }
+
+  .btnsHeader {
+    font-family: "Montserrat", sans-serif;
     background: none;
     border-style: none;
     color: black;
-    font-size: 1.3em;
-    font-weight: 400;
-    transition: color .3s;
-}
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0;
+  }
 
-.btnsHeader:hover{
-    color: rgb(161, 161, 161);
-    transition: color .3s;
+  .btnMenu {
+    display: block;
+  }
+
+  
+  .headerbtnsVisible {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    background-color: rgb(212, 204, 204);
+    top: 60px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    overflow-y: auto;
+    transition: left 0.5s;
+    left:0;
+  }
 }

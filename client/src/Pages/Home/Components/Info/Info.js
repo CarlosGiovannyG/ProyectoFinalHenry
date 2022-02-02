@@ -60,6 +60,7 @@ export default function Info() {
         };
     }, []);
 
+    
     return (
         <div id="info" className={(url.includes(routes.home) && scrollPosition > window.innerHeight*0.91 ) ? s.main : null}>
             <div className={s.about}>

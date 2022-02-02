@@ -150,16 +150,93 @@
 }
 
 
-@media (max-width: 1270px) {
-    .cards{
-        margin: 0 auto;
-        width: fit-content;
-        margin-top: 3.5rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        row-gap: 3.5rem;
-        column-gap: 3.5rem;
-        margin-bottom: 10vh;
-    }
+@media (max-width: 768px) {
+
+/* Primer modulo About */
+
+
+.about{
+    width: 100%;
+}
+
+.title{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.aboutItems{
+    gap: 4rem;
+}
+
+.aboutText{
+    margin-top: 1px;
+}
+
+.h3{
+    font-size: 2rem;
+    font-weight: 400;
+} 
+
+.p{
+    font-size: 1rem;
+}
+
+.aboutImage{
+    width: 15rem;
+    height: auto;
+    margin-top:-50px;
+}
+
+.line{
+    margin-top: 2rem;
+}
+
+/* Segundo Module Solutions */
+
+.module{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.moduleText{
+    margin-top: 0.5px;
+}
+
+.subtitle{
+    font-size: 2rem;
+    font-weight:400;
+}
+
+.moduleImage{
+    width: 90%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.moduleLine{
+    height: .2rem;
+    width: 60%;
+    background-color: rgba(206, 206, 206, 0.95);
+    margin: -5px auto;
+}
+
+/* Tercer Module About Us */
+
+.aboutUsItems{
+    margin-top: 1rem;
+}
+
+.aboutUsSubtitle{
+    font-size: 1.1rem;
+}
+
+.cards{
+    width: 90%;
+    margin-top: 1.5rem;
+    grid-template-columns: 1fr ;
+    row-gap: 15px;
+    column-gap: 15px;
+    margin-bottom: 1.5vh;
+}
 
 }

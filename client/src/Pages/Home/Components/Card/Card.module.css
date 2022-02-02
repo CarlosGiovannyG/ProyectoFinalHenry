@@ -56,3 +56,28 @@
     transform: translate(0px, -5px);
     transition: transform .2s;
 }
+
+
+@media(max-width:768px){
+    .container{
+    width: 27rem;
+    padding: 0.5rem;
+
+}
+
+.textBack{
+    gap: 1px;
+}
+
+.name{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.icons{
+    height: 20%;
+    width: 90%;
+    margin-top: 1.5rem;
+}
+
+}

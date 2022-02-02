@@ -10,6 +10,7 @@ import routes from '../../Helpers/Routes'
 
 
 export default function NavBar({ openLogin, openRegister }) {
+    const [openMenu, setOpenMenu] = useState(true);
     const [scrollPosition, setScrollPosition] = useState(0);
     const { isLogged, hasRole } = useAuth()
     const login = isLogged()
@@ -37,15 +38,26 @@ export default function NavBar({ openLogin, openRegister }) {
         };
     }, []);
 
+    const mediaMenu = () => {
+        setOpenMenu(!openMenu);
+    }
+
     return (
-        <div id='Navbar' 
-        className={((url === `${routes.home}` || url ===  `${routes.home}#Navbar` || url === `${routes.home}#AboutUs`) && 
+        <div id='Navbar'
+            className={((url === `${routes.home}`
+                || url === `${routes.home}#Navbar` || url === `${routes.home}#AboutUs`) && 
             scrollPosition > window.innerHeight*0.91) || url.includes(routes.menu)  ? 
             s.headerHome : 
-            s.header} >
+                s.header} >
             <img className={s.icon} src={icon} alt='Restaurant Logo' />
+            <button
+                onClick={mediaMenu}
+                className={s.btnMenu}
+            ><span>&#9776;</span> </button>
             {!login &&
-                <div className={s.headerbtns}>
+                <div
+                    className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
+                    >
                     <div className={s.btnDiv1} >
                         {
                             links.notLogin.map(link => (

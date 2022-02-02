@@ -18,3 +18,10 @@ justify-content: center;
 -webkit-align-items: center;
 align-items: center;
 }
+
+@media (max-width: 768px) {
+
+  .swiper-slide {
+    z-index: -100 !important;
+}
+}

@@ -4,6 +4,7 @@ import git from '../../../../img/Contact Icons/LOGO_GITHUB.png';
 import link from '../../../../img/Contact Icons/LOGO_LINKEDIN.png';
 import mail from '../../../../img/Contact Icons/LOGO_GMAIL.png';
 
+
 export default function Card({ member }) {
 
     return (
