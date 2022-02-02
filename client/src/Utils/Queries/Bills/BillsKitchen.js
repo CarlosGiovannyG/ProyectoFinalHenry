@@ -20,6 +20,7 @@ query BillsKitchen {
     numeroMesa
     tipoDePedido
     statusCocina
+    fechaEntrega
   }
 }
   

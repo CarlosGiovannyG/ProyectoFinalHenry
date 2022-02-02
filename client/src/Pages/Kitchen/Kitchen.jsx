@@ -22,6 +22,7 @@ const Kitchen = () => {
 
   const infoKitchen = data.BillsKitchen
 
+
   return (
     <div className={s.container}>
       <div className={s.containerCentro}>

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { GrClose } from 'react-icons/gr';
-import useAuth from '../../../../Auth/useAuth';
 import CardProductBill from '../CardProducBill/CardProductBill';
-import CardProductKitchen from '../CardProductKitchen/CardProductKitchen';
 import styles from './cardKitchen.module.css';
 import Transsition from '../../../../Hooks/Transsition';
 import { useMutation } from '@apollo/client';
 import Mutations from '../../../../Utils/Mutations';
 import Queries from '../../../../Utils/Queries';
 import toast from 'react-hot-toast';
+import Chronometer from '../Chronometer/Chronometer';
 
 const CardKitchen = ({ info, infoKitchen, close }) => {
   const [ready, setReady] = React.useState(false);
@@ -55,9 +54,19 @@ const CardKitchen = ({ info, infoKitchen, close }) => {
     let respuesta = response.data.WorkingBill.message;
     toast.success(respuesta);
   }
+
+
+  let a = new Date();
+  let b = new Date(`${info.fechaEntrega}`);
+  var c = (a - b);
+  const minutos = Math.abs(parseInt(c / 1000 / 60))
+  console.log(info.fechaEntrega);
+  console.log(minutos);
+
   return (
     <Transsition>
       <div className={styles.container}>
+        <Chronometer futureDate={info.fechaEntrega}></Chronometer>
         <div className={styles.containerHeader}>
           <div className={styles.titles}>
             <div className={styles.table}>TABLE {info.numeroMesa}</div>

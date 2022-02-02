@@ -29,24 +29,24 @@ export default function UserMainPage() {
     const compra = localStorage.getItem('order');
     const [address, setAddress] = React.useState(null);
     const { userId } = useAuth();
-    const [displaySubmit, setDisplaySubmit] = React.useState({tipo: null, mesa: null, address: null });
+    const [displaySubmit, setDisplaySubmit] = React.useState({ tipo: null, mesa: null, address: null });
     const [validateBtn, setValidateBtn] = React.useState(false);
 
     useEffect(() => {
 
-        if(displaySubmit.mesa && displaySubmit.tipo === 'salon'){
+        if (displaySubmit.mesa && displaySubmit.tipo === 'salon') {
             setValidateBtn(true);
         }
-        if(displaySubmit.tipo === 'domicilio' && displaySubmit.address){
+        if (displaySubmit.tipo === 'domicilio' && displaySubmit.address) {
             setValidateBtn(true);
         }
-        if(!displaySubmit.mesa && displaySubmit.tipo === 'salon'){
+        if (!displaySubmit.mesa && displaySubmit.tipo === 'salon') {
             setValidateBtn(false);
         }
-        if(displaySubmit.tipo === 'domicilio' && !displaySubmit.address){
+        if (displaySubmit.tipo === 'domicilio' && !displaySubmit.address) {
             setValidateBtn(false);
         }
-        if(!cart.length){
+        if (!cart.length) {
             setValidateBtn(false);
         }
 
@@ -60,7 +60,7 @@ export default function UserMainPage() {
             .catch(err => console.error(err))
 
     }, [userId])
-    
+
 
     useEffect(() => {
         (function Cart() {
@@ -91,9 +91,6 @@ export default function UserMainPage() {
     }
     if (error) return null
 
-    console.log(displaySubmit)
-    console.log(validateBtn)
-
     return (
         <div className={s.container}>
             <Transsition>
@@ -110,7 +107,7 @@ export default function UserMainPage() {
             </div>
 
             {
-                validateBtn ? 
+                validateBtn ?
                     <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
                         Your Order: <br />
                         {cart.map(p => (
@@ -119,14 +116,14 @@ export default function UserMainPage() {
                         <br />
                         Total: $ {total}
                     </ReactTooltip> :
-                        (cart.length ?
-                            <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
+                    (cart.length ?
+                        <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
                             Select date and table or delivery adress.
                         </ReactTooltip> :
                         <ReactTooltip className={s.tooltip} id='tooltip' place='bottom' effect="solid" >
                             Please add at least one item to your order.
                         </ReactTooltip>
-                            )
+                    )
             }
 
             <div className={s.modal} >

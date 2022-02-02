@@ -27,7 +27,7 @@ export default function Cart() {
     const [address, setAddress] = useState(null);
     const [displaySubmit, setDisplaySubmit] = useState();
 
-   
+
     useEffect(() => {
         setDisplaySubmit(btnValidate(localStorage.getItem('tipoDePedido'),
             localStorage.getItem('mesa'),
@@ -93,38 +93,20 @@ export default function Cart() {
         let messageTable;
         let messagefinalTable;
         let resp;
-        
+
 
 
         if (tipoPedido === 'domicilio') {
-
-            let newDate = new Date()  // Hoy
-            let date = newDate.getDate();
-            let month = newDate.getMonth() + 1;
-            let year = newDate.getFullYear();
-            let hours = newDate.getHours();
-            let minutes = newDate.getMinutes();
-            let seconds2 = newDate.getSeconds();
-
-        //     let newDate = new Date()  // hoy
-        // 
-        //     let twoWeeks = new Date(newDate.getTime() + 20*60*1000);
-        //     let date2 = twoWeeks.getDate();
-        //     let month2 = twoWeeks.getMonth() + 1;
-        //     let year2 = twoWeeks.getFullYear();
-        //     let hours2 = twoWeeks.getHours();
-        //     let minutes2 = twoWeeks.getMinutes();
-        //     let seconds2 = new Date().getSeconds();
 
             response = await CreateBills({
                 variables: {
                     "input": {
                         "idUser": `${userId()}`,
                         "products": aux,
-                        description:'Pedio para entrega a domicilio',
+                        description: 'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
                         "direccionEntrega": `${localStorage.getItem('address')}`,
-                        "fechaEntrega":`${year}${month < 10 ? `0${month}` : `${month}`}${date < 10 ? `0${date}` : `${date}`}${hours < 10 ? `0${hours}` : `${hours}`}${minutes < 10 ? `0${minutes}` : `${minutes}`}${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
+                        "fechaEntrega": `${new Date(new Date().getTime() + 5 * 60 * 1000)}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }
@@ -134,8 +116,8 @@ export default function Cart() {
 
             resp = response.data.CreateBills.message;
             messageTable = `${localStorage.getItem('address')}`
-                messagefinalTable = "El pedido será entregado"
-         
+            messagefinalTable = "El pedido será entregado"
+
         }
 
 
@@ -153,14 +135,9 @@ export default function Cart() {
 
             let { message, messagefinal } = responseTable.data.BookTable
 
-             messageTable = message
-             messagefinalTable = messagefinal
+            messageTable = message
+            messagefinalTable = messagefinal
 
-
-            let date = localStorage.getItem('date')            
-            let hora = date.replace(/\D/g, "")
-            let newDate = new Date()
-            let seconds2 = newDate.getSeconds();
 
             if (messagefinal) {
                 response = await CreateBills({
@@ -170,7 +147,7 @@ export default function Cart() {
                             "products": aux,
                             "numeroMesa": `${localStorage.getItem('mesa')}`,
                             "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
-                            "fechaEntrega": `${hora}${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
+                            "fechaEntrega": `${localStorage.getItem('date')}`,
                             subTotal: Math.ceil(subTotal),
                             total: Math.ceil(total),
                         }
@@ -178,12 +155,12 @@ export default function Cart() {
                 })
                 resp = response.data.CreateBills.message;
             }
-           
+
         }
 
         toast.success(messageTable);
         toast.success(messagefinalTable);
-       
+
 
         toast.success(resp);
 
@@ -197,7 +174,7 @@ export default function Cart() {
     }
 
     return (
-        <div className={products.length? s.container : s.containerEmpty}>
+        <div className={products.length ? s.container : s.containerEmpty}>
             <Transsition>
                 <OrderMenu products={products} openModalProduct={openModalProduct} setProductID={setProductID} />
             </Transsition>
@@ -205,16 +182,16 @@ export default function Cart() {
                 {products.length ?
                     <Transsition>
                         <Payment total={total} />
-                    </Transsition>:
+                    </Transsition> :
                     null
-                }  
+                }
 
                 {products.length ?
                     <Transsition>
                         <OrderSubmit handleSubmit={handleSubmit} total={total} subTotal={subTotal} />
-                    </Transsition>:
+                    </Transsition> :
                     null
-                }  
+                }
             </div>
 
             <ModalProduct>

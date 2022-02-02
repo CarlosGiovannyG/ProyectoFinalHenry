@@ -48,7 +48,10 @@ const BillsSchema = new mongoose.Schema(
       type: String,
       default: fecha,
       required: true
-    }
+    },
+    importancia: {
+      type: String,
+    },
   },
   { timestamps: false }
 );

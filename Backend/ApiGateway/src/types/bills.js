@@ -62,6 +62,7 @@ type billsKitchen{
   numeroMesa:String
 tipoDePedido:String
   statusCocina:String
+  fechaEntrega:String
 }
 
 type products{ 

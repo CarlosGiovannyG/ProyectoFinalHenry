@@ -47,14 +47,6 @@ const CreateBill = ({ close }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    let newDate = new Date()  // Hoy
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
-    let hours = newDate.getHours();
-    let minutes = newDate.getMinutes();
-    let seconds2 = newDate.getSeconds();
-
 
     let aux = newBill.products
 
@@ -66,7 +58,7 @@ const CreateBill = ({ close }) => {
       total = (subTotal * 20 / 100) + subTotal
     }
 
-    
+
 
     let response = await CreateBills({
       variables: {
@@ -75,7 +67,7 @@ const CreateBill = ({ close }) => {
           "products": newBill.products,
           "numeroMesa": newBill.numeroMesa,
           "tipoDePedido": newBill.tipoDePedido,
-          "fechaEntrega":`${year}${month < 10 ? `0${month}`:`${month}`}${date < 10 ? `0${date}`:`${date}`}${hours <10 ? `0${hours}`:`${hours}`}${minutes <10 ? `0${minutes}`:`${minutes}`}${seconds2 < 10 ? `0${seconds2}` : `${seconds2}`}`,
+          "fechaEntrega": `${new Date(new Date().getTime() + 30 * 60 * 1000)}`,
           "subTotal": Math.ceil(subTotal),
           "total": Math.ceil(total),
           "description": newBill.description,

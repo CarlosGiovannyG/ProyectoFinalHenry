@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from "react";
+import React from "react";
 import CommentCard from '../Comments/CommentCard/CommentCard';
 
 
@@ -17,42 +17,42 @@ import "./stylesComment.css";
 
 // import Swiper core and required modules
 import SwiperCore, {
-  EffectCoverflow,EffectCube, Pagination
+  EffectCoverflow, EffectCube, Pagination
 } from 'swiper';
 import Card from "../../Pages/Facturacion/Components/Card/Card";
 import CardKitchen from "../../Pages/Kitchen/Components/CardKitchen/CardKitchen";
 
 // install Swiper modules
-SwiperCore.use([EffectCoverflow,EffectCube, Pagination]);
+SwiperCore.use([EffectCoverflow, EffectCube, Pagination]);
 
 
-export default function SwiperComments({ comments, options, infoKitchen, infoKitchenBill}) {
-  
+export default function SwiperComments({ comments, options, infoKitchen, infoKitchenBill }) {
+
   return (
     <>
-    { comments &&
-      <Swiper slidesPerView={3} spaceBetween={10} pagination={{
-        "clickable": true
-      }} breakpoints={{
-        "@0.00": {
-          "slidesPerView": 1,
-          "spaceBetween": 10
-        },
-        "@0.75": {
-          "slidesPerView": 2,
-          "spaceBetween": 20
-        },
-        "@1.00": {
-          "slidesPerView": 3,
-          "spaceBetween": 40
-        }
-      }} className="mySwiper">
-        {comments.map(comment => (
-          <SwiperSlide><CommentCard comment={comment} /></SwiperSlide>
-        ))}
-      </Swiper>
-    }
-    
+      {comments &&
+        <Swiper slidesPerView={3} spaceBetween={10} pagination={{
+          "clickable": true
+        }} breakpoints={{
+          "@0.00": {
+            "slidesPerView": 1,
+            "spaceBetween": 10
+          },
+          "@0.75": {
+            "slidesPerView": 2,
+            "spaceBetween": 20
+          },
+          "@1.00": {
+            "slidesPerView": 3,
+            "spaceBetween": 40
+          }
+        }} className="mySwiper">
+          {comments.map(comment => (
+            <SwiperSlide><CommentCard comment={comment} /></SwiperSlide>
+          ))}
+        </Swiper>
+      }
+
       {options &&
         <Swiper effect={'cube'} grabCursor={true} cubeEffect={{
           "shadow": true,
@@ -62,19 +62,19 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
         }} pagination={true} className="mySwiper">
           {options.map(opntion => (
             <SwiperSlide key={opntion.id}><Card option={opntion} /></SwiperSlide>
-        ))}
+          ))}
         </Swiper>
-      
+
       }
 
 
       {
-        infoKitchen && 
+        infoKitchen &&
         <Swiper slidesPerView={5} spaceBetween={20}
-        className="cardsCocina">
+          className="cardsCocina">
           {infoKitchen.map(info => (
             <SwiperSlide key={info._id}><CardKitchen key={info._id} info={info} /></SwiperSlide>
-        ))}
+          ))}
         </Swiper>
       }
 
@@ -100,7 +100,7 @@ export default function SwiperComments({ comments, options, infoKitchen, infoKit
             <SwiperSlide><CommentCard infoKitchenBill={detalle} /></SwiperSlide>
           ))}
         </Swiper>
-      
+
       }
     </>
   )

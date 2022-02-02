@@ -10,7 +10,6 @@ import Transsition from '../../Hooks/Transsition';
 export default function AdminMainPage() {
     const [ModalCreateAccount, openCreateAccount, closeCreateAccount] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [ModalCreateProduct, openCreateProduct, closeCreateProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
-    const [Modal, open, close] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const navigate = useNavigate();
 
     return (
@@ -24,7 +23,7 @@ export default function AdminMainPage() {
             </div>
             <ModalCreateAccount>
                 <Transsition>
-                    <SignUpForm close={closeCreateAccount}/>
+                    <SignUpForm close={closeCreateAccount} />
                 </Transsition>
             </ModalCreateAccount>
             <ModalCreateProduct>
