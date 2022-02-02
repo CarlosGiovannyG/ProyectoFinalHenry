@@ -24,3 +24,21 @@
     cursor: not-allowed! important;
 }
   
+
+@media(max-width: 768px){
+
+.btnCart{
+   margin-bottom: 1rem;
+    height: 10vh;
+     width: 80vw;
+    font-size: 1rem;
+}
+
+.btnCartError{
+     margin-bottom: 1rem;
+    height: 10vh;
+     width: 80vw;
+    font-size: 1rem;
+}
+  
+}

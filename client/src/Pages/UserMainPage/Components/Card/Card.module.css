@@ -40,3 +40,16 @@
     width: 100%;
     
 }
+
+
+@media(max-width: 768px){
+.cardContainer {
+    width: 90%;
+    height: 20vh;
+    
+}
+.title{
+    font-size: 2rem;
+}
+
+}

@@ -4,7 +4,6 @@ import OrderMenu from './Components/OrderMenu/OrderMenu';
 import { useModal } from 'react-hooks-use-modal';
 import Bookings from './Components/Bookings/Bookings';
 import ReactTooltip from 'react-tooltip';
-import { useNavigate } from 'react-router-dom';
 import Transsition from '../../Hooks/Transsition';
 import { useQuery } from '@apollo/client';
 import Queries from '../../Utils/Queries';
@@ -16,7 +15,6 @@ import { useEffect } from 'react';
 import BotonCart from './Components/BotonCart/BotonCart';
 import axios from 'axios';
 import useAuth from '../../Auth/useAuth';
-import { validate } from 'graphql';
 
 export default function UserMainPage() {
     const [ModalProduct, openModalProduct, closeModalProduct] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
@@ -24,7 +22,6 @@ export default function UserMainPage() {
     const [ModalCreateCom, openCreateCom, closeCreteCom] = useModal('root', { preventScroll: true, closeOnOverlayClick: true });
     const [productID, setProductID] = React.useState(null);
     const [cart, setCart] = React.useState([]);
-    const navigate = useNavigate();
     const { loading, data, error } = useQuery(Queries.ALL_PRODUCTS) // data.allProducts.products tiene nuestros productos
     const compra = localStorage.getItem('order');
     const [address, setAddress] = React.useState(null);

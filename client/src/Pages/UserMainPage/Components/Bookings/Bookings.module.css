@@ -37,3 +37,43 @@
     align-self: center;
     width: 80%;
 }
+
+@media(max-width: 768px){
+    .container{
+    width: 80vw;
+    min-height: 10vh;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    margin-top: .2rem;
+    
+}
+
+.toggle{
+    background-color: rgb(112, 206, 120);
+}
+
+.titleOn{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    transition: color .3s;
+}
+
+.titleOff{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    color: rgb(189, 187, 187);
+    transition: color .3s;
+}
+
+.modules{
+    align-self: center;
+    width: 80%;
+}
+}

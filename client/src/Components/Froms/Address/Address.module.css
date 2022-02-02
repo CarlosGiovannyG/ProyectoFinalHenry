@@ -66,3 +66,53 @@
     pointer-events: auto! important;
     cursor: not-allowed! important;
 }
+
+
+@media(max-width: 768px){
+    .container{
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 90%;
+    margin: 0 auto;
+}
+ 
+.title{
+    width: 100%;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.inputs{
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputDiv{
+    margin-top: 1rem;
+    gap: 10px;
+}
+
+.inputDiv2{
+    margin-top: 1rem;
+    gap: 10px;
+}
+
+.input{
+    height: 1.9rem;
+    width: 70%;
+}
+
+
+.btnRegister{
+    height: 1.9rem;
+    width: 70%;
+}
+
+.btnRegisterError{
+    height: 1.9rem;
+    width: 70%;
+}
+
+}
