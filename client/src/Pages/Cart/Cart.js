@@ -3,7 +3,6 @@ import s from './Cart.module.css';
 import { useModal } from 'react-hooks-use-modal';
 import Transsition from '../../Hooks/Transsition';
 import OrderMenu from '../UserMainPage/Components/OrderMenu/OrderMenu';
-import Bookings from '../UserMainPage/Components/Bookings/Bookings';
 import Payment from './Components/Payment/Payment';
 import OrderSubmit from './Components/OrderSubmit/OrderSubmit';
 import ProductDetail from '../Menu/components/ProdutDetail/ProductDetail';
@@ -51,6 +50,8 @@ export default function Cart() {
             console.log('ERRORES', err.graphQLErrors)
         }
     })
+
+
     const [BookTable] = useMutation(Mutations.BOOK_TABLES, {
         refetchQueries: [{ query: Queries.BILLS_CHICKEND }],
         onError: err => {
@@ -82,9 +83,6 @@ export default function Cart() {
     }
 
     let aux = products.map(({ _id, name, price }) => { return { _id, name, price } })
-
-
-
 
     const handleSubmit = async e => {
         e.preventDefault();

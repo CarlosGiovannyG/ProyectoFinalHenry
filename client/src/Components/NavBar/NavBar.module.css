@@ -68,12 +68,11 @@
   background: none;
   border: none;
   position: absolute;
-  right: 0;
+  right: 10px;
   line-height: 9vh;
   padding: 0 15px;
   font-size: 35px;
   font-weight: bold;
-  z-index: 1000;
   display: none;
 }
 

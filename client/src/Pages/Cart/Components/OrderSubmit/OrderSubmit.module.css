@@ -41,3 +41,31 @@
     background-color: rgb(163, 163, 163);
     transition: background-color .5s;
 }
+
+
+@media(max-width: 768px){
+    
+.container{
+    margin-top: 1rem;
+    width: 90%;
+    padding: .5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+
+.subtotal{
+    font-size: 1rem;
+}
+
+.total{
+    font-size: 1.2rem;
+}
+    
+.btn{
+    font-size: 1rem;
+    font-weight:bold;
+    padding: .5rem;
+}
+
+}

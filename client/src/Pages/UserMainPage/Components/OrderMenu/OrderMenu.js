@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './OrderMenu.module.css';
 import Cards from '../Cards/Cards';
 import routes from '../../../../Helpers/Routes';
 
 export default function OrderMenu({products, setProductID, openModalProduct}) {
-    const [input, setInput] = React.useState('');
-
     const url = window.location.href.slice(21);
     
-    const handleInputChange = function(e){
-        setInput(e.target.value);
-    }
-
 
     return(
     <div  className={s.mainDiv}>

@@ -27,8 +27,6 @@ export default function Payment({ total }) {
         console.log(order);
     }
 
-
-
     return (
 
         <div className={s.container}>

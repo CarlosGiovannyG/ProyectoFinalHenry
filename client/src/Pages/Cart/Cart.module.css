@@ -39,4 +39,27 @@
     width: 10vw;
   }
   
+  @media(max-width:768px){
+    .container{
+   flex-direction: column;
+   margin: 5px 2px 0 10px;
+   width: 95%;
+  }
   
+  .containerEmpty{
+    flex-direction: column;
+    margin: 5px 2px 0 10px;
+    width: 95%;
+  }
+  
+  
+  .rightDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    width: 95%;
+  }
+  
+  
+  
+  }
