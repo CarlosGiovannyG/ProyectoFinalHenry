@@ -73,14 +73,22 @@ export default function NavBar({ openLogin, openRegister }) {
                     </div>
                     {url === '/' || url === '/Menu' ?
                         (<div className={s.btnDiv2}>
-                            <button className={s.btnsHeader} onClick={openLogin} >LOG IN</button>
-                            <button className={s.btnsHeader} onClick={openRegister} >SIGN UP</button>
+                            <button
+                                className={s.btnsHeader}
+                                onClick={openLogin}
+                            >LOG IN</button>
+                            <button
+                                className={s.btnsHeader}
+                                onClick={openRegister}
+                            >SIGN UP</button>
                         </div>) : null
                     }
                 </div>
             }
             {login && hasRole('regular') ?
-                (<div className={s.headerbtns}>
+                (<div
+                    className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
+                >
                     <div className={s.btnDiv1} >
                         {
                             links.isLogin.map(link => (
@@ -102,7 +110,9 @@ export default function NavBar({ openLogin, openRegister }) {
                 </div>) : null
             }
             {login && hasRole('cashier') ?
-                (<div className={s.headerbtns}>
+                (<div
+                    className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
+                >
                     <div className={s.btnDiv1} >
                         {
                             links.iscashier.map(link => (
@@ -123,7 +133,9 @@ export default function NavBar({ openLogin, openRegister }) {
                 </div>) : null
             }
             {login && hasRole('cook') ?
-                (<div className={s.headerbtns}>
+                (<div
+                    className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
+                >
                     <div className={s.btnDiv1} >
                         {
                             links.iscook.map(link => (
@@ -144,7 +156,9 @@ export default function NavBar({ openLogin, openRegister }) {
                 </div>) : null
             }
             {login && hasRole('admin') ?
-                (<div className={s.headerbtns}>
+                (<div
+                    className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
+                >
                     <div className={s.btnDiv1} >
                         {
                             links.isAdmin.map(link => (

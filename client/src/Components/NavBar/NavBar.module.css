@@ -79,10 +79,12 @@
 @media (max-width: 768px) {
   .header {
     height: 75px;
+    z-index: 10;
   }
 
   .headerHome {
     height: 75px;
+    z-index: 10;
   }
 
   .icon {
@@ -107,25 +109,30 @@
     overflow-y: auto;
     transition: left 0.5s;
     left: 100%;
+    z-index: 10;
   }
 
   .btnDiv1 {
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     padding: 0;
     height: 140px;
     width: 100%;
     gap: 15px;
+    z-index: 10;
+
   }
 
   .btnDiv2 {
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     height: 80px;
     width: 100%;
     gap: 15px;
+    z-index: 10;
+
   }
 
   .btnsHeader {
@@ -136,6 +143,8 @@
     font-size: 1em;
     font-weight: 600;
     padding: 0;
+    z-index: 10;
+
   }
 
   .btnMenu {
@@ -155,5 +164,7 @@
     overflow-y: auto;
     transition: left 0.5s;
     left: 0;
+    z-index: 10;
+
   }
 }
