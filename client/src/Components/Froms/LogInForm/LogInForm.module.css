@@ -66,3 +66,49 @@
 }
 
 
+@media(max-width:768px){
+    
+.container{
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.inputs{
+    flex-direction: column;
+    text-align: center;
+    justify-content:center;
+    margin-top: 20px;
+}
+
+.inputPassword{
+    width: 90%;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.inputEmail{
+    width: 90%;
+    margin-right: -10px;
+}
+
+.btnDiv{
+    margin-top: 20px;
+}
+
+.btnRegister{
+   width: 90%;
+}
+
+.btnRegisterError{
+    width: 90%;
+}
+
+
+
+}

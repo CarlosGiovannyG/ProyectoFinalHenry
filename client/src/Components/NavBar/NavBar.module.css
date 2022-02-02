@@ -84,7 +84,6 @@
 
   .headerHome {
     height: 75px;
-   
   }
 
   .icon {
@@ -95,7 +94,7 @@
   }
 
   .headerbtns {
-      display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 15px;
@@ -108,7 +107,7 @@
     height: calc(100% - 70px);
     overflow-y: auto;
     transition: left 0.5s;
-    left:100%;
+    left: 100%;
   }
 
   .btnDiv1 {
@@ -144,7 +143,6 @@
     display: block;
   }
 
-  
   .headerbtnsVisible {
     flex-direction: column;
     align-items: center;
@@ -157,6 +155,6 @@
     height: calc(100% - 70px);
     overflow-y: auto;
     transition: left 0.5s;
-    left:0;
+    left: 0;
   }
 }

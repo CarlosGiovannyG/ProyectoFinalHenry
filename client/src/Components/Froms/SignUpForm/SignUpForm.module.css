@@ -104,3 +104,71 @@
     pointer-events: auto! important;
     cursor: not-allowed! important;
 }
+
+
+@media(max-width: 768px){
+
+    .container{
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.inputs{
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.inputName{
+    width: 90%;
+    margin-right: 10px;
+}
+
+.inputLastname{
+    width: 90%;
+    margin-left: -10px;
+   margin-top: 10px;
+}
+
+.inputDiv2{
+    margin-top: 10px;
+}
+
+.inputPassword1{
+    width: 90%;
+    margin-right: 10px;
+}
+
+.inputEmail{
+    width: 90%;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+
+.inputDiv3{
+    margin-top: 10px;
+}
+
+.inputPassword2{
+    width: 90%;
+    margin-right: 10px;
+}
+
+.btnRegister{
+    width: 90%;
+    margin-left: -10px;
+}
+
+.btnRegisterError{
+    width: 90%;
+    margin-left: -10px;
+}
+
+}

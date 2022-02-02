@@ -1,83 +1,85 @@
-.container{
-    width: 30rem;
-    height: 12rem;
-    background-color: #E6E7E8;
-    border-radius: .7rem;
-    display: flex;
-    flex-direction: row;
-    padding: 1.5rem;
-    justify-content: space-around;
-
+.container {
+  width: 30rem;
+  height: 12rem;
+  background-color: #e6e7e8;
+  border-radius: 0.7rem;
+  display: flex;
+  flex-direction: row;
+  padding: 1.5rem;
+  justify-content: space-around;
 }
 
-.img{
-    display: inline;
-    height: 9rem;
-    width: 9rem;
-    border-radius: 50%;
-    object-fit: cover;
+.img {
+  display: inline;
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.textBack{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.3rem
+.textBack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3rem;
 }
 
-.name{
-    font-family: 'Suranna';
-    font-size: 2rem;
+.name {
+  font-family: "Suranna";
+  font-size: 2rem;
 }
 
-.icons{
-    display: flex;
-    flex-direction: row;
-    height: 21%;
+.icons {
+  display: flex;
+  flex-direction: row;
+  height: 21%;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+
+.icon {
+  transition: transform 0.5s;
+}
+
+.icon:hover {
+  cursor: pointer;
+  transform: translate(0px, -5px);
+  transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+  .container {
     width: 100%;
-    justify-content: space-around;
-    margin-top: .5rem;
-}
-
-.icon{
-    transition: transform .5s;
-}
-
-.icon:hover{
-    cursor: pointer;
-    transform: translate(0px, -5px);
-    transition: transform .2s;
-}
-
-
-@media(max-width:768px){
-    .container{
-    width: 27rem;
     padding: 0.5rem;
+  }
 
-}
-
-.textBack{
+  .textBack {
     gap: 1px;
-}
+  }
 
-.name{
+  .name {
     font-size: 1.5rem;
     font-weight: bold;
-}
+  }
 
-.icons{
+  .img {
+    height: 7rem;
+    width: 7rem;
+    margin-top: 10%;
+  }
+
+  .icons {
     height: 20%;
     width: 90%;
     margin-top: 1.5rem;
-}
-
+  }
 }

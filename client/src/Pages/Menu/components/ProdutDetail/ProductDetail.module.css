@@ -94,3 +94,62 @@
     transform: translate(0px, -10px);
     transition: transform .5s, opacity .4s linear;
 }
+
+@media (max-width: 768px) {
+    .container{
+    width: 90%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content:start;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+
+.divDerecha{
+    width: 100%;
+    margin: 0 auto;
+} 
+
+.imagen{
+    margin-top: 10px;
+}
+
+.info{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.name{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+.description{
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+}
+
+.icons{
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.price{    
+    font-size: 1rem;
+    padding-top: 3px;
+    font-weight: 600;
+}
+
+.btnAdd{
+    font-size: 1rem;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+}

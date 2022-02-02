@@ -29,10 +29,10 @@ export default function NavBar({ openLogin, openRegister }) {
         const position = window.pageYOffset;
         setScrollPosition(position);
     };
-    
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -45,9 +45,9 @@ export default function NavBar({ openLogin, openRegister }) {
     return (
         <div id='Navbar'
             className={((url === `${routes.home}`
-                || url === `${routes.home}#Navbar` || url === `${routes.home}#AboutUs`) && 
-            scrollPosition > window.innerHeight*0.91) || url.includes(routes.menu)  ? 
-            s.headerHome : 
+                || url === `${routes.home}#Navbar` || url === `${routes.home}#AboutUs`) &&
+                scrollPosition > window.innerHeight * 0.91) || url.includes(routes.menu) ?
+                s.headerHome :
                 s.header} >
             <img className={s.icon} src={icon} alt='Restaurant Logo' />
             <button
@@ -57,7 +57,7 @@ export default function NavBar({ openLogin, openRegister }) {
             {!login &&
                 <div
                     className={`${s.headerbtns} ${openMenu ? s.headerbtnsVisible : null}`}
-                    >
+                >
                     <div className={s.btnDiv1} >
                         {
                             links.notLogin.map(link => (

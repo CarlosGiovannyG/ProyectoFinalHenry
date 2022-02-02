@@ -87,3 +87,53 @@
     cursor: not-allowed! important;
 }
 
+@media(max-width: 768px){
+    .container{
+     width: 95%;
+    padding-top: 40px;
+    margin: 0 auto;
+}
+.close{
+    position: absolute;
+    margin-left: 90%;
+    margin-top:-20px;
+}
+.title{
+    font-size: 1.5rem;
+font-weight: bold;    
+}
+
+.inputs{
+    flex-direction: column;
+    text-align: center;
+    justify-content:center;
+    margin-top: 20px;
+    gap: 0.5rem;
+}
+
+.inputName{
+    height: 30px;
+    width: 70%;
+}
+
+.inputEmail{
+    height: 30px;
+     width: 70%;
+    margin-left: -26px;
+    margin-top: 10px;
+}
+
+.inputDiv2{
+    margin-top: 10px;
+}
+
+.inputDescription{
+    width: 95%;
+}
+
+.inputDiv3{
+    margin-top: 10px;
+    margin-left: -26px;
+}
+
+}

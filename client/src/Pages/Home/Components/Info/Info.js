@@ -51,18 +51,18 @@ export default function Info() {
         const position = window.pageYOffset;
         setScrollPosition(position);
     };
-    
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    
+
     return (
-        <div id="info" className={(url.includes(routes.home) && scrollPosition > window.innerHeight*0.91 ) ? s.main : null}>
+        <div id="info" className={(url.includes(routes.home) && scrollPosition > window.innerHeight * 0.91) ? s.main : null}>
             <div className={s.about}>
                 <div className={s.Headline}>
                     <div className={s.line} />
@@ -112,9 +112,9 @@ export default function Info() {
             </div>
 
             <div className={s.about}>
-                <div  className={s.Headline}>
+                <div className={s.Headline}>
                     <div className={s.line} />
-                    <h2  className={s.title}>About Us</h2>
+                    <h2 className={s.title}>About Us</h2>
                     <div className={s.line} />
                 </div>
                 <div className={s.aboutUsItems} >
@@ -122,7 +122,7 @@ export default function Info() {
                     <div className={s.cards}   >
                         {
                             cards.map(c => (
-                                <Card member={c} key={c.name}/>
+                                <Card member={c} key={c.name} />
                             ))
                         }
                     </div>

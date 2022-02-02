@@ -1,242 +1,233 @@
-
-
-.main{
-    margin-top: 9.6vh;
+.main {
+  margin-top: 9.6vh;
 }
 
 /* Primer modulo About */
 
-.about{
-    width: 80VW;
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-
+.about {
+  width: 80vw;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
 }
 
-.Headline{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
+.Headline {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
 }
 
-.title{
-    font-family: 'Suranna';
-    font-size: 5rem;
-    margin: 0 auto;
-    display: inline-block;
-    vertical-align: center;
+.title {
+  font-family: "Suranna";
+  font-size: 5rem;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: center;
 }
 
-.line{
-    height: .2rem;
-    width: 15vw;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: inline-block;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 3rem;
+.line {
+  height: 0.2rem;
+  width: 15vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: inline-block;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 3rem;
 }
 
-.aboutItems{
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    gap: 6rem;
+.aboutItems {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  gap: 6rem;
 }
 
-.aboutText{
-    margin-top: 2rem;
+.aboutText {
+  margin-top: 2rem;
 }
 
-.h3{
-    font-family: 'Suranna';
-    font-size: 2.8rem;
+.h3 {
+  font-family: "Suranna";
+  font-size: 2.8rem;
 }
 
-.p{
-    font-family: 'Montserrat';
-    font-size: 1.4rem;
+.p {
+  font-family: "Montserrat";
+  font-size: 1.4rem;
 }
 
-.aboutImage{
-    width: 25rem;
-    height: auto;
+.aboutImage {
+  width: 25rem;
+  height: auto;
 }
 
 @media (max-width: 1255px) {
+  .aboutItems {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 2rem;
+  }
 
-    .aboutItems{
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        gap: 2rem;
-    }
+  .aboutText {
+    margin-top: 1rem;
+  }
 
-    .aboutText{
-        margin-top: 1rem;
-    }
-    
-    .h3{
-        font-family: 'Suranna';
-        font-size: 2.8rem;
-    }
-    
-    .p{
-        font-family: 'Montserrat';
-        font-size: 1.4rem;
-    }
-    
-    .aboutImage{
-        width: 25rem;
-        height: auto;
-        margin: 0 auto;
-    }
+  .h3 {
+    font-family: "Suranna";
+    font-size: 2.8rem;
+  }
 
+  .p {
+    font-family: "Montserrat";
+    font-size: 1.4rem;
+  }
+
+  .aboutImage {
+    width: 25rem;
+    height: auto;
+    margin: 0 auto;
+  }
 }
 
 /* Segundo Module Solutions */
 
-.module{
-    width: 80VW;
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    margin-top: 4rem;
+.module {
+  width: 80vw;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  margin-top: 4rem;
 }
 
-.moduleText{
-    margin-top: 1rem;
+.moduleText {
+  margin-top: 1rem;
 }
 
-.subtitle{
-    font-family: 'Suranna';
-    font-size: 3.5rem;
+.subtitle {
+  font-family: "Suranna";
+  font-size: 3.5rem;
 }
 
-.moduleImage{
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 3rem;
+.moduleImage {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
 }
 
-.moduleLine{
-    height: .2rem;
-    width: 65%;
-    background-color: rgba(206, 206, 206, 0.85);
-    margin: 0 auto;
+.moduleLine {
+  height: 0.2rem;
+  width: 65%;
+  background-color: rgba(206, 206, 206, 0.85);
+  margin: 0 auto;
 }
 
 /* Tercer Module About Us */
 
-.aboutUsItems{
-    margin-top: 2rem;
+.aboutUsItems {
+  margin-top: 2rem;
 }
 
-.aboutUsSubtitle{
-    font-family: 'Montserrat';
-    font-size: 2rem;
+.aboutUsSubtitle {
+  font-family: "Montserrat";
+  font-size: 2rem;
 }
 
-.cards{
-    margin: 0 auto;
-    width: fit-content;
-    margin-top: 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 3.5rem;
-    column-gap: 3.5rem;
-    margin-bottom: 10vh;
+.cards {
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 3.5rem;
+  column-gap: 3.5rem;
+  margin-bottom: 10vh;
 }
-
 
 @media (max-width: 768px) {
+  /* Primer modulo About */
 
-/* Primer modulo About */
-
-
-.about{
+  .about {
     width: 100%;
-}
+  }
 
-.title{
-    font-size: 3rem;
+  .title {
+    font-size: 2.5rem;
     font-weight: 600;
-}
+  }
 
-.aboutItems{
-    gap: 4rem;
-}
+  .aboutItems {
+    gap: 3rem;
+  }
 
-.aboutText{
+  .aboutText {
     margin-top: 1px;
-}
+  }
 
-.h3{
+  .h3 {
     font-size: 2rem;
     font-weight: 400;
-} 
+  }
 
-.p{
-    font-size: 1rem;
-}
+  .p {
+    font-size: 15px;
+  }
 
-.aboutImage{
+  .aboutImage {
     width: 15rem;
     height: auto;
-    margin-top:-50px;
-}
+    margin-top: -50px;
+  }
 
-.line{
+  .line {
     margin-top: 2rem;
-}
+  }
 
-/* Segundo Module Solutions */
+  /* Segundo Module Solutions */
 
-.module{
+  .module {
     width: 100%;
     margin-top: 1rem;
-}
+  }
 
-.moduleText{
+  .moduleText {
     margin-top: 0.5px;
-}
+  }
 
-.subtitle{
+  .subtitle {
     font-size: 2rem;
-    font-weight:400;
-}
+    font-weight: 400;
+  }
 
-.moduleImage{
+  .moduleImage {
     width: 90%;
     margin-bottom: 1rem;
     margin-top: 1rem;
-}
+  }
 
-.moduleLine{
-    height: .2rem;
+  .moduleLine {
+    height: 0.2rem;
     width: 60%;
     background-color: rgba(206, 206, 206, 0.95);
     margin: -5px auto;
-}
+  }
 
-/* Tercer Module About Us */
+  /* Tercer Module About Us */
 
-.aboutUsItems{
+  .aboutUsItems {
     margin-top: 1rem;
-}
+  }
 
-.aboutUsSubtitle{
+  .aboutUsSubtitle {
     font-size: 1.1rem;
-}
+  }
 
-.cards{
+  .cards {
     width: 90%;
     margin-top: 1.5rem;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
     row-gap: 15px;
     column-gap: 15px;
     margin-bottom: 1.5vh;
-}
-
+  }
 }
