@@ -114,6 +114,44 @@ export default function Info() {
             <div className={s.about}>
                 <div className={s.Headline}>
                     <div className={s.line} />
+                    <h2 className={s.title}>Documentation</h2>
+                    <div className={s.line} />
+                </div>
+                <div className={s.aboutUsItems} >
+                    <h3 className={s.aboutUsSubtitle}>The following links will direct you to the documentation for each microservice.</h3>
+
+                    <div className={s.Links}>
+                        <button
+                            className={s.Link}
+                            onClick={() => { window.open(`${'https://api-henry.herokuapp.com'}`, '_blank') }}
+                        ><label className={s.Label}>Apy</label>
+                        </button>
+                        <button
+                            className={s.Link}
+                            onClick={() => { window.open(`${'https://bills-henry.herokuapp.com/api-docs'}`, '_blank') }} >
+                            <label className={s.Label}> Bills</label>
+                        </button>
+                        <button
+                            className={s.Link}
+                            onClick={() => { window.open(`${"https://cellar-henry.herokuapp.com/api-docs"}`, '_blank') }}
+                        ><label className={s.Label}>Cellar</label>
+                        </button>
+                        <button
+                            className={s.Link}
+                            onClick={() => { window.open(`${"https://products-henry.herokuapp.com/api-docs/"}`, '_blank') }}
+                        ><label className={s.Label}> Products</label>
+                        </button>
+                        <button
+                            className={s.Link}
+                            onClick={() => { window.open(`${"https://users-henry.herokuapp.com/api-docs/"}`, '_blank') }}
+                        ><label className={s.Label}> Users</label>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className={s.about}>
+                <div className={s.Headline}>
+                    <div className={s.line} />
                     <h2 className={s.title}>About Us</h2>
                     <div className={s.line} />
                 </div>

@@ -1,32 +1,140 @@
-.container{
-    margin: 2rem;
-    background-color: #F7F7F7;
-    width: 96vw;
-    min-height: 70vh;
-    border-radius: 1rem;
+.container {
+  margin: 2rem;
+  background-color: #f7f7f7;
+  width: 96vw;
+  min-height: 86vh;
+  max-height: 86vh;
+  border-radius: 1rem;
 }
 
-.buttons{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto;
-    padding: 2rem;
-
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  padding: 2rem;
 }
 
-.btn{
-    height: 10vh;
-    justify-self: center;
-    width: 80%;
-    font-family: 'Montserrat';
-    font-size: 1.8vw;
-    border: none;
-    background-color: #E6E7E8;
-    border-radius: .5rem;
-    transition: background-color .5s;
+.btn {
+  height: 8vh;
+  justify-self: center;
+  width: 80%;
+  font-family: "Montserrat";
+  font-size: 1.8vw;
+  border: none;
+  background-color: #e6e7e8;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s;
 }
 
-.btn:hover{
-    background-color: #dadada;
-    transition: background-color .5s;
+.btn:hover {
+  background-color: #dadada;
+  transition: background-color 0.5s;
+}
+
+.Titles {
+  margin: auto auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 5px;
+  width: 98%;
+  gap: 10px;
+  padding-left: 200px;
+  padding-top: 15px;
+  background-color: #e6e7e8;
+  border-top: 0.5rem;
+  max-height: 50px;
+}
+.resumen {
+  margin: auto auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 5px;
+  width: 98%;
+  gap: 1px;
+  align-items: start;
+  justify-content: center;
+  background-color: #e6e7e8;
+  border-bottom: 0.5rem;
+  max-height: 700px;
+  min-height: 700px;
+}
+
+.stats {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  min-height: 300px;
+  max-height: 600px;
+  margin: auto auto;
+  align-items: center;
+  justify-content: center;
+  background-color: #c0c2c3;
+  gap: 20px;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+}
+
+
+.Comments {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  min-height: 680px;
+  max-height: 680px;
+  margin: auto auto;
+  background-color: #c0c2c3;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Comment{
+    border: 0.5px solid black;
+    margin-top: 10px;
+}
+
+.productsPopulated {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-height: 680px;
+    max-height: 680px;
+    margin: auto auto;
+    background-color: #c0c2c3;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.productsViewed {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-height: 680px;
+    max-height: 680px;
+    margin: auto auto;
+    background-color: #c0c2c3;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.Name {
+    font-size: 20px;
+    font-weight: 600;
+  margin-left: 10px;
+}
+
+.Detail{
+    font-weight: 200;
+    margin-left: 10px;
+    font-family:  Arial, sans-serif;
+    
 }

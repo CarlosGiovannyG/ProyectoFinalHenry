@@ -104,7 +104,7 @@ export default function Cart() {
                         description: 'Pedio para entrega a domicilio',
                         "tipoDePedido": `${localStorage.getItem('tipoDePedido')}`,
                         "direccionEntrega": `${localStorage.getItem('address')}`,
-                        "fechaEntrega": `${new Date(new Date().getTime() + 5 * 60 * 1000)}`,
+                        "fechaEntrega": `${new Date(new Date().getTime() + 30 * 60 * 1000)}`,
                         subTotal: Math.ceil(subTotal),
                         total: Math.ceil(total),
                     }

@@ -61,6 +61,38 @@
   height: auto;
 }
 
+.Links {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 60%;
+  padding: 30px;
+  margin: 30px auto;
+  gap: 30px;
+  background-color: #e6e7e8;
+  border-radius: 10px;
+}
+
+.Link {
+  background: none;
+  width: 60%;
+  border: none;
+  font-size:30px;
+  cursor: pointer;
+  background-color: #bdc0c3;
+  border-radius: 5px;
+}
+
+.Link:hover {
+  background-color: #abadb1;
+  transition: all 0.5s;
+}
+
+.Label{
+  color:black;
+  font-size: 25px;
+  font-weight: 600;
+}
 @media (max-width: 1255px) {
   .aboutItems {
     display: flex;
@@ -230,4 +262,22 @@
     column-gap: 15px;
     margin-bottom: 1.5vh;
   }
+
+
+  .Links {
+    flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  margin: 10px auto;
+  gap: 10px;
+}
+
+.Link {
+  width: 70%;
+}
+
+.Label{
+  font-size: 20px;
+  font-weight: 400;
+}
 }

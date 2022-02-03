@@ -146,14 +146,17 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl,clo
                   onClick={() => {
                     openComment()
                   }} />
-                <GrChatOption
+               
+                {
+                    url === routes.UserMainPage &&
+                    <>
+                     <GrChatOption
                   size='2rem'
                   data-tip data-for='createcomment'
                   onClick={() => {
                     openCreateCom()
                   }} />
-                {
-                  url === routes.UserMainPage &&
+                    
                   <button
                     className={s.btnAdd}
                     onClick={() => {
@@ -168,6 +171,7 @@ const ProductDetail = ({ openCreateCom, openComment, productId, modalControl,clo
                         })
                     }}
                   >ADD</button>
+                    </>
                 }
                 {
                   (url === routes.menu && hasRole('admin')) && 
