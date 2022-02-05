@@ -10,7 +10,7 @@ import routes from '../../Helpers/Routes'
 
 
 export default function NavBar({ openLogin, openRegister }) {
-    const [openMenu, setOpenMenu] = useState(true);
+    const [openMenu, setOpenMenu] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const { isLogged, hasRole } = useAuth()
     const login = isLogged()
